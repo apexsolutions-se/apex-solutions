@@ -302,12 +302,6 @@
   	gap: 14px;
   	min-width: 359px;
 }
-.landingpage-icon-1 {
-  	width: 609px;
-  	position: relative;
-  	height: 609px;
-  	object-fit: cover;
-}
 .landing-page-section-container {
   	position: absolute;
   	width: 86.74%;
@@ -329,6 +323,12 @@
   	background-color: #09162b;
   	width: 1440px;
   	height: 1024px;
+}
+.website-icon {
+  	width: 609px;
+  	position: relative;
+  	height: 609px;
+  	object-fit: cover;
 }
 .website-heading {
   	align-self: stretch;
@@ -747,7 +747,7 @@
   	max-height: 100%;
   	mix-blend-mode: overlay;
 }
-.vector-icon1 {
+.check-vector-icon {
   	position: absolute;
   	height: 40%;
   	width: 46.67%;
@@ -894,7 +894,7 @@
   	font-size: 18px;
   	color: #000;
 }
-.noise-texture7 {
+.noise-1-icon {
   	width: 497.7px;
   	position: absolute;
   	margin: 0 !important;
