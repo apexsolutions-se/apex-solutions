@@ -449,7 +449,7 @@ position: relative;
 .about-us-heading {
   	align-self: stretch;
   	position: relative;
-  	  font-size: clamp(1.7rem, 2.6vw + 1rem, 2.6rem);
+  font-size: 32px;
   	display: flex;
 	height: auto;
   	font-family: Orbitron;
