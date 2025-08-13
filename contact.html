@@ -281,124 +281,144 @@
 
   <!-- Language switcher with placeholder translations -->
   <script>
-    const translations = {
-      EN: {
-        // nav
-        'nav-home': "HOME",
-        'nav-portfolio': "PORTFOLIO",
-        'nav-contact': "CONTACT",
-        'lang-label': "EN",
-        'mobile-lang-label': 'EN',
-        'm-nav-home': 'Home',
-        'm-nav-portfolio': 'Portfolio',
-        'm-nav-contact': 'Contact',
-        // headings
-        'contact-head': "LET’S BUILD SOMETHING POWERFUL TOGETHER",
-        'contact-sub': "Tell us about your goals and we’ll bring the strategy, design, and engineering to make them real. Share a few details below — we reply fast.",
-        // labels
-        'label-name': "NAME",
-        'label-email': "EMAIL",
-        'label-phone': "PHONE NUMBER",
-        'label-company': "COMPANY NAME",
-        'label-message': "MESSAGE",
-        'submit-btn': "SUBMIT",
-        // placeholders
-        placeholders: {
-          name:    "Your full name",
-          email:   "you@example.com",
-          phone:   "+46 ...",
-          company: "Company or project name",
-          message: "Tell us about your project, timeline, and goals..."
-        }
-      },
-      SV: {
-        // nav
-        'nav-home': "HEM",
-        'nav-portfolio': "PORTFÖLJ",
-        'nav-contact': "KONTAKT",
-        'lang-label': "SV",
-        'mobile-lang-label': 'SV',
-        'm-nav-home': 'Hem',
-        'm-nav-portfolio': 'Portfölj',
-        'm-nav-contact': 'Kontakt',
-        // headings
-        'contact-head': "LÅT OSS BYGGA NÅGOT KRAFTFULLT TILLSAMMANS",
-        'contact-sub': "Berätta om dina mål så står vi för strategi, design och teknik för att göra dem verklighet. Dela några detaljer nedan — vi svarar snabbt.",
-        // labels
-        'label-name': "NAMN",
-        'label-email': "E-POST",
-        'label-phone': "TELEFONNUMMER",
-        'label-company': "FÖRETAGSNAMN",
-        'label-message': "MEDDELANDE",
-        'submit-btn': "SKICKA",
-        // placeholders
-        placeholders: {
-          name:    "Ditt fullständiga namn",
-          email:   "du@example.com",
-          phone:   "+46 ...",
-          company: "Företags- eller projektnamn",
-          message: "Berätta om projekt, tidslinje och mål..."
-        }
+  // --- Shared translations (EN / SV) ---
+  const translations = {
+    EN: {
+      // nav
+      'nav-home': "HOME",
+      'nav-portfolio': "PORTFOLIO",
+      'nav-contact': "CONTACT",
+      'lang-label': "EN",
+      'mobile-lang-label': 'EN',
+      'm-nav-home': 'Home',
+      'm-nav-portfolio': 'Portfolio',
+      'm-nav-contact': 'Contact',
+      // headings
+      'contact-head': "LET’S BUILD SOMETHING POWERFUL TOGETHER",
+      'contact-sub': "Tell us about your goals and we’ll bring the strategy, design, and engineering to make them real. Share a few details below — we reply fast.",
+      // labels
+      'label-name': "NAME",
+      'label-email': "EMAIL",
+      'label-phone': "PHONE NUMBER",
+      'label-company': "COMPANY NAME",
+      'label-message': "MESSAGE",
+      'submit-btn': "SUBMIT",
+      // placeholders
+      placeholders: {
+        name:    "Your full name",
+        email:   "you@example.com",
+        phone:   "+46 ...",
+        company: "Company or project name",
+        message: "Tell us about your project, timeline, and goals..."
       }
-    };
-
-    let currentLang = 'EN';
-
-    function updateLanguage(lang) {
-      const map = translations[lang];
-      // Update text nodes
-      for (const key in map) {
-        if (key === 'placeholders') continue;
-        const el = document.getElementById(key);
-        if (el) el.textContent = map[key];
+    },
+    SV: {
+      // nav
+      'nav-home': "HEM",
+      'nav-portfolio': "PORTFÖLJ",
+      'nav-contact': "KONTAKT",
+      'lang-label': "SV",
+      'mobile-lang-label': 'SV',
+      'm-nav-home': 'Hem',
+      'm-nav-portfolio': 'Portfölj',
+      'm-nav-contact': 'Kontakt',
+      // headings
+      'contact-head': "LÅT OSS BYGGA NÅGOT KRAFTFULLT TILLSAMMANS",
+      'contact-sub': "Berätta om dina mål så står vi för strategi, design och teknik för att göra dem verklighet. Dela några detaljer nedan — vi svarar snabbt.",
+      // labels
+      'label-name': "NAMN",
+      'label-email': "E-POST",
+      'label-phone': "TELEFONNUMMER",
+      'label-company': "FÖRETAGSNAMN",
+      'label-message': "MEDDELANDE",
+      'submit-btn': "SKICKA",
+      // placeholders
+      placeholders: {
+        name:    "Ditt fullständiga namn",
+        email:   "du@example.com",
+        phone:   "+46 ...",
+        company: "Företags- eller projektnamn",
+        message: "Berätta om projekt, tidslinje och mål..."
       }
-      // Update placeholders
-      const ph = map.placeholders;
-      const nameEl = document.getElementById('name');
-      const emailEl = document.getElementById('email');
-      const phoneEl = document.getElementById('phone');
-      const companyEl = document.getElementById('company');
-      const messageEl = document.getElementById('message');
-      if (nameEl) nameEl.placeholder = ph.name;
-      if (emailEl) emailEl.placeholder = ph.email;
-      if (phoneEl) phoneEl.placeholder = ph.phone;
-      if (companyEl) companyEl.placeholder = ph.company;
-      if (messageEl) messageEl.placeholder = ph.message;
+    }
+  };
 
-      currentLang = lang;
+  const STORAGE_KEY = 'selectedLanguage';
+  let currentLang = (localStorage.getItem(STORAGE_KEY) === 'SV') ? 'SV' : 'EN';
+
+  function applyHtmlLangAttr(lang) {
+    try { document.documentElement.setAttribute('lang', lang.toLowerCase()); } catch {}
+  }
+
+  function updateLanguage(lang) {
+    const map = translations[lang];
+    if (!map) return;
+
+    // Update text nodes by matching element IDs
+    for (const key in map) {
+      if (key === 'placeholders') continue;
+      const el = document.getElementById(key);
+      if (el) el.textContent = map[key];
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const desktopLabel = document.getElementById('lang-label');
-      const desktopBtn   = desktopLabel ? desktopLabel.parentElement : null;
-      const mobileBtn    = document.getElementById('mobile-lang-btn');
-      const burger       = document.getElementById('hamburger');
-      const mobileMenu   = document.getElementById('mobileMenu');
+    // Update placeholders
+    const ph = map.placeholders || {};
+    const nameEl    = document.getElementById('name');
+    const emailEl   = document.getElementById('email');
+    const phoneEl   = document.getElementById('phone');
+    const companyEl = document.getElementById('company');
+    const messageEl = document.getElementById('message');
+    if (nameEl)    nameEl.placeholder    = ph.name    || '';
+    if (emailEl)   emailEl.placeholder   = ph.email   || '';
+    if (phoneEl)   phoneEl.placeholder   = ph.phone   || '';
+    if (companyEl) companyEl.placeholder = ph.company || '';
+    if (messageEl) messageEl.placeholder = ph.message || '';
 
-      function closeMobileMenuIfOpen() {
-        if (!mobileMenu) return;
-        if (mobileMenu.classList.contains('active')) {
-          mobileMenu.classList.remove('active');
-          if (burger) burger.classList.remove('active');
-          document.body.style.overflow = '';
-          mobileMenu.setAttribute('aria-hidden', 'true');
-          burger?.setAttribute('aria-expanded', 'false');
-        }
+    currentLang = lang;
+    localStorage.setItem(STORAGE_KEY, lang);   // persist for other pages
+    applyHtmlLangAttr(lang);
+
+    // Make sure both labels are synced even if one wasn't in DOM at first paint
+    const desktopLabel = document.getElementById('lang-label');
+    const mobileLabel  = document.getElementById('mobile-lang-label');
+    if (desktopLabel) desktopLabel.textContent = map['lang-label'];
+    if (mobileLabel)  mobileLabel.textContent  = map['mobile-lang-label'];
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const desktopLabel = document.getElementById('lang-label');
+    const desktopBtn   = desktopLabel ? desktopLabel.parentElement : null;
+    const mobileBtn    = document.getElementById('mobile-lang-btn');
+    const burger       = document.getElementById('hamburger');
+    const mobileMenu   = document.getElementById('mobileMenu');
+
+    // Apply saved language immediately on load
+    updateLanguage(currentLang);
+
+    function closeMobileMenuIfOpen() {
+      if (!mobileMenu) return;
+      if (mobileMenu.classList.contains('active')) {
+        mobileMenu.classList.remove('active');
+        if (burger) burger.classList.remove('active');
+        document.body.style.overflow = '';
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        burger?.setAttribute('aria-expanded', 'false');
       }
+    }
 
-      function toggleLanguage() {
-        const next = currentLang === 'EN' ? 'SV' : 'EN';
-        updateLanguage(next);
-        closeMobileMenuIfOpen();
-      }
+    function toggleLanguage() {
+      const next = currentLang === 'EN' ? 'SV' : 'EN';
+      updateLanguage(next);
+      closeMobileMenuIfOpen();
+    }
 
-      if (desktopBtn) desktopBtn.addEventListener('click', toggleLanguage);
-      if (mobileBtn)  mobileBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleLanguage(); });
-
-      // Initial paint
-      updateLanguage(currentLang);
+    if (desktopBtn) desktopBtn.addEventListener('click', toggleLanguage);
+    if (mobileBtn)  mobileBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleLanguage();
     });
-  </script>
+  });
+</script>
 
   <!-- Hamburger behavior -->
   <script>
