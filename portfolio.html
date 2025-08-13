@@ -347,78 +347,81 @@
   </script>
 
   <!-- Language switcher (same IDs/behavior as homepage) -->
-  <script>
-    const translations = {
-      EN: {
-        'nav-home': "HOME",
-        'nav-portfolio': "PORTFOLIO",
-        'nav-contact': "CONTACT",
-        'lang-label': "EN",
-        'mobile-lang-label': 'EN',
-        'm-nav-home': 'Home',
-        'm-nav-portfolio': 'Portfolio',
-        'm-nav-contact': 'Contact',
-        'uc-head': "THIS PAGE IS UNDER CONSTRUCTION",
-        'uc-sub': "Great Things are Coming Soon",
-        'notify-btn': "Notify Me"
-      },
-      SV: {
-        'nav-home': "HEM",
-        'nav-portfolio': "PORTFÖLJ",
-        'nav-contact': "KONTAKT",
-        'lang-label': "SV",
-        'mobile-lang-label': 'SV',
-        'm-nav-home': 'Hem',
-        'm-nav-portfolio': 'Portfölj',
-        'm-nav-contact': 'Kontakt',
-        'uc-head': "DEN HÄR SIDAN BYGGS JUST NU",
-        'uc-sub': "Stora saker är på gång",
-        'notify-btn': "Meddela mig"
-      }
-    };
+ <script>
+  const translations = {
+    EN: {
+      'nav-home': "HOME",
+      'nav-portfolio': "PORTFOLIO",
+      'nav-contact': "CONTACT",
+      'lang-label': "EN",
+      'mobile-lang-label': 'EN',
+      'm-nav-home': 'Home',
+      'm-nav-portfolio': 'Portfolio',
+      'm-nav-contact': 'Contact',
+      'uc-head': "THIS PAGE IS UNDER CONSTRUCTION",
+      'uc-sub': "Great Things are Coming Soon",
+      'notify-btn': "Notify Me"
+    },
+    SV: {
+      'nav-home': "HEM",
+      'nav-portfolio': "PORTFÖLJ",
+      'nav-contact': "KONTAKT",
+      'lang-label': "SV",
+      'mobile-lang-label': 'SV',
+      'm-nav-home': 'Hem',
+      'm-nav-portfolio': 'Portfölj',
+      'm-nav-contact': 'Kontakt',
+      'uc-head': "DEN HÄR SIDAN BYGGS JUST NU",
+      'uc-sub': "Stora saker är på gång",
+      'notify-btn': "Meddela mig"
+    }
+  };
 
-    let currentLang = 'EN';
+  let currentLang = localStorage.getItem('selectedLanguage') || 'EN';
 
-    function updateLanguage(lang) {
-      const map = translations[lang];
-      for (const id in map) {
-        const el = document.getElementById(id);
-        if (el) el.textContent = map[id];
+  function updateLanguage(lang) {
+    const map = translations[lang];
+    for (const id in map) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = map[id];
+    }
+    currentLang = lang;
+    localStorage.setItem('selectedLanguage', lang);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const desktopLabel = document.getElementById('lang-label');
+    const desktopBtn   = desktopLabel ? desktopLabel.parentElement : null;
+    const mobileBtn    = document.getElementById('mobile-lang-btn');
+    const burger       = document.getElementById('hamburger');
+    const mobileMenu   = document.getElementById('mobileMenu');
+
+    function closeMobileMenuIfOpen() {
+      if (!mobileMenu) return;
+      if (mobileMenu.classList.contains('active')) {
+        mobileMenu.classList.remove('active');
+        if (burger) burger.classList.remove('active');
+        document.body.style.overflow = '';
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        burger?.setAttribute('aria-expanded', 'false');
       }
-      currentLang = lang;
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const desktopLabel = document.getElementById('lang-label');
-      const desktopBtn   = desktopLabel ? desktopLabel.parentElement : null;
-      const mobileBtn    = document.getElementById('mobile-lang-btn');
-      const burger       = document.getElementById('hamburger');
-      const mobileMenu   = document.getElementById('mobileMenu');
+    function toggleLanguage() {
+      const next = currentLang === 'EN' ? 'SV' : 'EN';
+      updateLanguage(next);
+      closeMobileMenuIfOpen();
+    }
 
-      function closeMobileMenuIfOpen() {
-        if (!mobileMenu) return;
-        if (mobileMenu.classList.contains('active')) {
-          mobileMenu.classList.remove('active');
-          if (burger) burger.classList.remove('active');
-          document.body.style.overflow = '';
-          mobileMenu.setAttribute('aria-hidden', 'true');
-          burger?.setAttribute('aria-expanded', 'false');
-        }
-      }
-
-      function toggleLanguage() {
-        const next = currentLang === 'EN' ? 'SV' : 'EN';
-        updateLanguage(next);
-        closeMobileMenuIfOpen();
-      }
-
-      if (desktopBtn) desktopBtn.addEventListener('click', toggleLanguage);
-      if (mobileBtn)  mobileBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleLanguage(); });
-
-      updateLanguage(currentLang);
+    if (desktopBtn) desktopBtn.addEventListener('click', toggleLanguage);
+    if (mobileBtn)  mobileBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleLanguage();
     });
-  </script>
 
+    updateLanguage(currentLang); // Apply saved language on load
+  });
+</script>
   <!-- Hamburger behavior -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
