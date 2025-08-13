@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Apex Solutions — Contact</title>
+
+  <!-- Fonts (match homepage) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" />
+
+  <style>
+    /* Base / reset */
+    html, body { margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      background-color: #09162b;
+      color: #fff;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Background stack with crypto spotlight */
+    .background-stack {
+      position: fixed; inset: 0; z-index: 0; overflow: hidden;
+      background: radial-gradient(ellipse at 50% 40%, #10274b 0%, #09162B 20%, #020509 100%);
+      pointer-events: none;
+    }
+    .background-stack .metal-texture,
+    .background-stack .crypto-texture {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; pointer-events: none;
+    }
+    .background-stack .metal-texture { mix-blend-mode: overlay; opacity: 1; }
+    .background-stack .crypto-texture {
+      opacity: .7;
+      mask-image: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.13) 0%, rgba(255,255,255,0.05) 50%, transparent 90%);
+      mask-size: 260px 260px; mask-repeat: no-repeat; mask-position: -9999px -9999px;
+      -webkit-mask-image: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.13) 0%, rgba(255,255,255,0.05) 50%, transparent 90%);
+      -webkit-mask-size: 260px 260px; -webkit-mask-repeat: no-repeat; -webkit-mask-position: -9999px -9999px;
+      will-change: mask-position, -webkit-mask-position; transition: opacity .2s ease;
+    }
+
+    /* Page layout */
+    .page { position: relative; min-height: 100vh; display: grid; grid-template-rows: auto 1fr; z-index: 1; }
+
+    /* Navbar (match homepage) */
+    .hero-container { position: relative; display: flex; flex-direction: column; align-items: center; padding: 10px; font-size: 16px; }
+    .navbar {
+      width: 100%; max-width: 1440px;
+      display: flex; align-items: center; justify-content: flex-end;
+      gap: 20px; padding: 10px 24px; margin: 6px auto 0;
+    }
+    .nav-left { margin-right: auto; display: flex; align-items: center; gap: 14px; }
+    .logo-icon { width: clamp(60px, 8vw, 90px); height: auto; object-fit: contain; }
+
+    .desktop-nav { display: flex; align-items: center; gap: 28px; font-weight: 500; }
+    .navbar-item, .navbar-item1, .navbar-item2 {
+      display: flex; align-items: center; justify-content: center; white-space: nowrap; cursor: pointer;
+    }
+    .desktop-nav b { font-weight: 700; } /* Active item bold */
+
+    /* Divider + language switcher (exact homepage look) */
+    .navbar-child { width: 1px; border-right: 1px solid #fff; height: 25px; box-sizing: border-box; }
+    .language-switcher {
+      display: flex; align-items: center; height: 100%; cursor: pointer;
+      padding: 0; background: transparent; border: 0; width: 38px; height: 9px;
+    }
+    .lang-label { font-weight: 500; }
+
+    /* Hamburger + mobile menu */
+    .hamburger { display: none; flex-direction: column; justify-content: space-between; width: 28px; height: 20px; background: transparent; border: 0; padding: 0; cursor: pointer; }
+    .hamburger span { width: 100%; height: 3px; border-radius: 2px; background: #00baff; transition: transform .3s ease, opacity .3s ease; }
+    .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0;
+      transform: translateY(-100%); background: rgba(173,235,255,0.95); backdrop-filter: blur(8px);
+      border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; z-index: 1000;
+      transition: transform .4s ease; pointer-events: none; }
+    .mobile-menu.active { transform: translateY(0); pointer-events: auto; }
+    .mobile-menu-list { list-style: none; margin: 16px 0 20px; padding: 16px 20px; display: flex; flex-direction: column; gap: 16px; align-items: center; }
+    .mobile-menu a, .mobile-lang-switch { text-decoration: none; color: #09162b; font-weight: 600; font-size: 18px; background: transparent; border: 0; cursor: pointer; }
+
+    /* Main content */
+    .center-wrap { min-height: calc(100vh - 90px); display: grid; place-items: center; padding: 60px 20px 80px; }
+    .content { display: grid; gap: 24px; width: min(1100px, 92vw); justify-items: center; text-align: center; }
+
+    /* Headings (same style as other pages) */
+    .headline {
+      font-family: Orbitron, sans-serif; font-weight: 700; line-height: 1.1; margin: 0;
+      text-shadow:
+        0 0 12px #3fd3fc, 0 0 32px #3fd3fc,
+        1px 0 0 rgba(63,211,252,0.7), 0 1px 0 rgba(63,211,252,0.7),
+        -1px 0 0 rgba(63,211,252,0.7), 0 -1px 0 rgba(63,211,252,0.7);
+      font-size: clamp(1.875rem, 2vw + 1rem, 2.25rem); /* 36px max */
+    }
+    .subheadline {
+      font-weight: 300; line-height: 1.35; margin: 0;
+      font-size: clamp(0.75rem, 1.1vw + 0.45rem, 1.125rem); /* same body clamp */
+      color: #eaf9ff;
+      max-width: 760px;
+    }
+
+    /* Contact form — matches homepage glass look & fields */
+    .form-shell {
+      position: relative; width: min(900px, 100%); margin-top: 6px; display: grid; place-items: center;
+    }
+    .form-background {
+      position: absolute; inset: 0;
+      box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(40px);
+      border-radius: 20px;
+      background: linear-gradient(112.71deg, rgba(54,114,156,0.3), rgba(9,22,43,0.3));
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      z-index: 0;
+    }
+    .form {
+      position: relative; z-index: 1; width: min(760px, 92vw);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 18px 20px; padding: 28px 20px; box-sizing: border-box;
+      color: #00c7ff; font-size: 13px;
+    }
+    .field { display: grid; gap: 6px; }
+    .label { letter-spacing: 0.1em; line-height: 1.2; text-align: left; }
+    .input, .textarea {
+      width: 100%; box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(40px); border-radius: 10px;
+      background: linear-gradient(114.62deg, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.08));
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      color: #eaf9ff; outline: none;
+    }
+    .input { height: 42px; padding: 0 12px; }
+    .textarea { min-height: 124px; padding: 10px 12px; resize: vertical; }
+    .input::placeholder, .textarea::placeholder { color: #b7d9fb; }
+    .full { grid-column: 1 / -1; }
+
+    .submit {
+      justify-self: center; width: 191px; height: 51px; border-radius: 10px;
+      background-color: #3ccff8; color: #09162b; border: 1.5px solid #b7d9fb; box-shadow: 0 0 4.8px #057ff9;
+      font-weight: 700; font-size: 18px; cursor: pointer; transition: background .2s, transform .1s;
+    }
+    .submit:hover { background: #59e6fa; }
+    .submit:active { transform: translateY(1px); }
+    .helper { grid-column: 1 / -1; text-align: center; color: #b7d9fb; font-size: 13px; }
+
+    /* Tablet / Mobile */
+    @media (max-width: 1080px) {
+      .desktop-nav { display: none; }
+      .hamburger { display: inline-flex; }
+      .mobile-menu { display: block; }
+      .navbar { padding: 10px 16px; }
+      .form { grid-template-columns: 1fr; gap: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background -->
+  <div class="background-stack">
+    <img src="assets/metal-texture.png" class="metal-texture" alt="" />
+    <img src="assets/crypto-texture.png" class="crypto-texture" id="cryptoTexture" alt="" />
+  </div>
+
+  <div class="page">
+    <!-- Navbar -->
+    <header class="hero-container">
+      <nav class="navbar">
+        <div class="nav-left">
+          <a href="index.html" aria-label="Apex Solutions Home">
+            <img class="logo-icon" alt="Apex Solutions" src="assets/LOGO.png" />
+          </a>
+        </div>
+
+        <!-- Desktop nav: CONTACT is active/bold; include divider + EN -->
+        <div class="desktop-nav">
+          <div class="navbar-item" id="nav-home" onclick="location.href='index.html#home'">HOME</div>
+          <div class="navbar-item1" id="nav-portfolio" onclick="location.href='portfolio.html'">PORTFOLIO</div>
+          <b class="navbar-item2" id="nav-contact" onclick="location.href='contact.html'">CONTACT</b>
+          <div class="navbar-child"></div>
+          <div class="language-switcher" tabindex="0" role="button" aria-label="Switch language">
+            <span class="lang-label" id="lang-label">EN</span>
+          </div>
+        </div>
+
+        <!-- Hamburger -->
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+
+      <!-- Mobile menu -->
+      <nav class="mobile-menu" id="mobileMenu" aria-hidden="true">
+        <ul class="mobile-menu-list">
+          <li><a href="index.html#home" id="m-nav-home">Home</a></li>
+          <li><a href="portfolio.html" id="m-nav-portfolio">Portfolio</a></li>
+          <li><a href="contact.html" id="m-nav-contact">Contact</a></li>
+          <li>
+            <button class="mobile-lang-switch" id="mobile-lang-btn" type="button" aria-label="Switch language">
+              <span id="mobile-lang-label">EN</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Main -->
+    <main class="center-wrap">
+      <div class="content">
+        <h1 class="headline" id="contact-head">LET’S BUILD SOMETHING POWERFUL TOGETHER</h1>
+        <p class="subheadline" id="contact-sub">
+          Tell us about your goals and we’ll bring the strategy, design, and engineering to make them real. Share a few details below — we reply fast.
+        </p>
+
+        <div class="form-shell">
+          <div class="form-background"></div>
+          <form class="form" id="contactForm" novalidate>
+            <div class="field">
+              <div class="label" id="label-name">NAME</div>
+              <input class="input" type="text" id="name" name="name" placeholder="Your full name" required />
+            </div>
+
+            <div class="field">
+              <div class="label" id="label-email">EMAIL</div>
+              <input class="input" type="email" id="email" name="email" placeholder="you@example.com" required />
+            </div>
+
+            <div class="field">
+              <div class="label" id="label-phone">PHONE NUMBER</div>
+              <input class="input" type="tel" id="phone" name="phone" placeholder="+46 ..." />
+            </div>
+
+            <div class="field">
+              <div class="label" id="label-company">COMPANY NAME</div>
+              <input class="input" type="text" id="company" name="company" placeholder="Company or project name" />
+            </div>
+
+            <div class="field full">
+              <div class="label" id="label-message">MESSAGE</div>
+              <textarea class="textarea" id="message" name="message" placeholder="Tell us about your project, timeline, and goals..." required></textarea>
+            </div>
+
+            <div class="full" style="display:grid; place-items:center;">
+              <button class="submit" type="submit" id="submit-btn">SUBMIT</button>
+            </div>
+
+            <div class="helper" id="helperText"></div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    /* Crypto spotlight — global mouse/touch */
+    (function () {
+      const crypto = document.getElementById('cryptoTexture');
+      if (!crypto) return;
+      const SIZE = 200;
+      function setPos(x, y) {
+        const px = (x - SIZE/2) + 'px';
+        const py = (y - SIZE/2) + 'px';
+        crypto.style.maskPosition = px + ' ' + py;
+        crypto.style.webkitMaskPosition = px + ' ' + py;
+        crypto.style.opacity = 1;
+      }
+      function hide() {
+        crypto.style.maskPosition = '-9999px -9999px';
+        crypto.style.webkitMaskPosition = '-9999px -9999px';
+        crypto.style.opacity = 0.7;
+      }
+      window.addEventListener('mousemove', (e)=>setPos(e.clientX, e.clientY), { passive:true });
+      window.addEventListener('mouseleave', hide, { passive:true });
+      window.addEventListener('touchmove', (e)=>{ const t=e.touches&&e.touches[0]; if(t) setPos(t.clientX,t.clientY); }, { passive:true });
+      window.addEventListener('touchend', hide, { passive:true });
+    })();
+  </script>
+
+  <!-- Language switcher with placeholder translations -->
+  <script>
+    const translations = {
+      EN: {
+        // nav
+        'nav-home': "HOME",
+        'nav-portfolio': "PORTFOLIO",
+        'nav-contact': "CONTACT",
+        'lang-label': "EN",
+        'mobile-lang-label': 'EN',
+        'm-nav-home': 'Home',
+        'm-nav-portfolio': 'Portfolio',
+        'm-nav-contact': 'Contact',
+        // headings
+        'contact-head': "LET’S BUILD SOMETHING POWERFUL TOGETHER",
+        'contact-sub': "Tell us about your goals and we’ll bring the strategy, design, and engineering to make them real. Share a few details below — we reply fast.",
+        // labels
+        'label-name': "NAME",
+        'label-email': "EMAIL",
+        'label-phone': "PHONE NUMBER",
+        'label-company': "COMPANY NAME",
+        'label-message': "MESSAGE",
+        'submit-btn': "SUBMIT",
+        // placeholders
+        placeholders: {
+          name:    "Your full name",
+          email:   "you@example.com",
+          phone:   "+46 ...",
+          company: "Company or project name",
+          message: "Tell us about your project, timeline, and goals..."
+        }
+      },
+      SV: {
+        // nav
+        'nav-home': "HEM",
+        'nav-portfolio': "PORTFÖLJ",
+        'nav-contact': "KONTAKT",
+        'lang-label': "SV",
+        'mobile-lang-label': 'SV',
+        'm-nav-home': 'Hem',
+        'm-nav-portfolio': 'Portfölj',
+        'm-nav-contact': 'Kontakt',
+        // headings
+        'contact-head': "LÅT OSS BYGGA NÅGOT KRAFTFULLT TILLSAMMANS",
+        'contact-sub': "Berätta om dina mål så står vi för strategi, design och teknik för att göra dem verklighet. Dela några detaljer nedan — vi svarar snabbt.",
+        // labels
+        'label-name': "NAMN",
+        'label-email': "E-POST",
+        'label-phone': "TELEFONNUMMER",
+        'label-company': "FÖRETAGSNAMN",
+        'label-message': "MEDDELANDE",
+        'submit-btn': "SKICKA",
+        // placeholders
+        placeholders: {
+          name:    "Ditt fullständiga namn",
+          email:   "du@example.com",
+          phone:   "+46 ...",
+          company: "Företags- eller projektnamn",
+          message: "Berätta om projekt, tidslinje och mål..."
+        }
+      }
+    };
+
+    let currentLang = 'EN';
+
+    function updateLanguage(lang) {
+      const map = translations[lang];
+      // Update text nodes
+      for (const key in map) {
+        if (key === 'placeholders') continue;
+        const el = document.getElementById(key);
+        if (el) el.textContent = map[key];
+      }
+      // Update placeholders
+      const ph = map.placeholders;
+      const nameEl = document.getElementById('name');
+      const emailEl = document.getElementById('email');
+      const phoneEl = document.getElementById('phone');
+      const companyEl = document.getElementById('company');
+      const messageEl = document.getElementById('message');
+      if (nameEl) nameEl.placeholder = ph.name;
+      if (emailEl) emailEl.placeholder = ph.email;
+      if (phoneEl) phoneEl.placeholder = ph.phone;
+      if (companyEl) companyEl.placeholder = ph.company;
+      if (messageEl) messageEl.placeholder = ph.message;
+
+      currentLang = lang;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const desktopLabel = document.getElementById('lang-label');
+      const desktopBtn   = desktopLabel ? desktopLabel.parentElement : null;
+      const mobileBtn    = document.getElementById('mobile-lang-btn');
+      const burger       = document.getElementById('hamburger');
+      const mobileMenu   = document.getElementById('mobileMenu');
+
+      function closeMobileMenuIfOpen() {
+        if (!mobileMenu) return;
+        if (mobileMenu.classList.contains('active')) {
+          mobileMenu.classList.remove('active');
+          if (burger) burger.classList.remove('active');
+          document.body.style.overflow = '';
+          mobileMenu.setAttribute('aria-hidden', 'true');
+          burger?.setAttribute('aria-expanded', 'false');
+        }
+      }
+
+      function toggleLanguage() {
+        const next = currentLang === 'EN' ? 'SV' : 'EN';
+        updateLanguage(next);
+        closeMobileMenuIfOpen();
+      }
+
+      if (desktopBtn) desktopBtn.addEventListener('click', toggleLanguage);
+      if (mobileBtn)  mobileBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleLanguage(); });
+
+      // Initial paint
+      updateLanguage(currentLang);
+    });
+  </script>
+
+  <!-- Hamburger behavior -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const burger = document.getElementById('hamburger');
+      const menu   = document.getElementById('mobileMenu');
+      if (!burger || !menu) return;
+
+      const openMenu = () => {
+        menu.classList.add('active');
+        burger.classList.add('active');
+        burger.setAttribute('aria-expanded', 'true');
+        menu.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      };
+      const closeMenu = () => {
+        menu.classList.remove('active');
+        burger.classList.remove('active');
+        burger.setAttribute('aria-expanded', 'false');
+        menu.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      };
+
+      burger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menu.classList.contains('active') ? closeMenu() : openMenu();
+      });
+
+      menu.addEventListener('click', (e) => {
+        if (e.target.matches('a, button')) closeMenu();
+      });
+
+      document.addEventListener('click', (e) => {
+        if (menu.classList.contains('active') && !menu.contains(e.target) && e.target !== burger) {
+          closeMenu();
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && menu.classList.contains('active')) closeMenu();
+      });
+
+      const mq = window.matchMedia('(min-width: 1081px)');
+      const handleChange = () => { if (mq.matches) closeMenu(); };
+      if (mq.addEventListener) mq.addEventListener('change', handleChange);
+      else mq.addListener(handleChange);
+    });
+  </script>
+
+  <!-- Contact form handler -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form   = document.getElementById('contactForm');
+      const nameEl = document.getElementById('name');
+      const email  = document.getElementById('email');
+      const message= document.getElementById('message');
+      const helper = document.getElementById('helperText');
+
+      form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        helper.textContent = '';
+
+        const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((email.value||'').trim());
+        if (!nameEl.value.trim() || !emailOk || !message.value.trim()) {
+          helper.textContent = (currentLang === 'SV')
+            ? 'Fyll i Namn, giltig E-post och Meddelande.'
+            : 'Please complete Name, a valid Email, and Message.';
+          return;
+        }
+
+        try {
+          // Hook this to your endpoint/FormSubmit if desired:
+          // const fd = new FormData(form);
+          // await fetch('https://formsubmit.co/YOUR_ID', { method:'POST', body: fd });
+          helper.textContent = (currentLang === 'SV')
+            ? 'Tack! Vi hör av oss snart.'
+            : 'Thanks! We’ll get back to you shortly.';
+          form.reset();
+        } catch (err) {
+          helper.textContent = (currentLang === 'SV')
+            ? 'Något gick fel. Försök igen.'
+            : 'Something went wrong. Please try again.';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
