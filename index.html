@@ -1,516 +1,694 @@
-<!DOCTYPE html>
-<html>
-<head>
-  	<meta charset="utf-8">	
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  	
-  	<link rel="stylesheet"  href="./index.css" />
-  	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" />
-  	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" />
-  	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" />
-</head>
-<body>
-  <div class="apex-responsive">
-    <div class="scroll-container">
-      <!-- HERO SECTION -->
-<section class="snap-section hero">
-  <div class="background-stack">
-    <img src="assets/metal-texture.png" class="metal-texture" alt="" />
-    <img src="assets/crypto-texture.png" class="crypto-texture" alt="" />
-  </div>
-
-  <div class="hero-content-container">
-    <div class="logo-constrains">
-      <img class="logo-icon" alt="Apex Solutions" src="assets/LOGO.png">
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">	
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet"  href="./index.css" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" />
+  </head>
+  <body>
+    <div class="apex-responsive">
+      <div class="scroll-container">
+        <!-- HERO SECTION -->
+  <section class="snap-section hero">
+    <div class="background-stack">
+      <img src="assets/metal-texture.png" class="metal-texture" alt="" />
+      <img src="assets/crypto-texture.png" class="crypto-texture" alt="" />
     </div>
 
-    <div class="heading-constrains">
-      <b class="hero-heading" id="hero-heading">POWERFUL WEBSITES. REAL RESULTS.</b>
-    </div>
-
-    <div class="buttons-constrains">
-      <div class="contact-us-button">
-        <div class="contact-us-glow">
-          <span class="contact-us-text" id="text-contact-us">Contact Us</span>
-        </div>
+    <div class="hero-content-container">
+      <div class="logo-constrains">
+        <img class="logo-icon" alt="Apex Solutions" src="assets/LOGO.png">
       </div>
-      <div class="learn-more-button">
-        <div class="learn-more">
-          <span class="learn-more-text" id="text-learn-more">Learn More</span>
-        </div>
+
+      <div class="heading-constrains">
+        <b class="hero-heading" id="hero-heading">POWERFUL WEBSITES. REAL RESULTS.</b>
       </div>
-    </div>
-  </div>
 
-  <div class="hero-container">
-    <!-- Desktop navbar (shown on desktop only via CSS) -->
-    <div class="navbar desktop-nav">
-      <b class="navbar-item" id="nav-home">HOME</b>
-      <div class="navbar-item1" id="nav-portfolio">PORTFOLIO</div>
-      <div class="navbar-item2" id="nav-contact">CONTACT</div>
-      <div class="navbar-child"></div>
-      <div class="language-switcher" tabindex="0" role="button" aria-label="Switch language">
-        <span class="lang-label" id="lang-label">EN</span>
-      </div>
-    </div>
-
-    <!-- Mobile: hamburger + overlay menu (shown on <=1080px via CSS) -->
-    <button
-      class="hamburger"
-      id="hamburger"
-      aria-label="Open menu"
-      aria-controls="mobileMenu"
-      aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-
-    <nav class="mobile-menu" id="mobileMenu" aria-hidden="true">
-      <ul class="mobile-menu-list">
-        <li><a href="#home" id="m-nav-home">Home</a></li>
-        <li><a href="#portfolio" id="m-nav-portfolio">Portfolio</a></li>
-        <li><a href="#contact" id="m-nav-contact">Contact</a></li>
-        <li>
-          <button class="mobile-lang-switch" id="mobile-lang-btn" type="button" aria-label="Switch language">
-            <span id="mobile-lang-label">EN</span>
-          </button>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</section>
-
-
-      <!-- LANDING PAGE SECTION -->
-      <section class="snap-section landing-page-section">
-        <div class="background-stack">
-          <img src="assets/metal-texture.png" class="metal-texture" alt="" />
-          <img src="assets/crypto-texture.png" class="crypto-texture" alt="" />
-        </div>
-        <div class="landing-page-section-container">
-          <div class="landing-page-text-container">
-            <b class="landing-page-heading-container">
-              <span>
-                <p class="landing-pages-that" id="text-landing-head-1">LANDING PAGES THAT TURN VISITORS INTO ACTION-TAKERS</p>
-              </span>
-            </b>
-            <div class="landing-page-description" id="text-landing-desc">
-              Every landing page we build is crafted with a clear objective: to guide users toward a specific action—whether it’s a purchase, a sign-up, or a conversation. Our team combines clean visuals with strategic copy and UX best practices to help you meet your campaign goals efficiently and with impact.
-            </div>
-          </div>
-          <img class="website-icon" alt="" src="assets/landingpage-icon 1.png">
-        </div>
-      </section>
-
-      <!-- WEBSITE SECTION -->
-      <section class="snap-section website-section">
-        <div class="background-stack">
-          <img src="assets/metal-texture.png" class="metal-texture" alt="" />
-          <img src="assets/crypto-texture.png" class="crypto-texture" id="cryptoTexture" alt="" />
-        </div>
-        <div class="landing-page-section-container">
-          <img class="website-icon" alt="" src="assets/website-icon.png">
-          <div class="landing-page-text-container">
-            <b class="website-heading" id="text-website-head">WEBSITES BUILT FOR IMPACT AND LONGEVITY</b>
-            <div class="landing-page-description">
-              <span>
-                <p class="website-desciption" id="text-website-desc">
-                  A strong online presence starts with a well-built website. At Apex Solutions, we create responsive, scalable, and user-centered websites designed to represent your brand, engage your audience, and support your long-term growth. Whether you're building a company from scratch or evolving an established brand, we tailor each site to fit your goals, industry, and style.
-                </p>
-              </span>
-            </div>
+      <div class="buttons-constrains">
+        <div class="contact-us-button">
+          <div class="contact-us-glow">
+            <span class="contact-us-text" id="text-contact-us">Contact Us</span>
           </div>
         </div>
-      </section>
-
-      <!-- ABOUT US SECTION -->
-      <section class="snap-section about-us-section">
-        <div class="background-stack">
-          <img src="assets/metal-texture.png" class="metal-texture" alt="" />
-          <img src="assets/crypto-texture.png" class="crypto-texture" alt="" />
+        <div class="learn-more-button">
+          <div class="learn-more">
+            <span class="learn-more-text" id="text-learn-more">Learn More</span>
+          </div>
         </div>
-        <div class="landing-page-section-container">
-          <div class="about-us-text-container">
-            <b class="about-us-heading" id="text-aboutus-head">A CREATIVE TECH STUDIO FOR THE NEXT GENERATION OF BRANDS</b>
-            <div class="about-us-description-container">	
-              <span>
-                <p class="about-us-description" id="text-aboutus-desc-1">
-                  Apex Solutions is a future-forward digital agency specializing in smart, scalable design and technology solutions for businesses ready to grow. We partner with entrepreneurs, creators, and companies to build sleek, high-performing websites, landing pages, and digital systems that convert and endure.
-                </p>
-                <p class="about-us-description" id="text-aboutus-desc-2">
-                  We don’t just design—we architect experiences. Every visual, every button, every scroll is designed with purpose, blending modern aesthetics with data-driven functionality. Whether you're launching a new product, growing your personal brand, or giving your business a digital facelift, Apex delivers solutions built to last.
-                </p>
-              </span>
-            </div>
-            <div class="about-us-button">
-              <div class="learn-more2">
-                <div class="feature-text" id="text-get-in-touch">Get In Touch</div>
+      </div>
+    </div>
+
+    <div class="hero-container">
+      <!-- Desktop navbar (shown on desktop only via CSS) -->
+      <div class="navbar desktop-nav">
+        <b class="navbar-item" id="nav-home">HOME</b>
+        <div class="navbar-item1" id="nav-portfolio">PORTFOLIO</div>
+        <div class="navbar-item2" id="nav-contact">CONTACT</div>
+        <div class="navbar-child"></div>
+        <div class="language-switcher" tabindex="0" role="button" aria-label="Switch language">
+          <span class="lang-label" id="lang-label">EN</span>
+        </div>
+      </div>
+
+      <!-- Mobile: hamburger + overlay menu (shown on <=1080px via CSS) -->
+      <button
+        class="hamburger"
+        id="hamburger"
+        aria-label="Open menu"
+        aria-controls="mobileMenu"
+        aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="mobile-menu" id="mobileMenu" aria-hidden="true">
+        <ul class="mobile-menu-list">
+          <li><a href="#home" id="m-nav-home">Home</a></li>
+          <li><a href="#portfolio" id="m-nav-portfolio">Portfolio</a></li>
+          <li><a href="#contact" id="m-nav-contact">Contact</a></li>
+          <li>
+            <button class="mobile-lang-switch" id="mobile-lang-btn" type="button" aria-label="Switch language">
+              <span id="mobile-lang-label">EN</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+
+        <!-- LANDING PAGE SECTION -->
+        <section class="snap-section landing-page-section">
+          <div class="background-stack">
+            <img src="assets/metal-texture.png" class="metal-texture" alt="" />
+            <img src="assets/crypto-texture.png" class="crypto-texture" alt="" />
+          </div>
+          <div class="landing-page-section-container">
+            <div class="landing-page-text-container">
+              <b class="landing-page-heading-container">
+                <span>
+                  <p class="landing-pages-that" id="text-landing-head-1">LANDING PAGES THAT TURN VISITORS INTO ACTION-TAKERS</p>
+                </span>
+              </b>
+              <div class="landing-page-description" id="text-landing-desc">
+                Every landing page we build is crafted with a clear objective: to guide users toward a specific action—whether it’s a purchase, a sign-up, or a conversation. Our team combines clean visuals with strategic copy and UX best practices to help you meet your campaign goals efficiently and with impact.
               </div>
             </div>
+            <img class="website-icon" alt="" src="assets/landingpage-icon 1.png">
           </div>
-          <img class="aboutus-icon-1" alt="" src="assets/aboutus-icon 1.png">
-        </div>
-      </section>
+        </section>
 
-      <!-- WHAT WE OFFER SECTION -->
-      <section class="snap-section what-we-offer-section">
-  <div class="background-stack">
-    <img src="assets/metal-texture.png" class="metal-texture" alt="" />
-    <img src="assets/crypto-texture.png" class="crypto-texture" alt="" />
-  </div>
-  <img class="what-we-offer-section-child" alt="" src="assets/vector-group.png">
-  <div class="services-container">
-    <div class="web-design">
-      <div class="service-image-container">
-        <div class="service-image-background"></div>
-        <img class="noise-texture" alt="" src="assets/Noise & Texture.png">
-      </div>
-      <b class="service-title" id="text-title-web">Web Design</b>
-      <div class="service-description-container">
-        <div class="service-description" id="text-service-web">
-          Custom-built websites and landing pages designed for clarity, performance, and conversion. Whether you’re running ads, building a personal brand, or launching a product, we create scalable digital experiences tailored to your goals.
-        </div>
-      </div>
-    </div>
-    <div class="web-design">
-      <div class="service-image-container">
-        <div class="service-image-background"></div>
-        <img class="noise-texture" alt="" src="assets/Noise & Texture.png">
-      </div>
-      <b class="service-title" id="text-title-copy">Copywriting</b>
-      <div class="service-description-container">
-        <div class="service-description" id="text-service-copy">
-          Words that work. We craft messaging that aligns with your brand voice, captures attention, and drives action—headlines, web content, product copy, and more.
-        </div>
-      </div>
-    </div>
-    <div class="web-design">
-      <div class="service-image-container">
-        <div class="service-image-background"></div>
-        <img class="noise-texture" alt="" src="assets/Noise & Texture.png">
-      </div>
-      <b class="service-title" id="text-title-seo">SEO</b>
-      <div class="service-description-container">
-        <div class="service-description" id="text-service-seo">
-          Custom-built websites and landing pages designed for clarity, performance, and conversion. Whether you’re running ads, building a personal brand, or launching a product, we create scalable digital experiences tailored to your goals.
-        </div>
-      </div>
-    </div>
-    <div class="web-design">
-      <div class="service-image-container">
-        <div class="service-image-background"></div>
-        <img class="noise-texture" alt="" src="assets/Noise & Texture.png">
-      </div>
-      <b class="service-title" id="text-title-support">Ongoing Support & Strategy</b>
-      <div class="service-description-container">
-        <div class="service-description" id="text-service-support">
-          Beyond launch, we help you stay sharp. From regular updates to strategic enhancements, our monthly plans ensure your site stays fresh, fast, and aligned with your evolving goals.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-      <!-- CTA SECTION -->
-      <section class="snap-section cta-section">
-        <div class="background-stack">
-          <img src="assets/metal-texture.png" class="metal-texture" alt="" />
-          <img src="assets/crypto-texture.png" class="crypto-texture" alt="" />
-        </div>
-        <div class="footer-container">
-          <div class="footer-content">
-            <div class="footer-section">
-              <div class="footer-heading1" id="text-footer-company-head">Company Information</div>
-              <div class="footer-text">
-                <span class="footer-text-txt-container">
-                  <p class="landing-pages-that2" id="text-footer-company-1">Apex Communication AB</p>
-                  <p class="landing-pages-that2" id="text-footer-company-2">Org.No 559391-4020 </p>
-                  <p class="landing-pages-that2" id="text-footer-company-3">EST. 2022</p>
+        <!-- WEBSITE SECTION -->
+        <section class="snap-section website-section">
+          <div class="background-stack">
+            <img src="assets/metal-texture.png" class="metal-texture" alt="" />
+            <img src="assets/crypto-texture.png" class="crypto-texture" id="cryptoTexture" alt="" />
+          </div>
+          <div class="landing-page-section-container">
+            <img class="website-icon" alt="" src="assets/website-icon.png">
+            <div class="landing-page-text-container">
+              <b class="website-heading" id="text-website-head">WEBSITES BUILT FOR IMPACT AND LONGEVITY</b>
+              <div class="landing-page-description">
+                <span>
+                  <p class="website-desciption" id="text-website-desc">
+                    A strong online presence starts with a well-built website. At Apex Solutions, we create responsive, scalable, and user-centered websites designed to represent your brand, engage your audience, and support your long-term growth. Whether you're building a company from scratch or evolving an established brand, we tailor each site to fit your goals, industry, and style.
+                  </p>
                 </span>
               </div>
             </div>
-            <div class="footer-section1">
-              <div class="footer-heading1" id="text-footer-contact-head">Contact</div>
-              <div class="footer-text1" id="text-footer-contact-city">Växjö, Sweden</div>
-              <div class="footer-text2" id="text-footer-contact-email">oscar@apexcommunicatio.se</div>
-            </div>
-            <div class="footer-section">
-              <div class="footer-heading1" id="text-footer-link-head">Link</div>
-              <div class="footer-text3" id="text-footer-link">Apex Communication</div>
-            </div>
           </div>
-        </div>
-        <div class="cta-container">
-          <div class="text-container">
-            <div class="heading-container">
-              <b class="heading" id="text-cta-head">Ready to Build Something Powerful?</b>
-              <div class="subheading">
-                <p class="cta-desciption" id="text-cta-desc">Tell us about your vision — we'll handle the rest. Fill out the form and we’ll reach out within 24 hours.</p>
-              </div>
-            </div>
-            <div class="features-container">
-              <div class="feature-item">
-                <div class="feature-icon">
-                  <div class="form-icon">
-                    <div class="form-icon-child"></div>
-                    <img class="noise-texture4" alt="" src="assets/Noise & Texture.png">
-                  </div>
-                  <img class="feature-icon-child" alt="" src="assets/Star 1.svg">
-                </div>
-                <div class="feature-text" id="text-cta-feature-1">Trusted by startups & growing brands</div>
-              </div>
-              <div class="feature-item">
-                <div class="feature-icon">
-                  <div class="form-icon">
-                    <div class="form-icon-child"></div>
-                    <img class="noise-texture4" alt="" src="assets/Noise & Texture.png">
-                  </div>
-                  <img class="vector-icon" alt="" src="assets/Vector.svg">
-                </div>
-                <div class="feature-text" id="text-cta-feature-2">Fast turnaround</div>
-              </div>
-              <div class="feature-item">
-                <div class="feature-icon">
-                  <div class="form-icon">
-                    <div class="form-icon-child"></div>
-                    <img class="noise-texture4" alt="" src="assets/Noise & Texture.png">
-                  </div>
-                  <img class="check-vector-icon" alt="" src="assets/check-vector.svg">
-                </div>
-                <div class="feature-text" id="text-cta-feature-3">100% custom solutions</div>
-              </div>
-            </div>
+        </section>
+
+        <!-- ABOUT US SECTION -->
+        <section class="snap-section about-us-section">
+          <div class="background-stack">
+            <img src="assets/metal-texture.png" class="metal-texture" alt="" />
+            <img src="assets/crypto-texture.png" class="crypto-texture" alt="" />
           </div>
-          <div class="form-container">
-            <div class="form-background"></div>
-            <div class="name-input">
-              <div class="label-container">
-                <div class="label" id="text-label-name">NAME</div>
+          <div class="landing-page-section-container">
+            <div class="about-us-text-container">
+              <b class="about-us-heading" id="text-aboutus-head">A CREATIVE TECH STUDIO FOR THE NEXT GENERATION OF BRANDS</b>
+              <div class="about-us-description-container">	
+                <span>
+                  <p class="about-us-description" id="text-aboutus-desc-1">
+                    Apex Solutions is a future-forward digital agency specializing in smart, scalable design and technology solutions for businesses ready to grow. We partner with entrepreneurs, creators, and companies to build sleek, high-performing websites, landing pages, and digital systems that convert and endure.
+                  </p>
+                  <p class="about-us-description" id="text-aboutus-desc-2">
+                    We don’t just design—we architect experiences. Every visual, every button, every scroll is designed with purpose, blending modern aesthetics with data-driven functionality. Whether you're launching a new product, growing your personal brand, or giving your business a digital facelift, Apex delivers solutions built to last.
+                  </p>
+                </span>
               </div>
-              <div class="input-field"></div>
-            </div>
-            <div class="email-input">
-              <div class="label-container">
-                <div class="label" id="text-label-email">EMAIL</div>
+              <div class="about-us-button">
+                <div class="learn-more2">
+                  <div class="feature-text" id="text-get-in-touch">Get In Touch</div>
+                </div>
               </div>
-              <div class="input-field"></div>
             </div>
-            <div class="phone-input">
-              <div class="label-container">
-                <div class="label" id="text-label-phone">PHONE NUMBER</div>
-              </div>
-              <div class="input-field"></div>
-            </div>
-            <div class="company-input">
-              <div class="label-container">
-                <div class="label" id="text-label-company">COMPANY NAME</div>
-              </div>
-              <div class="input-field"></div>
-            </div>
-            <div class="message-input">
-              <div class="label-container">
-                <div class="label" id="text-label-message">MESSAGE</div>
-              </div>
-              <div class="input-field4"></div>
-            </div>
-            <div class="contact-us2">
-              <div class="feature-text" id="text-submit">SUBMIT</div>
-            </div>
-            <img class="noise-1-icon" alt="" src="assets/Noise-1.png">
+            <img class="aboutus-icon-1" alt="" src="assets/aboutus-icon 1.png">
           </div>
-        </div>
-      </section>
+        </section>
+
+        <!-- WHAT WE OFFER SECTION -->
+        <section class="snap-section what-we-offer-section">
+    <div class="background-stack">
+      <img src="assets/metal-texture.png" class="metal-texture" alt="" />
+      <img src="assets/crypto-texture.png" class="crypto-texture" alt="" />
     </div>
-  </div>
+    <img class="what-we-offer-section-child" alt="" src="assets/vector-group.png">
+    <div class="services-container">
+      <div class="web-design">
+        <div class="service-image-container">
+          <div class="service-image-background"></div>
+          <img class="noise-texture" alt="" src="assets/Noise & Texture.png">
+        </div>
+        <b class="service-title" id="text-title-web">Web Design</b>
+        <div class="service-description-container">
+          <div class="service-description" id="text-service-web">
+            Custom-built websites and landing pages designed for clarity, performance, and conversion. Whether you’re running ads, building a personal brand, or launching a product, we create scalable digital experiences tailored to your goals.
+          </div>
+        </div>
+      </div>
+      <div class="web-design">
+        <div class="service-image-container">
+          <div class="service-image-background"></div>
+          <img class="noise-texture" alt="" src="assets/Noise & Texture.png">
+        </div>
+        <b class="service-title" id="text-title-copy">Copywriting</b>
+        <div class="service-description-container">
+          <div class="service-description" id="text-service-copy">
+            Words that work. We craft messaging that aligns with your brand voice, captures attention, and drives action—headlines, web content, product copy, and more.
+          </div>
+        </div>
+      </div>
+      <div class="web-design">
+        <div class="service-image-container">
+          <div class="service-image-background"></div>
+          <img class="noise-texture" alt="" src="assets/Noise & Texture.png">
+        </div>
+        <b class="service-title" id="text-title-seo">SEO</b>
+        <div class="service-description-container">
+          <div class="service-description" id="text-service-seo">
+            Custom-built websites and landing pages designed for clarity, performance, and conversion. Whether you’re running ads, building a personal brand, or launching a product, we create scalable digital experiences tailored to your goals.
+          </div>
+        </div>
+      </div>
+      <div class="web-design">
+        <div class="service-image-container">
+          <div class="service-image-background"></div>
+          <img class="noise-texture" alt="" src="assets/Noise & Texture.png">
+        </div>
+        <b class="service-title" id="text-title-support">Ongoing Support & Strategy</b>
+        <div class="service-description-container">
+          <div class="service-description" id="text-service-support">
+            Beyond launch, we help you stay sharp. From regular updates to strategic enhancements, our monthly plans ensure your site stays fresh, fast, and aligned with your evolving goals.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA SECTION -->
+  <section class="snap-section cta-section">
+    <div class="background-stack">
+      <img src="assets/metal-texture.png" class="metal-texture" alt="" />
+      <img src="assets/crypto-texture.png" class="crypto-texture" alt="" />
+    </div>
+
+    <div class="cta-container">
+      <div class="text-container">
+        <div class="heading-container">
+          <b class="heading" id="text-cta-head">Ready to Build Something Powerful?</b>
+          <div class="subheading">
+            <p class="cta-desciption" id="text-cta-desc">Tell us about your vision — we'll handle the rest. Fill out the form and we’ll reach out within 24 hours.</p>
+          </div>
+        </div>
+
+        <div class="features-container">
+          <div class="feature-item">
+            <div class="feature-icon">
+              <div class="form-icon">
+                <div class="form-icon-child"></div>
+                <img class="noise-texture4" alt="" src="assets/Noise & Texture.png">
+              </div>
+              <img class="feature-icon-child" alt="" src="assets/Star 1.svg">
+            </div>
+            <div class="feature-text" id="text-cta-feature-1">Trusted by startups & growing brands</div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">
+              <div class="form-icon">
+                <div class="form-icon-child"></div>
+                <img class="noise-texture4" alt="" src="assets/Noise & Texture.png">
+              </div>
+              <img class="vector-icon" alt="" src="assets/Vector.svg">
+            </div>
+            <div class="feature-text" id="text-cta-feature-2">Fast turnaround</div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">
+              <div class="form-icon">
+                <div class="form-icon-child"></div>
+                <img class="noise-texture4" alt="" src="assets/Noise & Texture.png">
+              </div>
+              <img class="check-vector-icon" alt="" src="assets/check-vector.svg">
+            </div>
+            <div class="feature-text" id="text-cta-feature-3">100% custom solutions</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-container">
+        <div class="form-background"></div>
+
+        <div class="name-input">
+          <div class="label-container"><div class="label" id="text-label-name">NAME</div></div>
+          <div class="input-field"></div>
+        </div>
+
+        <div class="email-input">
+          <div class="label-container"><div class="label" id="text-label-email">EMAIL</div></div>
+          <div class="input-field"></div>
+        </div>
+
+        <div class="phone-input">
+          <div class="label-container"><div class="label" id="text-label-phone">PHONE NUMBER</div></div>
+          <div class="input-field"></div>
+        </div>
+
+        <div class="company-input">
+          <div class="label-container"><div class="label" id="text-label-company">COMPANY NAME</div></div>
+          <div class="input-field"></div>
+        </div>
+
+        <div class="message-input">
+          <div class="label-container"><div class="label" id="text-label-message">MESSAGE</div></div>
+          <div class="input-field4"></div>
+        </div>
+
+        <div class="contact-us2"><div class="feature-text" id="text-submit">SUBMIT</div></div>
+        <img class="noise-1-icon" alt="" src="assets/Noise-1.png">
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE-UP FOOTER (fixed overlay) -->
+  <footer class="site-footer" id="siteFooter" aria-hidden="true">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <div class="footer-heading1" id="text-footer-company-head">Company Information</div>
+          <div class="footer-text">
+            <span class="footer-text-txt-container">
+              <p class="landing-pages-that2" id="text-footer-company-1">Apex Communication AB</p>
+              <p class="landing-pages-that2" id="text-footer-company-2">Org.No 559391-4020 </p>
+              <p class="landing-pages-that2" id="text-footer-company-3">EST. 2022</p>
+            </span>
+          </div>
+        </div>
+
+        <div class="footer-section1">
+          <div class="footer-heading1" id="text-footer-contact-head">Contact</div>
+          <div class="footer-text1" id="text-footer-contact-city">Växjö, Sweden</div>
+          <div class="footer-text2" id="text-footer-contact-email">oscar@apexcommunicatio.se</div>
+        </div>
+
+        <div class="footer-section">
+          <div class="footer-heading1" id="text-footer-link-head">Link</div>
+          <div class="footer-text3" id="text-footer-link">Apex Communication</div>
+        </div>
+      </div>
+    </div>
+  </footer>
 
 
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('.background-stack').forEach(stack => {
-    const crypto = stack.querySelector('.crypto-texture');
-    if (!crypto) return;
 
-    const maskSize = 200;
-    let rafId = null;
 
-    stack.addEventListener('mousemove', function(e) {
-      if (rafId) cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(() => {
-        const rect = stack.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        crypto.style.maskPosition = `${x - maskSize/2}px ${y - maskSize/2}px`;
-        crypto.style.webkitMaskPosition = `${x - maskSize/2}px ${y - maskSize/2}px`;
-        crypto.style.opacity = 1;
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.background-stack').forEach(stack => {
+      const crypto = stack.querySelector('.crypto-texture');
+      if (!crypto) return;
+
+      const maskSize = 200;
+      let rafId = null;
+
+      stack.addEventListener('mousemove', function(e) {
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+          const rect = stack.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          crypto.style.maskPosition = `${x - maskSize/2}px ${y - maskSize/2}px`;
+          crypto.style.webkitMaskPosition = `${x - maskSize/2}px ${y - maskSize/2}px`;
+          crypto.style.opacity = 1;
+        });
+      });
+
+      stack.addEventListener('mouseleave', function() {
+        crypto.style.maskPosition = `-9999px -9999px`;
+        crypto.style.webkitMaskPosition = `-9999px -9999px`;
+        crypto.style.opacity = 0;
       });
     });
-
-    stack.addEventListener('mouseleave', function() {
-      crypto.style.maskPosition = `-9999px -9999px`;
-      crypto.style.webkitMaskPosition = `-9999px -9999px`;
-      crypto.style.opacity = 0;
-    });
   });
-});
 
-</script>
+  </script>
 
-<script>
+  <script>
 
-/* ---- Translations ---- */
-const translations = {
-  EN: {
-    'text-contact-us': "Contact Us",
-    'text-learn-more': "Learn More",
-    'nav-home': "HOME",
-    'nav-portfolio': "PORTFOLIO",
-    'nav-contact': "CONTACT",
-    'lang-label': "EN",
-    'hero-heading': "POWERFUL WEBSITES. REAL RESULTS.",
-    'text-landing-head-1': "LANDING PAGES THAT TURN VISITORS INTO ACTION-TAKERS ",
-    'text-landing-desc': "Every landing page we build is crafted with a clear objective: to guide users toward a specific action—whether it’s a purchase, a sign-up, or a conversation. Our team combines clean visuals with strategic copy and UX best practices to help you meet your campaign goals efficiently and with impact.",
-    'text-website-head': "WEBSITES BUILT FOR IMPACT AND LONGEVITY",
-    'text-website-desc': "A strong online presence starts with a well-built website. At Apex Solutions, we create responsive, scalable, and user-centered websites designed to represent your brand, engage your audience, and support your long-term growth. Whether you're building a company from scratch or evolving an established brand, we tailor each site to fit your goals, industry, and style.",
-    'text-aboutus-head': "A CREATIVE TECH STUDIO FOR THE NEXT GENERATION OF BRANDS",
-    'text-aboutus-desc-1': "Apex Solutions is a future-forward digital agency specializing in smart, scalable design and technology solutions for businesses ready to grow. We partner with entrepreneurs, creators, and companies to build sleek, high-performing websites, landing pages, and digital systems that convert and endure.",
-    'text-aboutus-desc-2': "We don’t just design—we architect experiences. Every visual, every button, every scroll is designed with purpose, blending modern aesthetics with data-driven functionality. Whether you're launching a new product, growing your personal brand, or giving your business a digital facelift, Apex delivers solutions built to last.",
-    'text-get-in-touch': "Get In Touch",
-    'text-service-web': "Custom-built websites and landing pages designed for clarity, performance, and conversion. Whether you’re running ads, building a personal brand, or launching a product, we create scalable digital experiences tailored to your goals.",
-    'text-title-web': "Web Design",
-    'text-service-copy': "Words that work. We craft messaging that aligns with your brand voice, captures attention, and drives action—headlines, web content, product copy, and more.",
-    'text-title-copy': "Copywriting",
-    'text-service-seo': "Custom-built websites and landing pages designed for clarity, performance, and conversion. Whether you’re running ads, building a personal brand, or launching a product, we create scalable digital experiences tailored to your goals.",
-    'text-title-seo': "SEO",
-    'text-service-support': "Beyond launch, we help you stay sharp. From regular updates to strategic enhancements, our monthly plans ensure your site stays fresh, fast, and aligned with your evolving goals.",
-    'text-title-support': "Ongoing Support & Strategy",
-    'text-footer-company-head': "Company Information",
-    'text-footer-company-1': "Apex Communication AB",
-    'text-footer-company-2': "Org.No 559391-4020 ",
-    'text-footer-company-3': "EST. 2022",
-    'text-footer-contact-head': "Contact",
-    'text-footer-contact-city': "Växjö, Sweden",
-    'text-footer-contact-email': "oscar@apexcommunicatio.se",
-    'text-footer-link-head': "Link",
-    'text-footer-link': "Apex Communication",
-    'text-cta-head': "Ready to Build Something Powerful?",
-    'text-cta-desc': "Tell us about your vision — we'll handle the rest. Fill out the form and we’ll reach out within 24 hours.",
-    'text-cta-feature-1': "Trusted by startups & growing brands",
-    'text-cta-feature-2': "Fast turnaround",
-    'text-cta-feature-3': "100% custom solutions",
-    'text-label-name': "NAME",
-    'text-label-email': "EMAIL",
-    'text-label-phone': "PHONE NUMBER",
-    'text-label-company': "COMPANY NAME",
-    'text-label-message': "MESSAGE",
-    'text-submit': "SUBMIT",
-    /* mobile ids */
-    'mobile-lang-label': 'EN',
-    'm-nav-home': 'Home',
-    'm-nav-portfolio': 'Portfolio',
-    'm-nav-contact': 'Contact',
-  },
-  SV: {
-    'text-contact-us': "Kontakta oss",
-    'text-learn-more': "Läs mer",
-    'nav-home': "HEM",
-    'nav-portfolio': "PORTFÖLJ",
-    'nav-contact': "KONTAKT",
-    'lang-label': "SV",
-    'hero-heading': "SNYGGA HEMSIDOR MED FOKUS PÅ KONVERTERING",
-    'text-landing-head-1': "LANDNINGSSIDOR SOM FÖRVANDLAR BESÖKARE TILL KUNDER",
-    'text-landing-desc': "Varje sida vi bygger har ett tydligt syfte: att guida besökaren mot en specifik handling – oavsett om det handlar om ett köp, en registrering eller att ta kontakt.Vi kombinerar ren design med tydliga texter och smart struktur för att hjälpa dig nå dina kampanjmål – enkelt, effektivt och med resultat.",
-    'text-website-head': "HEMSIDOR BYGGDA FÖR EFFEKT OCH LÅNGSIKTIGHEMSIDAN – DIN DIGITALA MOTOR FÖR TILLVÄXT",
-    'text-website-desc': "En stark närvaro online börjar med en välbyggd hemsida. På Apex Solutions skapar vi responsiva, skalbara och användarvänliga hemsidor som representerar ditt varumärke, engagerar din publik och stödjer din långsiktiga tillväxt. Oavsett om du bygger ett företag från grunden eller utvecklar ett etablerat varumärke, anpassar vi varje sida efter dina mål, bransch och stil.",
-    'text-aboutus-head': "DESIGN OCH TEKNIK FÖR NÄSTA STEG I DIN TILLVÄXTRENSA",
-    'text-aboutus-desc-1': "Apex Solutions är en framtidsinriktad digitalbyrå som specialiserar sig på smart, skalbar design och tekniska lösningar för företag som vill växa. Vi samarbetar med entreprenörer, kreatörer och företag för att bygga moderna, högpresterande hemsidor, landningssidor och digitala system som konverterar och håller över tid.",
-    'text-aboutus-desc-2': "Vi designar inte bara – vi skapar upplevelser. Varje visuell detalj, varje knapp och varje scroll är utformad med syfte och kombinerar modern estetik med datadriven funktionalitet. Oavsett om du lanserar en ny produkt, bygger ditt personliga varumärke eller ger ditt företag en digital makeover levererar Apex lösningar som håller.",
-    'text-get-in-touch': "Kontakta oss",
-    'text-service-web': "Skräddarsydda hemsidor och landningssidor för tydlighet, prestanda och konvertering. Oavsett om du annonserar, bygger varumärke eller lanserar en produkt skapar vi digitala upplevelser anpassade efter dina mål.",
-    'text-title-web': "Webbdesign",
-    'text-service-copy': "Ord som fungerar. Vi skriver texter som stämmer överens med ditt varumärkes röst, fångar uppmärksamhet och leder till handling – rubriker, webbtexter, produktbeskrivningar och mer.",
-    'text-title-copy': "Copywriting",
-    'text-service-seo': "Skräddarsydda hemsidor och landningssidor för tydlighet, prestanda och konvertering. Oavsett om du annonserar, bygger varumärke eller lanserar en produkt skapar vi digitala upplevelser anpassade efter dina mål.",
-    'text-service-support': "Efter lansering hjälper vi dig att ligga steget före. Med regelbundna uppdateringar och strategiska förbättringar ser våra månadsplaner till att din sida är aktuell, snabb och i linje med dina föränderliga mål.",
-    'text-title-support': "Löpande Support & Strategi",
-    'text-footer-company-head': "Företagsinformation",
-    'text-footer-company-1': "Apex Communication AB",
-    'text-footer-company-2': "Org.Nr 559391-4020 ",
-    'text-footer-company-3': "GRUNDAT 2022",
-    'text-footer-contact-head': "Kontakt",
-    'text-footer-contact-city': "Växjö, Sverige",
-    'text-footer-contact-email': "oscar@apexcommunicatio.se",
-    'text-footer-link-head': "Länk",
-    'text-footer-link': "Apex Communication",
-    'text-cta-head': "Redo att skapa något kraftfullt?",
-    'text-cta-desc': "Berätta om din vision – vi löser resten. Fyll i formuläret så kontaktar vi dig inom 24 timmar.",
-    'text-cta-feature-1': "Betrodd av startups & växande varumärken",
-    'text-cta-feature-2': "Snabba leveranser",
-    'text-cta-feature-3': "100% skräddarsydda lösningar",
-    'text-label-name': "NAMN",
-    'text-label-email': "E-POST",
-    'text-label-phone': "TELEFONNUMMER",
-    'text-label-company': "FÖRETAGSNAMN",
-    'text-label-message': "MEDDELANDE",
-    'text-submit': "SKICKA",
-    /* mobile ids */
-    'mobile-lang-label': 'SV',
-    'm-nav-home': 'Hem',
-    'm-nav-portfolio': 'Portfölj',
-    'm-nav-contact': 'Kontakt',
-  }
-};
-
-let currentLang = 'EN';
-
-function updateLanguage(lang) {
-  const map = translations[lang];
-  for (const id in map) {
-    const el = document.getElementById(id);
-    if (el) el.textContent = map[id];
-  }
-  currentLang = lang;
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  const desktopLabel = document.getElementById('lang-label');
-  const desktopBtn   = desktopLabel ? desktopLabel.parentElement : null;
-
-  const mobileBtn    = document.getElementById('mobile-lang-btn');
-  const burger       = document.getElementById('hamburger');
-  const mobileMenu   = document.getElementById('mobileMenu');
-
-  function closeMobileMenuIfOpen() {
-    if (!mobileMenu) return;
-    if (mobileMenu.classList.contains('active')) {
-      mobileMenu.classList.remove('active');
-      if (burger) burger.classList.remove('active');
-      // if you lock scroll on open elsewhere, unlock here:
-      document.body.style.overflow = '';
-      mobileMenu.setAttribute('aria-hidden', 'true');
-      burger?.setAttribute('aria-expanded', 'false');
+  /* ---- Translations ---- */
+  const translations = {
+    EN: {
+      'text-contact-us': "Contact Us",
+      'text-learn-more': "Learn More",
+      'nav-home': "HOME",
+      'nav-portfolio': "PORTFOLIO",
+      'nav-contact': "CONTACT",
+      'lang-label': "EN",
+      'hero-heading': "POWERFUL WEBSITES. REAL RESULTS.",
+      'text-landing-head-1': "LANDING PAGES THAT TURN VISITORS INTO ACTION-TAKERS ",
+      'text-landing-desc': "Every landing page we build is crafted with a clear objective: to guide users toward a specific action—whether it’s a purchase, a sign-up, or a conversation. Our team combines clean visuals with strategic copy and UX best practices to help you meet your campaign goals efficiently and with impact.",
+      'text-website-head': "WEBSITES BUILT FOR IMPACT AND LONGEVITY",
+      'text-website-desc': "A strong online presence starts with a well-built website. At Apex Solutions, we create responsive, scalable, and user-centered websites designed to represent your brand, engage your audience, and support your long-term growth. Whether you're building a company from scratch or evolving an established brand, we tailor each site to fit your goals, industry, and style.",
+      'text-aboutus-head': "A CREATIVE TECH STUDIO FOR THE NEXT GENERATION OF BRANDS",
+      'text-aboutus-desc-1': "Apex Solutions is a future-forward digital agency specializing in smart, scalable design and technology solutions for businesses ready to grow. We partner with entrepreneurs, creators, and companies to build sleek, high-performing websites, landing pages, and digital systems that convert and endure.",
+      'text-aboutus-desc-2': "We don’t just design—we architect experiences. Every visual, every button, every scroll is designed with purpose, blending modern aesthetics with data-driven functionality. Whether you're launching a new product, growing your personal brand, or giving your business a digital facelift, Apex delivers solutions built to last.",
+      'text-get-in-touch': "Get In Touch",
+      'text-service-web': "Custom-built websites and landing pages designed for clarity, performance, and conversion. Whether you’re running ads, building a personal brand, or launching a product, we create scalable digital experiences tailored to your goals.",
+      'text-title-web': "Web Design",
+      'text-service-copy': "Words that work. We craft messaging that aligns with your brand voice, captures attention, and drives action—headlines, web content, product copy, and more.",
+      'text-title-copy': "Copywriting",
+      'text-service-seo': "Custom-built websites and landing pages designed for clarity, performance, and conversion. Whether you’re running ads, building a personal brand, or launching a product, we create scalable digital experiences tailored to your goals.",
+      'text-title-seo': "SEO",
+      'text-service-support': "Beyond launch, we help you stay sharp. From regular updates to strategic enhancements, our monthly plans ensure your site stays fresh, fast, and aligned with your evolving goals.",
+      'text-title-support': "Ongoing Support & Strategy",
+      'text-footer-company-head': "Company Information",
+      'text-footer-company-1': "Apex Communication AB",
+      'text-footer-company-2': "Org.No 559391-4020 ",
+      'text-footer-company-3': "EST. 2022",
+      'text-footer-contact-head': "Contact",
+      'text-footer-contact-city': "Växjö, Sweden",
+      'text-footer-contact-email': "oscar@apexcommunicatio.se",
+      'text-footer-link-head': "Link",
+      'text-footer-link': "Apex Communication",
+      'text-cta-head': "Ready to Build Something Powerful?",
+      'text-cta-desc': "Tell us about your vision — we'll handle the rest. Fill out the form and we’ll reach out within 24 hours.",
+      'text-cta-feature-1': "Trusted by startups & growing brands",
+      'text-cta-feature-2': "Fast turnaround",
+      'text-cta-feature-3': "100% custom solutions",
+      'text-label-name': "NAME",
+      'text-label-email': "EMAIL",
+      'text-label-phone': "PHONE NUMBER",
+      'text-label-company': "COMPANY NAME",
+      'text-label-message': "MESSAGE",
+      'text-submit': "SUBMIT",
+      /* mobile ids */
+      'mobile-lang-label': 'EN',
+      'm-nav-home': 'Home',
+      'm-nav-portfolio': 'Portfolio',
+      'm-nav-contact': 'Contact',
+    },
+    SV: {
+      'text-contact-us': "Kontakta oss",
+      'text-learn-more': "Läs mer",
+      'nav-home': "HEM",
+      'nav-portfolio': "PORTFÖLJ",
+      'nav-contact': "KONTAKT",
+      'lang-label': "SV",
+      'hero-heading': "SNYGGA HEMSIDOR MED FOKUS PÅ KONVERTERING",
+      'text-landing-head-1': "LANDNINGSSIDOR SOM FÖRVANDLAR BESÖKARE TILL KUNDER",
+      'text-landing-desc': "Varje sida vi bygger har ett tydligt syfte: att guida besökaren mot en specifik handling – oavsett om det handlar om ett köp, en registrering eller att ta kontakt.Vi kombinerar ren design med tydliga texter och smart struktur för att hjälpa dig nå dina kampanjmål – enkelt, effektivt och med resultat.",
+      'text-website-head': "HEMSIDOR BYGGDA FÖR EFFEKT OCH LÅNGSIKTIGHEMSIDAN – DIN DIGITALA MOTOR FÖR TILLVÄXT",
+      'text-website-desc': "En stark närvaro online börjar med en välbyggd hemsida. På Apex Solutions skapar vi responsiva, skalbara och användarvänliga hemsidor som representerar ditt varumärke, engagerar din publik och stödjer din långsiktiga tillväxt. Oavsett om du bygger ett företag från grunden eller utvecklar ett etablerat varumärke, anpassar vi varje sida efter dina mål, bransch och stil.",
+      'text-aboutus-head': "DESIGN OCH TEKNIK FÖR NÄSTA STEG I DIN TILLVÄXTRENSA",
+      'text-aboutus-desc-1': "Apex Solutions är en framtidsinriktad digitalbyrå som specialiserar sig på smart, skalbar design och tekniska lösningar för företag som vill växa. Vi samarbetar med entreprenörer, kreatörer och företag för att bygga moderna, högpresterande hemsidor, landningssidor och digitala system som konverterar och håller över tid.",
+      'text-aboutus-desc-2': "Vi designar inte bara – vi skapar upplevelser. Varje visuell detalj, varje knapp och varje scroll är utformad med syfte och kombinerar modern estetik med datadriven funktionalitet. Oavsett om du lanserar en ny produkt, bygger ditt personliga varumärke eller ger ditt företag en digital makeover levererar Apex lösningar som håller.",
+      'text-get-in-touch': "Kontakta oss",
+      'text-service-web': "Skräddarsydda hemsidor och landningssidor för tydlighet, prestanda och konvertering. Oavsett om du annonserar, bygger varumärke eller lanserar en produkt skapar vi digitala upplevelser anpassade efter dina mål.",
+      'text-title-web': "Webbdesign",
+      'text-service-copy': "Ord som fungerar. Vi skriver texter som stämmer överens med ditt varumärkes röst, fångar uppmärksamhet och leder till handling – rubriker, webbtexter, produktbeskrivningar och mer.",
+      'text-title-copy': "Copywriting",
+      'text-service-seo': "Skräddarsydda hemsidor och landningssidor för tydlighet, prestanda och konvertering. Oavsett om du annonserar, bygger varumärke eller lanserar en produkt skapar vi digitala upplevelser anpassade efter dina mål.",
+      'text-service-support': "Efter lansering hjälper vi dig att ligga steget före. Med regelbundna uppdateringar och strategiska förbättringar ser våra månadsplaner till att din sida är aktuell, snabb och i linje med dina föränderliga mål.",
+      'text-title-support': "Löpande Support & Strategi",
+      'text-footer-company-head': "Företagsinformation",
+      'text-footer-company-1': "Apex Communication AB",
+      'text-footer-company-2': "Org.Nr 559391-4020 ",
+      'text-footer-company-3': "GRUNDAT 2022",
+      'text-footer-contact-head': "Kontakt",
+      'text-footer-contact-city': "Växjö, Sverige",
+      'text-footer-contact-email': "oscar@apexcommunicatio.se",
+      'text-footer-link-head': "Länk",
+      'text-footer-link': "Apex Communication",
+      'text-cta-head': "Redo att skapa något kraftfullt?",
+      'text-cta-desc': "Berätta om din vision – vi löser resten. Fyll i formuläret så kontaktar vi dig inom 24 timmar.",
+      'text-cta-feature-1': "Betrodd av startups & växande varumärken",
+      'text-cta-feature-2': "Snabba leveranser",
+      'text-cta-feature-3': "100% skräddarsydda lösningar",
+      'text-label-name': "NAMN",
+      'text-label-email': "E-POST",
+      'text-label-phone': "TELEFONNUMMER",
+      'text-label-company': "FÖRETAGSNAMN",
+      'text-label-message': "MEDDELANDE",
+      'text-submit': "SKICKA",
+      /* mobile ids */
+      'mobile-lang-label': 'SV',
+      'm-nav-home': 'Hem',
+      'm-nav-portfolio': 'Portfölj',
+      'm-nav-contact': 'Kontakt',
     }
+  };
+
+  let currentLang = 'EN';
+
+  function updateLanguage(lang) {
+    const map = translations[lang];
+    for (const id in map) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = map[id];
+    }
+    currentLang = lang;
   }
 
-  function toggleLanguage() {
-    const next = currentLang === 'EN' ? 'SV' : 'EN';
-    updateLanguage(next);
-    closeMobileMenuIfOpen();
-  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const desktopLabel = document.getElementById('lang-label');
+    const desktopBtn   = desktopLabel ? desktopLabel.parentElement : null;
 
-  if (desktopBtn) desktopBtn.addEventListener('click', toggleLanguage);
-  if (mobileBtn)  mobileBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    toggleLanguage();
+    const mobileBtn    = document.getElementById('mobile-lang-btn');
+    const burger       = document.getElementById('hamburger');
+    const mobileMenu   = document.getElementById('mobileMenu');
+
+    function closeMobileMenuIfOpen() {
+      if (!mobileMenu) return;
+      if (mobileMenu.classList.contains('active')) {
+        mobileMenu.classList.remove('active');
+        if (burger) burger.classList.remove('active');
+        // if you lock scroll on open elsewhere, unlock here:
+        document.body.style.overflow = '';
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        burger?.setAttribute('aria-expanded', 'false');
+      }
+    }
+
+    function toggleLanguage() {
+      const next = currentLang === 'EN' ? 'SV' : 'EN';
+      updateLanguage(next);
+      closeMobileMenuIfOpen();
+    }
+
+    if (desktopBtn) desktopBtn.addEventListener('click', toggleLanguage);
+    if (mobileBtn)  mobileBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleLanguage();
+    });
+
+    // ensure labels (including mobile) are correct on first paint
+    updateLanguage(currentLang);
   });
-
-  // ensure labels (including mobile) are correct on first paint
-  updateLanguage(currentLang);
-});
-</script>
+  </script>
 
 
 
+  <script>
+  (function () {
+    const scroller = document.querySelector('.scroll-container');
+    const cta = document.querySelector('.cta-section');
+    const footer = document.getElementById('siteFooter');
+    if (!scroller || !cta || !footer) return;
+
+    // Use same breakpoint as CSS
+    const mqDesktop = window.matchMedia('(min-width: 1025px)');
+
+    let REVEAL_RANGE = 320; // will be overwritten by footer height
+    let ticking = false;
+    let enabled = false;
+
+    function recalc() {
+      // reveal distance = footer height (feels natural)
+      REVEAL_RANGE = Math.max(footer.offsetHeight || 0, 220);
+    }
+
+    function update() {
+      if (!enabled) return;
+
+      const scTop = scroller.scrollTop;
+      const scH   = scroller.clientHeight;
+
+      // Distance to the bottom of the CTA within the scroller
+      const ctaTop = cta.offsetTop;
+      const ctaH   = cta.offsetHeight;
+      const ctaBottomScrollTop = ctaTop + ctaH - scH;
+
+      // Start revealing before we hit the bottom by REVEAL_RANGE px
+      const revealStart = ctaBottomScrollTop - REVEAL_RANGE;
+
+      // progress 0..1
+      let t = (scTop - revealStart) / REVEAL_RANGE;
+      t = Math.max(0, Math.min(1, t));
+
+      // slide: 100% (hidden) -> 0% (shown)
+      const translateY = (1 - t) * 100;
+      footer.style.transform = `translateY(${translateY}%)`;
+
+      if (t > 0) {
+        footer.classList.add('footer-visible');
+        footer.setAttribute('aria-hidden', 'false');
+      } else {
+        footer.classList.remove('footer-visible');
+        footer.setAttribute('aria-hidden', 'true');
+      }
+
+      ticking = false;
+    }
+
+    function onScroll() {
+      if (!enabled) return;
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    }
+
+    function enable() {
+      enabled = true;
+      recalc();
+      scroller.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', recalc);
+      onScroll();
+    }
+
+    function disable() {
+      enabled = false;
+      scroller.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', recalc);
+      footer.style.transform = '';                  // reset
+      footer.classList.remove('footer-visible');
+      footer.setAttribute('aria-hidden', 'false');  // footer is normal on mobile
+    }
+
+    function handleMQ(e) { e.matches ? enable() : disable(); }
+
+    // MQL listener (covers Safari)
+    if (mqDesktop.addEventListener) mqDesktop.addEventListener('change', handleMQ);
+    else mqDesktop.addListener(handleMQ);
+
+    // init
+    handleMQ(mqDesktop);
+  })();
+  </script>
+
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const mqlDesktop = window.matchMedia('(min-width:1025px) and (pointer:fine) and (hover:hover)');
+    const scroller = document.querySelector('.scroll-container');
+    if (!scroller) return;
+
+    // collect sections once (children of .scroll-container)
+    const sections = Array.from(scroller.querySelectorAll('.snap-section'));
+    if (!sections.length) return;
+
+    let animating = false;
+    let settleTimer = null;
+
+    // helper: get current section index by nearest offsetTop
+    const getCurrentIndex = () => {
+      const y = scroller.scrollTop;
+      let idx = 0, best = Infinity;
+      for (let i = 0; i < sections.length; i++) {
+        const d = Math.abs(sections[i].offsetTop - y);
+        if (d < best) { best = d; idx = i; }
+      }
+      return idx;
+    };
+
+    // helper: smoothly go to section index, with snap temporarily disabled
+    const goToIndex = (targetIdx) => {
+      if (targetIdx < 0 || targetIdx >= sections.length) return;
+
+      animating = true;
+
+      // temporarily disable CSS snap so browser doesn't fight us
+      const prevSnap = scroller.style.scrollSnapType;
+      scroller.style.scrollSnapType = 'none';
+
+      const targetTop = sections[targetIdx].offsetTop;
+      scroller.scrollTo({ top: targetTop, behavior: 'smooth' });
+
+      // consider scroll "settled" when there's no scroll for 120ms
+      const onScroll = () => {
+        clearTimeout(settleTimer);
+        settleTimer = setTimeout(() => {
+          scroller.removeEventListener('scroll', onScroll, { passive: true });
+          // restore snap
+          scroller.style.scrollSnapType = prevSnap || 'y mandatory';
+          animating = false;
+        }, 120);
+      };
+      scroller.addEventListener('scroll', onScroll, { passive: true });
+
+      // safety timeout in case scroll event doesn't fire as expected
+      setTimeout(() => {
+        if (animating) {
+          scroller.removeEventListener('scroll', onScroll, { passive: true });
+          scroller.style.scrollSnapType = prevSnap || 'y mandatory';
+          animating = false;
+        }
+      }, 1200);
+    };
+
+    // Wheel booster (desktop only)
+    scroller.addEventListener('wheel', (e) => {
+      if (!mqlDesktop.matches) return;            // desktop only
+      if (e.ctrlKey) return;                      // ignore pinch-zoom
+      if (animating) { e.preventDefault(); return; }
+
+      // ignore tiny deltas (likely touchpad flicks) – let native scroll handle those
+      if (Math.abs(e.deltaY) < 30) return;
+
+      const currentIdx = getCurrentIndex();
+      const goingDown = e.deltaY > 0;
+
+      // decide target index
+      let targetIdx = currentIdx + (goingDown ? 1 : -1);
+      if (targetIdx < 0 || targetIdx >= sections.length) return;
+
+      // only prevent default if we will navigate a section
+      e.preventDefault();
+      goToIndex(targetIdx);
+    }, { passive: false });
+
+    // Optional hardening: avoid rubber-band/overscroll on the scroller
+    scroller.style.overscrollBehaviorY = 'contain';
+  });
+  </script>
 
 
 
@@ -522,49 +700,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!burger || !menu) return;
 
-  function openMenu() {
-    burger.classList.add('active');
+  const openMenu = () => {
     menu.classList.add('active');
-    menu.setAttribute('aria-hidden', 'false');
+    burger.classList.add('active');
     burger.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';   // lock scroll while open
-  }
-  function closeMenu() {
-    burger.classList.remove('active');
-    menu.classList.remove('active');
-    menu.setAttribute('aria-hidden', 'true');
-    burger.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';         // unlock scroll
-  }
-  function toggleMenu() {
-    menu.classList.contains('active') ? closeMenu() : openMenu();
-  }
+    menu.setAttribute('aria-hidden', 'false');
+    // lock scroll behind the sheet
+    document.body.style.overflow = 'hidden';
+  };
 
-  // Open/close on burger
+  const closeMenu = () => {
+    menu.classList.remove('active');
+    burger.classList.remove('active');
+    burger.setAttribute('aria-expanded', 'false');
+    menu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  // Toggle on burger click
   burger.addEventListener('click', (e) => {
     e.stopPropagation();
-    toggleMenu();
+    menu.classList.contains('active') ? closeMenu() : openMenu();
   });
 
-  // Close on outside click
+  // Close when clicking a link inside the menu
+  menu.addEventListener('click', (e) => {
+    if (e.target.matches('a, button')) closeMenu();
+  });
+
+  // Click outside to close
   document.addEventListener('click', (e) => {
-    if (!menu.classList.contains('active')) return;
-    const clickInside = menu.contains(e.target) || burger.contains(e.target);
-    if (!clickInside) closeMenu();
+    if (menu.classList.contains('active') && !menu.contains(e.target) && e.target !== burger) {
+      closeMenu();
+    }
   });
 
-  // Close on Escape
+  // Esc to close
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeMenu();
+    if (e.key === 'Escape' && menu.classList.contains('active')) closeMenu();
   });
 
-  // Close when a menu link or the lang switch is clicked
-  menu.querySelectorAll('a, button').forEach(el => {
-    el.addEventListener('click', closeMenu);
-  });
+  // If resized to desktop, ensure menu is closed + ARIA reset
+  const mq = window.matchMedia('(min-width: 1081px)');
+  const handleChange = () => { if (mq.matches) closeMenu(); };
+  if (mq.addEventListener) mq.addEventListener('change', handleChange);
+  else mq.addListener(handleChange);
 });
 </script>
 
-
-</body>
-</html>
+  </body>
+  </html>
