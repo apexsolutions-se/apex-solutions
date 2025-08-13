@@ -391,7 +391,6 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 <script>
-
 /* ---- Translations ---- */
 const translations = {
   EN: {
@@ -494,41 +493,47 @@ const translations = {
   }
 };
 
-let currentLang = 'EN';
+/* Default to saved language (if any), else EN */
+let currentLang = (localStorage.getItem('selectedLanguage') === 'SV') ? 'SV' : 'EN';
+
+function applyHtmlLangAttr(lang) {
+  try {
+    document.documentElement.setAttribute('lang', lang.toLowerCase());
+  } catch {}
+}
 
 function updateLanguage(lang) {
   const map = translations[lang];
+  if (!map) return;
+
+  // Update all text nodes by id
   for (const id in map) {
     const el = document.getElementById(id);
     if (el) el.textContent = map[id];
   }
+
   currentLang = lang;
+  localStorage.setItem('selectedLanguage', lang);   // persist
+  applyHtmlLangAttr(lang);
+
+  // Keep both language labels in sync in case one is missing from the DOM
+  const desktopLabel = document.getElementById('lang-label');
+  const mobileLabel  = document.getElementById('mobile-lang-label');
+  if (desktopLabel) desktopLabel.textContent = map['lang-label'];
+  if (mobileLabel)  mobileLabel.textContent  = map['mobile-lang-label'];
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   const desktopLabel = document.getElementById('lang-label');
   const desktopBtn   = desktopLabel ? desktopLabel.parentElement : null;
-
   const mobileBtn    = document.getElementById('mobile-lang-btn');
-  const burger       = document.getElementById('hamburger');
-  const mobileMenu   = document.getElementById('mobileMenu');
 
-  function closeMobileMenuIfOpen() {
-    if (!mobileMenu) return;
-    if (mobileMenu.classList.contains('active')) {
-      mobileMenu.classList.remove('active');
-      if (burger) burger.classList.remove('active');
-      // if you lock scroll on open elsewhere, unlock here:
-      document.body.style.overflow = '';
-      mobileMenu.setAttribute('aria-hidden', 'true');
-      burger?.setAttribute('aria-expanded', 'false');
-    }
-  }
+  // Apply saved language immediately on load (prevents flash)
+  updateLanguage(currentLang);
 
   function toggleLanguage() {
     const next = currentLang === 'EN' ? 'SV' : 'EN';
     updateLanguage(next);
-    closeMobileMenuIfOpen();
   }
 
   if (desktopBtn) desktopBtn.addEventListener('click', toggleLanguage);
@@ -536,9 +541,6 @@ document.addEventListener('DOMContentLoaded', () => {
     e.stopPropagation();
     toggleLanguage();
   });
-
-  // ensure labels (including mobile) are correct on first paint
-  updateLanguage(currentLang);
 });
 </script>
 
