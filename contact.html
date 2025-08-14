@@ -515,19 +515,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const msgEl   = document.getElementById('message');
   const helper  = document.getElementById('helperText');
 
-  form?.addEventListener('submit', async (e) => {
+  if (!form || !nameEl || !emailEl || !msgEl) {
+    console.error('Form or fields not found by ID. Check your IDs.');
+    return;
+  }
+
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     helper.textContent = '';
 
-    // Use native validity + a simple email regex as backup
-    if (!form.checkValidity()) { 
-      helper.textContent = (window.currentLang === 'SV')
-        ? 'Fyll i Namn, giltig E-post och Meddelande.'
-        : 'Please complete Name, a valid Email, and Message.';
-      return;
-    }
-    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((emailEl.value||'').trim());
-    if (!nameEl.value.trim() || !emailOk || !msgEl.value.trim()) {
+    const nameVal = (nameEl.value || '').trim();
+    const emailVal = (emailEl.value || '').trim();
+    const msgVal = (msgEl.value || '').trim();
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal);
+
+    console.log({ nameVal, emailVal, msgVal, emailOk });
+
+    if (!nameVal || !emailOk || !msgVal) {
       helper.textContent = (window.currentLang === 'SV')
         ? 'Fyll i Namn, giltig E-post och Meddelande.'
         : 'Please complete Name, a valid Email, and Message.';
@@ -540,15 +544,15 @@ document.addEventListener('DOMContentLoaded', () => {
       fd.append('_template', 'table');
       fd.append('_captcha',  'false');
 
-      const res = await fetch('https://formsubmit.co/ajax/imperialkatelyn@gmail.com', {
+      const res = await fetch('https://formsubmit.co/ajax/imperiakatelyn@gmail.com', {
         method: 'POST',
         body: fd,
         headers: { 'Accept': 'application/json' }
       });
 
       if (!res.ok) {
-        const errText = await res.text().catch(()=> '');
-        throw new Error(`FormSubmit error: ${res.status} ${errText}`);
+        const t = await res.text().catch(()=> '');
+        throw new Error(`FormSubmit error: ${res.status} ${t}`);
       }
 
       helper.textContent = (window.currentLang === 'SV')
