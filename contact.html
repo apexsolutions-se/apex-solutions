@@ -505,5 +505,56 @@
       });
     });
   </script>
+
+
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const form    = document.getElementById('contactForm');
+  const nameEl  = document.getElementById('name');
+  const emailEl = document.getElementById('email');
+  const msgEl   = document.getElementById('message');
+  const helper  = document.getElementById('helperText');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    helper.textContent = '';
+
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((emailEl.value||'').trim());
+    if (!nameEl.value.trim() || !emailOk || !msgEl.value.trim()) {
+      helper.textContent = (window.currentLang === 'SV')
+        ? 'Fyll i Namn, giltig E-post och Meddelande.'
+        : 'Please complete Name, a valid Email, and Message.';
+      return;
+    }
+
+    try {
+      const fd = new FormData(form);
+      // optional extra fields for FormSubmit:
+      fd.append('_subject',  'New message from Apex Solutions');
+      fd.append('_template', 'table');
+      fd.append('_captcha',  'false');
+
+      const res = await fetch('https://formsubmit.co/ajax/YOUR_EMAIL_OR_TOKEN', {
+        method: 'POST',
+        body: fd,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (!res.ok) throw new Error('Network response was not ok');
+
+      helper.textContent = (window.currentLang === 'SV')
+        ? 'Tack! Vi hör av oss snart.'
+        : 'Thanks! We’ll get back to you shortly.';
+      form.reset();
+    } catch (err) {
+      helper.textContent = (window.currentLang === 'SV')
+        ? 'Något gick fel. Försök igen.'
+        : 'Something went wrong. Please try again.';
+      console.error(err);
+    }
+  });
+});
+</script>
+
 </body>
 </html>
