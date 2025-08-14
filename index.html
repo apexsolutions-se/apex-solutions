@@ -277,50 +277,34 @@
     <div class="card-bg" aria-hidden="true"></div>
     <img class="card-noise" src="assets/Noise-1.png" alt="" />
 
-<form id="ctaForm" 
-      action="https://formsubmit.co/oscar@apexcommunication.se" 
-      method="POST">
-      
+<form id="ctaForm" novalidate>
   <div class="field">
-    <label class="label" for="cta-name">
-      <span id="text-label-name">NAME</span>
-    </label>
+    <label class="label" for="cta-name"><span id="text-label-name">NAME</span></label>
     <input class="input" type="text" id="cta-name" name="name" placeholder="Your full name" required />
   </div>
 
   <div class="field">
-    <label class="label" for="cta-email">
-      <span id="text-label-email">EMAIL</span>
-    </label>
+    <label class="label" for="cta-email"><span id="text-label-email">EMAIL</span></label>
     <input class="input" type="email" id="cta-email" name="email" placeholder="you@example.com" required />
   </div>
 
   <div class="field">
-    <label class="label" for="cta-phone">
-      <span id="text-label-phone">PHONE NUMBER</span>
-    </label>
+    <label class="label" for="cta-phone"><span id="text-label-phone">PHONE NUMBER</span></label>
     <input class="input" type="tel" id="cta-phone" name="phone" placeholder="+46 ..." />
   </div>
 
   <div class="field">
-    <label class="label" for="cta-company">
-      <span id="text-label-company">COMPANY NAME</span>
-    </label>
+    <label class="label" for="cta-company"><span id="text-label-company">COMPANY NAME</span></label>
     <input class="input" type="text" id="cta-company" name="company" placeholder="Company or project name" />
   </div>
 
   <div class="field">
-    <label class="label" for="cta-message">
-      <span id="text-label-message">MESSAGE</span>
-    </label>
+    <label class="label" for="cta-message"><span id="text-label-message">MESSAGE</span></label>
     <textarea class="textarea" id="cta-message" name="message" placeholder="Tell us about your project, timeline, and goals..." required></textarea>
   </div>
 
   <button class="submit" type="submit" id="text-submit">SUBMIT</button>
-
-  <!-- Optional hidden fields -->
-  <input type="hidden" name="_captcha" value="false"> 
-  <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
+  <div class="helper" id="cta-helper"></div>
 </form>
 
   </div>
@@ -961,6 +945,85 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+</script>
+
+
+        <script>
+(function () {
+  // Use your verified FormSubmit email OR tokenized URL value here
+  const FORMSUBMIT_RECIPIENT = 'imperialkatelyn@gmail.com';
+  const endpoint = 'https://formsubmit.co/ajax/' + encodeURIComponent(FORMSUBMIT_RECIPIENT);
+
+  function t(enText, svText) {
+    return (window.currentLang === 'SV') ? svText : enText;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const form      = document.getElementById('ctaForm');
+    if (!form || form.dataset.bound === '1') return;
+    form.dataset.bound = '1'; // avoid double-binding if scripts run twice
+
+    const nameEl    = document.getElementById('cta-name');
+    const emailEl   = document.getElementById('cta-email');
+    const msgEl     = document.getElementById('cta-message');
+    const helper    = document.getElementById('cta-helper');
+    const submitBtn = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (helper) helper.textContent = '';
+
+      const nameVal  = (nameEl?.value  || '').trim();
+      const emailVal = (emailEl?.value || '').trim();
+      const msgVal   = (msgEl?.value   || '').trim();
+      const emailOk  = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal);
+
+      if (!nameVal || !emailOk || !msgVal) {
+        if (helper) helper.textContent = t(
+          'Please complete Name, a valid Email, and Message.',
+          'Fyll i Namn, giltig E-post och Meddelande.'
+        );
+        return;
+      }
+
+      // Button UX
+      const original = submitBtn?.textContent;
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = t('Sending…', 'Skickar…'); }
+
+      try {
+        const fd = new FormData(form);
+        fd.append('_subject',  'New message from Apex Solutions');
+        fd.append('_template', 'table');
+        fd.append('_captcha',  'false');
+
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          body: fd,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (!res.ok) {
+          const txt = await res.text().catch(()=>'');
+          throw new Error(`HTTP ${res.status} ${txt}`);
+        }
+
+        if (helper) helper.textContent = t(
+          'Thanks! We’ll get back to you shortly.',
+          'Tack! Vi hör av oss snart.'
+        );
+        form.reset();
+      } catch (err) {
+        console.error(err);
+        if (helper) helper.textContent = t(
+          'Something went wrong. Please try again.',
+          'Något gick fel. Försök igen.'
+        );
+      } finally {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = original || 'SUBMIT'; }
+      }
+    });
+  });
+})();
 </script>
 
 
