@@ -469,43 +469,7 @@
   </script>
 
   <!-- Contact form handler -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const form   = document.getElementById('contactForm');
-      const nameEl = document.getElementById('name');
-      const email  = document.getElementById('email');
-      const message= document.getElementById('message');
-      const helper = document.getElementById('helperText');
-
-      form?.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        helper.textContent = '';
-
-        const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((email.value||'').trim());
-        if (!nameVal || !emailOk) {
-        helper.textContent = (window.currentLang === 'SV')
-          ? 'Fyll i Namn och giltig E-post.'
-          : 'Please complete Name and a valid Email.';
-        return;
-      }
-
-        try {
-          // Hook this to your endpoint/FormSubmit if desired:
-          // const fd = new FormData(form);
-          // await fetch('https://formsubmit.co/YOUR_ID', { method:'POST', body: fd });
-          helper.textContent = (currentLang === 'SV')
-            ? 'Tack! Vi hör av oss snart.'
-            : 'Thanks! We’ll get back to you shortly.';
-          form.reset();
-        } catch (err) {
-          helper.textContent = (currentLang === 'SV')
-            ? 'Något gick fel. Försök igen.'
-            : 'Something went wrong. Please try again.';
-        }
-      });
-    });
-  </script>
-
+ 
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
