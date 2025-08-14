@@ -1783,7 +1783,7 @@ scroll-snap-type: y mandatory; /* or 'proximity' if you want softer */
 }
 
 /* === Small phones fix (<=375px) ===================================== */
-@media (max-width: 375px) {
+@media (max-width: 600px) {
   /* remove rigid minimums that cause horizontal overflow */
   .text-container,
   .landing-page-text-container,
