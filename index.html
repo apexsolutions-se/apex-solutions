@@ -15,29 +15,6 @@
 </head>
 <body>
 
-<!-- Ribbon Cutting Ceremony Overlay -->
-<div id="rc-overlay" aria-hidden="false">
-  <canvas id="rc-confetti" aria-hidden="true"></canvas>
-
-  <div class="rc-wrap">
-    <div class="rc-ribbon" aria-label="Ceremonial ribbon">
-      <div class="rc-left"></div>
-      <div class="rc-right"></div>
-    </div>
-
-    <button class="rc-scissors" id="rc-scissors" aria-label="Cut the ribbon">
-      <!-- simple scissors svg -->
-      <svg viewBox="0 0 64 64" width="44" height="44" aria-hidden="true">
-        <circle cx="16" cy="48" r="8"></circle>
-        <circle cx="48" cy="48" r="8"></circle>
-        <path d="M16 40 L32 24 L48 40" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
-        <path d="M20 20 L44 4" fill="none" stroke-width="4" stroke-linecap="round"></path>
-      </svg>
-      <span class="rc-label">Cut</span>
-    </button>
-  </div>
-</div>
-
 
   <div class="apex-responsive">
     <div class="scroll-container">
@@ -450,6 +427,13 @@ const translations = {
     'm-nav-home': 'Home',
     'm-nav-portfolio': 'Portfolio',
     'm-nav-contact': 'Contact',
+    placeholders: {
+      name:    "Your full name",
+      email:   "you@example.com",
+      phone:   "+46 ...",
+      company: "Company or project name",
+      message: "Tell us about your project, timeline, and goals..."
+    }
   },
   SV: {
     'text-contact-us': "Kontakta oss",
@@ -499,6 +483,13 @@ const translations = {
     'm-nav-home': 'Hem',
     'm-nav-portfolio': 'Portfölj',
     'm-nav-contact': 'Kontakt',
+    placeholders: {
+      name:    "Ditt fullständiga namn",
+      email:   "du@example.com",
+      phone:   "+46 ...",
+      company: "Företags- eller projektnamn",
+      message: "Berätta om projekt, tidslinje och mål..."
+    }
   }
 };
 
@@ -506,26 +497,48 @@ const translations = {
 let currentLang = (localStorage.getItem('selectedLanguage') === 'SV') ? 'SV' : 'EN';
 
 function applyHtmlLangAttr(lang) {
-  try {
-    document.documentElement.setAttribute('lang', lang.toLowerCase());
-  } catch {}
+  try { document.documentElement.setAttribute('lang', lang.toLowerCase()); } catch {}
+}
+
+/* Helper: try several selectors, set a property on the first match */
+function setIfExists(selectors, prop, value) {
+  for (const sel of selectors) {
+    const el = document.querySelector(sel);
+    if (el) { el[prop] = value; return true; }
+  }
+  return false;
 }
 
 function updateLanguage(lang) {
   const map = translations[lang];
   if (!map) return;
 
-  // Update all text nodes by id
+  // 1) Update visible text by ID (skip the placeholders object)
   for (const id in map) {
+    if (id === 'placeholders') continue;
     const el = document.getElementById(id);
     if (el) el.textContent = map[id];
   }
 
+  // 2) Update placeholders for inputs/textarea
+  const ph = map.placeholders || {};
+
+  // Name
+  setIfExists(['#name',  '#cta-name',  'input[name="name"]'], 'placeholder', ph.name || '');
+  // Email
+  setIfExists(['#email', '#cta-email', 'input[name="email"]'], 'placeholder', ph.email || '');
+  // Phone
+  setIfExists(['#phone', '#cta-phone', 'input[name="phone"]', 'input[type="tel"]'], 'placeholder', ph.phone || '');
+  // Company
+  setIfExists(['#company', '#cta-company', 'input[name="company"]'], 'placeholder', ph.company || '');
+  // Message (textarea)
+  setIfExists(['#message', '#cta-message', 'textarea[name="message"]', 'textarea#message'], 'placeholder', ph.message || '');
+
+  // 3) Persist + html lang + keep badges synced
   currentLang = lang;
-  localStorage.setItem('selectedLanguage', lang);   // persist
+  localStorage.setItem('selectedLanguage', lang);
   applyHtmlLangAttr(lang);
 
-  // Keep both language labels in sync in case one is missing from the DOM
   const desktopLabel = document.getElementById('lang-label');
   const mobileLabel  = document.getElementById('mobile-lang-label');
   if (desktopLabel) desktopLabel.textContent = map['lang-label'];
@@ -537,7 +550,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const desktopBtn   = desktopLabel ? desktopLabel.parentElement : null;
   const mobileBtn    = document.getElementById('mobile-lang-btn');
 
-  // Apply saved language immediately on load (prevents flash)
+  // Apply saved language on load
   updateLanguage(currentLang);
 
   function toggleLanguage() {
@@ -552,6 +565,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
+
 
 
 
