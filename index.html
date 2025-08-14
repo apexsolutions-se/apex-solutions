@@ -277,34 +277,52 @@
     <div class="card-bg" aria-hidden="true"></div>
     <img class="card-noise" src="assets/Noise-1.png" alt="" />
 
-    <form id="ctaForm" novalidate>
-      <div class="field">
-        <label class="label" for="cta-name"><span id="text-label-name">NAME</span></label>
-        <input class="input" type="text" id="cta-name" name="name" placeholder="Your full name" required />
-      </div>
+<form id="ctaForm" 
+      action="https://formsubmit.co/oscar@apexcommunication.se" 
+      method="POST">
+      
+  <div class="field">
+    <label class="label" for="cta-name">
+      <span id="text-label-name">NAME</span>
+    </label>
+    <input class="input" type="text" id="cta-name" name="name" placeholder="Your full name" required />
+  </div>
 
-      <div class="field">
-        <label class="label" for="cta-email"><span id="text-label-email">EMAIL</span></label>
-        <input class="input" type="email" id="cta-email" name="email" placeholder="you@example.com" required />
-      </div>
+  <div class="field">
+    <label class="label" for="cta-email">
+      <span id="text-label-email">EMAIL</span>
+    </label>
+    <input class="input" type="email" id="cta-email" name="email" placeholder="you@example.com" required />
+  </div>
 
-      <div class="field">
-        <label class="label" for="cta-phone"><span id="text-label-phone">PHONE NUMBER</span></label>
-        <input class="input" type="tel" id="cta-phone" name="phone" placeholder="+46 ..." />
-      </div>
+  <div class="field">
+    <label class="label" for="cta-phone">
+      <span id="text-label-phone">PHONE NUMBER</span>
+    </label>
+    <input class="input" type="tel" id="cta-phone" name="phone" placeholder="+46 ..." />
+  </div>
 
-      <div class="field">
-        <label class="label" for="cta-company"><span id="text-label-company">COMPANY NAME</span></label>
-        <input class="input" type="text" id="cta-company" name="company" placeholder="Company or project name" />
-      </div>
+  <div class="field">
+    <label class="label" for="cta-company">
+      <span id="text-label-company">COMPANY NAME</span>
+    </label>
+    <input class="input" type="text" id="cta-company" name="company" placeholder="Company or project name" />
+  </div>
 
-      <div class="field">
-        <label class="label" for="cta-message"><span id="text-label-message">MESSAGE</span></label>
-        <textarea class="textarea" id="cta-message" name="message" placeholder="Tell us about your project, timeline, and goals..." required></textarea>
-      </div>
+  <div class="field">
+    <label class="label" for="cta-message">
+      <span id="text-label-message">MESSAGE</span>
+    </label>
+    <textarea class="textarea" id="cta-message" name="message" placeholder="Tell us about your project, timeline, and goals..." required></textarea>
+  </div>
 
-      <button class="submit" type="submit" id="text-submit">SUBMIT</button>
-    </form>
+  <button class="submit" type="submit" id="text-submit">SUBMIT</button>
+
+  <!-- Optional hidden fields -->
+  <input type="hidden" name="_captcha" value="false"> 
+  <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
+</form>
+
   </div>
 </div>
 </div>
