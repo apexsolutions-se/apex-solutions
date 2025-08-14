@@ -515,21 +515,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const msgEl   = document.getElementById('message');
   const helper  = document.getElementById('helperText');
 
-  if (!form || !nameEl || !emailEl || !msgEl) {
-    console.error('Form or fields not found by ID. Check your IDs.');
-    return;
-  }
-
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     helper.textContent = '';
 
-    const nameVal = (nameEl.value || '').trim();
-    const emailVal = (emailEl.value || '').trim();
-    const msgVal = (msgEl.value || '').trim();
+    const nameVal = (nameEl.value  || '').trim();
+    const emailVal= (emailEl.value || '').trim();
+    const msgVal  = (msgEl.value   || '').trim();
     const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal);
-
-    console.log({ nameVal, emailVal, msgVal, emailOk });
 
     if (!nameVal || !emailOk || !msgVal) {
       helper.textContent = (window.currentLang === 'SV')
@@ -544,16 +537,12 @@ document.addEventListener('DOMContentLoaded', () => {
       fd.append('_template', 'table');
       fd.append('_captcha',  'false');
 
-      const res = await fetch('https://formsubmit.co/ajax/imperiakatelyn@gmail.com', {
+      const res = await fetch('https://formsubmit.co/ajax/imperialaktelyn@gmail.com', {
         method: 'POST',
         body: fd,
         headers: { 'Accept': 'application/json' }
       });
-
-      if (!res.ok) {
-        const t = await res.text().catch(()=> '');
-        throw new Error(`FormSubmit error: ${res.status} ${t}`);
-      }
+      if (!res.ok) throw new Error(await res.text());
 
       helper.textContent = (window.currentLang === 'SV')
         ? 'Tack! Vi hör av oss snart.'
@@ -568,6 +557,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
+
 
 
 </body>
