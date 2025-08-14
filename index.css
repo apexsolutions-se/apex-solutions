@@ -166,17 +166,35 @@ font-size: clamp(1.75rem, 2vw + 1rem, 2.25rem);
 /* HERO button text: make responsive & single-line */
 .contact-us-text,
 .learn-more-text {
-  font-size: clamp(0.9rem, 2.4vw, 1rem); /* ~14.4–16px–16px range */
-  white-space: nowrap;                   /* keep “Kontakta oss” on one line */
+  white-space: nowrap;
   line-height: 1.1;
   font-weight: 600;
+  font-size: clamp(0.88rem, 3.8vw, 1rem); /* allow smaller on narrow phones */
 }
 
 /* HERO button shells: a touch more horizontal room */
 .contact-us-glow,
 .learn-more {
-  padding: 0 18px;                       /* was 16px */
-  min-width: 132px;                      /* ensures longer labels don't look cramped */
+  padding: 0 14px;                 /* was 16–18px */
+  min-width: 0;                    /* let width % actually work */
+}
+
+@media (max-width: 375px) {
+  .buttons-constrains {
+    gap: 12px;
+    justify-content: center;
+  }
+  /* two compact buttons side-by-side */
+  .contact-us-glow,
+  .learn-more {
+    width: 46%;                    /* two columns with small gap */
+    height: 44px;                  /* a touch shorter helps */
+    padding: 0 10px;
+  }
+  .contact-us-text,
+  .learn-more-text {
+    font-size: clamp(0.82rem, 3.6vw, 0.95rem);
+  }
 }
 
 /* (Optional) match About section button too, so EN/SV both fit */
