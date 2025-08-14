@@ -482,12 +482,12 @@
         helper.textContent = '';
 
         const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((email.value||'').trim());
-        if (!nameEl.value.trim() || !emailOk || !message.value.trim()) {
-          helper.textContent = (currentLang === 'SV')
-            ? 'Fyll i Namn, giltig E-post och Meddelande.'
-            : 'Please complete Name, a valid Email, and Message.';
-          return;
-        }
+        if (!nameVal || !emailOk) {
+        helper.textContent = (window.currentLang === 'SV')
+          ? 'Fyll i Namn och giltig E-post.'
+          : 'Please complete Name and a valid Email.';
+        return;
+      }
 
         try {
           // Hook this to your endpoint/FormSubmit if desired:
