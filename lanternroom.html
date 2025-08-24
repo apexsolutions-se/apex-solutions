@@ -406,7 +406,7 @@ overflow-x: hidden;
 .kontakta-oss-link {
   	position: absolute;
   	top: 77px;
-  	left: 1500px;
+  	right: 200px;
   	width: 147;
   	display: flex;
   	flex-direction: row;
@@ -418,7 +418,7 @@ overflow-x: hidden;
 .meny-link {
   	position: absolute;
   	top: 77px;
-  	left: 1400px;
+  	right: 400px;
   	width: 68.2px;
   	display: flex;
   	flex-direction: row;
@@ -430,7 +430,7 @@ overflow-x: hidden;
 .valkommen-link {
   	position: absolute;
   	top: 77px;
-  	left: 1250px;
+  	right: 500px;
   	width: 127.1px;
   	display: flex;
   	flex-direction: row;
@@ -457,21 +457,21 @@ overflow-x: hidden;
   	object-fit: cover;
 }
 .navbar {
-  position: absolute;      /* or fixed if you want it sticky */
+  position: relative;     /* or fixed if you want sticky */
   top: 0;
   left: 0;
   right: 0;
-  width: 100vw !important;
-  max-width: none !important;
+  width: 100vw;
   height: 181px;
-  z-index: 10;
+  font-family: 'Lao MN';
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  padding: 0 60px;          /* adjust side padding as you like */
+  justify-content: space-between; /* logo left, links right */
+  padding: 0 60px;                 /* space on the sides */
   box-sizing: border-box;
-  transform: none !important;
 }
+
+
 
 .hero-section {
   	position: absolute;
@@ -579,6 +579,11 @@ overflow-x: hidden;
       			<div class="navbar">
         				<div class="navbar-background">
         				</div>
+                               </div>
+        				<img class="logo-icon" alt="" src="assets/logo.png">
+        				
+      			</div>
+                        <div class="nav-links">
         				<div class="kontakta-oss-link">
           					<div class="se-hela-menyn">KONTAKTA OSS</div>
         				</div>
@@ -588,6 +593,7 @@ overflow-x: hidden;
         				<div class="valkommen-link">
           					<div class="se-hela-menyn">VÄLKOMMEN</div>
         				</div>
+                        </div>
         				<img class="logo-icon" alt="" src="assets/logo.png">
         				
       			</div>
