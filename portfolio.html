@@ -305,8 +305,10 @@
         <div class="portfolio-card-1">
           <img class="lanternroom-icon" alt="Lantern Room screenshot" src="assets/lanternroom.png" loading="lazy">
           <b class="lantern-room">Lantern Room</b>
-          <div class="description-1">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <div class="description-1"  id="desc-1">
+            A sleek and elegant website that captures the restaurant’s soul at first glance.
+Through images, colors, and storytelling, it conveys the atmosphere, background, and the unique character that makes the restaurant special.
+The visitor is given a tempting glimpse that sparks curiosity – and a strong desire to dine on site and experience the ambiance firsthand.
           </div>
         </div>
 
@@ -314,8 +316,10 @@
           <!-- If this filename was a typo, change to saigontable.png -->
           <img class="lanternroom-icon" alt="Saigon Table screenshot" src="assets/saigontable.png" loading="lazy">
           <b class="lantern-room">Saigon Table</b>
-          <div class="description-1">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <div class="description-1" id="desc-2">
+            A modern and user-friendly website that presents the restaurant’s offerings directly and without hassle.
+With a sleek and well-structured menu, it becomes easy for customers to explore the dishes and convenient to order what they want.
+The design is created to make the entire ordering experience fast, seamless, and inviting.
           </div>
         </div>
       </section>
@@ -357,37 +361,45 @@
 
   <!-- Language switcher (same IDs/behavior as homepage) -->
   <script>
-    const translations = {
-      EN: {
-        'nav-home': "HOME",
-        'nav-portfolio': "PORTFOLIO",
-        'nav-contact': "CONTACT",
-        'lang-label': "EN",
-        'mobile-lang-label': 'EN',
-        'm-nav-home': 'Home',
-        'm-nav-portfolio': 'Portfolio',
-        'm-nav-contact': 'Contact'
-      },
-      SV: {
-        'nav-home': "HEM",
-        'nav-portfolio': "PORTFÖLJ",
-        'nav-contact': "KONTAKT",
-        'lang-label': "SV",
-        'mobile-lang-label': 'SV',
-        'm-nav-home': 'Hem',
-        'm-nav-portfolio': 'Portfölj',
-        'm-nav-contact': 'Kontakt'
-      }
-    };
+ const translations = {
+  EN: {
+    'nav-home': "HOME",
+    'nav-portfolio': "PORTFOLIO",
+    'nav-contact': "CONTACT",
+    'lang-label': "EN",
+    'mobile-lang-label': 'EN',
+    'm-nav-home': 'Home',
+    'm-nav-portfolio': 'Portfolio',
+    'm-nav-contact': 'Contact',
+    // New
+    'desc-1': "A sleek and elegant website that captures the restaurant’s soul at first glance.\nThrough images, colors, and storytelling, it conveys the atmosphere, background, and the unique character that makes the restaurant special. The visitor is given a tempting glimpse that sparks curiosity – and a strong desire to dine on site and experience the ambiance firsthand.",
+    'desc-2': "A modern and user-friendly website that presents the restaurant’s offerings directly and without hassle. With a sleek and well-structured menu, it becomes easy for customers to explore the dishes and convenient to order what they want. The design is created to make the entire ordering experience fast, seamless, and inviting."
+  },
+  SV: {
+    'nav-home': "HEM",
+    'nav-portfolio': "PORTFÖLJ",
+    'nav-contact': "KONTAKT",
+    'lang-label': "SV",
+    'mobile-lang-label': 'SV',
+    'm-nav-home': 'Hem',
+    'm-nav-portfolio': 'Portfölj',
+    'm-nav-contact': 'Kontakt',
+    // New
+    'desc-1': "En stilren och elegant hemsida som fångar restaurangens själ redan vid första anblick.\nGenom bilder, färger och berättelser förmedlas atmosfären, bakgrunden och den unika känslan som gör restaurangen speciell. Besökaren får en lockande inblick som väcker nyfikenhet – och en stark lust att äta på plats och själv uppleva stämningen.",
+    'desc-2': "En modern och användarvänlig hemsida som presenterar restaurangens utbud direkt och utan krångel.\nMed en snygg och tydlig meny blir det enkelt för kunden att upptäcka rätterna och bekvämt att beställa det de vill ha. Designen är skapad för att göra hela beställningsupplevelsen snabb, smidig och inbjudande."
+  }
+};
+
+
 
     let currentLang = localStorage.getItem('selectedLanguage') || 'EN';
 
     function updateLanguage(lang) {
       const map = translations[lang];
       for (const id in map) {
-        const el = document.getElementById(id);
-        if (el) el.textContent = map[id];
-      }
+    const el = document.getElementById(id);
+    if (el) el.textContent = map[id];
+  }
       currentLang = lang;
       localStorage.setItem('selectedLanguage', lang);
     }
