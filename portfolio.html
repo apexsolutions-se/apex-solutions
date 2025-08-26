@@ -158,8 +158,13 @@
      /* Headers */
     .get-a-modern {
   margin: 0;
+  margin-top: 25px;
 }
 
+    .get-a-modern-1 {
+  margin: 0;
+
+    }
 .porfolio-headers {
   width: 100%;
   position: relative;
@@ -171,7 +176,7 @@
 .portfolio-header {
   font-size: clamp(1.5rem, 1.2vw + 1.25rem, 2.5rem); /* 24px–40px */
   font-family: Orbitron, sans-serif;
-  margin: 0 0 12px 0;
+  margin: 0 0 15px 0;
   line-height: 1.2;
   text-shadow:
     0 0 12px #3fd3fc,
@@ -195,7 +200,7 @@
       min-height: calc(100vh - 90px);
       display: grid;
       place-items: center;
-      padding: 60px 20px 80px;
+      padding: 90px 20px 80px;
       text-align: center;
     }
 
@@ -210,15 +215,29 @@
     }
 
     /* Base card: keep your class names; make it responsive */
-    .portfolio-card-1,
-    .portfolio-card-2 {
-      position: relative;
-      width: 100%;
-      /* Preserve original design ratio 507x573 */
-      aspect-ratio: 507 / 573;
-      border-radius: 16px;
-      overflow: hidden;
-    }
+/* Card keeps AR on larger screens */
+.portfolio-card-1,
+.portfolio-card-2{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 507 / 573;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* On narrow screens, let height grow with content */
+@media (max-width: 480px){
+  .portfolio-card-1,
+  .portfolio-card-2{
+    aspect-ratio: auto;   /* key change */
+    min-height: 560px;    /* or whatever fits your copy */
+  }
+  .description-1{
+    bottom: 0;
+    height: auto;         /* no fixed height */
+    overflow: visible;    /* don’t clip text */
+  }
+}
 
     /* The following positions are converted from your exact pixel spec (507×573 canvas) to percentages, so they scale naturally. */
 
@@ -258,7 +277,7 @@
       top: 66.6667%;              /* 382/573 */
       left: 0%;
       width: 100%;                /* 507/507 */
-      height: 33.3333%;           /* 191/573 */
+      height: 33.3333%;       /* 191/573 */
       display: inline-block;
 
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -269,6 +288,93 @@
       padding: 0 clamp(14px, 2.4vw, 24px);
       overflow: hidden;
     }
+
+
+/* CTA wrapper */
+.cta{
+  width: 100%;
+  max-width: 720px;            /* keeps it narrow like your shot */
+  margin: 80px auto;           /* centers the block */
+  padding: 0 24px;
+  text-align: center;
+  color: #fff;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Button (pill, glossy, soft shadow) */
+.cta-btn{
+  appearance: none;
+  border: 1px solid #7fd6ff;
+  border-radius: 9999px;
+  padding: 14px 40px;
+  font-size: clamp(16px, 2.2vw, 22px);
+  font-weight: 600;
+  color: #09162b;
+  background: linear-gradient(#62d3ff, #51c9fb);
+  box-shadow:
+    0 2px 0 #0b6fb1 inset,
+    0 10px 24px rgba(5,127,249,.25);
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+.cta-btn:hover{
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+  box-shadow:
+    0 2px 0 #0b6fb1 inset,
+    0 14px 32px rgba(5,127,249,.35);
+}
+.cta-btn:focus-visible{
+  outline: 2px solid #3ccff8;
+  outline-offset: 4px;
+}
+
+/* Neon title (Orbitron + glow) */
+.cta-title{
+  margin: 10px 0 0;
+  font-family: Orbitron, sans-serif;
+  font-weight: 700;
+  letter-spacing: .02em;
+  font-size: clamp(16px, 2vw, 20px);
+  text-shadow:
+    0 0 14px rgba(63,211,252,.55),
+    0 0 24px rgba(63,211,252,.35),
+    1px 0 0 rgba(63,211,252,.6),
+    -1px 0 0 rgba(63,211,252,.6),
+    0 1px 0 rgba(63,211,252,.6),
+    0 -1px 0 rgba(63,211,252,.6);
+}
+
+/* Subtext */
+.cta-sub{
+  margin: 0;
+  font-weight: 300;
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 1;
+  opacity: .95;
+}
+
+/* Optional: add subtle under-glow behind the title like your mock */
+.cta-title::after{
+  content: "";
+  display: block;
+  margin: -6px auto 0;
+  width: clamp(180px, 45%, 360px);
+  height: 20px;
+  filter: blur(16px);
+  background: radial-gradient(closest-side, rgba(63,211,252,.55), transparent 70%);
+}
+
+/* Spacing tweaks for very small screens */
+@media (max-width:420px){
+  .cta{ margin: 56px auto; }
+  .cta-btn{ padding: 12px 28px; }
+}
+
+
 
     /* Single-column on smaller screens */
     @media (max-width: 900px) {
@@ -346,7 +452,7 @@
       <p class="get-a-modern" id="port-subhead-1">
         Get a modern, mobile-friendly website for only 3,495 SEK (regular price 8,000 SEK).
       </p>
-      <p class="get-a-modern" id="port-subhead-2">
+      <p class="get-a-modern-1" id="port-subhead-2">
         We create a custom design that elevates your brand and helps you reach more customers online.
       </p>
     </div>
@@ -356,8 +462,11 @@
     <main class="center-wrap" aria-labelledby="uc-head">
       <section class="portfolio-grid">
         <div class="portfolio-card-1">
-          <img class="lanternroom-icon" alt="Lantern Room screenshot" src="assets/lanternroom.png" loading="lazy">
-          <b class="lantern-room">Lantern Room</b>
+<a href="lanternroom.html" class="lanternroom-link">
+  <img class="lanternroom-icon" alt="Lantern Room screenshot" src="assets/lanternroom.png" loading="lazy">
+  <b class="lantern-room">Lantern Room</b>
+</a>
+
           <div class="description-1"  id="desc-1">
             A sleek and elegant website that captures the restaurant’s soul at first glance.
 Through images, colors, and storytelling, it conveys the atmosphere, background, and the unique character that makes the restaurant special.
@@ -376,6 +485,18 @@ The design is created to make the entire ordering experience fast, seamless, and
           </div>
         </div>
       </section>
+
+
+        <section class="cta">
+          <button class="cta-btn" type="button">Contact Us</button>
+
+          <h3 class="cta-title" id="cta-title" >Share your vision with us!</h3>
+          <p class="cta-sub" id="cta-sub">We’ll listen and create the solution.</p>
+        </section>
+
+
+
+
     </main>
   </div>
 
@@ -429,7 +550,11 @@ The design is created to make the entire ordering experience fast, seamless, and
     'desc-2': "A modern and user-friendly website that presents the restaurant’s offerings directly and without hassle. With a sleek and well-structured menu, it becomes easy for customers to explore the dishes and convenient to order what they want. The design is created to make the entire ordering experience fast, seamless, and inviting.",
     'port-head-1': "Limited Offer – A Professional Website at a Campaign Price",
     'port-subhead-1': "Get a modern, mobile-friendly website for only 3,495 SEK (regular price 8,000 SEK).",
-    'port-subhead-2': "We create a custom design that elevates your brand and helps you reach more customers online."
+    'port-subhead-2': "We create a custom design that elevates your brand and helps you reach more customers online.",
+    'cta-title': "Share your vision with us!",
+    'cta-sub': "We’ll listen and create the solution."
+
+
   },
   SV: {
     'nav-home': "HEM",
@@ -445,7 +570,9 @@ The design is created to make the entire ordering experience fast, seamless, and
     'desc-2': "En modern och användarvänlig hemsida som presenterar restaurangens utbud direkt och utan krångel.\nMed en snygg och tydlig meny blir det enkelt för kunden att upptäcka rätterna och bekvämt att beställa det de vill ha. Designen är skapad för att göra hela beställningsupplevelsen snabb, smidig och inbjudande.",
     'port-head-1': "Exklusivt erbjudande – Professionell hemsida till kampanjpris",
     'port-subhead-1': "Få en modern, mobilanpassad hemsida för endast 3 495 SEK (ord. pris 8 000 SEK).",
-    'port-subhead-2': "Vi skapar en skräddarsydd design som lyfter ert varumärke och hjälper er nå fler kunder online."
+    'port-subhead-2': "Vi skapar en skräddarsydd design som lyfter ert varumärke och hjälper er nå fler kunder online.",
+    'cta-title': "Dela er vision med oss!",
+    'cta-sub': "Vi lyssnar och tar fram lösningen."
   }
 };
 
