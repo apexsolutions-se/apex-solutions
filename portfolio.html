@@ -155,6 +155,42 @@
 
     /* ---------- NEW: Responsive portfolio content ---------- */
 
+     /* Headers */
+    .get-a-modern {
+  margin: 0;
+}
+
+.porfolio-headers {
+  width: 100%;
+  position: relative;
+  text-align: center;
+  font-family: Inter, sans-serif;
+  color: #fff;
+}
+
+.portfolio-header {
+  font-size: clamp(1.5rem, 1.2vw + 1.25rem, 2.5rem); /* 24px–40px */
+  font-family: Orbitron, sans-serif;
+  margin: 0 0 12px 0;
+  line-height: 1.2;
+  text-shadow:
+    0 0 12px #3fd3fc,
+    0 0 32px #3fd3fc,
+    1px 0 0 rgba(63,211,252,0.7),
+    0 1px 0 rgba(63,211,252,0.7),
+    -1px 0 0 rgba(63,211,252,0.7),
+    0 -1px 0 rgba(63,211,252,0.7);
+}
+
+.portfolio-subheader {
+  font-size: clamp(0.9rem, 0.6vw + 0.7rem, 1.25rem); /* 14px–20px */
+  font-weight: 300;
+  line-height: 1.5;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+
     .center-wrap {
       min-height: calc(100vh - 90px);
       display: grid;
@@ -300,6 +336,23 @@
     </header>
 
     <!-- Main content (REPLACED with your portfolio cards) -->
+<main class="center-wrap" aria-labelledby="uc-head">
+  <!-- New header block -->
+  <div class="porfolio-headers">
+    <b class="portfolio-header" id="port-head-1">
+      Limited Offer – A Professional Website at a Campaign Price
+    </b>
+    <div class="portfolio-subheader">
+      <p class="get-a-modern" id="port-subhead-1">
+        Get a modern, mobile-friendly website for only 3,495 SEK (regular price 8,000 SEK).
+      </p>
+      <p class="get-a-modern" id="port-subhead-2">
+        We create a custom design that elevates your brand and helps you reach more customers online.
+      </p>
+    </div>
+  </div>
+
+
     <main class="center-wrap" aria-labelledby="uc-head">
       <section class="portfolio-grid">
         <div class="portfolio-card-1">
@@ -373,7 +426,10 @@ The design is created to make the entire ordering experience fast, seamless, and
     'm-nav-contact': 'Contact',
     // New
     'desc-1': "A sleek and elegant website that captures the restaurant’s soul at first glance.\nThrough images, colors, and storytelling, it conveys the atmosphere, background, and the unique character that makes the restaurant special. The visitor is given a tempting glimpse that sparks curiosity – and a strong desire to dine on site and experience the ambiance firsthand.",
-    'desc-2': "A modern and user-friendly website that presents the restaurant’s offerings directly and without hassle. With a sleek and well-structured menu, it becomes easy for customers to explore the dishes and convenient to order what they want. The design is created to make the entire ordering experience fast, seamless, and inviting."
+    'desc-2': "A modern and user-friendly website that presents the restaurant’s offerings directly and without hassle. With a sleek and well-structured menu, it becomes easy for customers to explore the dishes and convenient to order what they want. The design is created to make the entire ordering experience fast, seamless, and inviting.",
+    'port-head-1': "Limited Offer – A Professional Website at a Campaign Price",
+    'port-subhead-1': "Get a modern, mobile-friendly website for only 3,495 SEK (regular price 8,000 SEK).",
+    'port-subhead-2': "We create a custom design that elevates your brand and helps you reach more customers online."
   },
   SV: {
     'nav-home': "HEM",
@@ -386,7 +442,10 @@ The design is created to make the entire ordering experience fast, seamless, and
     'm-nav-contact': 'Kontakt',
     // New
     'desc-1': "En stilren och elegant hemsida som fångar restaurangens själ redan vid första anblick.\nGenom bilder, färger och berättelser förmedlas atmosfären, bakgrunden och den unika känslan som gör restaurangen speciell. Besökaren får en lockande inblick som väcker nyfikenhet – och en stark lust att äta på plats och själv uppleva stämningen.",
-    'desc-2': "En modern och användarvänlig hemsida som presenterar restaurangens utbud direkt och utan krångel.\nMed en snygg och tydlig meny blir det enkelt för kunden att upptäcka rätterna och bekvämt att beställa det de vill ha. Designen är skapad för att göra hela beställningsupplevelsen snabb, smidig och inbjudande."
+    'desc-2': "En modern och användarvänlig hemsida som presenterar restaurangens utbud direkt och utan krångel.\nMed en snygg och tydlig meny blir det enkelt för kunden att upptäcka rätterna och bekvämt att beställa det de vill ha. Designen är skapad för att göra hela beställningsupplevelsen snabb, smidig och inbjudande.",
+    'port-head-1': "Exklusivt erbjudande – Professionell hemsida till kampanjpris",
+    'port-subhead-1': "Få en modern, mobilanpassad hemsida för endast 3 495 SEK (ord. pris 8 000 SEK).",
+    'port-subhead-2': "Vi skapar en skräddarsydd design som lyfter ert varumärke och hjälper er nå fler kunder online."
   }
 };
 
