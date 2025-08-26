@@ -228,16 +228,51 @@
 
 /* On narrow screens, let height grow with content */
 @media (max-width: 480px){
+
+    html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+    .center-wrap {
+    padding: 30px 16px;  /* reduce vertical padding */
+  }
+
+  .portfolio-grid {
+    gap: 30px;  /* tighten space between cards */
+  }
+
+  .lantern-room {
+    margin-top: 6px; /* less gap under titles */
+  }
+
+  .description-1 {
+    margin-top: 4px; /* less gap under titles */
+  }
+
+  .cta {
+    margin: 40px auto; /* reduce space before Contact Us */
+  }
   .portfolio-card-1,
   .portfolio-card-2{
     aspect-ratio: auto;   /* key change */
-    min-height: 560px;    /* or whatever fits your copy */
+    min-height: unset;    /* or whatever fits your copy */
   }
   .description-1{
     bottom: 0;
     height: auto;         /* no fixed height */
     overflow: visible;    /* don’t clip text */
+    height: auto;        /* ← was 33.333% */
+    overflow: visible;
+    display: block;      /* ensure normal flow */
+    margin-top: 6px;
+    padding: 0 12px;
   }
+
+    .center-wrap{ padding: 32px 16px; }
+  .portfolio-grid{ gap: 12px; }
+  .lantern-room{ margin-top: 6px; }
+  .cta{ margin: 32px auto 36px; }
+
 }
 
     /* The following positions are converted from your exact pixel spec (507×573 canvas) to percentages, so they scale naturally. */
