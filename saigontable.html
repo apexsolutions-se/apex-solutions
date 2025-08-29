@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1, width=device-width" />
+  <title>Saigon Table - HOME</title>
+
+  <!-- Google Font: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+
+
+  <style>
+
+
+/* ================================
+   Base / Reset
+================================ */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+img { max-width: 100%; height: auto; display: block; }
+
+/* ================================
+   Fluid container (desktop unchanged visually)
+================================ */
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  background: #f4eee1;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: #000;
+}
+
+/* Keep desktop width but allow smaller screens to shrink */
+.page-container {
+  width: 100%;
+  max-width: 1440px;
+  position: relative;
+}
+
+/* ================================
+   Type Scale (clamps)
+   - Map old fixed sizes to responsive clamps
+================================ */
+:root{
+  --fs-hero-h: clamp(22px, 3vw, 32px);        /* was 32 */
+  --fs-hero-sub: clamp(14px, 1.6vw, 20px);    /* was 20 */
+  --fs-sec-title: clamp(20px, 2.2vw, 32px);   /* was 32 */
+  --fs-body: clamp(13px, 1.1vw, 14px);        /* was 14 */
+  --fs-small: clamp(12px, 1vw, 12px);         /* was 12 */
+  --fs-ui: clamp(16px, 1.5vw, 20px);          /* was 20 */
+  --fs-price: clamp(16px, 1.6vw, 20px);       /* prices that were 20 */
+}
+
+/* ================================
+   HERO (desktop styles preserved)
+================================ */
+.hero-section {
+  width: 100%;
+  position: relative;
+  height: 997px;
+  text-align: center;
+  font-size: var(--fs-ui);
+  color: #000;
+  font-family: Inter;
+}
+
+.navlinks {
+  position: absolute;
+  top: 41px;
+  left: 1190px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 46px;
+}
+
+/* Nav link hover/focus styles */
+.navlinks b,
+.navlinks a {
+  color: #000;                 /* default */
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color .18s ease, transform .12s ease;
+}
+
+.navlinks b:hover,
+.navlinks a:hover,
+.navlinks b:focus-visible,
+.navlinks a:focus-visible {
+  color: #FFA94D;              /* Section 3 orange */
+  transform: translateY(-1px); /* subtle lift (optional) */
+  outline: none;
+}
+
+.navlinks b:active,
+.navlinks a:active {
+  color: #e4892a;              /* pressed state */
+  transform: translateY(0);
+}
+
+/* Keep your “active/current” page green if you want */
+.home[aria-current="page"],
+.home.is-current {
+  color: #70A03F;              /* your green */
+}
+
+
+.home { position: relative; color: #70a03f; }
+.meny { position: relative; }
+
+.logopng-icon {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 500px;
+  height: 277px;
+  object-fit: cover;
+}
+
+.hero-text {
+  position: absolute;
+  top: 295px;
+  left: 0px;
+  width: 525px;
+  height: 184px;
+  text-align: left;
+  font-size: var(--fs-hero-h);
+}
+
+.hero-header {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: inline-block;
+  width: 525px;
+  height: auto;       /* allow height to grow with clamp */
+  font-size: var(--fs-hero-h);
+  line-height: 1.2;
+}
+
+.hero-subheader {
+  position: absolute;
+  top: 97px;
+  left: 0px;
+  font-size: var(--fs-hero-sub);
+  color: #70a03f;
+  display: inline-block;
+  width: 514.9px;
+  height: auto;
+  line-height: 1.35;
+}
+
+.main-dish-wrap {
+  position: absolute;
+  top: 91px;
+  left: 660px;
+  width: 746px;
+  height: 906px;
+  text-align: left;
+}
+
+.main-dish-image-icon {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 746px;
+  height: 729px;
+  object-fit: cover;
+}
+
+.main-dish {
+  position: absolute;
+  top: 739px;
+  left: 133px;
+  width: 600px;
+  height: 167px;
+}
+
+.main-dish-name {
+  position: absolute;
+  top: 4px;
+  left: 0px;
+  display: inline-block;
+  width: 164.3px;
+  height: auto;
+  font-size: var(--fs-ui);
+}
+
+.price {
+  position: absolute;
+  top: 0px;
+  left: 435.69px;
+  display: inline-block;
+  text-align: right;
+  width: 164.3px;
+  height: auto;
+  font-size: var(--fs-price);
+}
+
+.main-dish-description {
+  position: absolute;
+  top: 50px;
+  left: 0px;
+  font-size: var(--fs-body);
+  display: inline-block;
+  width: 600px;
+  height: auto;
+  line-height: 1.4;
+}
+
+.featured-dishes {
+  position: absolute;
+  top: 550px;
+  left: 0px;
+  width: 600.2px;
+  height: 359px;
+  font-size: var(--fs-body);
+}
+
+.featured-menu-header {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  font-size: var(--fs-sec-title);
+  display: inline-block;
+  text-align: left;
+  width: 522px;
+  height: auto;
+}
+
+/* Card 1 */
+.featured-dish-1 {
+  position: absolute;
+  top: 54px;
+  left: 3px;
+  width: 187px;
+  height: 305px;
+}
+.ellipse-parent { position: absolute; top: 94px; left: 11px; width: 145px; height: 211px; }
+.group-child { position: absolute; top: 66px; left: 0px; border-radius: 50%; background-color: #f7c873; width: 145px; height: 145px; }
+.group-item { position: absolute; top: 0px; left: 0px; background-color: #f7c873; width: 145px; height: 141px; }
+.dish-description { position: absolute; top: 162px; left: 14px; width: 142px; height: 123px; }
+.dish-name { position: absolute; top: 0px; left: 2px; display: inline-block; width: 140px; height: auto; font-size: var(--fs-small); }
+.dish-body { position: absolute; top: 26px; left: 3px; line-height: 100%; font-weight: 100; display: inline-block; width: 134px; height: auto; font-size: var(--fs-small); line-height: 1.2; }
+.hero-section-price { position: absolute; top: 102px; left: 0px; display: inline-block; width: 140px; height: auto; font-size: var(--fs-small); }
+.vegetarian-icon { position: absolute; top: 14px; left: 161px; width: 26px; height: 26px; object-fit: cover; }
+.pho-chay-img-icon { position: absolute; top: 0px; left: 0px; width: 166px; height: 166px; object-fit: cover; }
+
+/* Card 2 */
+.featured-dish-2 { position: absolute; top: 54px; left: 207px; width: 165.3px; height: 305px; }
+.ellipse-group { position: absolute; top: 94px; left: 10px; width: 145px; height: 211px; }
+.hero-section-dish-description { position: absolute; top: 162px; left: 16px; width: 134px; height: 123px; }
+.hero-section-dish-name { position: absolute; top: 0px; left: 4.62px; font-size: var(--fs-small); display: inline-block; width: 129.4px; height: auto; }
+.hero-section-dish-body { position: absolute; top: 26px; left: 0px; line-height: 100%; font-weight: 100; display: inline-block; width: 134px; height: auto; font-size: var(--fs-small); line-height: 1.2; }
+.price1 { position: absolute; top: 102px; left: 2px; display: inline-block; width: 129.4px; height: auto; font-size: var(--fs-small); }
+.pho-bo-vien-img-icon { position: absolute; top: 0px; left: 0px; width: 165.3px; height: 166px; object-fit: cover; }
+
+/* Card 3 */
+.featured-dish-3 { position: absolute; top: 54px; left: 434px; width: 166.2px; height: 305px; }
+.dish-description1 { position: absolute; top: 162px; left: 16px; width: 133px; height: 123px; }
+.dish-name1 { position: absolute; top: 0px; left: 4.59px; font-size: var(--fs-small); display: inline-block; width: 128.4px; height: auto; }
+.dish-body1 { position: absolute; top: 26px; left: 0px; line-height: 100%; font-weight: 100; display: inline-block; width: 133px; height: auto; font-size: var(--fs-small); line-height: 1.2; }
+.price2 { position: absolute; top: 102px; left: 3px; display: inline-block; width: 128.4px; height: auto; font-size: var(--fs-small); }
+.pho-ga-img-icon { position: absolute; top: 0px; left: 0px; width: 166.2px; height: 164px; object-fit: cover; }
+
+/* ================================
+   SECTION 2 (desktop preserved)
+================================ */
+.section-2 {
+  width: 100%;
+  position: relative;
+  height: 903px;
+  text-align: left;
+  font-size: var(--fs-ui);
+  color: #000;
+  font-family: Inter;
+}
+
+.section-2 .main-dish-wrap { position: absolute; top: 27px; left: 0px; width: 747.5px; height: 873.3px; }
+.section-2 .main-dish { position: absolute; top: 754.33px; left: 129.92px; width: 582.5px; height: 119px; }
+.section-2 .main-dish-name { position: absolute; top: 0px; left: 0px; display: inline-block; width: 195.8px; height: auto; font-size: var(--fs-ui); }
+.section-2 .price { position: absolute; top: 0px; left: 386.75px; display: inline-block; text-align: right; width: 195.8px; height: auto; font-size: var(--fs-price); }
+.section-2 .main-dish-description { position: absolute; top: 46px; left: 0px; font-size: var(--fs-body); display: inline-block; width: 600px; height: auto; line-height: 1.4; }
+.section-2 .main-dish-image-1-icon { position: absolute; top: 0px; left: 0px; width: 747.5px; height: 754.2px; object-fit: cover; }
+.section-2 .spices-image-1-icon { position: absolute; top: 0px; left: 824px; width: 610px; height: 435px; object-fit: cover; }
+
+.section-2 .featured-dishes-2 { position: absolute; top: 483.33px; left: 850.92px; width: 605.1px; height: 419.7px; text-align: center; font-size: var(--fs-body); }
+.section-2 .featured-menu-header { position: absolute; top: 0px; left: 2px; font-size: var(--fs-sec-title); display: inline-block; text-align: left; width: 439px; height: auto; }
+
+.section-2 .featured-dish-1 { position: absolute; top: 66px; left: 0px; width: 167px; height: 351px; }
+.section-2 .ellipse-parent { position: absolute; top: 102px; left: 10px; width: 145px; height: 249px; }
+.section-2 .group-child { position: absolute; top: 104px; left: 0px; border-radius: 50%; background-color: #70a03f; width: 145px; height: 145px; }
+.section-2 .group-item { position: absolute; top: 0px; left: 0px; background-color: #70a03f; width: 145px; height: 179px; }
+.section-2 .dish-description { position: absolute; top: 174px; left: 13px; width: 140px; height: 166px; }
+.section-2 .dish-name { position: absolute; top: 0px; left: 0px; font-size: var(--fs-small); display: inline-block; width: 140px; height: auto; }
+.section-2 .dish-body { position: absolute; top: 32px; left: 3px; line-height: 100%; font-weight: 100; display: inline-block; width: 134px; height: auto; font-size: var(--fs-small); line-height: 1.2; }
+.section-2 .section-2-price { position: absolute; top: 145px; left: 0px; display: inline-block; width: 140px; height: auto; font-size: var(--fs-small); }
+.section-2 .goi-con-img-icon { position: absolute; top: 0px; left: 0px; width: 167px; height: 166px; object-fit: cover; }
+
+.section-2 .featured-dish-2 { position: absolute; top: 65.67px; left: 209.08px; width: 174px; height: 354px; }
+.section-2 .ellipse-group { position: absolute; top: 105px; left: 16px; width: 145px; height: 249px; }
+.section-2 .section-2-dish-description { position: absolute; top: 176px; left: 22px; width: 134px; height: 167px; }
+.section-2 .section-2-dish-name { position: absolute; top: 0px; left: 8px; font-size: var(--fs-small); display: inline-block; width: 117px; height: auto; }
+.section-2 .gi-cun-chay { margin: 0; }
+.section-2 .section-2-dish-body { position: absolute; top: 36px; left: 0px; line-height: 100%; font-weight: 100; display: inline-block; width: 134px; height: auto; font-size: var(--fs-small); line-height: 1.2; }
+.section-2 .price1 { position: absolute; top: 146px; left: 2px; display: inline-block; width: 129.4px; height: auto; font-size: var(--fs-small); }
+.section-2 .goi-con-chay-bi-img-icon { position: absolute; top: 0px; left: 0px; width: 170.6px; height: 166px; object-fit: cover; }
+.section-2 .vegetarian-icon { position: absolute; top: 6px; left: 148px; width: 26px; height: 26px; object-fit: cover; }
+
+.section-2 .featured-dish-3 { position: absolute; top: 63px; left: 431px; width: 174.1px; height: 354px; }
+.section-2 .ellipse-container { position: absolute; top: 105px; left: 9px; width: 145px; height: 249px; }
+.section-2 .dish-description1 { position: absolute; top: 177px; left: 9px; width: 145px; height: 166px; }
+.section-2 .dish-name1 { position: absolute; top: 0px; left: 0px; font-size: var(--fs-small); display: inline-block; width: 145px; height: auto; }
+.section-2 .dish-body1 { position: absolute; top: 35px; left: 6px; line-height: 100%; font-weight: 100; display: inline-block; width: 133px; height: auto; font-size: var(--fs-small); line-height: 1.2; }
+.section-2 .price2 { position: absolute; top: 145px; left: 11px; display: inline-block; width: 128.4px; height: auto; font-size: var(--fs-small); }
+.section-2 .goi-cion-chay-mi-can-img-icon { position: absolute; top: 0px; left: 0px; width: 163.8px; height: 166px; object-fit: cover; }
+.section-2 .section-2-vegetarian-icon { position: absolute; top: 8.67px; left: 148.08px; width: 26px; height: 26px; object-fit: cover; }
+
+/* ================================
+   SECTION 3 (desktop preserved)
+================================ */
+.section-3 {
+  width: 100%;
+  left: 70px;
+  position: relative;
+  height: 973px;
+  text-align: left;
+  font-size: var(--fs-ui);
+  color: #000;
+  font-family: Inter;
+  margin-bottom: 50px;
+}
+
+.section-3 .main-dish-wrap { position: absolute; height: 95.66%; width: 53.06%; top: 4.34%; right: 0%; bottom: 0%; left: 46.94%; }
+.section-3 .main-dish { position: absolute; height: 14.61%; width: 70.77%; top: 85.39%; right: 11.4%; bottom: 0%; left: 17.83%; }
+.section-3 .main-name { position: absolute; height: 22.43%; width: 48.29%; top: 0%; left: 0%; display: inline-block; font-size: var(--fs-ui); }
+.section-3 .main-dish-description { position: absolute; height: auto; width: 100%; top: 35.83%; left: 0%; font-size: var(--fs-body); display: inline-block; line-height: 1.4; }
+.section-3 .price { position: absolute; height: 22.43%; width: 37.36%; top: 0%; left: 60.14%; display: inline-block; text-align: right; font-size: var(--fs-price); }
+.section-3 .main-dish-image-2-icon { position: absolute; top: 0px; left: 0px; width: 757.2px; height: 788.7px; object-fit: cover; }
+
+.section-3 .featured-dishes-3 { position: absolute; top: 547px; left: 0px; width: 614.3px; height: 414px; text-align: center; font-size: var(--fs-body); }
+.section-3 .bnh-m- { position: absolute; top: 0px; left: 0px; font-size: var(--fs-sec-title); display: inline-block; text-align: left; width: 593.5px; height: auto; }
+
+.section-3 .featured-dish-1 { position: absolute; top: 64px; left: 0px; width: 179.3px; height: 350px; }
+.section-3 .ellipse-parent { position: absolute; top: 81px; left: 10.3px; width: 149.4px; height: 269px; }
+.section-3 .group-child { position: absolute; top: 124px; left: 0px; border-radius: 50%; background-color: #ffa94d; width: 149.4px; height: 145px; }
+.section-3 .group-item { position: absolute; top: 0px; left: 0px; background-color: #ffa94d; width: 149.4px; height: 199px; }
+.section-3 .dish-description { position: absolute; top: 172px; left: 13.39px; width: 144.2px; height: 164px; }
+.section-3 .dish-name { position: absolute; top: 0px; left: 0px; font-size: var(--fs-small); display: inline-block; width: 144.2px; height: auto; }
+.section-3 .section-3-price { position: absolute; top: 143px; left: 0px; display: inline-block; width: 144.2px; height: auto; font-size: var(--fs-small); }
+.section-3 .dish-body { position: absolute; top: 26px; left: 1.03px; line-height: 100%; font-weight: 100; display: inline-block; width: 138.1px; height: auto; font-size: var(--fs-small); line-height: 1.2; }
+.section-3 .bahn-mi-chay-icon { position: absolute; top: 0px; left: 0px; width: 168.1px; height: 172.6px; object-fit: cover; }
+.section-3 .vegetrian-icon { position: absolute; top: 8.8px; left: 152.89px; width: 26.4px; height: 26.4px; object-fit: cover; }
+
+.section-3 .featured-dish-2 { position: absolute; top: 55.69px; left: 217.7px; width: 177px; height: 358.3px; }
+.section-3 .ellipse-group { position: absolute; top: 85.26px; left: 14.21px; width: 147.2px; height: 273px; }
+.section-3 .group-inner { position: absolute; top: 125.87px; left: 0px; border-radius: 50%; background-color: #ffa94d; width: 147.2px; height: 147.2px; }
+.section-3 .rectangle-div { position: absolute; top: 0px; left: 0px; background-color: #ffa94d; width: 147.2px; height: 202px; }
+.section-3 .section-3-dish-description { position: absolute; top: 177.63px; left: 15.23px; width: 146.2px; height: 168.5px; }
+.section-3 .section-3-dish-name { position: absolute; top: 0px; left: 0px; font-size: var(--fs-small); display: inline-block; width: 146.2px; height: auto; }
+.section-3 .price1 { position: absolute; top: 147.18px; left: 35.53px; display: inline-block; width: 74.1px; height: auto; font-size: var(--fs-small); }
+.section-3 .section-3-dish-body { position: absolute; top: 23.35px; left: 5.08px; line-height: 100%; font-weight: 100; white-space: pre-wrap; display: inline-block; width: 136px; height: auto; font-size: var(--fs-small); line-height: 1.2; }
+.section-3 .bahn-mi-thit-img-icon { position: absolute; top: 0px; left: 0px; width: 177px; height: 170.5px; object-fit: cover; }
+
+.section-3 .featured-dish-3 { position: absolute; top: 55.69px; left: 445.58px; width: 168.7px; height: 358.3px; }
+.section-3 .ellipse-container { position: absolute; top: 99.47px; left: 15px; width: 147.2px; height: 258.8px; }
+.section-3 .ellipse-div { position: absolute; top: 111.66px; left: 0px; border-radius: 50%; background-color: #ffa94d; width: 147.2px; height: 147.2px; }
+.section-3 .section-3-group-child { position: absolute; top: 0px; left: 0px; background-color: #ffa94d; width: 147.2px; height: 187.8px; }
+.section-3 .dish-description1 { position: absolute; top: 177.63px; left: 8.12px; width: 147.2px; height: 166.5px; }
+.section-3 .dish-name1 { position: absolute; left: 18px; font-size: var(--fs-small); }
+.section-3 .bahn-mi-ga-icon { position: absolute; top: 0px; left: 0px; width: 177px; height: 170.5px; object-fit: cover; }
+.section-3 .price2 { position: absolute; top: 147.18px; left: 45px; display: inline-block; width: 74.1px; height: auto; font-size: var(--fs-small); }
+.section-3 .dish-body1 { position: absolute; top: 23.35px; left: 12px; line-height: 100%; font-weight: 100; white-space: pre-wrap; display: inline-block; width: 136px; height: auto; font-size: var(--fs-small); line-height: 1.2; }
+
+/* ================================
+   FOOTER
+================================ */
+.footer-section {
+  width: 100vw;
+  background: #70a03f; /* matches your previous bg */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  gap: 180px;
+  font-family: Inter, sans-serif;
+  font-size: var(--fs-body);
+  color: #000;
+  margin-left: calc(-50vw + 50%); /* keep full-bleed footer */
+}
+
+.footer-section .map-image-icon {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: 8px;
+}
+
+.footer-text {
+  display: flex;
+  flex-direction: row;
+  gap: 150px;
+  flex-wrap: wrap;
+}
+
+.footer-1,
+.footer-2,
+.footer-3 {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-header,
+.footer-section-footer-header,
+.footer-header1 {
+  font-size: var(--fs-sec-title);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.footer-text1,
+.footer-text2 { font-size: var(--fs-body); }
+
+.footer-icons { display: flex; gap: 10px; align-items: center; }
+.footer-icons img {
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.footer-icons img:hover { transform: scale(1.1); }
+
+
+/* ================================
+   MOBILE/TABLET OVERRIDES
+   (Add this at the very end)
+================================ */
+
+/* ================================
+   MOBILE/TABLET (<=1024px)
+================================ */
+@media (max-width: 1024px) {
+
+  /* Type scale */
+  :root{
+    --fs-hero-h: clamp(22px, 4.2vw, 28px);
+    --fs-hero-sub: clamp(14px, 2.1vw, 18px);
+    --fs-sec-title: clamp(18px, 3.2vw, 26px);
+    --fs-body: clamp(13px, 1.9vw, 15px);
+    --fs-ui: clamp(16px, 2.4vw, 18px);
+    --fs-price: clamp(16px, 2.4vw, 18px);
+  }
+
+  /* Page sections */
+  .hero-section,
+  .section-2,
+  .section-3 {
+    height: auto !important;
+    padding: 20px 24px 0;
+  }
+  /* Fix Section 3 alignment */
+  .section-3 {
+    left: 0 !important;
+    margin-left: 0 !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+
+  /* Nav / logo */
+  .navlinks {
+    position: static !important;
+    justify-content: center;
+    gap: 24px;
+    margin: 8px 0 12px;
+  }
+  .logopng-icon {
+    position: static !important;
+    width: 260px; height: auto;
+    margin: 0 auto 8px;
+  }
+
+  /* Hero text + main image */
+  .hero-text,
+  .hero-header,
+  .hero-subheader {
+    position: static !important;
+    width: 100% !important;
+    text-align: left;
+  }
+  .main-dish-wrap,
+  .section-2 .main-dish-wrap,
+  .section-3 .main-dish-wrap {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    margin-top: 16px;
+  }
+  .main-dish-image-icon,
+  .section-2 .main-dish-image-1-icon,
+  .section-3 .main-dish-image-2-icon {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 12px;
+  }
+  .main-dish,
+  .section-2 .main-dish,
+  .section-3 .main-dish,
+  .main-dish-name,
+  .main-name,
+  .price,
+  .main-dish-description,
+  .section-3 .main-dish-description {
+    position: static !important;
+    width: 100% !important;
+  }
+  .price { text-align: left !important; margin-top: 4px; }
+  .main-dish-description { line-height: 1.5 !important; }
+
+  /* Featured sections -> grid */
+  .featured-dishes,
+  .section-2 .featured-dishes-2,
+  .section-3 .featured-dishes-3 {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    margin-top: 24px;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    text-align: left !important;
+  }
+  .featured-menu-header,
+  .section-2 .featured-menu-header,
+  .section-3 .bnh-m- {
+    position: static !important;
+    width: 100% !important;
+    margin-bottom: 8px;
+  }
+
+  /* Card base */
+  .featured-dish-1,
+  .featured-dish-2,
+  .featured-dish-3,
+  .section-2 .featured-dish-1,
+  .section-2 .featured-dish-2,
+  .section-2 .featured-dish-3,
+  .section-3 .featured-dish-1,
+  .section-3 .featured-dish-2,
+  .section-3 .featured-dish-3 {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    display: grid !important;
+    grid-template-columns: 120px 1fr;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: #fff8e9;
+    border-radius: 12px;
+    overflow: hidden !important; /* keep images inside rounded corners */
+  }
+
+  /* Hide decorative ellipse shapes */
+  .ellipse-group, .ellipse-parent, .ellipse-container,
+  .section-2 .ellipse-group, .section-2 .ellipse-parent, .section-2 .ellipse-container,
+  .section-3 .ellipse-group, .section-3 .ellipse-parent, .section-3 .ellipse-container,
+  .group-child, .group-item,
+  .section-3 .group-inner, .section-3 .rectangle-div,
+  .section-3 .ellipse-div, .section-3 .section-3-group-child { display: none !important; }
+
+  /* Card images */
+  .pho-chay-img-icon,
+  .pho-bo-vien-img-icon,
+  .pho-ga-img-icon,
+  .section-2 .goi-con-img-icon,
+  .section-2 .goi-con-chay-bi-img-icon,
+  .section-2 .goi-cion-chay-mi-can-img-icon,
+  .section-3 .bahn-mi-chay-icon,
+  .section-3 .bahn-mi-thit-img-icon,
+  .section-3 .bahn-mi-ga-icon {
+    position: static !important;
+    width: 120px !important;
+    height: 120px !important;
+    object-fit: cover !important;
+    border-radius: 12px;
+    justify-self: end !important;   /* inside the card, right edge of column */
+    align-self: start !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+
+  /* Card text blocks */
+  .dish-description, .dish-description1,
+  .hero-section-dish-description,
+  .section-2 .section-2-dish-description,
+  .section-3 .section-3-dish-description,
+  .section-3 .dish-description1 {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+  .dish-name, .dish-name1,
+  .hero-section-dish-name,
+  .section-2 .section-2-dish-name,
+  .section-3 .section-3-dish-name {
+    position: static !important;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .dish-body, .dish-body1,
+  .hero-section-dish-body,
+  .section-2 .section-2-dish-body,
+  .section-3 .section-3-dish-body {
+    position: static !important;
+    line-height: 1.45 !important;
+    white-space: normal !important;
+  }
+  .hero-section-price, .price1, .price2,
+  .section-2 .section-2-price, .section-2 .price1, .section-2 .price2,
+  .section-3 .section-3-price, .section-3 .price1, .section-3 .price2 {
+    position: static !important;
+    display: inline-block;
+    margin-top: 6px;
+  }
+
+  /* Veg badges (default) */
+  .vegetarian-icon,
+  .section-2 .vegetarian-icon,
+  .section-2 .section-2-vegetarian-icon,
+  .section-3 .vegetrian-icon {
+    position: static !important;
+    width: 20px; height: 20px;
+    margin-left: 6px;
+  }
+
+  /* PHỞ CHAY: lock rows + badge under text */
+  .featured-dishes > .featured-dish-1 {
+    display: grid !important;
+    grid-template-columns: 1fr 120px;  /* text | image */
+    grid-auto-rows: auto;
+    align-items: start;
+    gap: 12px;
+  }
+  .featured-dishes > .featured-dish-1 .dish-description { 
+    grid-column: 1 !important; grid-row: 1 !important;
+  }
+  .featured-dishes > .featured-dish-1 .pho-chay-img-icon {
+    grid-column: 2 !important; grid-row: 1 !important;
+    align-self: start !important; justify-self: center !important;
+    margin-top: 8px !important; /* adjust if you want it lower/higher */
+  }
+  .featured-dishes > .featured-dish-1 .vegetarian-icon {
+    grid-column: 1 !important; grid-row: 2 !important;
+    justify-self: start !important; align-self: start !important;
+    width: 20px; height: 20px;
+    margin-top: -20px !important; /* raise the badge (tweak as needed) */
+  }
+
+  /* Per-section card backgrounds */
+  /* Section 1 — BÚN */
+  .hero-section .featured-dishes > .featured-dish-1,
+  .hero-section .featured-dishes > .featured-dish-2,
+  .hero-section .featured-dishes > .featured-dish-3 { background: #F7C873 !important; color: #000; }
+
+  /* Section 2 — CUỐN */
+  .section-2 .featured-dishes-2 > .featured-dish-1,
+  .section-2 .featured-dishes-2 > .featured-dish-2,
+  .section-2 .featured-dishes-2 > .featured-dish-3 { background: #70A03F !important; color: #000; }
+  .section-2 .featured-dishes-2 > .featured-dish-1 *,
+  .section-2 .featured-dishes-2 > .featured-dish-2 *,
+  .section-2 .featured-dishes-2 > .featured-dish-3 * { color: inherit; }
+
+  /* Section 2 veg badge chip for contrast */
+  .section-2 .vegetarian-icon,
+  .section-2 .section-2-vegetarian-icon {
+    background: #fff;
+    border-radius: 50%;
+    padding: 1px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+    z-index: 1;
+    transform: translateY(-2px);
+  }
+
+  /* Section 3 — BÁNH MÌ */
+  .section-3 .featured-dishes-3 > .featured-dish-1,
+  .section-3 .featured-dishes-3 > .featured-dish-2,
+  .section-3 .featured-dishes-3 > .featured-dish-3 { background: #FFA94D !important; color: #000; }
+
+  /* Spices art */
+  .section-2 .spices-image-1-icon,
+  .section-3 .spices-img-icon {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 16px 0 0;
+  }
+
+  /* Footer */
+  .footer-section {
+    padding: 28px 20px;
+    gap: 28px;
+    flex-direction: column;
+    margin-left: 0;
+    width: 100%;
+  }
+  .footer-text { flex-direction: column; gap: 18px; width: 100%; }
+  .footer-1, .footer-2, .footer-3 { width: 100%; }
+  .footer-section .map-image-icon { width: 100%; height: auto; }
+}
+
+/* ================================
+   PHONES (<=640px)
+================================ */
+@media (max-width: 640px) {
+
+  .featured-dishes,
+  .section-2 .featured-dishes-2,
+  .section-3 .featured-dishes-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-dish-1,
+  .featured-dish-2,
+  .featured-dish-3,
+  .section-2 .featured-dish-1,
+  .section-2 .featured-dish-2,
+  .section-2 .featured-dish-3,
+  .section-3 .featured-dish-1,
+  .section-3 .featured-dish-2,
+  .section-3 .featured-dish-3 {
+    grid-template-columns: 104px 1fr;
+    padding: 12px;
+  }
+
+  .pho-chay-img-icon,
+  .pho-bo-vien-img-icon,
+  .pho-ga-img-icon,
+  .section-2 .goi-con-img-icon,
+  .section-2 .goi-con-chay-bi-img-icon,
+  .section-2 .goi-cion-chay-mi-can-img-icon,
+  .section-3 .bahn-mi-chay-icon,
+  .section-3 .bahn-mi-thit-img-icon,
+  .section-3 .bahn-mi-ga-icon {
+    width: 104px !important;
+    height: 104px !important;
+    border-radius: 10px;
+  }
+
+  .navlinks { flex-wrap: wrap; gap: 14px; }
+  .logopng-icon { width: 220px; }
+
+  /* PHỞ CHAY phone column size */
+  .featured-dishes > .featured-dish-1 {
+    grid-template-columns: 1fr 104px;
+  }
+}
+
+@media (max-width:1024px){
+  /* target only cards that contain a veg icon */
+  .section-2 .featured-dishes-2 > div:has(.vegetarian-icon) img[class$="-img-icon"],
+  .section-2 .featured-dishes-2 > div:has(.section-2-vegetarian-icon) img[class$="-img-icon"]{
+    transform: translateY(50px) !important; /* tweak this value */
+  }
+}
+
+
+/* Section 2 (CUỐN) — reorder for mobile/tablet:
+   Spices on top, then dish photo, then description */
+@media (max-width: 1024px) {
+  /* Make the section a vertical stack we can reorder */
+  .section-2 {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* 1) Spices image FIRST */
+  .section-2 .spices-image-1-icon {
+    order: 1 !important;
+    margin: 16px 0 !important;   /* tweak spacing if you want */
+  }
+
+  /* 2) Wrap with dish image + description SECOND */
+  .section-2 .main-dish-wrap {
+    order: 2 !important;
+    display: flex !important;
+    flex-direction: column !important; /* so we can order its children */
+    gap: 12px !important;
+  }
+
+  /* Inside the wrap: dish photo before text */
+  .section-2 .main-dish-image-1-icon { order: 1 !important; }
+  .section-2 .main-dish                 { order: 2 !important; }
+
+  /* 3) Featured cards remain after (THIRD) */
+  .section-2 .featured-dishes-2 { order: 3 !important; }
+}
+
+/* Section 3 (BÁNH MÌ) — manual image nudges for 2 cards
+/* Section 3 (BÁNH MÌ) — manual image nudges for all three cards
+   Use only transform so the card height never changes */
+@media (max-width: 1024px) {
+  /* ---- knobs: edit these values ---- */
+  .section-3{
+    --bm-chay-x: 0px;  --bm-chay-y: 25px;  /* BÁNH MÌ CHAY */
+    --bm-thit-x: 0px;  --bm-thit-y: 20px;  /* BÁNH MÌ THỊT NƯỚNG */
+    --bm-ga-x:   0px;  --bm-ga-y:   10px;  /* BÁNH MÌ GÀ */
+  }
+
+  /* Apply the nudges */
+  .section-3 .featured-dishes-3 > .featured-dish-1 .bahn-mi-chay-icon{
+    transform: translate(var(--bm-chay-x), var(--bm-chay-y)) !important;
+  }
+  .section-3 .featured-dishes-3 > .featured-dish-2 .bahn-mi-thit-img-icon{
+    transform: translate(var(--bm-thit-x), var(--bm-thit-y)) !important;
+  }
+  .section-3 .featured-dishes-3 > .featured-dish-3 .bahn-mi-ga-icon{
+    transform: translate(var(--bm-ga-x), var(--bm-ga-y)) !important;
+  }
+}
+/* Section 2 → Card 1 (GỎI CUỐN) — manual image nudge
+   Uses transform only, so card height won't change */
+@media (max-width: 1024px) {
+  .section-2 .featured-dishes-2 > .featured-dish-1 .goi-con-img-icon{
+    transform: translate(0px, 15px) !important; /* (X, Y): +Y = down, -Y = up; +X = right, -X = left */
+    margin: 0 !important;                       /* ensure no layout shift */
+  }
+}
+
+
+/* opt-in class the JS will add */
+.big-rotator {
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .big-rotator { transform: none !important; }
+}
+
+
+
+  </style>
+</head>
+<body>
+
+  <div class="page-container">
+<div class="hero-section">
+<div class="navlinks">
+<b class="home">HOME</b>
+<b class="meny">MENY</b>
+<b class="meny">KONTAKT</b>
+</div>
+<img class="logopng-icon" alt="" src="assets/logo.png.png">
+<div class="hero-text">
+<b class="hero-header">Authentic Vietnamese Comfort in Every Dish</b>
+<div class="hero-subheader">
+<span>From rich phở broth to fresh herbs and handmade rolls — </span>
+<b>Saigon Table brings the taste of Saigon to the heart of Gothenburg.</b>
+</div>
+</div>
+<div class="main-dish-wrap">
+<img class="main-dish-image-icon" alt="" src="assets/main-dish-image.png">
+<div class="main-dish">
+<b class="main-dish-name">PHỞ BÒ</b>
+<b class="price">135kr</b>
+<div class="main-dish-description">Phở bò is a traditional Vietnamese noodle soup made with a rich, aromatic beef broth, flat rice noodles, and tender slices of beef. It's typically served with fresh herbs, bean sprouts, lime, and chili on the side, allowing each bowl to be customized to taste. Comforting, flavorful, and deeply satisfying, phở bò is a beloved staple of Vietnamese cuisine.</div>
+</div>
+</div>
+<div class="featured-dishes">
+<b class="featured-menu-header">BÚN - RICE NOODLES</b>
+<div class="featured-dish-1">
+<div class="ellipse-group">
+<div class="group-child">
+</div>
+<div class="group-item">
+</div>
+</div>
+<div class="dish-description">
+<b class="dish-name">PHỞ CHAY</b>
+<div class="dish-body">Rice noodle soup with vegetarian broth and vegetables.</div>
+<b class="hero-section-price">129kr</b>
+</div>
+<img class="vegetarian-icon" alt="" src="assets/vegetarian-icon.png">
+<img class="pho-chay-img-icon" alt="" src="assets/pho-chay-img.png">
+</div>
+<div class="featured-dish-2">
+<div class="ellipse-group">
+<div class="group-child">
+</div>
+<div class="group-item">
+</div>
+</div>
+<div class="hero-section-dish-description">
+<b class="hero-section-dish-name">PHỞ BÒ VIÊN</b>
+<div class="hero-section-dish-body">Rice noodle soup with beef broth, slices of beef and asian meatballs.</div>
+<b class="price1">149kr</b>
+</div>
+<img class="pho-bo-vien-img-icon" alt="" src="assets/pho-bo-vien-img.png">
+</div>
+<div class="featured-dish-3">
+<div class="ellipse-group">
+<div class="group-child">
+</div>
+<div class="group-item">
+</div>
+</div>
+<div class="dish-description1">
+<b class="dish-name1">PHỞ GÀ</b>
+<div class="dish-body1">Rice noodle soup with beef broth, slices of with pieces of chicken.</div>
+<b class="price2">129kr</b>
+</div>
+<img class="pho-ga-img-icon" alt="" src="assets/pho-ga-img.png">
+</div>
+</div>
+</div>
+
+
+<!-- After the closing </div> of .hero-section -->
+<div class="section-2">
+  <div class="main-dish-wrap">
+    <div class="main-dish">
+      <b class="main-dish-name">NEM NƯỚNG</b>
+      <b class="price">90kr</b>
+      <div class="main-dish-description">
+        Nem nướng is a popular Vietnamese dish consisting of grilled pork sausage or pork skewers, typically served with rice paper, fresh herbs, vermicelli noodles, and dipping sauce. It's known for its smoky, slightly sweet, and savory flavor.
+      </div>
+    </div>
+    <img class="main-dish-image-1-icon" alt="" src="assets/main-dish-image-1.png">
+  </div>
+
+  <img class="spices-image-1-icon" alt="" src="assets/spices-image-1.png">
+
+  <div class="featured-dishes-2">
+    <b class="featured-menu-header">CUỐN - SUMMER ROLLS</b>
+
+    <div class="featured-dish-1">
+      <div class="ellipse-parent">
+        <div class="group-child"></div>
+        <div class="group-item"></div>
+      </div>
+      <div class="dish-description">
+        <b class="dish-name">GỎI CUỐN</b>
+        <div class="dish-body">Fresh spring roll made with rice paper, filled with vermicelli noodles, shrimp or pork and fresh herbs.</div>
+        <b class="section-2-price">85kr</b>
+      </div>
+      <img class="goi-con-img-icon" alt="" src="assets/goi-con-img.png">
+    </div>
+
+    <div class="featured-dish-2">
+      <div class="ellipse-group">
+        <div class="group-child"></div>
+        <div class="group-item"></div>
+      </div>
+      <div class="section-2-dish-description">
+        <b class="section-2-dish-name">
+          <p class="gi-cun-chay">GỎI CUỐN CHAY,</p>
+          <p class="gi-cun-chay">BÌ</p>
+        </b>
+        <div class="section-2-dish-body">
+          <p class="gi-cun-chay">Vegetarian fresh spring rolls, made with rice paper and filled with fried tofu, fried glass noodles,</p>
+          <p class="gi-cun-chay">carrots and fried shiitake mushrooms.</p>
+        </div>
+        <b class="price1">85kr</b>
+      </div>
+      <img class="goi-con-chay-bi-img-icon" alt="" src="assets/goi-con-chay-bi-img.png">
+      <img class="vegetarian-icon" alt="" src="assets/vegetarian-icon.png">
+    </div>
+
+    <div class="featured-dish-3">
+      <div class="ellipse-container">
+        <div class="group-child"></div>
+        <div class="group-item"></div>
+      </div>
+      <div class="dish-description1">
+        <b class="dish-name1">
+          <p class="gi-cun-chay">GỎI CUỐN CHAY,</p>
+          <p class="gi-cun-chay">MÌ CĂN</p>
+        </b>
+        <div class="dish-body1">Vegetarian fresh spring rolls, made with rice paper and filled with a variety of fresh vegetables and plant-based proteins.</div>
+        <b class="price2">85kr</b>
+      </div>
+      <img class="goi-cion-chay-mi-can-img-icon" alt="" src="assets/goi-cion-chay-mi-can-img.png">
+      <img class="section-2-vegetarian-icon" alt="" src="assets/vegetarian-icon.png">
+    </div>
+  </div>
+</div>
+
+
+<!-- After Section 2 -->
+<div class="section-3">
+  <div class="main-dish-wrap">
+    <div class="main-dish">
+      <b class="main-name">BÁNH MÌ DELUXE</b>
+      <div class="main-dish-description">
+        Bánh mì is a Vietnamese sandwich made with a crispy French-style baguette, typically filled with savory ingredients like grilled meat, pâté, pickled vegetables, fresh herbs, and chili, blending Vietnamese and French culinary influences in one flavorful bite.
+      </div>
+      <b class="price">119kr</b>
+    </div>
+    <img class="main-dish-image-2-icon" alt="" src="assets/main-dish-image-2.png">
+  </div>
+
+  <div class="featured-dishes-3">
+    <b class="bnh-m-">BÁNH MÌ - VIETNAMESE BAGUETTE</b>
+
+    <div class="featured-dish-1">
+      <div class="ellipse-parent">
+        <div class="group-child"></div>
+        <div class="group-item"></div>
+      </div>
+      <div class="dish-description">
+        <b class="dish-name">BÁNH MÌ CHAY</b>
+        <b class="section-3-price">99kr</b>
+        <div class="dish-body">Vietnamese sandwich made with plant-based ingredients such as tofu, mushrooms, vegetarian pâté and vegetables.</div>
+      </div>
+      <img class="bahn-mi-chay-icon" alt="" src="assets/bahn-mi-chay.png">
+      <img class="vegetrian-icon" alt="" src="assets/vegetarian-icon.png">
+    </div>
+
+    <div class="featured-dish-2">
+      <div class="ellipse-group">
+        <div class="group-inner"></div>
+        <div class="rectangle-div"></div>
+      </div>
+      <div class="section-3-dish-description">
+        <b class="section-3-dish-name">BÁNH MÌ THỊT NƯỚNG</b>
+        <b class="price1">99kr</b>
+        <div class="section-3-dish-body">Vietnamese sandwich made with grilled marinated pork topped with pickled carrots and daikon, cucumber slices, cilantro, chili, and pâté.</div>
+      </div>
+      <img class="bahn-mi-thit-img-icon" alt="" src="assets/bahn-mi-thit-img.png">
+    </div>
+
+    <div class="featured-dish-3">
+      <div class="ellipse-container">
+        <div class="ellipse-div"></div>
+        <div class="section-3-group-child"></div>
+      </div>
+      <div class="dish-description1">
+        <b class="dish-name1">BÁNH MÌ GÀ</b>
+        <b class="price2">85kr</b>
+        <div class="dish-body1">Vietnamese sandwich made with grilled chicken, pickled vegetables, cucumber, cilantro, chili, and pâté.</div>
+      </div>
+      <img class="bahn-mi-ga-icon" alt="" src="assets/bahn-mi-ga.png">
+    </div>
+  </div>
+
+  <img class="spices-img-icon" alt="" src="assets/spices-img.png">
+</div>
+
+
+<div class="footer-section">
+  <img class="map-image-icon" alt="map" src="assets/map-image.png">
+
+  <div class="footer-text">
+    <!-- Address -->
+    <div class="footer-1">
+      <b class="footer-header">Address</b>
+      <div class="footer-text1">
+        <p class="monday-sunday">123 Sample Street, Sample City,</p>
+        <p class="monday-sunday">Country, 12345</p>
+      </div>
+      <div class="footer-section-footer-text">
+        <p class="monday-sunday">Monday - Sunday, </p>
+        <p class="monday-sunday">09:00 - 21:00</p>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="footer-2">
+      <b class="footer-section-footer-header">Contact</b>
+      <div class="footer-text2">example@email.com</div>
+      <div class="footer-text1">+1234 567 890</div>
+    </div>
+
+    <!-- Follow -->
+    <div class="footer-3">
+      <b class="footer-header1">Follow</b>
+      <div class="footer-icons">
+        <img class="fb-icon" alt="facebook" src="assets/fb-icon.png">
+        <img class="insta-icon" alt="instagram" src="assets/insta-icon.png">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  </div>
+
+
+<script>
+(() => {
+  // Select the three big dishes
+  const rotators = document.querySelectorAll(
+    '.main-dish-image-icon, ' +                   // PHỞ BÒ (hero)
+    '.section-2 .main-dish-image-1-icon, ' +      // NEM NƯỚNG (section 2)
+    '.section-3 .main-dish-image-2-icon'          // BÁNH MÌ DELUXE (section 3)
+  );
+
+  // Helper class (optional, for GPU hint)
+  rotators.forEach(el => el.classList.add('big-rotator'));
+
+  // Use the real scrolling element (works across browsers)
+  const SCROLLER = document.scrollingElement || document.documentElement;
+
+  // Tune sensitivity (deg per pixel)
+  const DEG_PER_PX = 0.02;
+
+  // Optional per-image base offsets
+  const OFFSETS = new WeakMap();
+  rotators.forEach(el => OFFSETS.set(el, 0));
+
+  let ticking = false;
+  let lastY = -1;
+
+  function update(force = false) {
+    const y = SCROLLER.scrollTop;
+    if (!force && y === lastY) { ticking = false; return; }
+    lastY = y;
+
+    const angle = y * DEG_PER_PX;
+    rotators.forEach(el => {
+      const base = OFFSETS.get(el) || 0;
+      el.style.transform = `rotate(${angle + base}deg)`;
+    });
+    ticking = false;
+  }
+
+  function onScrollishEvent() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(() => update());
+    }
+  }
+
+  // Fire on any way the user scrolls
+  ['scroll','wheel','mousewheel','DOMMouseScroll','touchmove','keydown']
+    .forEach(evt => window.addEventListener(evt, onScrollishEvent, { passive: true }));
+
+  window.addEventListener('load', () => update(true));
+  window.addEventListener('resize', () => update(true));
+})();
+</script>
+
+</body>
+</html>
