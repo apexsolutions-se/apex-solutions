@@ -814,7 +814,7 @@ body {
   /* ---- knobs: edit these values ---- */
   .section-3{
     --bm-chay-x: 0px;  --bm-chay-y: 25px;  /* BÁNH MÌ CHAY */
-    --bm-thit-x: 0px;  --bm-thit-y: 20px;  /* BÁNH MÌ THỊT NƯỚNG */
+    --bm-thit-x: 0px;  --bm-thit-y: 0px;  /* BÁNH MÌ THỊT NƯỚNG */
     --bm-ga-x:   0px;  --bm-ga-y:   10px;  /* BÁNH MÌ GÀ */
   }
 
@@ -833,11 +833,37 @@ body {
    Uses transform only, so card height won't change */
 @media (max-width: 1024px) {
   .section-2 .featured-dishes-2 > .featured-dish-1 .goi-con-img-icon{
-    transform: translate(0px, 15px) !important; /* (X, Y): +Y = down, -Y = up; +X = right, -X = left */
+    transform: translate(0px, 10px) !important; /* (X, Y): +Y = down, -Y = up; +X = right, -X = left */
     margin: 0 !important;                       /* ensure no layout shift */
   }
 }
 
+
+
+/* --- Keep all prices under the description on mobile/tablet --- */
+@media (max-width: 1024px) {
+  /* prices in any card */
+  .featured-dishes  [class*="price"] {
+    position: static !important;
+    display: block !important;        /* force its own line */
+    margin: 6px 0 0 !important;       /* small gap under the body */
+    text-align: left !important;
+    float: none !important;           /* just in case */
+    line-height: 1.1 !important;
+  }
+
+  /* (Optional) re-pin layout: text in col 1, image in col 2 */
+  .featured-dishes  .dish-description,
+  .featured-dishes  .dish-description1,
+  .featured-dishes  .hero-section-dish-description {
+    grid-column: 1 !important;
+  }
+  .featured-dishes  img[class$="-img-icon"] {
+    grid-column: 2 !important;
+    justify-self: end !important;
+    align-self: center !important;
+  }
+}
 
 /* opt-in class the JS will add */
 .big-rotator {
@@ -850,38 +876,60 @@ body {
   .big-rotator { transform: none !important; }
 }
 
-/* --- Keep all prices under the description on mobile/tablet --- */
+/* SECTION 3 (BÁNH MÌ) — fix mobile order:
+   Dish name > description > price > veg badge */
 @media (max-width: 1024px) {
-  /* prices in any card */
-  .featured-dishes  [class*="price"],
-  .section-2 .featured-dishes-2 [class*="price"],
-  .section-3 .featured-dishes-3 [class*="price"] {
-    position: static !important;
-    display: block !important;        /* force its own line */
-    margin: 6px 0 0 !important;       /* small gap under the body */
-    text-align: left !important;
-    float: none !important;           /* just in case */
-    line-height: 1.1 !important;
-  }
-
-  /* (Optional) re-pin layout: text in col 1, image in col 2 */
-  .featured-dishes  .dish-description,
-  .featured-dishes  .dish-description1,
-  .featured-dishes  .hero-section-dish-description,
-  .section-2 .section-2-dish-description,
+  /* Make the text block a vertical stack */
+  .section-3 .dish-description,
   .section-3 .section-3-dish-description,
   .section-3 .dish-description1 {
-    grid-column: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px;
+    grid-column: 1 !important;           /* ensure text is left column */
   }
-  .featured-dishes  img[class$="-img-icon"],
-  .section-2 .featured-dishes-2 img[class$="-img-icon"],
+
+  /* 1) Name first */
+  .section-3 .dish-name,
+  .section-3 .section-3-dish-name,
+  .section-3 .dish-name1 {
+    order: 1 !important;
+  }
+
+  /* 2) Body (description) second */
+  .section-3 .dish-body,
+  .section-3 .section-3-dish-body,
+  .section-3 .dish-body1 {
+    order: 2 !important;
+    line-height: 1.45 !important;
+  }
+
+  /* 3) Price third, on its own line */
+  .section-3 .section-3-price,
+  .section-3 .price1,
+  .section-3 .price2 {
+    order: 3 !important;
+    display: block !important;
+    margin-top: 6px !important;
+    text-align: left !important;
+  }
+
+  /* 4) Veg badge (if present): sits below the text block, left side */
+  .section-3 .vegetrian-icon {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    justify-self: start !important;
+    align-self: start !important;
+    margin-top: 6px !important;
+  }
+
+  /* Keep images on the right, vertically centered */
   .section-3 .featured-dishes-3 img[class$="-img-icon"] {
     grid-column: 2 !important;
     justify-self: end !important;
     align-self: center !important;
   }
 }
-
 
   </style>
 </head>
