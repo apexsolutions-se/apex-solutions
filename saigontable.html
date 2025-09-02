@@ -850,6 +850,37 @@ body {
   .big-rotator { transform: none !important; }
 }
 
+/* --- Keep all prices under the description on mobile/tablet --- */
+@media (max-width: 1024px) {
+  /* prices in any card */
+  .featured-dishes  [class*="price"],
+  .section-2 .featured-dishes-2 [class*="price"],
+  .section-3 .featured-dishes-3 [class*="price"] {
+    position: static !important;
+    display: block !important;        /* force its own line */
+    margin: 6px 0 0 !important;       /* small gap under the body */
+    text-align: left !important;
+    float: none !important;           /* just in case */
+    line-height: 1.1 !important;
+  }
+
+  /* (Optional) re-pin layout: text in col 1, image in col 2 */
+  .featured-dishes  .dish-description,
+  .featured-dishes  .dish-description1,
+  .featured-dishes  .hero-section-dish-description,
+  .section-2 .section-2-dish-description,
+  .section-3 .section-3-dish-description,
+  .section-3 .dish-description1 {
+    grid-column: 1 !important;
+  }
+  .featured-dishes  img[class$="-img-icon"],
+  .section-2 .featured-dishes-2 img[class$="-img-icon"],
+  .section-3 .featured-dishes-3 img[class$="-img-icon"] {
+    grid-column: 2 !important;
+    justify-self: end !important;
+    align-self: center !important;
+  }
+}
 
 
   </style>
