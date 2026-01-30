@@ -1,0 +1,1062 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pipeline Solutions — VVS i Sverige</title>
+  <meta name="description" content="Pipeline Solutions erbjuder VVS-service, installation och akut hjälp. Snabbt på plats, tydligt pris och proffsigt utfört." />
+
+  <style>
+    :root{
+      --white:#ffffff;
+      --blue: #004E7C;
+      --blue-50:#EAF2FF;
+      --accent:#FFB020; /* third color: warm amber */
+      --ink:#0B1220;
+      --muted:#4B5565;
+      --line:rgba(11,18,32,.12);
+      --shadow: 0 14px 34px rgba(11,18,32,.10);
+      --r: 16px;
+      --r2: 22px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.55;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{width:min(1180px, 92%); margin-inline:auto}
+    img{max-width:100%; display:block}
+
+
+    /* Top strip */
+    .topstrip{
+      background: linear-gradient(90deg, rgba(11,95,255,.10), rgba(255,176,32,.12));
+      border-bottom: 1px solid var(--line);
+      font-weight: 700;
+      color: rgba(11,18,32,.78);
+      font-size: 13px;
+    }
+    .topstrip .row{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 10px 0;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .topstrip b{color: var(--blue)}
+    .topstrip .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(11,18,32,.10);
+      background: rgba(255,255,255,.70);
+    }
+    .dot{
+      width: 9px; height: 9px; border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(255,176,32,.18);
+    }
+
+    /* Header */
+    header{
+      position: sticky; top:0; z-index: 50;
+      background: rgba(255,255,255,.92);
+      border-bottom: 1px solid rgba(11,18,32,.08);
+      backdrop-filter: blur(10px);
+    }
+    .head{
+      display:flex; align-items:center; justify-content:space-between;
+      gap: 12px;
+      padding: 14px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap: 12px;
+    }
+    .mark{
+      width: 44px; height: 44px;
+      border-radius: 14px;
+      background: conic-gradient(from 220deg, var(--blue), rgba(11,95,255,.55), var(--accent), var(--blue));
+      border: 1px solid rgba(11,18,32,.10);
+      box-shadow: 0 12px 26px rgba(11,18,32,.10);
+      position: relative;
+      overflow:hidden;
+    }
+    .mark:after{
+      content:"";
+      position:absolute;
+      inset: 10px 10px auto auto;
+      width: 20px; height: 20px;
+      border-radius: 9px;
+      background: rgba(255,255,255,.86);
+      transform: rotate(18deg);
+    }
+    .brand strong{display:block; letter-spacing:.2px}
+    .brand span{display:block; color: var(--muted); font-size: 12.5px; font-weight: 700}
+
+    nav{display:flex; align-items:center; gap: 10px}
+    .navlinks{display:flex; align-items:center; gap: 10px}
+    .navlinks a{
+      font-weight: 850;
+      color: rgba(11,18,32,.74);
+      padding: 10px 10px;
+      border-radius: 12px;
+      transition: background .12s ease;
+    }
+    .navlinks a:hover{background: rgba(11,95,255,.08)}
+    .nav-toggle{
+      display:none;
+      border: 1px solid rgba(11,18,32,.12);
+      background: rgba(255,255,255,.92);
+      border-radius: 14px;
+      padding: 10px 12px;
+      font-weight: 900;
+    }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding: 11px 14px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      font-weight: 900;
+      cursor:pointer;
+      user-select:none;
+      transition: transform .12s ease, box-shadow .12s ease, background .12s ease, border-color .12s ease;
+      white-space: nowrap;
+    }
+    .btn:active{transform: translateY(0)}
+    .btn-primary{
+      background: var(--blue);
+      color: white;
+      box-shadow: 0 12px 26px rgba(11,95,255,.22);
+    }
+    .btn-primary:hover{transform: translateY(-1px)}
+    .btn-ghost{
+      background: rgba(255,255,255,.9);
+      border-color: rgba(11,18,32,.12);
+      color: rgba(11,18,32,.86);
+    }
+    .btn-ghost:hover{transform: translateY(-1px); box-shadow: 0 10px 24px rgba(11,18,32,.08)}
+    .btn-accent{
+      background: linear-gradient(180deg, rgba(255,176,32,1), rgba(255,176,32,.88));
+      color: rgba(11,18,32,.92);
+      box-shadow: 0 12px 26px rgba(255,176,32,.22);
+    }
+
+    /* ===== Main “Dispatch Board” ===== */
+    .board{
+      padding: 18px 0 30px;
+    }
+    .board-grid{
+      display:grid;
+      grid-template-columns: 1fr 340px;
+      gap: 14px;
+      align-items:start;
+    }
+
+    /* Big headline area — NOT a hero card */
+    .headline{
+      border: 1px solid rgba(11,18,32,.10);
+      border-radius: var(--r2);
+      padding: 18px;
+      background: linear-gradient(180deg, rgba(234,242,255,.70), rgba(255,255,255,1));
+      box-shadow: var(--shadow);
+    }
+    .headline h1{
+      margin: 6px 0 10px;
+      color: #004E7C;
+      font-size: clamp(30px, 3.5vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -0.6px;
+    }
+    .headline p{
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-weight: 750;
+      max-width: 70ch;
+    }
+    .headline .badges{
+      display:flex; gap: 8px; flex-wrap:wrap;
+      margin-bottom: 12px;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(11,18,32,.10);
+      background: rgba(255,255,255,.75);
+      font-weight: 900;
+      color: rgba(11,18,32,.78);
+      font-size: 12.5px;
+    }
+    .badge i{
+      width: 10px; height: 10px;
+      border-radius: 999px;
+      background: var(--blue);
+      display:inline-block;
+    }
+
+    /* Request bar (booking widget look) */
+    .requestbar{
+      margin-top: 12px;
+      border: 1px solid rgba(11,18,32,.10);
+      border-radius: 18px;
+      background: rgba(255,255,255,.86);
+      box-shadow: 0 10px 24px rgba(11,18,32,.06);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 1.4fr 1fr 1fr auto;
+      gap: 10px;
+      align-items:start;
+    }
+    .field label{
+        min-height: 16px;           /* ensures same label block height */
+        line-height: 16px;
+        margin-bottom: 6px; 
+      display:block;
+      font-size: 12px;
+      font-weight: 900;
+      color: rgba(11,18,32,.72);
+      letter-spacing: .2px;
+      text-transform: uppercase;
+    }
+    .field input, .field select{
+        height: 48px;
+      width:100%;
+      margin-top: 6px;
+      padding: 0px 12px;
+      border-radius: 18px;
+      border: 1px solid rgba(11,18,32,.12);
+      background: rgba(234,242,255,.35);
+      outline:none;
+      font-weight: 800;
+      color: rgba(11,18,32,.86);
+      line-height: 48px;;
+
+    }
+
+    /* Make button align with inputs */
+    .field button{
+    height: 48px;
+    width: 100%;
+    margin-top: 6px;   /* same as input/select */
+    border-radius: 18px;
+    }
+
+    .field select{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 18px; /* same as ORT */
+    }
+
+    
+    .field input:focus, .field select:focus{
+      border-color: rgba(11,95,255,.35);
+      box-shadow: 0 0 0 6px rgba(11,95,255,.10);
+    }
+
+    /* Service map (big grid with icons) */
+    .servicemap{
+      margin-top: 14px;
+      border: 1px solid rgba(11,18,32,.10);
+      border-radius: var(--r2);
+      background: rgba(255,255,255,.92);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .servicemap .top{
+      padding: 14px 16px;
+      display:flex; align-items:flex-end; justify-content:space-between; gap: 12px;
+      border-bottom: 1px solid rgba(11,18,32,.08);
+      background: rgba(234,242,255,.55);
+    }
+    .servicemap h2{margin:0; font-size: 18px; letter-spacing:-0.2px; color: #004E7C;}
+    .servicemap .top p{margin:0; color: var(--muted); font-weight: 750}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 10px;
+      padding: 14px;
+    }
+    .svc{
+      grid-column: span 4;
+      border: 1px solid rgba(11,18,32,.10);
+      border-radius: 18px;
+      background: rgba(255,255,255,.86);
+      padding: 14px;
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+      transition: transform .12s ease, box-shadow .12s ease;
+      cursor: pointer;
+      position: relative;
+      overflow:hidden;
+    }
+    .svc:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(11,18,32,.10);
+    }
+    .svc:before{
+      content:"";
+      position:absolute;
+      inset: auto -60px -60px auto;
+      width: 160px; height: 160px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, rgba(11,95,255,.16), transparent 60%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .icon{
+      width: 44px; height: 44px;
+      border-radius: 16px;
+      display:grid; place-items:center;
+      border: 1px solid rgba(11,18,32,.10);
+      background: rgba(234,242,255,.55);
+      flex: 0 0 auto;
+    }
+    .icon svg{width: 22px; height: 22px}
+    .svc strong{display:block; font-size: 14px; letter-spacing:-0.1px}
+    .svc span{display:block; margin-top: 4px; color: var(--muted); font-weight: 750; font-size: 13px}
+    .svc small{
+      display:inline-flex;
+      margin-top: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(11,18,32,.10);
+      background: rgba(234,242,255,.45);
+      font-weight: 900;
+      color: rgba(11,18,32,.74);
+      font-size: 12px;
+      width: fit-content;
+    }
+    .svc.wide{grid-column: span 8}
+    .svc.tall{grid-column: span 4; grid-row: span 2}
+
+    /* Side dispatch card (sticky) */
+    .side{
+      position: sticky;
+      top: 88px;
+      border: 1px solid rgba(11,18,32,.10);
+      border-radius: var(--r2);
+      background: rgba(255,255,255,.92);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .side .cap{
+      padding: 14px 14px;
+      border-bottom: 1px solid rgba(11,18,32,.08);
+      background: linear-gradient(90deg, rgba(11,95,255,.10), rgba(255,176,32,.14));
+    }
+    .side .cap strong{display:block; font-size: 14px}
+    .side .cap span{display:block; margin-top:4px; color: var(--muted); font-weight: 750; font-size: 13px}
+    .side .body{padding: 14px}
+    .side .line{
+      display:flex; align-items:flex-start; gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(11,18,32,.08);
+    }
+    .side .line:last-child{border-bottom:0}
+    .pin{
+      width: 28px; height: 28px;
+      border-radius: 12px;
+      background: rgba(11,95,255,.10);
+      border: 1px solid rgba(11,95,255,.22);
+      display:grid; place-items:center;
+      flex:0 0 auto;
+      margin-top: 1px;
+    }
+    .pin svg{width: 16px; height: 16px}
+    .side .line strong{display:block; font-size: 13px}
+    .side .line a, .side .line span{
+      display:block; margin-top: 2px;
+      color: var(--muted); font-weight: 800; font-size: 13px;
+    }
+    .side .actions{
+      display:grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    /* Sections */
+    .section{padding: 56px 0}
+    .section.alt{
+      background: linear-gradient(180deg, rgba(234,242,255,.55), rgba(255,255,255,0));
+      border-top: 1px solid rgba(11,18,32,.08);
+      border-bottom: 1px solid rgba(11,18,32,.08);
+    }
+    .section-head{
+      display:flex; align-items:flex-end; justify-content:space-between; gap: 12px;
+      margin-bottom: 14px;
+    }
+    .section-head h2{margin:0; font-size: 26px; letter-spacing:-0.2px; color: #004E7C;}
+    .section-head p{margin:0; color: var(--muted); font-weight: 750; max-width: 60ch}
+
+    /* Pricing bands */
+    .bands{
+      display:grid;
+      grid-template-columns: repeat(12, minmax(0,1fr));
+      gap: 10px;
+    }
+    .band{
+      grid-column: span 4;
+      border-radius: 18px;
+      border: 1px solid rgba(11,18,32,.10);
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 10px 24px rgba(11,18,32,.06);
+      padding: 14px;
+    }
+    .band .top{
+      display:flex; align-items:baseline; justify-content:space-between; gap: 12px;
+      margin-bottom: 8px;
+    }
+    .band strong{font-size: 15px}
+    .price{
+      font-weight: 1000;
+      color: var(--blue);
+      letter-spacing: -0.4px;
+    }
+    .band p{margin:0 0 10px; color: var(--muted); font-weight: 750}
+    .band ul{margin:0; padding-left: 18px; color: rgba(11,18,32,.78); font-weight: 750}
+    .band li{margin: 6px 0}
+
+    /* FAQ */
+    .faq{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    details{
+      border-radius: 18px;
+      border: 1px solid rgba(11,18,32,.10);
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 10px 24px rgba(11,18,32,.05);
+      padding: 12px 14px;
+    }
+    summary{
+      cursor:pointer;
+      font-weight: 950;
+      color: rgba(11,18,32,.86);
+      list-style:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary:after{
+      content:"+";
+      float:right;
+      font-weight: 1000;
+      color: var(--blue);
+    }
+    details[open] summary:after{content:"–"}
+    details p{margin: 10px 0 0; color: var(--muted); font-weight: 750}
+
+    /* Contact footer block */
+    .contact{
+      border-radius: 22px;
+      border: 1px solid rgba(11,18,32,.10);
+      background: rgba(255,255,255,.92);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 14px;
+      align-items:start;
+    }
+    .contact .cards{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .card{
+      border-radius: 18px;
+      border: 1px solid rgba(11,18,32,.10);
+      background: rgba(234,242,255,.40);
+      padding: 12px;
+      font-weight: 850;
+    }
+    .card span, .card a{
+      display:block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 13px;
+    }
+    form{
+      border-radius: 20px;
+      border: 1px solid rgba(11,18,32,.10);
+      background: rgba(234,242,255,.25);
+      padding: 14px;
+    }
+    .frow{
+      display:grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    }
+    label{
+      display:block;
+      font-size: 12px;
+      font-weight: 950;
+      color: rgba(11,18,32,.70);
+      letter-spacing: .2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    input,select,textarea{
+      width:100%;
+      margin-top: 6px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(11,18,32,.12);
+      background: rgba(255,255,255,.86);
+      outline:none;
+      font-weight: 800;
+      color: rgba(11,18,32,.86);
+    }
+    input:focus,select:focus,textarea:focus{
+      border-color: rgba(11,95,255,.35);
+      box-shadow: 0 0 0 6px rgba(11,95,255,.10);
+    }
+    .tiny{font-size: 12px; color: var(--muted); font-weight: 750; margin: 8px 0 0}
+
+    footer{
+      border-top: 1px solid rgba(11,18,32,.10);
+      padding: 18px 0;
+      color: rgba(11,18,32,.72);
+      font-weight: 800;
+    }
+    .foot{
+      display:flex; align-items:center; justify-content:space-between; gap: 12px;
+      flex-wrap:wrap;
+    }
+    .foot a:hover{text-decoration: underline}
+
+    /* Responsive */
+    @media (max-width: 1050px){
+      .board-grid{grid-template-columns: 1fr}
+      .side{position: relative; top:auto}
+      .requestbar{grid-template-columns: 1fr 1fr; }
+      .grid .svc{grid-column: span 6}
+      .grid .svc.wide{grid-column: span 12}
+      .bands .band{grid-column: span 6}
+      .contact{grid-template-columns: 1fr}
+      .contact .cards{grid-template-columns: 1fr}
+      .faq{grid-template-columns: 1fr}
+      .frow{grid-template-columns: 1fr}
+    }
+    @media (max-width: 720px){
+      .nav-toggle{display:inline-flex}
+      .navlinks{
+        display:none;
+        position:absolute;
+        right: 4%;
+        top: 70px;
+        padding: 12px;
+        border-radius: 18px;
+        border: 1px solid rgba(11,18,32,.10);
+        background: rgba(255,255,255,.95);
+        box-shadow: var(--shadow);
+        flex-direction: column;
+        gap: 6px;
+        min-width: 230px;
+      }
+      .navlinks.open{display:flex}
+      .requestbar{grid-template-columns: 1fr}
+      .grid .svc{grid-column: span 12}
+      .bands .band{grid-column: span 12}
+      .section-head{flex-direction: column; align-items:flex-start}
+    }
+
+    .logo{
+  height: 44px;        /* same visual size as before */
+  width: auto;
+  display: block;
+}
+
+  </style>
+</head>
+
+<body>
+  <!-- Top strip -->
+  <div class="topstrip">
+    <div class="container row">
+      <div class="pill"></span> Akut läcka? <b>Ring direkt</b> — vi guidar dig snabbt.</div>
+      <div class="pill">Område: <b>Stockholm / Uppsala</b> (ändra)</div>
+    </div>
+  </div>
+
+  <header>
+    <div class="container head">
+      <a class="brand" href="#top" aria-label="Pipeline Solutions">
+        <img
+  src="assets/pipelinesolutionslogo.png"
+  alt="Pipeline Solutions logo"
+  class="logo"
+/>
+
+      
+      </a>
+
+      <nav aria-label="Meny" style="position:relative">
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Meny</button>
+        <div class="navlinks" id="navLinks">
+          <a href="#tjanster">Tjänster</a>
+          <a href="#priser">Prisbild</a>
+          <a href="#faq">FAQ</a>
+          <a class="btn btn-primary" href="#kontakt">Boka</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="board">
+    <div class="container board-grid">
+      <!-- LEFT: Dispatch board -->
+      <section>
+        <div class="headline">
+          <div class="badges">
+    
+          </div>
+
+          <h1>Akut VVS — <br/>vi finns nära dig.</h1>
+          <p>
+            Vattenläcka, stopp eller trasig värme? Ring oss nu.<br>För planerade jobb går det även bra att lämna en förfrågan via formuläret och välja närmaste ort.
+          </p>
+
+          <!-- Request bar -->
+          <div class="requestbar" aria-label="Snabbförfrågan">
+            <div class="field">
+              <label for="issue">Ärende</label>
+              <select id="issue">
+                <option value="Läckage / akut">Läckage / akut</option>
+                <option value="Stopp / avlopp">Stopp / avlopp</option>
+                <option value="Installation / byte">Installation / byte</option>
+                <option value="Värme / tryck">Värme / tryck</option>
+                <option value="BRF / fastighet">BRF / fastighet</option>
+                <option value="Annat">Annat</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="city">Ort</label>
+              <input id="city" placeholder="t.ex. Solna" />
+            </div>
+            <div class="field">
+              <label for="time">När?</label>
+              <select id="time">
+                <option value="Akut (idag)">Akut (idag)</option>
+                <option value="Inom 1–2 dagar">Inom 1–2 dagar</option>
+                <option value="Denna vecka">Denna vecka</option>
+                <option value="Valfri tid">Valfri tid</option>
+              </select>
+            </div>
+            <div class="field">
+  <label aria-hidden="true">&nbsp;</label>
+  <button class="btn btn-primary" id="buildMsg">
+    Skapa meddelande
+  </button>
+</div>
+          </div>
+          <div class="tiny" id="msgHint" style="display:none; margin-top:10px; font-weight:800; color:rgba(11,18,32,.76)">
+            Klart! Scrolla till kontaktformuläret — meddelandet har fyllts i.
+          </div>
+        </div>
+
+        <!-- Service map -->
+        <div id="tjanster" class="servicemap" style="margin-top:14px">
+          <div class="top">
+            <div>
+              <h2>Tjänstekarta</h2>
+              <p>Klicka en ruta för att få en snabb “vad ingår”-beskrivning.</p>
+            </div>
+            <a class="btn btn-ghost" href="#kontakt">Snabb bokning</a>
+          </div>
+
+          <div class="grid" id="serviceGrid">
+            <!-- Each service card is a “map tile” (not a typical marketing card layout) -->
+            <article class="svc" data-title="Läckage / akut" data-desc="Vi prioriterar läckor. Första åtgärd för att stoppa vatten, kontroll av kopplingar/ventiler och tydlig plan för nästa steg.">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 2s6 6.2 6 11a6 6 0 1 1-12 0C6 8.2 12 2 12 2Z" stroke="currentColor" stroke-width="2.2"/><path d="M9.5 14.2c.2 1.6 1.5 2.8 3.1 2.8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+              </div>
+              <div>
+                <strong>Läckage & akut hjälp</strong>
+                <span>Stoppa skadan snabbt + kontrollera orsaken.</span>
+                
+              </div>
+            </article>
+
+            <article class="svc" data-title="Stopp / avlopp" data-desc="Rensning av vattenlås/golvbrunn, kontroll av flöde efteråt och tips för att minska risken att stoppet kommer tillbaka.">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M8 3h8v4a4 4 0 0 1-8 0V3Z" stroke="currentColor" stroke-width="2.2"/><path d="M12 7v14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M7 17h10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+              </div>
+              <div>
+                <strong>Stopp & avlopp</strong>
+                <span>Rens, flödeskontroll, förebyggande tips.</span>
+                
+              </div>
+            </article>
+
+            <article class="svc" data-title="Installation / byte" data-desc="Montering av WC, blandare, handfat samt anslutning av disk-/tvättmaskin. Vi provkör och kontrollerar täthet.">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M7 21h10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M9 3h6v6H9V3Z" stroke="currentColor" stroke-width="2.2"/><path d="M12 9v12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+              </div>
+              <div>
+                <strong>Installation & byte</strong>
+                <span>Montering + test + snyggt avslut.</span>
+                
+              </div>
+            </article>
+
+            <article class="svc wide" data-title="BRF / fastighet" data-desc="Felsökning, återkommande service och rapportering. Passar styrelser och förvaltning som vill ha smidig hantering.">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M4 10 12 3l8 7v10a1 1 0 0 1-1 1h-4v-7H9v7H5a1 1 0 0 1-1-1V10Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>
+              </div>
+              <div>
+                <strong>BRF & fastighet</strong>
+                <span>Felsökning, serviceplan, rapport/uppföljning.</span>
+                
+              </div>
+            </article>
+
+            <article class="svc" data-title="Värme / tryck" data-desc="Hjälp med radiatorer som inte blir varma, tryckproblem och enklare felsökning för att hitta rätt åtgärd.">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M7 3v18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M17 3v18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M10 6h4M10 10h4M10 14h4M10 18h4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+              </div>
+              <div>
+                <strong>Värme & tryck</strong>
+                <span>Radiator, flöde, tryck och cirkulation.</span>
+                
+              </div>
+            </article>
+
+            <article class="svc" data-title="Annat" data-desc="Osäker? Beskriv symtomen. Vi guidar vad som är akut, vad som kan vänta och vilka alternativ som finns.">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 22a10 10 0 1 0-10-10 10 10 0 0 0 10 10Z" stroke="currentColor" stroke-width="2.2"/><path d="M12 17h.01" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/><path d="M10.7 9.2a1.6 1.6 0 1 1 2.7 1.1c-.7.7-1.2 1.1-1.2 2.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+              </div>
+              <div>
+                <strong>Osäker på vad du behöver?</strong>
+                <span>Vi hjälper dig hitta rätt.</span>
+                
+              </div>
+            </article>
+          </div>
+
+          <div style="padding: 0 14px 14px;">
+            <div id="serviceInfo" style="
+              border:1px solid rgba(11,18,32,.10);
+              border-radius: 18px;
+              background: rgba(234,242,255,.35);
+              padding: 12px;
+              font-weight: 850;
+              color: rgba(11,18,32,.82);
+            ">
+              Klicka en ruta i tjänstekartan för mer info.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT: Sticky side card -->
+      <aside class="side" aria-label="Jour & kontakt">
+        <div class="cap">
+          <strong>Jour / snabb kontakt</strong>
+          <span>För akuta läckor och snabb bokning</span>
+        </div>
+        <div class="body">
+          <div class="line">
+            <div class="pin" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11Z" stroke="currentColor" stroke-width="2.2"/><path d="M12 10.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="2.2"/></svg>
+            </div>
+            <div>
+              <strong>Område</strong>
+              <span>Stockholm / Uppsala (ändra)</span>
+            </div>
+          </div>
+          <div class="line">
+            <div class="pin" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.8.3 1.6.6 2.3a2 2 0 0 1-.5 2.1L8.1 9.2a16 16 0 0 0 6.7 6.7l1.1-1.1a2 2 0 0 1 2.1-.5c.7.3 1.5.5 2.3.6a2 2 0 0 1 1.7 2Z" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <strong>Telefon</strong>
+              <a href="tel:+46000000000">+46 00 000 00 00</a>
+            </div>
+          </div>
+          <div class="line">
+            <div class="pin" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4V4Z" stroke="currentColor" stroke-width="2.2"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <strong>E-post</strong>
+              <a href="mailto:hej@pipelinesolutions.se">hej@pipelinesolutions.se</a>
+            </div>
+          </div>
+
+          <div class="actions">
+            <a class="btn btn-primary" href="#kontakt">Boka / offert</a>
+            <a class="btn btn-accent" href="tel:+46000000000">Akut? Ring</a>
+            <a class="btn btn-ghost" href="#priser">Se prisbild</a>
+          </div>
+
+          <p class="tiny" style="margin-top:10px">
+            Tips: vid läcka — stäng av vatten om möjligt och ring så guidar vi nästa steg.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Pricing -->
+  <section id="priser" class="section alt">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Prisbild</h2>
+          <p>Tydlig och transparent prissättning utan överraskningar.</p>
+        </div>
+      </div>
+
+      <div class="bands">
+        <article class="band">
+          <div class="top">
+            <strong>Felsökning / service</strong>
+            <div class="price">fr. 999 kr</div>
+          </div>
+          <p>För dig som vill ha snabb bedömning och åtgärd.</p>
+          <ul>
+            <li>Snabb insats</li>
+            <li>Förklaring av orsak</li>
+            <li>Rekommendationer</li>
+          </ul>
+        </article>
+
+        <article class="band">
+          <div class="top">
+            <strong>Installation / byte</strong>
+            <div class="price">fr. 999 kr</div>
+          </div>
+          <p>Montering med test och snyggt avslut.</p>
+          <ul>
+            <li>Provkörning</li>
+            <li>Täthetskontroll</li>
+            <li>Genomgång</li>
+          </ul>
+        </article>
+
+        <article class="band">
+          <div class="top">
+            <strong>Jour / akut</strong>
+            <div class="price">fr. 999 kr</div>
+          </div>
+          <p>För läckor och brådskande ärenden.</p>
+          <ul>
+            <li>Prioritering av läckor</li>
+            <li>Första åtgärd</li>
+            <li>Plan framåt</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>FAQ</h2>
+          <p>Korta svar på vanliga frågor — bra för förtroende och färre “onödiga” samtal.</p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <details>
+          <summary>Vad räknas som akut?</summary>
+          <p>Läcka, risk för översvämning eller när vatten/avlopp inte går att använda. Ring direkt så prioriterar vi.</p>
+        </details>
+        <details>
+          <summary>Kan jag få offert innan ni kommer?</summary>
+          <p>Ja, i de flesta fall – förutsatt att vi har en tydlig bild av problemet. Skicka gärna en beskrivning och ett foto. Om det finns osäkerheter kan vi börja med felsökning och stämma av kostnaden innan eventuella större åtgärder.</p>
+        </details>
+        <details>
+          <summary>Jobbar ni med BRF och företag?</summary>
+          <p>Ja. Vi arbetar med både bostadsrättsföreningar och företag.
+I många fall blir kostnaden lägre eftersom vi kan samordna arbetet och minska uppstart och körning. Vi erbjuder både engångsjobb och kontinuerliga uppdrag – hör av er så hittar vi en lösning som passar just er.
+</p>
+        </details>
+        <details>
+          <summary>Vad behöver jag förbereda?</summary>
+          <p>Fri åtkomst till området (t.ex. under diskbänk), portkod om det behövs och gärna att du vet var huvudavstängningen sitter.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="kontakt" class="section alt">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Kontakt</h2>
+          <p>Fyll i formuläret så återkommer vi. Vid akut: ring direkt.
+Pipeline Solutions
+</p>
+        </div>
+      </div>
+
+      <div class="contact">
+        <div>
+          <strong style="font-size:18px; letter-spacing:-0.2px;">Pipeline Solutions</strong>
+          <p style="margin:6px 0 0; color:var(--muted); font-weight:750;">
+            Våra tekniker legitimerar sig vid dörren, är certifierade och allt arbete utförs med giltig försäkring – för din trygghet.
+          </p>
+
+          <div class="cards">
+            <div class="card">
+              Telefon
+              <a href="tel:+46000000000">+46 00 000 00 00</a>
+            </div>
+            <div class="card">
+              E-post
+              <a href="mailto:hej@pipelinesolutions.se">hej@pipelinesolutions.se</a>
+            </div>
+            <div class="card">
+              Område
+              <span>Stockholm / Uppsala (ändra)</span>
+            </div>
+          </div>
+        </div>
+
+        <form id="contactForm">
+          <div class="frow">
+            <label>
+              Namn
+              <input name="name" required placeholder="Ditt namn" />
+            </label>
+            <label>
+              Telefon
+              <input name="phone" placeholder="07X-XXX XX XX" />
+            </label>
+          </div>
+
+          <label>
+            E-post
+            <input name="email" type="email" required placeholder="din@mail.se" />
+          </label>
+
+          <label>
+            Ärende
+            <select name="topic" required>
+              <option value="">Välj…</option>
+              <option>Läckage / akut</option>
+              <option>Stopp / avlopp</option>
+              <option>Installation / byte</option>
+              <option>Värme / tryck</option>
+              <option>BRF / fastighet</option>
+              <option>Annat</option>
+            </select>
+          </label>
+
+          <label>
+            Meddelande
+            <textarea name="message" id="message" rows="5" required placeholder="Beskriv vad du behöver hjälp med…"></textarea>
+          </label>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap">
+            <button class="btn btn-primary" type="submit">Skicka förfrågan</button>
+            <a class="btn btn-ghost" href="tel:+46000000000">Ring istället</a>
+          </div>
+
+          <p class="tiny" id="formNote">
+            Demo-läge: visar “skickat”. Vill du koppla formuläret till e-post (FormSubmit) eller Google Forms kan jag fixa det.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container foot">
+      <span>© <span id="year"></span> Pipeline Solutions</span>
+      <div style="display:flex; gap:12px; flex-wrap:wrap">
+        <a href="#tjanster">Tjänster</a>
+        <a href="#priser">Pris</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    const navToggle = document.getElementById("navToggle");
+    const navLinks = document.getElementById("navLinks");
+    if(navToggle && navLinks){
+      navToggle.addEventListener("click", () => {
+        const open = navLinks.classList.toggle("open");
+        navToggle.setAttribute("aria-expanded", String(open));
+      });
+      navLinks.querySelectorAll("a").forEach(a => {
+        a.addEventListener("click", () => {
+          navLinks.classList.remove("open");
+          navToggle.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
+
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Service map click -> info panel + prefill message
+    const info = document.getElementById("serviceInfo");
+    const message = document.getElementById("message");
+    document.querySelectorAll(".svc").forEach(card => {
+      card.addEventListener("click", () => {
+        const title = card.dataset.title || "Ärende";
+        const desc  = card.dataset.desc  || "";
+        info.textContent = title + " — " + desc;
+
+        // Prefill message (without looking like Apex; it's a dispatch UX)
+        if(message){
+          const base = `Hej!\n\nJag behöver hjälp med: ${title}.\n\nPlats/ort: \nNär passar det: \nKort beskrivning: \n\nTack!`;
+          message.value = base;
+          document.getElementById("kontakt").scrollIntoView({behavior:"smooth"});
+        }
+      });
+    });
+
+    // “Create message” from request bar
+    document.getElementById("buildMsg").addEventListener("click", () => {
+      const issue = document.getElementById("issue").value;
+      const city  = document.getElementById("city").value || "(fyll i ort)";
+      const time  = document.getElementById("time").value;
+
+      if(message){
+        message.value =
+`Hej!\n\nJag vill boka hjälp med: ${issue}.\nOrt/adress: ${city}\nNär: ${time}\n\nBeskrivning (symptom, var det är, ev. foto):\n- \n\nTack!`;
+      }
+
+      const hint = document.getElementById("msgHint");
+      hint.style.display = "block";
+      document.getElementById("kontakt").scrollIntoView({behavior:"smooth"});
+    });
+
+    // Demo submit
+    const form = document.getElementById("contactForm");
+    const note = document.getElementById("formNote");
+    if(form){
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const btn = form.querySelector("button[type='submit']");
+        const original = btn.textContent;
+        btn.textContent = "Skickat! ✅";
+        btn.disabled = true;
+        note.textContent = "Tack! Vi återkommer så snart vi kan. (Demo: inget skickas än.)";
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.disabled = false;
+          form.reset();
+          note.textContent = "Demo-läge: visar “skickat”. Vill du koppla formuläret till e-post (FormSubmit) eller Google Forms kan jag fixa det.";
+        }, 2600);
+      });
+    }
+  </script>
+</body>
+</html>
