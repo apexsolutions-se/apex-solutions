@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FLYTTFIRMAN — Flytta lättare</title>
+  <meta name="description" content="En glad, trygg flyttfirma i Sverige. Tydligt upplägg, punktligt team och enkel bokning. Ring eller boka direkt." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+
+        :root{
+        /* Palette from your image */
+        --bg: #fbf4ea;            /* soft cream background */
+        --ink: #23101b;           /* dark plum */
+        --muted: #5a2238;         /* wine */
+        --line: rgb(35 16 27 / .14);
+
+        --plum: #23101b;
+        --wine: #5a2238;
+        --mauve:#944b62;
+        --sand: #dbbd7a;
+        --gold: #b68a27;
+
+        --radius: 18px;
+        --shadow: 0 22px 70px rgb(35 16 27 / .14);
+        --max: 1160px;
+        }
+
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      overflow-x:hidden;
+    }
+    a{ color: inherit; text-decoration:none; }
+
+    .wrap{ max-width: var(--max); margin:0 auto; padding: 0 22px; }
+
+    /* Only CTA buttons: Book + Call */
+    .cta{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding: 14px 16px;
+      border-radius: 999px;
+      border: 0;
+      font-weight: 900;
+      letter-spacing: .2px;
+      cursor:pointer;
+      background: linear-gradient(135deg, var(--sand), var(--gold));
+      color: var(--plum);
+      box-shadow: var(--shadow);
+      transition: transform .12s ease, filter .12s ease;
+      white-space: nowrap;
+    }
+    .cta:hover{ transform: translateY(-1px); filter: brightness(1.02); }
+    .cta:active{ transform: translateY(0px); }
+    .cta.secondary{
+        background: transparent;
+        border: 2px solid rgb(35 16 27 / .22);
+        box-shadow: none;
+    }
+
+    /* Top header (minimal, full-width) */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255,247,237,.86);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 12px 0;
+  gap: 14px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:900;
+  letter-spacing:.3px;
+  text-transform:uppercase;
+  font-size:14px;
+}
+
+.brand-lines{ display:block; }
+.brand-name{ display:block; line-height: 1; }
+
+.tagline{
+  display:block;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 700;
+  text-transform:none;
+  letter-spacing: 0;
+  margin-top: 2px;
+}
+
+/* This is the key: make the logo behave exactly like the old mark */
+.mark{
+  width:50px;
+  height:50px;
+  display:block;
+  object-fit: contain;     /* keep transparent logo clean */
+  flex: 0 0 40px;
+
+  /* remove the “box” look */
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+
+
+    .top-actions{ display:flex; align-items:center; gap: 10px; }
+    .phone{
+      font-weight: 900;
+      border-bottom: 2px solid rgba(11,18,32,.15);
+      padding-bottom: 1px;
+    }
+
+    /* HERO (full-screen feel) */
+.hero{
+  position: relative;
+  min-height: calc(92vh - 64px);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  background:
+    radial-gradient(900px 600px at 10% 20%, rgb(219 189 122 / .55), transparent 60%),
+    radial-gradient(900px 600px at 85% 15%, rgb(148 75 98 / .28), transparent 62%),
+    radial-gradient(800px 600px at 70% 85%, rgb(182 138 39 / .22), transparent 65%),
+    radial-gradient(700px 500px at 30% 90%, rgb(90 34 56 / .18), transparent 68%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg) 100%);
+}
+
+
+
+    /* Big playful background shapes */
+/* ===== FADED BACKGROUND CIRCLES (REPLACE YOUR CURRENT .blob/.b1/.b2/.b3/.b4) ===== */
+.blob{
+  position:absolute;
+  border-radius: 50%;
+  pointer-events:none;
+  mix-blend-mode: multiply;   /* keeps color fun but not neon */
+  filter: blur(1px);          /* breaks the hard edge line */
+  transform: translateZ(0);   /* helps Safari render smoother */
+}
+
+/* Yellow orb */
+.b1{
+  width:520px;
+  height:520px;
+  left:-220px;
+  top:-120px;
+  background: radial-gradient(
+    circle at center,
+    rgba(255,216,77,0.95) 0%,
+    rgba(255,216,77,0.75) 40%,
+    rgba(255,216,77,0.45) 55%,
+    rgba(255,216,77,0.22) 68%,
+    rgba(255,216,77,0.10) 80%,
+    rgba(255,216,77,0.00) 95%
+  );
+}
+
+/* Blue orb */
+.b2{
+  width:620px;
+  height:620px;
+  right:-260px;
+  top:-180px;
+  background: radial-gradient(
+    circle at center,
+    rgba(53,198,255,0.90) 0%,
+    rgba(53,198,255,0.70) 40%,
+    rgba(53,198,255,0.42) 55%,
+    rgba(53,198,255,0.20) 68%,
+    rgba(53,198,255,0.09) 80%,
+    rgba(53,198,255,0.00) 96%
+  );
+}
+
+/* Green orb */
+.b3{
+  width:520px;
+  height:520px;
+  right:18%;
+  bottom:-260px;
+  background: radial-gradient(
+    circle at center,
+    rgba(84,226,138,0.90) 0%,
+    rgba(84,226,138,0.68) 40%,
+    rgba(84,226,138,0.40) 55%,
+    rgba(84,226,138,0.18) 68%,
+    rgba(84,226,138,0.08) 80%,
+    rgba(84,226,138,0.00) 96%
+  );
+}
+
+/* Coral orb */
+.b4{
+  width:380px;
+  height:380px;
+  left:22%;
+  bottom:-210px;
+  background: radial-gradient(
+    circle at center,
+    rgba(255,91,124,0.85) 0%,
+    rgba(255,91,124,0.62) 40%,
+    rgba(255,91,124,0.36) 55%,
+    rgba(255,91,124,0.16) 68%,
+    rgba(255,91,124,0.07) 80%,
+    rgba(255,91,124,0.00) 96%
+  );
+}
+
+
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 28px;
+      align-items:start;
+      padding: 44px 0;
+      position: relative;
+    }
+
+    h1{
+      margin: 0 0 14px;
+      font-size: clamp(38px, 4.7vw, 64px);
+      line-height: 1.02;
+      letter-spacing: -1.4px;
+    }
+    .lead{
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 60ch;
+    }
+
+    .hero-ctas{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .microproof{
+      margin-top: 18px;
+      display:flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      align-items:center;
+      color: rgba(11,18,32,.82);
+      font-weight: 800;
+      font-size: 13px;
+    }
+    .microproof span{
+      display:inline-flex; align-items:center; gap:8px;
+    }
+    .microproof i{
+      width: 12px; height: 12px; border-radius: 999px;
+      display:inline-block;
+      background: var(--grape);
+      box-shadow: 0 0 0 4px rgba(124,92,255,.18);
+    }
+
+    /* Right side: a simple "booking sheet" look but not boxed sections (only this area is structured) */
+    .booking{
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(11,18,32,.10);
+      border-radius: 26px;
+      padding: 18px 18px 16px;
+      box-shadow: 0 20px 60px rgba(11,18,32,.10);
+    }
+    .booking h2{
+      margin: 0 0 8px;
+      font-size: 18px;
+      letter-spacing: -.3px;
+    }
+    .booking p{
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    form{ display:grid; gap: 10px; }
+    .row{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    label{
+      display:block;
+      font-size: 12px;
+      font-weight: 800;
+      margin: 0 0 6px;
+      color: rgba(11,18,32,.75);
+    }
+    input, select{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(11,18,32,.18);
+      background: rgba(255,255,255,.85);
+      font: inherit;
+      color: var(--ink);
+      outline: none;
+      transition: border-color .15s ease, transform .15s ease;
+    }
+
+select{
+  -webkit-appearance: none;
+  appearance: none;
+  padding-right: 44px;   /* room for the arrow */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath fill='%2323101b'' fill-opacity='.65' d='M5.5 7.5 10 12l4.5-4.5 1.4 1.4L10 14.8 4.1 8.9z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 18px 18px;
+}
+
+    input:focus, select:focus{
+      border-color: rgb(182 138 39 / .70);
+      transform: translateY(-1px);
+    }
+    .note{
+      margin-top: 8px;
+      font-size: 12px;
+      color: rgba(11,18,32,.70);
+      line-height: 1.45;
+    }
+
+    /* Section base: full-width, no cards */
+    section{
+      padding: 72px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .section-title{
+      margin:0 0 12px;
+      font-size: 30px;
+      letter-spacing: -.8px;
+    }
+    .section-sub{
+      margin:0 0 24px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+      max-width: 75ch;
+    }
+
+    /* Value props: not boxed, just clean columns */
+    .cols3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .col h3{
+      margin:0 0 8px;
+      font-size: 16px;
+      letter-spacing: -.2px;
+    }
+    .col p{
+      margin:0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    /* Fun divider band */
+    .band{
+      position: relative;
+        background: linear-gradient(
+    90deg,
+    rgb(219 189 122 / .55),
+    rgb(182 138 39 / .45),
+    rgb(148 75 98 / .35),
+    rgb(90 34 56 / .30));
+      border-bottom: 1px solid rgba(11,18,32,.10);
+      border-top: 1px solid rgba(11,18,32,.10);
+      padding: 18px 0;
+    }
+
+    .band .wrap{
+      display:flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items:center;
+      justify-content:space-between;
+      font-weight: 900;
+      letter-spacing: .2px;
+    }
+    .band small{
+      font-weight: 800;
+      color: rgba(11,18,32,.78);
+      letter-spacing: 0;
+    }
+
+    /* Steps: simple, no boxes */
+    .steps{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 18px;
+      margin-top: 8px;
+    }
+    .step{
+      border-left: 4px solid rgba(11,18,32,.14);
+      padding-left: 12px;
+    }
+    .step .num{
+      font-weight: 900;
+      font-size: 13px;
+      color: rgba(11,18,32,.70);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+    .step h3{ margin:0 0 6px; font-size: 16px; }
+    .step p{ margin:0; color: var(--muted); line-height: 1.65; font-size: 14px; }
+
+    /* Social proof: simple quotes without cards */
+    .quotes{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      margin-top: 8px;
+    }
+    blockquote{
+      margin:0;
+      padding: 0;
+      border-left: 4px solid rgba(11,18,32,.14);
+      padding-left: 12px;
+      color: rgba(11,18,32,.86);
+      line-height: 1.7;
+      font-weight: 650;
+      font-size: 14px;
+    }
+    cite{
+      display:block;
+      margin-top: 10px;
+      font-style: normal;
+      color: rgba(11,18,32,.70);
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing: .02em;
+    }
+
+    /* FAQ: visible answers, clean grid */
+    .faq{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px 28px;
+      margin-top: 6px;
+    }
+    .qa h3{
+      margin:0 0 6px;
+      font-size: 15px;
+      letter-spacing: -.15px;
+    }
+    .qa p{
+      margin:0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* Final CTA section: full-width, minimal */
+.final{
+  padding: 84px 0 96px;
+  border-bottom: 0;
+  background:
+    radial-gradient(700px 300px at 15% 20%, rgb(219 189 122 / .55), transparent 60%),
+    radial-gradient(800px 360px at 90% 15%, rgb(148 75 98 / .28), transparent 62%),
+    radial-gradient(720px 340px at 65% 95%, rgb(182 138 39 / .22), transparent 65%),
+    linear-gradient(180deg, var(--bg), var(--bg));
+}
+
+    .final h2{
+      margin:0 0 12px;
+      font-size: clamp(30px, 3.2vw, 44px);
+      letter-spacing: -1px;
+      line-height: 1.05;
+    }
+    .final p{
+      margin:0 0 18px;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 15px;
+      max-width: 78ch;
+    }
+    .final-actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    footer{
+      padding: 24px 0 90px;
+      border-top: 1px solid var(--line);
+      color: rgba(11,18,32,.72);
+      font-size: 13px;
+      line-height: 1.6;
+      background: rgba(255,255,255,.55);
+    }
+    .foot{
+      display:flex;
+      gap: 18px;
+      flex-wrap:wrap;
+      align-items:flex-start;
+      justify-content:space-between;
+    }
+
+    /* Sticky bottom CTA (mobile) - still only Book/Call */
+    .sticky{
+      position: fixed;
+      left: 12px; right: 12px; bottom: 12px;
+      z-index: 50;
+      display:none;
+      background: rgba(255,255,255,.86);
+      border: 1px solid rgba(11,18,32,.14);
+      border-radius: 20px;
+      padding: 10px;
+      box-shadow: 0 22px 70px rgba(11,18,32,.18);
+      backdrop-filter: blur(10px);
+    }
+    .sticky .inner{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .sticky .txt{
+      min-width: 0;
+      display:grid;
+      gap: 2px;
+    }
+    .sticky .txt b{
+      font-size: 13px;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    }
+    .sticky .txt span{
+      font-size: 12px;
+      color: rgba(11,18,32,.70);
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{ grid-template-columns: 1fr; padding: 34px 0; }
+      .cols3{ grid-template-columns: 1fr; }
+      .steps{ grid-template-columns: 1fr 1fr; }
+      .quotes{ grid-template-columns: 1fr; }
+      .faq{ grid-template-columns: 1fr; }
+      .sticky{ display:block; }
+      footer{ padding-bottom: 20px; }
+    }
+    @media (max-width: 540px){
+      .row{ grid-template-columns: 1fr; }
+      .hero{ min-height: auto; }
+      section{ padding: 58px 0; }
+      .steps{ grid-template-columns: 1fr; }
+    }
+
+    /* Accessibility */
+    :focus-visible{ outline: 3px solid rgba(53,198,255,.55); outline-offset: 2px; border-radius: 10px; }
+  </style>
+</head>
+
+<body>
+  <header>
+<header>
+  <div class="wrap topbar">
+    <a class="brand" href="#top" aria-label="FLYTTFIRMAN">
+      <img class="mark" src="assets/flyttfiman.png" alt="Flyttfirman logo">
+      <span class="brand-lines">
+        <span class="brand-name">FLYTTFIRMAN</span>
+        <span class="tagline">Trygg flytt i Sverige • Enkelt att boka</span>
+      </span>
+    </a>
+
+        
+
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero" aria-label="Hero">
+
+
+      <div class="wrap hero-grid">
+        <div>
+          <h1>Flytta lättare.<br>Med ett team som kommer i tid.</h1>
+          <p class="lead">
+            Vi är en glad och pålitlig flyttfirma som gör flytten enkel från start till mål.
+            Tydlig plan, snälla proffs och trygg hantering av dina saker — utan krångel.
+          </p>
+
+
+            <div class="microproof" aria-label="Snabb trygghet">
+            <span>
+                <i style="background:var(--plum); box-shadow:0 0 0 4px rgb(35 16 27 / .18)"></i>
+                Försäkrat &amp; varsamt
+            </span>
+            <span>
+                <i style="background:var(--gold); box-shadow:0 0 0 4px rgb(182 138 39 / .22)"></i>
+                Tydligt upplägg
+            </span>
+            <span>
+                <i style="background:var(--mauve); box-shadow:0 0 0 4px rgb(148 75 98 / .22)"></i>
+                Smidig bokning
+            </span>
+            </div>
+            </div>
+
+
+        <!-- Booking -->
+        <aside class="booking" id="boka" aria-label="Bokning">
+          <h2>Boka på 1 minut</h2>
+          <p>Skicka en bokningsförfrågan. Vi bekräftar snabbt via telefon eller e-post.</p>
+
+          <form id="bookForm" novalidate>
+            <div class="row">
+              <div>
+                <label for="name">Namn</label>
+                <input id="name" name="name" type="text" placeholder="Ditt namn" required>
+              </div>
+              <div>
+                <label for="phone">Telefon</label>
+                <input id="phone" name="phone" type="tel" placeholder="07x-xxx xx xx" required>
+              </div>
+            </div>
+
+            <div class="row">
+              <div>
+                <label for="date">Flyttdatum</label>
+                <input id="date" name="date" type="date" required>
+              </div>
+              <div>
+                <label for="size">Storlek</label>
+                <select id="size" name="size">
+                  <option>1 rok</option>
+                  <option>2 rok</option>
+                  <option>3 rok</option>
+                  <option>4+ rok</option>
+                  <option>Villa</option>
+                  <option>Kontor</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div>
+                <label for="from">Från</label>
+                <input id="from" name="from" type="text" placeholder="Stad/område">
+              </div>
+              <div>
+                <label for="to">Till</label>
+                <input id="to" name="to" type="text" placeholder="Stad/område">
+              </div>
+            </div>
+
+            <!-- Only one CTA type: same style as main. No extra buttons -->
+            <button class="cta" type="submit" style="width:100%; justify-content:center;">
+              Skicka bokning
+            </button>
+
+            <div class="note">
+              Hellre ring? <a class="phone" href="tel:+4681234567">08–123 45 67</a> • Mån–Fre 08–19
+            </div>
+
+            <div class="note" id="formMsg" style="display:none; font-weight:900;"></div>
+          </form>
+        </aside>
+      </div>
+    </section>
+
+    <!-- BAND -->
+    <div class="band" aria-label="Snabb info">
+      <div class="wrap">
+        <div>Punktligt team</div>
+        <div>Varsam hantering</div>
+        <div>Tydlig plan</div>
+        <small>En flytt som känns enkel — inte som ett projekt.</small>
+      </div>
+    </div>
+
+    <!-- VALUE -->
+    <section aria-label="Varför Flyttfirman">
+      <div class="wrap">
+        <h2 class="section-title">Tryggt, glatt och rakt på sak</h2>
+        <p class="section-sub">
+          Vi bygger förtroende genom att göra det enkelt: bra kommunikation, proffsig bärteknik och en flytt som flyter på.
+          Inga krångliga val här — bara en bra flytt och en enkel bokning.
+        </p>
+
+        <div class="cols3">
+          <div class="col">
+            <h3>Vi kommer i tid</h3>
+            <p>Du får en tydlig starttid och vi dyker upp när vi ska. Flyttdagen ska kännas lugn.</p>
+          </div>
+          <div class="col">
+            <h3>Vi tar hand om dina saker</h3>
+            <p>Skydd, omtanke och rutin. Vi bär smart och säkert — särskilt för ömtåliga och tunga saker.</p>
+          </div>
+          <div class="col">
+            <h3>Vi håller det enkelt</h3>
+            <p>En tydlig plan, ett trevligt team och snabb bekräftelse. Du slipper ”onödigt flyttsnack”.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section aria-label="Så funkar det">
+      <div class="wrap">
+        <h2 class="section-title">Så funkar det</h2>
+        <p class="section-sub">
+          Fyra steg. Inga extra avgifter. Bara en flytt som blir av.
+        </p>
+
+        <div class="steps">
+          <div class="step">
+            <div class="num">STEG 1</div>
+            <h3>Boka (eller ring)</h3>
+            <p>Skicka datum, storlek och område. Klart.</p>
+          </div>
+          <div class="step">
+            <div class="num">STEG 2</div>
+            <h3>Snabb bekräftelse</h3>
+            <p>Vi hör av oss och bekräftar upplägget.</p>
+          </div>
+          <div class="step">
+            <div class="num">STEG 3</div>
+            <h3>Flyttdagen</h3>
+            <p>Vi bär, lastar, kör och lossar — tryggt och effektivt.</p>
+          </div>
+          <div class="step">
+            <div class="num">STEG 4</div>
+            <h3>Du är hemma</h3>
+            <p>Allt på plats. Du kan andas ut (och fira med något gott).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOCIAL PROOF -->
+    <section aria-label="Recensioner">
+      <div class="wrap">
+        <h2 class="section-title">Kunderna säger det bäst</h2>
+        <p class="section-sub">
+          Vi gillar när flyttar slutar med “Det där var faktiskt… kul?”
+        </p>
+
+        <div class="quotes">
+          <blockquote>
+            “De var supertrevliga och effektiva. Allt kändes tryggt från start.”
+            <cite>— Emma, Stockholm</cite>
+          </blockquote>
+          <blockquote>
+            “Inga konstigheter. De kom i tid och bar allt försiktigt. Rekommenderar!”
+            <cite>— Johan, Göteborg</cite>
+          </blockquote>
+          <blockquote>
+            “Flyttdagen blev lugnare än jag trodde. Proffsigt team.”
+            <cite>— Fatima, Malmö</cite>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ (answers always visible) -->
+    <section aria-label="FAQ">
+      <div class="wrap">
+        <h2 class="section-title">Vanliga frågor</h2>
+ 
+
+        <div class="faq">
+          <div class="qa">
+            <h3>Behöver jag packa allt själv?</h3>
+            <p>Du kan packa själv om du vill. Vill du göra det enklare? Ring oss så planerar vi ett upplägg som passar din flytt.</p>
+          </div>
+          <div class="qa">
+            <h3>Flyttar ni mellan städer?</h3>
+            <p>Ja. Vi kör både lokalt och längre sträckor i Sverige. Ange bara “från” och “till” vid bokning.</p>
+          </div>
+          <div class="qa">
+            <h3>Hur långt i förväg måste jag boka?</h3>
+            <p>Ju tidigare desto bättre, men ibland går det snabbt. Boka datumet du vill ha så återkommer vi med besked.</p>
+          </div>
+          <div class="qa">
+            <h3>Hur vet jag att det blir tryggt?</h3>
+            <p>Vi jobbar med rutiner för skydd och säker bärteknik, och vi kommunicerar tydligt innan och under flytten.</p>
+          </div>
+          <div class="qa">
+            <h3>Kan jag ringa istället?</h3>
+            <p>Absolut. Ring så tar vi bokningen direkt: <a class="phone" href="tel:+4681234567">08–123 45 67</a>.</p>
+          </div>
+          <div class="qa">
+            <h3>Tar ni kontorsflyttar?</h3>
+            <p>Ja. Kontor, lager, mindre verksamheter — vi löser det. Ring så planerar vi minimal störning.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final" aria-label="Slut-CTA">
+      <div class="wrap">
+        <h2>En bra flytt ska kännas lätt — boka nu.</h2>
+        <p>
+          Inga extra knappar, inga distraktioner. Bara ring eller boka.
+          Vi bekräftar snabbt och hjälper dig få en flytt som känns trygg och glad.
+        </p>
+
+        <div class="final-actions">
+          <a class="cta" href="#boka">Boka flytt</a>
+          <a class="cta secondary" href="tel:+4681234567">Ring</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div>
+        <strong style="letter-spacing:.05em;">FLYTTFIRMAN</strong><br>
+        Trygg flytt i Sverige — enkelt och glatt.<br>
+        <span style="opacity:.9;">Telefon: <a class="phone" href="tel:+4681234567">08–123 45 67</a></span>
+      </div>
+      <div>
+        <strong>Öppet</strong><br>
+        Mån–Fre 08–19<br>
+        Lör vid behov
+      </div>
+      <div>
+        <strong>Adress</strong><br>
+        Exempelgatan 1<br>
+        111 11 Stockholm
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    // Demo booking submit (no backend)
+    const form = document.getElementById('bookForm');
+    const msg = document.getElementById('formMsg');
+    const dateInput = document.getElementById('date');
+
+    // Prevent past dates
+    const today = new Date();
+    const yyyy = String(today.getFullYear());
+    const mm = String(today.getMonth() + 1).padStart(2,'0');
+    const dd = String(today.getDate()).padStart(2,'0');
+    dateInput.min = `${yyyy}-${mm}-${dd}`;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      msg.style.display = "block";
+
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const date = document.getElementById('date').value;
+
+      if(!name || !phone || !date){
+        msg.textContent = "Snabb koll: fyll i namn, telefon och datum";
+        msg.style.color = "#b91c1c";
+        return;
+      }
+
+      msg.textContent = "Tack! Bokningen är skickad — vi bekräftar snart";
+      msg.style.color = "#0f766e";
+
+      // Clear some fields (keep size/from/to)
+      document.getElementById('name').value = "";
+      document.getElementById('phone').value = "";
+    });
+
+    // Smooth scroll for internal anchors
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const id = a.getAttribute('href');
+        const el = document.querySelector(id);
+        if(!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior:"smooth", block:"start" });
+      });
+    });
+  </script>
+</body>
+</html>
