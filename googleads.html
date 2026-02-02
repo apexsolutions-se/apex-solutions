@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Apex Solutions – Ads Preview Mock</title>
+  <title>Apex Solutions – Ads Preview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
 
   <style>
     :root{
@@ -47,16 +49,18 @@
     }
 
     .logo{
+      font-family: 'Google Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       font-size: 56px;
-      line-height:1;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      user-select:none;
+      line-height: 1;
+      font-weight: 500;              /* Google logo is not bold */
+      letter-spacing: -0.02em;       /* better than px for scaling */
+      user-select: none;
     }
     .logo .b{ color:var(--blue); }
     .logo .r{ color:var(--red); }
     .logo .y{ color:var(--yellow); }
     .logo .g{ color:var(--green); }
+
 
     .searchbar{
       width: min(720px, 100%);
@@ -331,7 +335,7 @@
           <path fill="currentColor" d="M10 2a8 8 0 105.29 14.29l4.2 4.2 1.41-1.41-4.2-4.2A8 8 0 0010 2zm0 2a6 6 0 110 12 6 6 0 010-12z"/>
         </svg>
 
-        <input value="flyttfirma Stockholm" aria-label="Search query" />
+        <input value="Flyttfirma Stockholm" aria-label="Search query" />
 
         <div class="x" aria-hidden="true">×</div>
 
