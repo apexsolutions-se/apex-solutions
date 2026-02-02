@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Apex Solutions – Ads Preview Mock</title>
+
+  <style>
+    :root{
+      --blue:#1a73e8;
+      --red:#ea4335;
+      --yellow:#fbbc04;
+      --green:#34a853;
+
+      --text:#202124;
+      --muted:#5f6368;
+      --line:#dadce0;
+      --bg:#ffffff;
+      --chip:#f1f3f4;
+
+      --link:#1a0dab;
+      --visited:#681da8;
+      --url:#0d652d;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:var(--bg);
+    }
+
+    .page{
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 22px 18px 60px;
+    }
+
+    /* Top area */
+    .top{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .logo{
+      font-size: 56px;
+      line-height:1;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      user-select:none;
+    }
+    .logo .b{ color:var(--blue); }
+    .logo .r{ color:var(--red); }
+    .logo .y{ color:var(--yellow); }
+    .logo .g{ color:var(--green); }
+
+    .searchbar{
+      width: min(720px, 100%);
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 12px 14px;
+      box-shadow: 0 1px 6px rgba(32,33,36,.12);
+    }
+
+    .searchbar .icon{
+      width:18px; height:18px;
+      opacity:.55;
+      flex:0 0 auto;
+    }
+    .searchbar input{
+      border:none;
+      outline:none;
+      font-size:18px;
+      width:100%;
+      color:var(--text);
+      background:transparent;
+    }
+    .searchbar .x{
+      font-size:18px;
+      color:var(--muted);
+      padding: 0 6px;
+      border-left: 1px solid var(--line);
+      margin-left: 4px;
+      cursor:default;
+      user-select:none;
+    }
+    .searchbar .mic{
+      width:18px; height:18px;
+      opacity:.75;
+      flex:0 0 auto;
+    }
+
+    /* Tabs */
+    .tabs{
+      width:min(760px,100%);
+      display:flex;
+      gap: 22px;
+      padding: 8px 4px 0;
+      border-bottom: 1px solid var(--line);
+      color:var(--muted);
+      font-size:14px;
+    }
+    .tab{
+      padding: 10px 2px 12px;
+      position:relative;
+      cursor:default;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .tab.active{
+      color:var(--blue);
+      font-weight:600;
+    }
+    .tab.active::after{
+      content:"";
+      position:absolute;
+      left:0; right:0; bottom:-1px;
+      height:3px;
+      background:var(--blue);
+      border-radius: 3px 3px 0 0;
+    }
+
+    .meta{
+      width:min(760px,100%);
+      margin: 12px auto 18px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    /* Results */
+    .results{
+      width:min(760px,100%);
+      margin: 0 auto;
+    }
+
+    .ad-card{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding: 14px 14px 12px;
+      box-shadow: 0 1px 2px rgba(60,64,67,.12);
+      background:#fff;
+      display:flex;
+      gap: 16px;
+      align-items:flex-start;
+    }
+
+    .ad-left{ flex:1 1 auto; min-width: 0; }
+    .ad-right{ flex:0 0 170px; }
+
+    .ad-label{
+      font-size:13px;
+      color:var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .ad-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 10px;
+    }
+
+    .title{
+      font-size: 22px;
+      color: var(--link);
+      text-decoration:none;
+      display:inline-block;
+      line-height:1.2;
+      margin-bottom: 4px;
+    }
+    .title:hover{ text-decoration:underline; }
+
+    .kebab{
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display:grid;
+      place-items:center;
+      color:var(--muted);
+      user-select:none;
+      flex:0 0 auto;
+    }
+    .kebab:hover{ background: var(--chip); }
+
+    .display-url{
+      font-size: 14px;
+      color: var(--url);
+      margin-bottom: 8px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .desc{
+      color:var(--text);
+      font-size: 14px;
+      line-height:1.45;
+      margin-bottom: 8px;
+    }
+
+    .phone{
+      color:var(--text);
+      font-size: 16px;
+      margin: 10px 0 8px;
+      display:flex;
+      align-items:center;
+      gap: 8px;
+    }
+    .phone .picon{
+      width:16px; height:16px;
+      opacity:.8;
+      flex:0 0 auto;
+    }
+
+    .sitelinks{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin: 6px 0 10px;
+      color: var(--link);
+      font-size: 14px;
+    }
+    .sitelinks a{
+      color: var(--link);
+      text-decoration:none;
+    }
+    .sitelinks a:hover{ text-decoration:underline; }
+
+    .checks{
+      margin: 8px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap: 6px;
+      color:var(--text);
+      font-size: 14px;
+    }
+    .checks li{
+      display:flex;
+      gap: 8px;
+      align-items:flex-start;
+    }
+    .checkmark{
+      color: var(--green);
+      font-weight: 700;
+      line-height:1;
+      margin-top: 2px;
+      flex:0 0 auto;
+    }
+
+    .thumb{
+      width: 170px;
+      height: 110px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(26,115,232,.10), rgba(52,168,83,.10));
+      border: 1px solid var(--line);
+      overflow:hidden;
+      position:relative;
+    }
+    .thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .thumb-cap{
+      margin-top: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      text-align:left;
+    }
+
+    .organic{
+      margin-top: 18px;
+      padding-top: 2px;
+    }
+    .organic .site{
+      font-size:14px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .organic .site .domain{
+      color: var(--url);
+    }
+    .organic .otitle{
+      display:inline-block;
+      font-size:22px;
+      color: var(--link);
+      text-decoration:none;
+      line-height:1.25;
+      margin-bottom: 6px;
+    }
+    .organic .otitle:hover{ text-decoration:underline; }
+    .organic .snippet{
+      font-size:14px;
+      color: var(--text);
+      line-height:1.45;
+      margin:0;
+    }
+
+    /* Small screens */
+    @media (max-width: 720px){
+      .logo{ font-size: 46px; }
+      .ad-card{ flex-direction:column; }
+      .ad-right{ flex: 1 1 auto; width: 100%; }
+      .thumb{ width: 100%; height: 160px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="top">
+      <!-- Apex Solutions wordmark in Google-like colors -->
+      <div class="logo" aria-label="Apex Solutions">
+        <span class="b">A</span><span class="r">p</span><span class="y">e</span><span class="b">x</span>
+        <span>&nbsp;</span>
+        <span class="g">S</span><span class="b">o</span><span class="r">l</span><span class="y">u</span><span class="b">t</span><span class="g">i</span><span class="r">o</span><span class="y">n</span><span class="b">s</span>
+      </div>
+
+      <div class="searchbar" role="search" aria-label="Search">
+        <!-- magnifier -->
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M10 2a8 8 0 105.29 14.29l4.2 4.2 1.41-1.41-4.2-4.2A8 8 0 0010 2zm0 2a6 6 0 110 12 6 6 0 010-12z"/>
+        </svg>
+
+        <input value="flyttfirma Stockholm" aria-label="Search query" />
+
+        <div class="x" aria-hidden="true">×</div>
+
+        <!-- mic -->
+        <svg class="mic" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M12 14a3 3 0 003-3V6a3 3 0 10-6 0v5a3 3 0 003 3zm5-3a5 5 0 01-10 0H5a7 7 0 0014 0h-2zM11 21h2v-3h-2v3z"/>
+        </svg>
+
+        <!-- search icon -->
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M10 2a8 8 0 105.29 14.29l4.2 4.2 1.41-1.41-4.2-4.2A8 8 0 0010 2zm0 2a6 6 0 110 12 6 6 0 010-12z"/>
+        </svg>
+      </div>
+
+      <nav class="tabs" aria-label="Search filters">
+        <div class="tab active">Alla</div>
+        <div class="tab">Kartor</div>
+        <div class="tab">Bilder</div>
+        <div class="tab">Shopping</div>
+        <div class="tab">Nyheter</div>
+        <div class="tab">Videor</div>
+        <div class="tab">Fler</div>
+        <div class="tab">Verktyg</div>
+      </nav>
+    </header>
+
+    <div class="meta">Ungefär 2 580 000 resultat (0,45 sekunder)</div>
+
+    <main class="results">
+      <!-- Sponsored / Ad -->
+      <section class="ad-card" aria-label="Sponsored result">
+        <div class="ad-left">
+          <div class="ad-label">Annons <span style="color:var(--muted)">www.flyttfirman.se</span></div>
+
+          <div class="ad-head">
+            <div style="min-width:0">
+              <a class="title" href="#" onclick="return false;">
+                Flyttfirma Stockholm - Kostnadsfri offert. Snabb &amp; trygg flytt
+              </a>
+              <div class="display-url">www.flyttfirman.se</div>
+            </div>
+            <div class="kebab" aria-hidden="true">⋮</div>
+          </div>
+
+          <div class="desc">
+            Proffsig flytthjälp för företag och privatpersoner i Stockholm.
+            Få ett fast pris. Boka enkelt online eller ring för en gratis offert.
+          </div>
+
+          <div class="phone">
+            <svg class="picon" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M6.6 10.8c1.6 3.1 3.5 5 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.7 3.9.7.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.8 21 3 13.2 3 3c0-.6.4-1 1-1h3.8c.6 0 1 .4 1 1 0 1.4.2 2.7.7 3.9.1.4 0 .8-.3 1.1L6.6 10.8z"/>
+            </svg>
+            +46 8 123 456 78
+          </div>
+
+          <div class="sitelinks" aria-label="Sitelinks">
+            <a href="#" onclick="return false;">Gratis offert</a> ·
+            <a href="#" onclick="return false;">Om oss</a> ·
+            <a href="#" onclick="return false;">Flyttjänster</a> ·
+            <a href="#" onclick="return false;">Referenser</a>
+          </div>
+
+          <ul class="checks" aria-label="Highlights">
+            <li><span class="checkmark">✓</span> Erfarna &amp; pålitliga flyttkillar</li>
+            <li><span class="checkmark">✓</span> Alltid fast pris - inga dolda avgifter</li>
+            <li><span class="checkmark">✓</span> Försäkrad &amp; auktoriserad flyttfirma</li>
+          </ul>
+
+          <div class="phone" style="margin-top:10px;">
+            <svg class="picon" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M6.6 10.8c1.6 3.1 3.5 5 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.7 3.9.7.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.8 21 3 13.2 3 3c0-.6.4-1 1-1h3.8c.6 0 1 .4 1 1 0 1.4.2 2.7.7 3.9.1.4 0 .8-.3 1.1L6.6 10.8z"/>
+            </svg>
+            +46 8 123 456 78
+          </div>
+        </div>
+
+        <div class="ad-right">
+          <div class="thumb">
+            <!-- Replace with your own image if you want -->
+            <img alt="Flyttfirma Stockholm" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=60">
+          </div>
+          <div class="thumb-cap">Flyttfirma Stockholm</div>
+        </div>
+      </section>
+
+      <!-- Organic results -->
+      <section class="organic" aria-label="Organic result 1">
+        <div class="site"><span class="domain">flyttstäd.se</span> › flyttfirma</div>
+        <a class="otitle" href="#" onclick="return false;">
+          Flyttfirma i Stockholm - Fast pris redan vid bokning | Flyttstäd Sverige AB
+        </a>
+        <p class="snippet">
+          Sveriges Största Flyttfirma med Servicegaranti. 50+ Certifierade Anställda.
+        </p>
+      </section>
+
+      <section class="organic" aria-label="Organic result 2">
+        <div class="site"><span class="domain">flyttfirma.nu</span></div>
+        <a class="otitle" href="#" onclick="return false;">
+          Flyttfirma Stockholm | Bäst Betältningar 2024 - Flyttfirma.nu
+        </a>
+        <p class="snippet">
+          Beskriv vad du behöver hjälp med. Vi matchar dig med flyttfirmor som lämnar offerter.
+          Gäller för
+        </p>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
