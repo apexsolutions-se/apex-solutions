@@ -1,1236 +1,1459 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="initial-scale=1, width=device-width" />
-  <title>Saigon Table - HOME</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saigon Table</title>
 
-  <!-- Google Font: Inter -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700&display=swap" rel="stylesheet" />
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
+    :root{
+      --bg:#F4EEE1;
+      --text:#111;
+      --muted:#6b6b6b;
+      --green:#6F8F3A;
 
+      /* default card color (you’ll change per section later) */
+      --card:#F1D39A;
 
-/* ================================
-   Base / Reset
-================================ */
-*,
-*::before,
-*::after { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; }
-img { max-width: 100%; height: auto; display: block; }
+      --shadow: 0 10px 30px rgba(0,0,0,.10);
+    }
 
-/* ================================
-   Fluid container (desktop unchanged visually)
-================================ */
-body {
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  background: #f4eee1;
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+
+    body{
+  margin:0;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  color: #000;
-}
-
-/* Keep desktop width but allow smaller screens to shrink */
-.page-container {
-  width: 100%;
-  max-width: 1440px;
+  background: none;              /* IMPORTANT: remove the background from body */
+  color: var(--text);
+  min-height: 100vh;
   position: relative;
 }
 
-/* ================================
-   Type Scale (clamps)
-   - Map old fixed sizes to responsive clamps
-================================ */
-:root{
-  --fs-hero-h: clamp(22px, 3vw, 32px);        /* was 32 */
-  --fs-hero-sub: clamp(14px, 1.6vw, 20px);    /* was 20 */
-  --fs-sec-title: clamp(20px, 2.2vw, 32px);   /* was 32 */
-  --fs-body: clamp(13px, 1.1vw, 14px);        /* was 14 */
-  --fs-small: clamp(12px, 1vw, 12px);         /* was 12 */
-  --fs-ui: clamp(16px, 1.5vw, 20px);          /* was 20 */
-  --fs-price: clamp(16px, 1.6vw, 20px);       /* prices that were 20 */
-}
-
-/* ================================
-   HERO (desktop styles preserved)
-================================ */
-.hero-section {
-  width: 100%;
-  position: relative;
-  height: 997px;
-  text-align: center;
-  font-size: var(--fs-ui);
-  color: #000;
-  font-family: Inter;
-}
-
-.navlinks {
-  position: absolute;
-  top: 41px;
-  left: 1190px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 46px;
-}
-
-/* Nav link hover/focus styles */
-.navlinks b,
-.navlinks a {
-  color: #000;                 /* default */
-  font-weight: 700;
-  text-decoration: none;
-  cursor: pointer;
-  transition: color .18s ease, transform .12s ease;
-}
-
-.navlinks b:hover,
-.navlinks a:hover,
-.navlinks b:focus-visible,
-.navlinks a:focus-visible {
-  color: #FFA94D;              /* Section 3 orange */
-  transform: translateY(-1px); /* subtle lift (optional) */
-  outline: none;
-}
-
-.navlinks b:active,
-.navlinks a:active {
-  color: #e4892a;              /* pressed state */
-  transform: translateY(0);
-}
-
-/* Keep your “active/current” page green if you want */
-.home[aria-current="page"],
-.home.is-current {
-  color: #70A03F;              /* your green */
+/* Fixed background layer */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  background: url("assets/background.png") center / cover no-repeat;
+  z-index: -1;
+  transform: translateZ(0);      /* helps mobile rendering */
 }
 
 
-.home { position: relative; color: #70a03f; }
-.meny { position: relative; }
+    .wrap{
+      width:min(1200px, calc(100% - 80px));
+      margin:0 auto;
+    }
 
-.logopng-icon {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 500px;
-  height: 277px;
-  object-fit: cover;
-}
+    /* HEADER */
+    header{
+      position:relative;
+      height:96px;
+      display:flex;
+      align-items:center;
+      z-index:10;
+    }
 
-.hero-text {
-  position: absolute;
-  top: 295px;
-  left: 0px;
-  width: 525px;
-  height: 184px;
-  text-align: left;
-  font-size: var(--fs-hero-h);
-}
+    .logo{
+      position:absolute;
+      left:0;
+      top:14px;
+      width:300px;
+      height:300px;
+      display:grid;
+      place-items:start;
+      pointer-events:auto;
+    }
 
-.hero-header {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  display: inline-block;
-  width: 525px;
-  height: auto;       /* allow height to grow with clamp */
-  font-size: var(--fs-hero-h);
-  line-height: 1.2;
-}
+    .logo img{
+      width:370px;
+      height:auto;
+      display:block;
+    }
 
-.hero-subheader {
-  position: absolute;
-  top: 97px;
-  left: 0px;
-  font-size: var(--fs-hero-sub);
-  color: #70a03f;
-  display: inline-block;
-  width: 514.9px;
-  height: auto;
-  line-height: 1.35;
-}
+    nav{
+      margin-left:auto;
+      display:flex;
+      gap:36px;
+      align-items:center;
+      font-weight:700;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+      font-size:16px;
+    }
 
-.main-dish-wrap {
-  position: absolute;
-  top: 91px;
-  left: 660px;
-  width: 746px;
-  height: 906px;
-  text-align: left;
-}
+    nav a{
+      color:#111;
+      text-decoration:none;
+      padding:10px 0;
+    }
 
-.main-dish-image-icon {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 746px;
-  height: 729px;
-  object-fit: cover;
-}
+    nav a.active{ color:var(--green); }
+    nav a:hover{ opacity:.75; }
 
-.main-dish {
-  position: absolute;
-  top: 739px;
-  left: 133px;
-  width: 600px;
-  height: 167px;
-}
+    /* MAIN */
+    main{ padding:10px 0 60px; }
 
-.main-dish-name {
-  position: absolute;
-  top: 4px;
-  left: 0px;
-  display: inline-block;
-  width: 164.3px;
-  height: auto;
-  font-size: var(--fs-ui);
-}
+    .grid{
+      display:grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap:40px;
+      align-items:start;
+    }
 
-.price {
-  position: absolute;
-  top: 0px;
-  left: 435.69px;
-  display: inline-block;
-  text-align: right;
-  width: 164.3px;
-  height: auto;
-  font-size: var(--fs-price);
-}
+    .left{ padding-top:26px; }
 
-.main-dish-description {
-  position: absolute;
-  top: 50px;
-  left: 0px;
-  font-size: var(--fs-body);
-  display: inline-block;
-  width: 600px;
-  height: auto;
-  line-height: 1.4;
-}
+    .headline{
+      font-size:34px;
+      line-height:1.15;
+      margin:120px 0 14px;
+      font-weight:800;
+    }
 
-.featured-dishes {
-  position: absolute;
-  top: 550px;
-  left: 0px;
-  width: 600.2px;
-  height: 359px;
-  font-size: var(--fs-body);
-}
+    .sub{
+      max-width:520px;
+      color:var(--green);
+      font-size:16px;
+      line-height:1.6;
+      margin:0 0 34px;
+      font-weight:600;
+    }
 
-.featured-menu-header {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  font-size: var(--fs-sec-title);
-  display: inline-block;
-  text-align: left;
-  width: 522px;
-  height: auto;
-}
+    .section-title{
+      font-size:26px;
+      font-weight:900;
+      letter-spacing:.02em;
+      margin:34px 0 18px;
+      text-transform:uppercase;
+    }
 
-/* Card 1 */
-.featured-dish-1 {
-  position: absolute;
-  top: 54px;
-  left: 3px;
-  width: 187px;
-  height: 305px;
-}
-.ellipse-parent { position: absolute; top: 94px; left: 11px; width: 145px; height: 211px; }
-.group-child { position: absolute; top: 66px; left: 0px; border-radius: 50%; background-color: #f7c873; width: 145px; height: 145px; }
-.group-item { position: absolute; top: 0px; left: 0px; background-color: #f7c873; width: 145px; height: 141px; }
-.dish-description { position: absolute; top: 162px; left: 14px; width: 142px; height: 123px; }
-.dish-name { position: absolute; top: 0px; left: 2px; display: inline-block; width: 140px; height: auto; font-size: var(--fs-small); }
-.dish-body { position: absolute; top: 26px; left: 3px; line-height: 100%; font-weight: 100; display: inline-block; width: 134px; height: auto; font-size: var(--fs-small); line-height: 1.2; }
-.hero-section-price { position: absolute; top: 102px; left: 0px; display: inline-block; width: 140px; height: auto; font-size: var(--fs-small); }
-.vegetarian-icon { position: absolute; top: 14px; left: 161px; width: 26px; height: 26px; object-fit: cover; }
-.pho-chay-img-icon { position: absolute; top: 0px; left: 0px; width: 166px; height: 166px; object-fit: cover; }
+    /* =========================================================
+       REUSABLE PILL CARD SYSTEM (based on your PHO specs)
+       Only change color using .pill--yellow / .pill--green later
+       ========================================================= */
 
-/* Card 2 */
-.featured-dish-2 { position: absolute; top: 54px; left: 207px; width: 165.3px; height: 305px; }
-.ellipse-group { position: absolute; top: 94px; left: 10px; width: 145px; height: 211px; }
-.hero-section-dish-description { position: absolute; top: 162px; left: 16px; width: 134px; height: 123px; }
-.hero-section-dish-name { position: absolute; top: 0px; left: 4.62px; font-size: var(--fs-small); display: inline-block; width: 129.4px; height: auto; }
-.hero-section-dish-body { position: absolute; top: 26px; left: 0px; line-height: 100%; font-weight: 100; display: inline-block; width: 134px; height: auto; font-size: var(--fs-small); line-height: 1.2; }
-.price1 { position: absolute; top: 102px; left: 2px; display: inline-block; width: 129.4px; height: auto; font-size: var(--fs-small); }
-.pho-bo-vien-img-icon { position: absolute; top: 0px; left: 0px; width: 165.3px; height: 166px; object-fit: cover; }
-
-/* Card 3 */
-.featured-dish-3 { position: absolute; top: 54px; left: 434px; width: 166.2px; height: 305px; }
-.dish-description1 { position: absolute; top: 162px; left: 16px; width: 133px; height: 123px; }
-.dish-name1 { position: absolute; top: 0px; left: 4.59px; font-size: var(--fs-small); display: inline-block; width: 128.4px; height: auto; }
-.dish-body1 { position: absolute; top: 26px; left: 0px; line-height: 100%; font-weight: 100; display: inline-block; width: 133px; height: auto; font-size: var(--fs-small); line-height: 1.2; }
-.price2 { position: absolute; top: 102px; left: 3px; display: inline-block; width: 128.4px; height: auto; font-size: var(--fs-small); }
-.pho-ga-img-icon { position: absolute; top: 0px; left: 0px; width: 166.2px; height: 164px; object-fit: cover; }
-
-/* ================================
-   SECTION 2 (desktop preserved)
-================================ */
-.section-2 {
-  width: 100%;
-  position: relative;
-  height: 903px;
-  text-align: left;
-  font-size: var(--fs-ui);
-  color: #000;
-  font-family: Inter;
-}
-
-.section-2 .main-dish-wrap { position: absolute; top: 27px; left: 0px; width: 747.5px; height: 873.3px; }
-.section-2 .main-dish { position: absolute; top: 754.33px; left: 129.92px; width: 582.5px; height: 119px; }
-.section-2 .main-dish-name { position: absolute; top: 0px; left: 0px; display: inline-block; width: 195.8px; height: auto; font-size: var(--fs-ui); }
-.section-2 .price { position: absolute; top: 0px; left: 386.75px; display: inline-block; text-align: right; width: 195.8px; height: auto; font-size: var(--fs-price); }
-.section-2 .main-dish-description { position: absolute; top: 46px; left: 0px; font-size: var(--fs-body); display: inline-block; width: 600px; height: auto; line-height: 1.4; }
-.section-2 .main-dish-image-1-icon { position: absolute; top: 0px; left: 0px; width: 747.5px; height: 754.2px; object-fit: cover; }
-.section-2 .spices-image-1-icon { position: absolute; top: 0px; left: 824px; width: 610px; height: 435px; object-fit: cover; }
-
-.section-2 .featured-dishes-2 { position: absolute; top: 483.33px; left: 850.92px; width: 605.1px; height: 419.7px; text-align: center; font-size: var(--fs-body); }
-.section-2 .featured-menu-header { position: absolute; top: 0px; left: 2px; font-size: var(--fs-sec-title); display: inline-block; text-align: left; width: 439px; height: auto; }
-
-.section-2 .featured-dish-1 { position: absolute; top: 66px; left: 0px; width: 167px; height: 351px; }
-.section-2 .ellipse-parent { position: absolute; top: 102px; left: 10px; width: 145px; height: 249px; }
-.section-2 .group-child { position: absolute; top: 104px; left: 0px; border-radius: 50%; background-color: #70a03f; width: 145px; height: 145px; }
-.section-2 .group-item { position: absolute; top: 0px; left: 0px; background-color: #70a03f; width: 145px; height: 179px; }
-.section-2 .dish-description { position: absolute; top: 174px; left: 13px; width: 140px; height: 166px; }
-.section-2 .dish-name { position: absolute; top: 0px; left: 0px; font-size: var(--fs-small); display: inline-block; width: 140px; height: auto; }
-.section-2 .dish-body { position: absolute; top: 32px; left: 3px; line-height: 100%; font-weight: 100; display: inline-block; width: 134px; height: auto; font-size: var(--fs-small); line-height: 1.2; }
-.section-2 .section-2-price { position: absolute; top: 145px; left: 0px; display: inline-block; width: 140px; height: auto; font-size: var(--fs-small); }
-.section-2 .goi-con-img-icon { position: absolute; top: 0px; left: 0px; width: 167px; height: 166px; object-fit: cover; }
-
-.section-2 .featured-dish-2 { position: absolute; top: 65.67px; left: 209.08px; width: 174px; height: 354px; }
-.section-2 .ellipse-group { position: absolute; top: 105px; left: 16px; width: 145px; height: 249px; }
-.section-2 .section-2-dish-description { position: absolute; top: 176px; left: 22px; width: 134px; height: 167px; }
-.section-2 .section-2-dish-name { position: absolute; top: 0px; left: 8px; font-size: var(--fs-small); display: inline-block; width: 117px; height: auto; }
-.section-2 .gi-cun-chay { margin: 0; }
-.section-2 .section-2-dish-body { position: absolute; top: 36px; left: 0px; line-height: 100%; font-weight: 100; display: inline-block; width: 134px; height: auto; font-size: var(--fs-small); line-height: 1.2; }
-.section-2 .price1 { position: absolute; top: 146px; left: 2px; display: inline-block; width: 129.4px; height: auto; font-size: var(--fs-small); }
-.section-2 .goi-con-chay-bi-img-icon { position: absolute; top: 0px; left: 0px; width: 170.6px; height: 166px; object-fit: cover; }
-.section-2 .vegetarian-icon { position: absolute; top: 6px; left: 148px; width: 26px; height: 26px; object-fit: cover; }
-
-.section-2 .featured-dish-3 { position: absolute; top: 63px; left: 431px; width: 174.1px; height: 354px; }
-.section-2 .ellipse-container { position: absolute; top: 105px; left: 9px; width: 145px; height: 249px; }
-.section-2 .dish-description1 { position: absolute; top: 177px; left: 9px; width: 145px; height: 166px; }
-.section-2 .dish-name1 { position: absolute; top: 0px; left: 0px; font-size: var(--fs-small); display: inline-block; width: 145px; height: auto; }
-.section-2 .dish-body1 { position: absolute; top: 35px; left: 6px; line-height: 100%; font-weight: 100; display: inline-block; width: 133px; height: auto; font-size: var(--fs-small); line-height: 1.2; }
-.section-2 .price2 { position: absolute; top: 145px; left: 11px; display: inline-block; width: 128.4px; height: auto; font-size: var(--fs-small); }
-.section-2 .goi-cion-chay-mi-can-img-icon { position: absolute; top: 0px; left: 0px; width: 163.8px; height: 166px; object-fit: cover; }
-.section-2 .section-2-vegetarian-icon { position: absolute; top: 8.67px; left: 148.08px; width: 26px; height: 26px; object-fit: cover; }
-
-/* ================================
-   SECTION 3 (desktop preserved)
-================================ */
-.section-3 {
-  width: 100%;
-  left: 70px;
-  position: relative;
-  height: 973px;
-  text-align: left;
-  font-size: var(--fs-ui);
-  color: #000;
-  font-family: Inter;
-  margin-bottom: 50px;
-}
-
-.section-3 .main-dish-wrap { position: absolute; height: 95.66%; width: 53.06%; top: 4.34%; right: 0%; bottom: 0%; left: 46.94%; }
-.section-3 .main-dish { position: absolute; height: 14.61%; width: 70.77%; top: 85.39%; right: 11.4%; bottom: 0%; left: 17.83%; }
-.section-3 .main-name { position: absolute; height: 22.43%; width: 48.29%; top: 0%; left: 0%; display: inline-block; font-size: var(--fs-ui); }
-.section-3 .main-dish-description { position: absolute; height: auto; width: 100%; top: 35.83%; left: 0%; font-size: var(--fs-body); display: inline-block; line-height: 1.4; }
-.section-3 .price { position: absolute; height: 22.43%; width: 37.36%; top: 0%; left: 60.14%; display: inline-block; text-align: right; font-size: var(--fs-price); }
-.section-3 .main-dish-image-2-icon { position: absolute; top: 0px; left: 0px; width: 757.2px; height: 788.7px; object-fit: cover; }
-
-.section-3 .featured-dishes-3 { position: absolute; top: 547px; left: 0px; width: 614.3px; height: 414px; text-align: center; font-size: var(--fs-body); }
-.section-3 .bnh-m- { position: absolute; top: 0px; left: 0px; font-size: var(--fs-sec-title); display: inline-block; text-align: left; width: 593.5px; height: auto; }
-
-.section-3 .featured-dish-1 { position: absolute; top: 64px; left: 0px; width: 179.3px; height: 350px; }
-.section-3 .ellipse-parent { position: absolute; top: 81px; left: 10.3px; width: 149.4px; height: 269px; }
-.section-3 .group-child { position: absolute; top: 124px; left: 0px; border-radius: 50%; background-color: #ffa94d; width: 149.4px; height: 145px; }
-.section-3 .group-item { position: absolute; top: 0px; left: 0px; background-color: #ffa94d; width: 149.4px; height: 199px; }
-.section-3 .dish-description { position: absolute; top: 172px; left: 13.39px; width: 144.2px; height: 164px; }
-.section-3 .dish-name { position: absolute; top: 0px; left: 0px; font-size: var(--fs-small); display: inline-block; width: 144.2px; height: auto; }
-.section-3 .section-3-price { position: absolute; top: 143px; left: 0px; display: inline-block; width: 144.2px; height: auto; font-size: var(--fs-small); }
-.section-3 .dish-body { position: absolute; top: 26px; left: 1.03px; line-height: 100%; font-weight: 100; display: inline-block; width: 138.1px; height: auto; font-size: var(--fs-small); line-height: 1.2; }
-.section-3 .bahn-mi-chay-icon { position: absolute; top: 0px; left: 0px; width: 168.1px; height: 172.6px; object-fit: cover; }
-.section-3 .vegetrian-icon { position: absolute; top: 8.8px; left: 152.89px; width: 26.4px; height: 26.4px; object-fit: cover; }
-
-.section-3 .featured-dish-2 { position: absolute; top: 55.69px; left: 217.7px; width: 177px; height: 358.3px; }
-.section-3 .ellipse-group { position: absolute; top: 85.26px; left: 14.21px; width: 147.2px; height: 273px; }
-.section-3 .group-inner { position: absolute; top: 125.87px; left: 0px; border-radius: 50%; background-color: #ffa94d; width: 147.2px; height: 147.2px; }
-.section-3 .rectangle-div { position: absolute; top: 0px; left: 0px; background-color: #ffa94d; width: 147.2px; height: 202px; }
-.section-3 .section-3-dish-description { position: absolute; top: 177.63px; left: 15.23px; width: 146.2px; height: 168.5px; }
-.section-3 .section-3-dish-name { position: absolute; top: 0px; left: 0px; font-size: var(--fs-small); display: inline-block; width: 146.2px; height: auto; }
-.section-3 .price1 { position: absolute; top: 147.18px; left: 35.53px; display: inline-block; width: 74.1px; height: auto; font-size: var(--fs-small); }
-.section-3 .section-3-dish-body { position: absolute; top: 23.35px; left: 5.08px; line-height: 100%; font-weight: 100; white-space: pre-wrap; display: inline-block; width: 136px; height: auto; font-size: var(--fs-small); line-height: 1.2; }
-.section-3 .bahn-mi-thit-img-icon { position: absolute; top: 0px; left: 0px; width: 177px; height: 170.5px; object-fit: cover; }
-
-.section-3 .featured-dish-3 { position: absolute; top: 55.69px; left: 445.58px; width: 168.7px; height: 358.3px; }
-.section-3 .ellipse-container { position: absolute; top: 99.47px; left: 15px; width: 147.2px; height: 258.8px; }
-.section-3 .ellipse-div { position: absolute; top: 111.66px; left: 0px; border-radius: 50%; background-color: #ffa94d; width: 147.2px; height: 147.2px; }
-.section-3 .section-3-group-child { position: absolute; top: 0px; left: 0px; background-color: #ffa94d; width: 147.2px; height: 187.8px; }
-.section-3 .dish-description1 { position: absolute; top: 177.63px; left: 8.12px; width: 147.2px; height: 166.5px; }
-.section-3 .dish-name1 { position: absolute; left: 18px; font-size: var(--fs-small); }
-.section-3 .bahn-mi-ga-icon { position: absolute; top: 0px; left: 0px; width: 177px; height: 170.5px; object-fit: cover; }
-.section-3 .price2 { position: absolute; top: 147.18px; left: 45px; display: inline-block; width: 74.1px; height: auto; font-size: var(--fs-small); }
-.section-3 .dish-body1 { position: absolute; top: 23.35px; left: 12px; line-height: 100%; font-weight: 100; white-space: pre-wrap; display: inline-block; width: 136px; height: auto; font-size: var(--fs-small); line-height: 1.2; }
-
-/* ================================
-   FOOTER
-================================ */
-.footer-section {
-  width: 100vw;
-  background: #70a03f; /* matches your previous bg */
-  display: flex;
-  align-items: center;
+    .pill-cards{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 170px)); /* desktop: 3 pills */
   justify-content: center;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  gap: 180px;
-  font-family: Inter, sans-serif;
-  font-size: var(--fs-body);
-  color: #000;
-  margin-left: calc(-50vw + 50%); /* keep full-bleed footer */
+  gap: 28px;
+  margin-top: 60px;
+  /* REMOVE: height: 340px; */
 }
 
-.footer-section .map-image-icon {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  flex-shrink: 0;
-  border-radius: 8px;
+    .pill-card{
+      /* DEFAULT SPECS (PHO) */
+      --pill-bg: var(--card);
+      --pill-width: 170px;
+
+      --img-size: 200px;
+      --img-top: -50px;
+
+      --pad-top: 96px;
+      --pad-x: 14px;
+      --pad-bottom: 30px;
+
+      width: var(--pill-width);
+      border-radius: 90px 90px 32px 32px;
+      background: var(--pill-bg);
+      padding: var(--pad-top) var(--pad-x) var(--pad-bottom);
+      box-shadow: 0 8px 18px rgba(0,0,0,.08);
+      position:relative;
+      overflow: visible;
+    }
+
+    .pill-img{
+      width: var(--img-size);
+      height: var(--img-size);
+      border-radius: 50%;
+      overflow: hidden;
+      position: absolute;
+      top: var(--img-top);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: transparent;
+    }
+
+    .pill-img img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .pill-name{
+
+    margin:55px 0 8px;        /* keep your current spacing */
+    min-height: 34px;         /* ✅ holds 1–2 lines consistently */
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    }
+
+    .pill-desc{
+    min-height: 90px;
+    font-size: 11px;         /* ✅ same desc box height for all */
+    text-align: center;
+    margin:0 6px 14px;
+    display:-webkit-box;
+    -webkit-line-clamp: 4;    /* ✅ same number of visible lines */
+    -webkit-box-orient: vertical;
+    overflow:hidden;
 }
 
-.footer-text {
-  display: flex;
-  flex-direction: row;
-  gap: 150px;
-  flex-wrap: wrap;
+    .pill-price{
+      text-align:center;
+      font-weight:900;
+      font-size:14px;
+      margin:0;
+    }
+
+    /* Themes (ONLY color changes) */
+    .pill--yellow{ --pill-bg: var(--card); }
+    .pill--green{ --pill-bg: var(--green); }
+
+    /* RIGHT HERO */
+    .right{
+      padding-top:34px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:16px;
+    }
+
+    .bowl{
+      width: min(520px, 100%);
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      overflow: hidden;
+      background: transparent;
+    }
+
+    .bowl img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .dish-meta{
+      width:min(560px, 100%);
+      display:grid;
+      grid-template-columns: 1fr auto;
+      gap:16px;
+      align-items:start;
+      margin-top:6px;
+    }
+
+    .dish-meta h2{
+      margin:0;
+      font-size:22px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.02em;
+    }
+
+    .price-big{
+      font-weight:900;
+      font-size:18px;
+      align-self:start;
+      padding-top:4px;
+    }
+
+    .dish-long{
+      grid-column: 1 / -1;
+      color:rgba(0,0,0,.60);
+      font-size:13px;
+      line-height:1.6;
+      margin:0;
+      max-width:520px;
+    }
+
+    /* --- SUMMER ROLLS SECTION --- */
+    .summer{
+      margin-top: 80px;
+      display:grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 46px;
+      align-items:start;
+    }
+
+    .summer-hero{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+
+    .summer-plate{
+      width:min(520px, 100%);
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      overflow:hidden;
+      background: transparent;
+    }
+
+    .summer-plate img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .summer-hero-meta{
+      width:min(560px, 100%);
+      margin-top: 16px;
+      display:grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items:start;
+    }
+
+    .summer-hero-meta h3{
+      margin:0;
+      font-size:20px;
+      font-weight:900;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+    }
+
+    .summer-hero-price{
+      font-weight:900;
+      font-size:18px;
+      padding-top:2px;
+    }
+
+    .summer-hero-desc{
+      grid-column: 1 / -1;
+      margin:0;
+      max-width:520px;
+      color:rgba(0,0,0,.60);
+      font-size:13px;
+      line-height:1.6;
+    }
+
+    .summer-right{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      width: min(620px, 100%);
+    }
+
+    .summer-spices{
+      width:min(520px, 100%);
+      max-width:520px;
+      aspect-ratio: 16 / 9;
+      border-radius: 18px;
+      overflow:hidden;
+      background: transparent;
+    }
+
+    .summer-spices img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+    }
+
+    .summer-title{
+      width:100%;
+      max-width:520px;
+      margin: 22px 0 14px;
+      font-size:24px;
+      font-weight:900;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+      text-align:left;
+    }
+
+.summer-right .pill-cards{
+  max-width: 620px;
 }
 
-.footer-1,
-.footer-2,
-.footer-3 {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+
+/* Keep spices + title aligned to the new width */
+.summer-spices,
+.summer-title{
+  max-width: 620px;
 }
 
-.footer-header,
-.footer-section-footer-header,
-.footer-header1 {
-  font-size: var(--fs-sec-title);
-  font-weight: 700;
-  margin-bottom: 8px;
+    /* RESPONSIVE */
+    @media (max-width: 980px){
+      .wrap{ width:min(1100px, calc(100% - 36px)); }
+      .grid{ grid-template-columns: 1fr; }
+      .headline{ margin-top:120px; }
+      .right{ align-items:flex-start; }
+      .bowl{ width:min(520px, 92vw); }
+
+      .summer{ grid-template-columns: 1fr; }
+      .summer-title{ text-align:center; }
+    }
+
+    @media (max-width: 560px){
+      header{ height:88px; }
+      nav{ gap:18px; font-size:14px; }
+      .logo{ width:220px; height:220px; top:10px; }
+      .logo img{ width:220px; }
+      .headline{ font-size:28px; }
+
+      .pill-cards{ gap:18px; }
+      .pill-card{ width:160px; }
+      .pill-img{ width:170px; height:170px; top:-40px; }
+    }
+
+    /* =========================
+   BANH MI SECTION STYLES
+   ========================= */
+.banhmi{
+  margin-top: 80px;
+  display:grid;
+  grid-template-columns: 1.05fr 1fr; /* matches your other sections */
+  gap: 46px;
+  align-items:start;
 }
 
-.footer-text1,
-.footer-text2 { font-size: var(--fs-body); }
-
-.footer-icons { display: flex; gap: 10px; align-items: center; }
-.footer-icons img {
-  width: 28px;
-  height: 28px;
-  object-fit: cover;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-.footer-icons img:hover { transform: scale(1.1); }
-
-
-/* ================================
-   MOBILE/TABLET OVERRIDES
-   (Add this at the very end)
-================================ */
-
-/* ================================
-   MOBILE/TABLET (<=1024px)
-================================ */
-@media (max-width: 1024px) {
-
-  /* Type scale */
-  :root{
-    --fs-hero-h: clamp(22px, 4.2vw, 28px);
-    --fs-hero-sub: clamp(14px, 2.1vw, 18px);
-    --fs-sec-title: clamp(18px, 3.2vw, 26px);
-    --fs-body: clamp(13px, 1.9vw, 15px);
-    --fs-ui: clamp(16px, 2.4vw, 18px);
-    --fs-price: clamp(16px, 2.4vw, 18px);
-  }
-
-  /* Page sections */
-  .hero-section,
-  .section-2,
-  .section-3 {
-    height: auto !important;
-    padding: 20px 24px 0;
-  }
-  /* Fix Section 3 alignment */
-  .section-3 {
-    left: 0 !important;
-    margin-left: 0 !important;
-    padding-left: 24px !important;
-    padding-right: 24px !important;
-  }
-
-  /* Nav / logo */
-  .navlinks {
-    position: static !important;
-    justify-content: center;
-    gap: 24px;
-    margin: 8px 0 12px;
-  }
-  .logopng-icon {
-    position: static !important;
-    width: 260px; height: auto;
-    margin: 0 auto 8px;
-  }
-
-  /* Hero text + main image */
-  .hero-text,
-  .hero-header,
-  .hero-subheader {
-    position: static !important;
-    width: 100% !important;
-    text-align: left;
-  }
-  .main-dish-wrap,
-  .section-2 .main-dish-wrap,
-  .section-3 .main-dish-wrap {
-    position: static !important;
-    width: 100% !important;
-    height: auto !important;
-    margin-top: 16px;
-  }
-  .main-dish-image-icon,
-  .section-2 .main-dish-image-1-icon,
-  .section-3 .main-dish-image-2-icon {
-    position: static !important;
-    width: 100% !important;
-    height: auto !important;
-    border-radius: 12px;
-  }
-  .main-dish,
-  .section-2 .main-dish,
-  .section-3 .main-dish,
-  .main-dish-name,
-  .main-name,
-  .price,
-  .main-dish-description,
-  .section-3 .main-dish-description {
-    position: static !important;
-    width: 100% !important;
-  }
-  .price { text-align: left !important; margin-top: 4px; }
-  .main-dish-description { line-height: 1.5 !important; }
-
-  /* Featured sections -> grid */
-  .featured-dishes,
-  .section-2 .featured-dishes-2,
-  .section-3 .featured-dishes-3 {
-    position: static !important;
-    width: 100% !important;
-    height: auto !important;
-    margin-top: 24px;
-    display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-    text-align: left !important;
-  }
-  .featured-menu-header,
-  .section-2 .featured-menu-header,
-  .section-3 .bnh-m- {
-    position: static !important;
-    width: 100% !important;
-    margin-bottom: 8px;
-  }
-
-  /* Card base */
-  .featured-dish-1,
-  .featured-dish-2,
-  .featured-dish-3,
-  .section-2 .featured-dish-1,
-  .section-2 .featured-dish-2,
-  .section-2 .featured-dish-3,
-  .section-3 .featured-dish-1,
-  .section-3 .featured-dish-2,
-  .section-3 .featured-dish-3 {
-    position: static !important;
-    width: 100% !important;
-    height: auto !important;
-    display: grid !important;
-    grid-template-columns: 120px 1fr;
-    align-items: center;
-    gap: 12px;
-    padding: 12px;
-    background: #fff8e9;
-    border-radius: 12px;
-    overflow: hidden !important; /* keep images inside rounded corners */
-  }
-
-  /* Hide decorative ellipse shapes */
-  .ellipse-group, .ellipse-parent, .ellipse-container,
-  .section-2 .ellipse-group, .section-2 .ellipse-parent, .section-2 .ellipse-container,
-  .section-3 .ellipse-group, .section-3 .ellipse-parent, .section-3 .ellipse-container,
-  .group-child, .group-item,
-  .section-3 .group-inner, .section-3 .rectangle-div,
-  .section-3 .ellipse-div, .section-3 .section-3-group-child { display: none !important; }
-
-  /* Card images */
-  .pho-chay-img-icon,
-  .pho-bo-vien-img-icon,
-  .pho-ga-img-icon,
-  .section-2 .goi-con-img-icon,
-  .section-2 .goi-con-chay-bi-img-icon,
-  .section-2 .goi-cion-chay-mi-can-img-icon,
-  .section-3 .bahn-mi-chay-icon,
-  .section-3 .bahn-mi-thit-img-icon,
-  .section-3 .bahn-mi-ga-icon {
-    position: static !important;
-    width: 120px !important;
-    height: 120px !important;
-    object-fit: cover !important;
-    border-radius: 12px;
-    justify-self: end !important;   /* inside the card, right edge of column */
-    align-self: start !important;
-    margin: 0 !important;
-    transform: none !important;
-  }
-
-  /* Card text blocks */
-  .dish-description, .dish-description1,
-  .hero-section-dish-description,
-  .section-2 .section-2-dish-description,
-  .section-3 .section-3-dish-description,
-  .section-3 .dish-description1 {
-    position: static !important;
-    width: 100% !important;
-    height: auto !important;
-  }
-  .dish-name, .dish-name1,
-  .hero-section-dish-name,
-  .section-2 .section-2-dish-name,
-  .section-3 .section-3-dish-name {
-    position: static !important;
-    display: block;
-    margin-bottom: 4px;
-  }
-  .dish-body, .dish-body1,
-  .hero-section-dish-body,
-  .section-2 .section-2-dish-body,
-  .section-3 .section-3-dish-body {
-    position: static !important;
-    line-height: 1.45 !important;
-    white-space: normal !important;
-  }
-  .hero-section-price, .price1, .price2,
-  .section-2 .section-2-price, .section-2 .price1, .section-2 .price2,
-  .section-3 .section-3-price, .section-3 .price1, .section-3 .price2 {
-    position: static !important;
-    display: inline-block;
-    margin-top: 6px;
-  }
-
-  /* Veg badges (default) */
-  .vegetarian-icon,
-  .section-2 .vegetarian-icon,
-  .section-2 .section-2-vegetarian-icon,
-  .section-3 .vegetrian-icon {
-    position: static !important;
-    width: 20px; height: 20px;
-    margin-left: 6px;
-  }
-
-  /* PHỞ CHAY: lock rows + badge under text */
-  .featured-dishes > .featured-dish-1 {
-    display: grid !important;
-    grid-template-columns: 1fr 120px;  /* text | image */
-    grid-auto-rows: auto;
-    align-items: start;
-    gap: 12px;
-  }
-  .featured-dishes > .featured-dish-1 .dish-description { 
-    grid-column: 1 !important; grid-row: 1 !important;
-  }
-  .featured-dishes > .featured-dish-1 .pho-chay-img-icon {
-    grid-column: 2 !important; grid-row: 1 !important;
-    align-self: start !important; justify-self: center !important;
-    margin-top: 8px !important; /* adjust if you want it lower/higher */
-  }
-  .featured-dishes > .featured-dish-1 .vegetarian-icon {
-    grid-column: 1 !important; grid-row: 2 !important;
-    justify-self: start !important; align-self: start !important;
-    width: 20px; height: 20px;
-    margin-top: -20px !important; /* raise the badge (tweak as needed) */
-  }
-
-  /* Per-section card backgrounds */
-  /* Section 1 — BÚN */
-  .hero-section .featured-dishes > .featured-dish-1,
-  .hero-section .featured-dishes > .featured-dish-2,
-  .hero-section .featured-dishes > .featured-dish-3 { background: #F7C873 !important; color: #000; }
-
-  /* Section 2 — CUỐN */
-  .section-2 .featured-dishes-2 > .featured-dish-1,
-  .section-2 .featured-dishes-2 > .featured-dish-2,
-  .section-2 .featured-dishes-2 > .featured-dish-3 { background: #70A03F !important; color: #000; }
-  .section-2 .featured-dishes-2 > .featured-dish-1 *,
-  .section-2 .featured-dishes-2 > .featured-dish-2 *,
-  .section-2 .featured-dishes-2 > .featured-dish-3 * { color: inherit; }
-
-  /* Section 2 veg badge chip for contrast */
-  .section-2 .vegetarian-icon,
-  .section-2 .section-2-vegetarian-icon {
-    background: #fff;
-    border-radius: 50%;
-    padding: 1px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.12);
-    z-index: 1;
-    transform: translateY(-2px);
-  }
-
-  /* Section 3 — BÁNH MÌ */
-  .section-3 .featured-dishes-3 > .featured-dish-1,
-  .section-3 .featured-dishes-3 > .featured-dish-2,
-  .section-3 .featured-dishes-3 > .featured-dish-3 { background: #FFA94D !important; color: #000; }
-
-  /* Spices art */
-  .section-2 .spices-image-1-icon,
-  .section-3 .spices-img-icon {
-    position: static !important;
-    width: 100% !important;
-    height: auto !important;
-    margin: 16px 0 0;
-  }
-
-  /* Footer */
-  .footer-section {
-    padding: 28px 20px;
-    gap: 28px;
-    flex-direction: column;
-    margin-left: 0;
-    width: 100%;
-  }
-  .footer-text { flex-direction: column; gap: 18px; width: 100%; }
-  .footer-1, .footer-2, .footer-3 { width: 100%; }
-  .footer-section .map-image-icon { width: 100%; height: auto; }
+/* LEFT */
+.banhmi-left{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
 }
 
-/* ================================
-   PHONES (<=640px)
-================================ */
-@media (max-width: 640px) {
+.banhmi-spices{
+  width:min(520px, 100%);
+  max-width:520px;
+  aspect-ratio: 16 / 9;
+  border-radius: 18px;
+  overflow:hidden;
+  background: transparent;
+}
 
-  .featured-dishes,
-  .section-2 .featured-dishes-2,
-  .section-3 .featured-dishes-3 {
+.banhmi-spices img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+}
+
+.banhmi-title{
+  width:100%;
+  max-width:520px;
+  margin: 22px 0 14px;
+  font-size:24px;
+  font-weight:900;
+  letter-spacing:.02em;
+  text-transform:uppercase;
+  text-align:left;
+}
+
+/* Force 3 pills in one row (desktop) */
+.banhmi-pills{
+  width: 100%;
+  max-width: 620px;          /* enough for 3 pills */
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  gap: 22px;
+  margin-top: 60px;
+}
+
+/* ORANGE theme (only color differs) */
+.pill--orange{
+  --pill-bg: #F5A84A;         /* adjust later if you want */
+}
+
+/* RIGHT */
+.banhmi-right{
+  width: min(620px, 100%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:16px;
+}
+
+.banhmi-plate{
+  width:min(520px, 100%);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  overflow:hidden;
+  background: transparent;
+}
+
+.banhmi-plate img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.banhmi-meta{
+  width:min(560px, 100%);
+  display:grid;
+  grid-template-columns: 1fr auto;
+  gap:16px;
+  align-items:start;
+  margin-top:6px;
+}
+
+.banhmi-meta h3{
+  margin:0;
+  font-size:20px;
+  font-weight:900;
+  letter-spacing:.02em;
+  text-transform:uppercase;
+}
+
+.banhmi-price{
+  font-weight:900;
+  font-size:18px;
+  padding-top:2px;
+}
+
+.banhmi-desc{
+  grid-column: 1 / -1;
+  color:rgba(0,0,0,.60);
+  font-size:13px;
+  line-height:1.6;
+  margin:0;
+  max-width:520px;
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .banhmi{
     grid-template-columns: 1fr;
   }
 
-  .featured-dish-1,
-  .featured-dish-2,
-  .featured-dish-3,
-  .section-2 .featured-dish-1,
-  .section-2 .featured-dish-2,
-  .section-2 .featured-dish-3,
-  .section-3 .featured-dish-1,
-  .section-3 .featured-dish-2,
-  .section-3 .featured-dish-3 {
-    grid-template-columns: 104px 1fr;
-    padding: 12px;
+  .banhmi-title{
+    text-align:center;
   }
 
-  .pho-chay-img-icon,
-  .pho-bo-vien-img-icon,
-  .pho-ga-img-icon,
-  .section-2 .goi-con-img-icon,
-  .section-2 .goi-con-chay-bi-img-icon,
-  .section-2 .goi-cion-chay-mi-can-img-icon,
-  .section-3 .bahn-mi-chay-icon,
-  .section-3 .bahn-mi-thit-img-icon,
-  .section-3 .bahn-mi-ga-icon {
-    width: 104px !important;
-    height: 104px !important;
-    border-radius: 10px;
+  .banhmi-left{
+    align-items:center;
   }
 
-  .navlinks { flex-wrap: wrap; gap: 14px; }
-  .logopng-icon { width: 220px; }
-
-  /* PHỞ CHAY phone column size */
-  .featured-dishes > .featured-dish-1 {
-    grid-template-columns: 1fr 104px;
+  .banhmi-pills{
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
 
-@media (max-width:1024px){
-  /* target only cards that contain a veg icon */
-  .section-2 .featured-dishes-2 > div:has(.vegetarian-icon) img[class$="-img-icon"],
-  .section-2 .featured-dishes-2 > div:has(.section-2-vegetarian-icon) img[class$="-img-icon"]{
-    transform: translateY(50px) !important; /* tweak this value */
+/* =========================
+   FOOTER STYLES
+========================= */
+.footer{
+  padding: 78px 0 5px;
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns: 280px 1fr 1fr 1fr;
+  gap: 70px;
+  align-items:start;
+}
+
+.footer-map{
+  width: 280px;
+  height: 170px;
+  border-radius: 0;          /* screenshot looks square corners */
+  overflow:hidden;
+  background: rgba(0,0,0,.05);
+  box-shadow: 0 10px 24px rgba(0,0,0,.10);
+}
+
+.footer-map iframe,
+.footer-map img{
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
+  object-fit:cover;
+}
+
+.footer-col h4{
+  margin: 0 0 18px;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -.01em;
+}
+
+.footer-col p{
+  margin: 0 0 14px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(0,0,0,.78);
+}
+
+.footer-col a{
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer-col a:hover{
+  opacity: .75;
+}
+
+.footer-social{
+  display:flex;
+  gap: 10px;
+  align-items:center;
+}
+
+.social{
+  width: 34px;
+  height: 34px;
+  display:grid;
+  place-items:center;
+  border-radius: 6px;
+  color: #111;
+}
+
+.social:hover{
+  opacity:.75;
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .footer-grid{
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+  }
+  .footer-map{
+    width: 100%;
+    height: 200px;
   }
 }
 
-
-/* Section 2 (CUỐN) — reorder for mobile/tablet:
-   Spices on top, then dish photo, then description */
-@media (max-width: 1024px) {
-  /* Make the section a vertical stack we can reorder */
-  .section-2 {
-    display: flex !important;
-    flex-direction: column !important;
+@media (max-width: 560px){
+  .footer{
+    padding: 56px 0 70px;
   }
-
-  /* 1) Spices image FIRST */
-  .section-2 .spices-image-1-icon {
-    order: 1 !important;
-    margin: 16px 0 !important;   /* tweak spacing if you want */
+  .footer-grid{
+    grid-template-columns: 1fr;
+    gap: 26px;
   }
-
-  /* 2) Wrap with dish image + description SECOND */
-  .section-2 .main-dish-wrap {
-    order: 2 !important;
-    display: flex !important;
-    flex-direction: column !important; /* so we can order its children */
-    gap: 12px !important;
-  }
-
-  /* Inside the wrap: dish photo before text */
-  .section-2 .main-dish-image-1-icon { order: 1 !important; }
-  .section-2 .main-dish                 { order: 2 !important; }
-
-  /* 3) Featured cards remain after (THIRD) */
-  .section-2 .featured-dishes-2 { order: 3 !important; }
-}
-
-/* Section 3 (BÁNH MÌ) — manual image nudges for 2 cards
-/* Section 3 (BÁNH MÌ) — manual image nudges for all three cards
-   Use only transform so the card height never changes */
-@media (max-width: 1024px) {
-  /* ---- knobs: edit these values ---- */
-  .section-3{
-    --bm-chay-x: 0px;  --bm-chay-y: 25px;  /* BÁNH MÌ CHAY */
-    --bm-thit-x: 0px;  --bm-thit-y: 0px;  /* BÁNH MÌ THỊT NƯỚNG */
-    --bm-ga-x:   0px;  --bm-ga-y:   10px;  /* BÁNH MÌ GÀ */
-  }
-
-  /* Apply the nudges */
-  .section-3 .featured-dishes-3 > .featured-dish-1 .bahn-mi-chay-icon{
-    transform: translate(var(--bm-chay-x), var(--bm-chay-y)) !important;
-  }
-  .section-3 .featured-dishes-3 > .featured-dish-2 .bahn-mi-thit-img-icon{
-    transform: translate(var(--bm-thit-x), var(--bm-thit-y)) !important;
-  }
-  .section-3 .featured-dishes-3 > .featured-dish-3 .bahn-mi-ga-icon{
-    transform: translate(var(--bm-ga-x), var(--bm-ga-y)) !important;
-  }
-}
-/* Section 2 → Card 1 (GỎI CUỐN) — manual image nudge
-   Uses transform only, so card height won't change */
-@media (max-width: 1024px) {
-  .section-2 .featured-dishes-2 > .featured-dish-1 .goi-con-img-icon{
-    transform: translate(0px, 10px) !important; /* (X, Y): +Y = down, -Y = up; +X = right, -X = left */
-    margin: 0 !important;                       /* ensure no layout shift */
+  .footer-col h4{
+    font-size: 24px;
   }
 }
 
+/* --- Brand story block (replaces spices image) --- */
+.summer-story{
+  width:min(520px, 100%);
+  max-width:520px;
+  padding: 26px 28px;
+  border-radius: 18px;
+  background: rgba(244,238,225,.35);      /* soft, blends with background */
+  border: 1px solid rgba(0,0,0,.10);
+  box-shadow: 0 10px 24px rgba(0,0,0,.08);
 
-
-/* --- Keep all prices under the description on mobile/tablet --- */
-@media (max-width: 1024px) {
-  /* prices in any card */
-  .featured-dishes  [class*="price"] {
-    position: static !important;
-    display: block !important;        /* force its own line */
-    margin: 6px 0 0 !important;       /* small gap under the body */
-    text-align: left !important;
-    float: none !important;           /* just in case */
-    line-height: 1.1 !important;
-  }
-
-  /* (Optional) re-pin layout: text in col 1, image in col 2 */
-  .featured-dishes  .dish-description,
-  .featured-dishes  .dish-description1,
-  .featured-dishes  .hero-section-dish-description {
-    grid-column: 1 !important;
-  }
-  .featured-dishes  img[class$="-img-icon"] {
-    grid-column: 2 !important;
-    justify-self: end !important;
-    align-self: center !important;
-  }
+  display:flex;
+  gap: 16px;
+  align-items:flex-start;
 }
 
-/* opt-in class the JS will add */
-.big-rotator {
-  transform-origin: 50% 50%;
+.story-icon{
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display:grid;
+  place-items:center;
+
+  background: rgba(111,143,58,.12);       /* uses your green tone */
+  color: var(--green);
+  flex: 0 0 auto;
+}
+
+.story-title{
+  font-weight: 900;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  font-size: 14px;
+  margin: 2px 0 8px;
+}
+
+.story-copy{
+  margin: 0;
+  color: rgba(0,0,0,.70);
+  font-size: 13px;
+  line-height: 1.65;
+  max-width: 420px;
+}
+
+
+/* --- BRAND STORY BLOCK (replaces spices box) --- */
+.brand-block{
+  width: min(520px, 100%);
+  border-radius: 18px;
+  padding: 18px 18px;
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 14px;
+  align-items: start;
+
+  /* subtle “box” look like your placeholder area */
+  border: 1px solid rgba(17,17,17,.12);
+  background: rgba(244, 238, 225, .35); /* soft tint, still transparent */
+  box-shadow: 0 8px 18px rgba(0,0,0,.06);
+}
+
+.brand-icon{
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  color: rgba(17,17,17,.70);
+  background: rgba(255,255,255,.40);
+  border: 1px solid rgba(17,17,17,.08);
+}
+
+.brand-kicker{
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(17,17,17,.55);
+  margin: 2px 0 6px;
+}
+
+.brand-title{
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+  color: #111;
+}
+
+.brand-copy{
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(0,0,0,.62);
+}
+
+.scroll-rotate{
   will-change: transform;
+  transform: rotate(0deg);
 }
 
-/* Respect users who prefer reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .big-rotator { transform: none !important; }
+
+/* =========================
+   MOBILE FIX PACK
+   Paste at the END of your CSS
+========================= */
+
+/* 1) Make background behave better on iOS (fixed bg is janky on iPhone) */
+@media (max-width: 820px){
+  body{
+    background-attachment: scroll; /* iOS Safari fix */
+  }
 }
 
-/* SECTION 3 (BÁNH MÌ) — fix mobile order:
-   Dish name > description > price > veg badge */
-@media (max-width: 1024px) {
-  /* Make the text block a vertical stack */
-  .section-3 .dish-description,
-  .section-3 .section-3-dish-description,
-  .section-3 .dish-description1 {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 4px;
-    grid-column: 1 !important;           /* ensure text is left column */
+/* 2) Tablet + down: stack grids and prevent overflow */
+@media (max-width: 980px){
+  .wrap{
+    width: min(1200px, calc(100% - 28px));
   }
 
-  /* 1) Name first */
-  .section-3 .dish-name,
-  .section-3 .section-3-dish-name,
-  .section-3 .dish-name1 {
-    order: 1 !important;
+  header{
+    height: 86px;
   }
 
-  /* 2) Body (description) second */
-  .section-3 .dish-body,
-  .section-3 .section-3-dish-body,
-  .section-3 .dish-body1 {
-    order: 2 !important;
-    line-height: 1.45 !important;
+  /* Logo stops overlapping everything */
+  .logo{
+    position: static;
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
   }
 
-  /* 3) Price third, on its own line */
-  .section-3 .section-3-price,
-  .section-3 .price1,
-  .section-3 .price2 {
-    order: 3 !important;
-    display: block !important;
-    margin-top: 6px !important;
-    text-align: left !important;
+  .logo img{
+    width: 180px;
+    height: auto;
   }
 
-  /* 4) Veg badge (if present): sits below the text block, left side */
-  .section-3 .vegetrian-icon {
-    grid-column: 1 !important;
-    grid-row: 2 !important;
-    justify-self: start !important;
-    align-self: start !important;
-    margin-top: 6px !important;
+  nav{
+    gap: 18px;
+    font-size: 14px;
   }
 
-  /* Keep images on the right, vertically centered */
-  .section-3 .featured-dishes-3 img[class$="-img-icon"] {
-    grid-column: 2 !important;
-    justify-self: end !important;
-    align-self: center !important;
+  /* Stack PHO section */
+  .grid{
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .left{ padding-top: 0; }
+  .right{
+    padding-top: 0;
+    align-items: center;
+  }
+
+  .headline{
+    margin: 26px 0 10px;
+  }
+
+  .sub{
+    margin-bottom: 18px;
+  }
+
+  /* IMPORTANT: remove fixed height that breaks layout */
+  .pill-cards{
+    height: auto !important;
+  }
+
+  /* Ensure hero bowls never overflow */
+  .bowl,
+  .summer-plate,
+  .banhmi-plate{
+    width: min(420px, 92vw);
+  }
+
+  /* SUMMER section stacks */
+  .summer{
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .summer-right{
+    align-items: center;
+  }
+
+  .summer-title{
+    text-align: center;
+  }
+
+  /* Let pills wrap on smaller screens (no forced 3-in-row) */
+  .summer-right .pill-cards{
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 18px !important;
+  }
+
+  /* BANH MI section stacks */
+  .banhmi{
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .banhmi-left{
+    align-items: center;
+  }
+
+  .banhmi-title{
+    text-align: center;
+  }
+
+  .banhmi-pills{
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 18px !important;
+    max-width: 100% !important;
+  }
+}
+
+
+/* 3) Phone sizes: smaller pills + smaller circles + better spacing */
+@media (max-width: 560px){
+
+  header{
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 14px 0 6px;
+    gap: 10px;
+  }
+
+  nav{
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .logo img{
+    width: 160px;
+  }
+
+  .headline{
+    font-size: 26px;
+    line-height: 1.15;
+    margin-top: 14px;
+  }
+
+  .section-title{
+    font-size: 20px;
+  }
+
+  /* Pills: make them fit mobile */
+  .pill-card{
+    --pill-width: 160px;
+    --img-size: 168px;
+    --img-top: -44px;
+    --pad-top: 88px;
+    --pad-bottom: 28px;
+
+    min-height: 340px; /* still uniform */
+  }
+
+  .pill-name{
+    font-size: 12px;
+    min-height: 32px;
+    margin-top: 48px;
+  }
+
+  .pill-desc{
+    min-height: 88px;
+    font-size: 11px;
+    -webkit-line-clamp: 4;
+  }
+
+  /* Brand story blocks */
+  .summer-story,
+  .brand-block{
+    width: 100%;
+    max-width: 520px;
+  }
+
+  /* Meta blocks should stack nicely */
+  .dish-meta,
+  .summer-hero-meta,
+  .banhmi-meta{
+    grid-template-columns: 1fr;
+    gap: 8px;
+    text-align: left;
+  }
+
+  .price-big,
+  .summer-hero-price,
+  .banhmi-price{
+    padding-top: 0;
+  }
+
+  /* Footer clean stack (you already have this, but ensure map fits) */
+  .footer-map{
+    height: 190px;
+  }
+}
+
+/* =========================
+   MOBILE: FORCE 3 IN A ROW (NO WRAP)
+   Paste at END
+========================= */
+@media (max-width: 560px){
+
+  /* Make wrap narrower so 3 columns can fit */
+  .wrap{
+    width: calc(100% - 20px);
+  }
+
+  /* 3 columns that always fit the screen */
+  .pill-cards{
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 10px !important;                 /* tighter gap */
+    justify-content: stretch !important;
+    margin-top: 22px !important;
+  }
+
+  /* IMPORTANT: pill width must be fluid (not fixed) */
+  .pill-card{
+    width: 100% !important;               /* allow grid to control width */
+    max-width: none !important;
+
+    /* shrink the whole pill system */
+    --pill-width: 100%;
+    --img-size: 108px;                    /* smaller circle so it fits */
+    --img-top: -28px;
+    --pad-top: 80px;
+    --pad-x: 10px;
+    --pad-bottom: 18px;
+
+    border-radius: 70px 70px 26px 26px;   /* keeps proportions */
+  }
+
+  /* tighten text so it doesn’t push weirdly */
+  .pill-name{
+    margin: 50px 0 6px !important;
+    min-height: 30px !important;
+    font-size: 11px;
+    letter-spacing: .01em;
+  
+  }
+
+  .pill-desc{
+    margin: 0 4px 10px !important;
+    min-height: 62px !important;
+    font-size: 10px !important;
+    -webkit-line-clamp: 4;
+  }
+
+  .pill-price{
+    font-size: 12px !important;
+  }
+
+  /* This ensures circles don’t get clipped */
+  .pill-cards,
+  .pill-card{
+    overflow: visible !important;
+  }
+}
+
+@media (max-width: 560px){
+  /* give the title more breathing room */
+  .section-title{
+    margin-bottom: 46px !important;
+  }
+
+  /* extra push down ONLY for PHO row */
+  .pill-cards.pill-cards--pho{
+    margin-top: 0 !important;   /* remove your normal margin-top spacing */
+    padding-top: 0px !important; /* creates space for the floating bowls */
+  }
+
+  /* reduce how high the bowls float up */
+  .pill-cards.pill-cards--pho .pill-card{
+    --img-top: -30px !important; /* less overlap */
+  }
+}
+
+/* =========================
+   TABLET CENTERED LAYOUT
+   ========================= */
+@media (max-width: 980px){
+
+  /* General container */
+  .wrap{
+    width: min(100%, calc(100% - 32px));
+  }
+
+  /* Stack all main grids */
+  .grid,
+  .summer,
+  .banhmi{
+    grid-template-columns: 1fr !important;
+    justify-items: center;
+    text-align: center;
+  }
+
+  /* LEFT / RIGHT sections center */
+  .left,
+  .right,
+  .summer-hero,
+  .summer-right,
+  .banhmi-left,
+  .banhmi-right{
+    align-items: center;
+    text-align: center;
+  }
+
+  /* Headings & text */
+  .headline,
+  .sub,
+  .section-title,
+  .summer-title,
+  .banhmi-title{
+    text-align: center;
+    max-width: 680px;
+  }
+
+  /* Hero bowls */
+  .bowl,
+  .summer-plate,
+  .banhmi-plate{
+    width: min(420px, 90vw);
+    margin: 0 auto;
+  }
+
+  /* Meta blocks stack nicely */
+  .dish-meta,
+  .summer-hero-meta,
+  .banhmi-meta{
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  /* Prices sit under titles */
+  .price-big,
+  .summer-hero-price,
+  .banhmi-price{
+    margin-top: 6px;
+  }
+
+  /* PILL ROWS — still 3 in a row on tablet */
+  .pill-cards{
+    grid-template-columns: repeat(3, minmax(0, 170px));
+    justify-content: center;
+    gap: 22px;
+    padding-top: 64px; /* space for floating bowls */
+  }
+
+  /* Prevent title overlap on tablet */
+  .section-title{
+    margin-bottom: 48px;
+  }
+
+  /* Brand story block centered */
+  .summer-story,
+  .brand-block{
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
   </style>
 </head>
+
 <body>
+  <div class="wrap">
+    <header>
+      <a class="logo" href="#" aria-label="Saigon Table home">
+        <img src="assets/logo.png.png" alt="Saigon Table logo">
+      </a>
 
-  <div class="page-container">
-<div class="hero-section">
-<div class="navlinks">
-<b class="home">HOME</b>
-<b class="meny">MENY</b>
-<b class="meny">KONTAKT</b>
-</div>
-<img class="logopng-icon" alt="" src="assets/logo.png.png">
-<div class="hero-text">
-<b class="hero-header">Authentic Vietnamese Comfort in Every Dish</b>
-<div class="hero-subheader">
-<span>From rich phở broth to fresh herbs and handmade rolls — </span>
-<b>Saigon Table brings the taste of Saigon to the heart of Gothenburg.</b>
-</div>
-</div>
-<div class="main-dish-wrap">
-<img class="main-dish-image-icon" alt="" src="assets/main-dish-image.png">
-<div class="main-dish">
-<b class="main-dish-name">PHỞ BÒ</b>
-<b class="price">135kr</b>
-<div class="main-dish-description">Phở bò is a traditional Vietnamese noodle soup made with a rich, aromatic beef broth, flat rice noodles, and tender slices of beef. It's typically served with fresh herbs, bean sprouts, lime, and chili on the side, allowing each bowl to be customized to taste. Comforting, flavorful, and deeply satisfying, phở bò is a beloved staple of Vietnamese cuisine.</div>
-</div>
-</div>
-<div class="featured-dishes">
-<b class="featured-menu-header">BÚN - RICE NOODLES</b>
-<div class="featured-dish-1">
-<div class="ellipse-group">
-<div class="group-child">
-</div>
-<div class="group-item">
-</div>
-</div>
-<div class="dish-description">
-<b class="dish-name">PHỞ CHAY</b>
-<div class="dish-body">Rice noodle soup with vegetarian broth and vegetables.</div>
-<b class="hero-section-price">129kr</b>
-</div>
-<img class="vegetarian-icon" alt="" src="assets/vegetarian-icon.png">
-<img class="pho-chay-img-icon" alt="" src="assets/pho-chay-img.png">
-</div>
-<div class="featured-dish-2">
-<div class="ellipse-group">
-<div class="group-child">
-</div>
-<div class="group-item">
-</div>
-</div>
-<div class="hero-section-dish-description">
-<b class="hero-section-dish-name">PHỞ BÒ VIÊN</b>
-<div class="hero-section-dish-body">Rice noodle soup with beef broth, slices of beef and asian meatballs.</div>
-<b class="price1">149kr</b>
-</div>
-<img class="pho-bo-vien-img-icon" alt="" src="assets/pho-bo-vien-img.png">
-</div>
-<div class="featured-dish-3">
-<div class="ellipse-group">
-<div class="group-child">
-</div>
-<div class="group-item">
-</div>
-</div>
-<div class="dish-description1">
-<b class="dish-name1">PHỞ GÀ</b>
-<div class="dish-body1">Rice noodle soup with beef broth, slices of with pieces of chicken.</div>
-<b class="price2">129kr</b>
-</div>
-<img class="pho-ga-img-icon" alt="" src="assets/pho-ga-img.png">
-</div>
-</div>
-</div>
+      <nav aria-label="Main navigation">
+        <a class="active" href="#home">HOME</a>
+        <a href="#menu">MENY</a>
+        <a href="#contact">KONTAKT</a>
+      </nav>
+    </header>
 
+    <main id="home">
+      <!-- =========================
+           PHỞ SECTION
+      ========================== -->
+      <section class="grid">
+        <div class="left">
+          <h1 class="headline">Authentic Vietnamese Comfort<br>in Every Dish</h1>
 
-<!-- After the closing </div> of .hero-section -->
-<div class="section-2">
-  <div class="main-dish-wrap">
-    <div class="main-dish">
-      <b class="main-dish-name">NEM NƯỚNG</b>
-      <b class="price">90kr</b>
-      <div class="main-dish-description">
-        Nem nướng is a popular Vietnamese dish consisting of grilled pork sausage or pork skewers, typically served with rice paper, fresh herbs, vermicelli noodles, and dipping sauce. It's known for its smoky, slightly sweet, and savory flavor.
-      </div>
-    </div>
-    <img class="main-dish-image-1-icon" alt="" src="assets/main-dish-image-1.png">
-  </div>
+          <p class="sub">
+            From rich phở broth to fresh herbs and handmade rolls —
+            <strong>Saigon Table</strong> brings the taste of Saigon to the heart of Gothenburg.
+          </p>
 
-  <img class="spices-image-1-icon" alt="" src="assets/spices-image-1.png">
+          <div id="menu" class="section-title">BÚN - RICE NOODLES</div>
 
-  <div class="featured-dishes-2">
-    <b class="featured-menu-header">CUỐN - SUMMER ROLLS</b>
+        <div class="pill-cards pill-cards--pho">
+            <article class="pill-card pill--yellow">
+              <div class="pill-img">
+                <img src="assets/pho1.png" alt="Phở chay">
+              </div>
+              <div class="pill-name">PHỞ CHAY</div>
+              <p class="pill-desc">Rice noodle soup with vegetarian broth and vegetables.</p>
+              <p class="pill-price">129kr</p>
+            </article>
 
-    <div class="featured-dish-1">
-      <div class="ellipse-parent">
-        <div class="group-child"></div>
-        <div class="group-item"></div>
-      </div>
-      <div class="dish-description">
-        <b class="dish-name">GỎI CUỐN</b>
-        <div class="dish-body">Fresh spring roll made with rice paper, filled with vermicelli noodles, shrimp or pork and fresh herbs.</div>
-        <b class="section-2-price">85kr</b>
-      </div>
-      <img class="goi-con-img-icon" alt="" src="assets/goi-con-img.png">
-    </div>
+            <article class="pill-card pill--yellow">
+              <div class="pill-img">
+                <img src="assets/pho2.png" alt="Phở bò viên">
+              </div>
+              <div class="pill-name">PHỞ BÒ VIÊN</div>
+              <p class="pill-desc">Rice noodle soup with beef broth, slices of beef and asian meatballs.</p>
+              <p class="pill-price">149kr</p>
+            </article>
 
-    <div class="featured-dish-2">
-      <div class="ellipse-group">
-        <div class="group-child"></div>
-        <div class="group-item"></div>
-      </div>
-      <div class="section-2-dish-description">
-        <b class="section-2-dish-name">
-          <p class="gi-cun-chay">GỎI CUỐN CHAY,</p>
-          <p class="gi-cun-chay">BÌ</p>
-        </b>
-        <div class="section-2-dish-body">
-          <p class="gi-cun-chay">Vegetarian fresh spring rolls, made with rice paper and filled with fried tofu, fried glass noodles,</p>
-          <p class="gi-cun-chay">carrots and fried shiitake mushrooms.</p>
+            <article class="pill-card pill--yellow">
+              <div class="pill-img">
+                <img src="assets/pho3.png" alt="Phở gà">
+              </div>
+              <div class="pill-name">PHỞ GÀ</div>
+              <p class="pill-desc">Rice noodle soup with broth, with pieces of chicken.</p>
+              <p class="pill-price">129kr</p>
+            </article>
+          </div>
         </div>
-        <b class="price1">85kr</b>
-      </div>
-      <img class="goi-con-chay-bi-img-icon" alt="" src="assets/goi-con-chay-bi-img.png">
-      <img class="vegetarian-icon" alt="" src="assets/vegetarian-icon.png">
-    </div>
 
-    <div class="featured-dish-3">
-      <div class="ellipse-container">
-        <div class="group-child"></div>
-        <div class="group-item"></div>
-      </div>
-      <div class="dish-description1">
-        <b class="dish-name1">
-          <p class="gi-cun-chay">GỎI CUỐN CHAY,</p>
-          <p class="gi-cun-chay">MÌ CĂN</p>
-        </b>
-        <div class="dish-body1">Vegetarian fresh spring rolls, made with rice paper and filled with a variety of fresh vegetables and plant-based proteins.</div>
-        <b class="price2">85kr</b>
-      </div>
-      <img class="goi-cion-chay-mi-can-img-icon" alt="" src="assets/goi-cion-chay-mi-can-img.png">
-      <img class="section-2-vegetarian-icon" alt="" src="assets/vegetarian-icon.png">
-    </div>
+        <div class="right">
+          <div class="bowl scroll-rotate" aria-label="Dish photo">
+  <img src="assets/phomain.png" alt="Phở bò">
+</div>
+
+          <div class="dish-meta">
+            <h2>PHỞ BÒ</h2>
+            <div class="price-big">135kr</div>
+
+            <p class="dish-long">
+              Phở bò is a traditional Vietnamese noodle soup made with a rich, aromatic beef broth,
+              flat rice noodles, and tender slices of beef. It's typically served with fresh herbs,
+              bean sprouts, lime, and chili on the side, allowing each bowl to be customized to taste.
+              Comforting, flavorful, and deeply satisfying, phở bò is a beloved staple of Vietnamese cuisine.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+           SUMMER ROLLS SECTION
+      ========================== -->
+      <section class="summer" id="summer-rolls">
+        <!-- LEFT -->
+        <div class="summer-hero">
+          <div class="bowl scroll-rotate" aria-label="Dish photo">
+  <img src="assets/summermain.png" alt="Phở bò">
+</div>
+
+          <div class="summer-hero-meta">
+            <h3>NEM NƯỚNG</h3>
+            <div class="summer-hero-price">90kr</div>
+
+            <p class="summer-hero-desc">
+              Nem nướng is a popular Vietnamese dish consisting of grilled pork sausage or pork skewers,
+              typically served with rice paper, fresh herbs, vermicelli noodles, and dipping sauce.
+              It's known for its smoky, slightly sweet, and savory flavor.
+            </p>
+          </div>
+        </div>
+
+        <!-- RIGHT (this wrapper was missing in your code) -->
+        <div class="summer-right">
+          <div class="summer-story" aria-label="Brand story">
+            <div class="story-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+                <path fill="currentColor" d="M20.6 3.4c-6.2.3-10.8 2.5-13.8 5.5C3.8 11.9 3 15.7 3 19c0 .6.4 1 1 1 3.3 0 7.1-.8 10.1-3.8 3-3 5.2-7.6 5.5-13.8 0-.6-.4-1-1-1zM6.2 17.8c.3-3 1.3-5.3 3-7 2.3-2.3 5.9-4.1 11-4.7-.6 5.1-2.4 8.7-4.7 11-1.7 1.7-4 2.7-7 3-.4 0-.7-.3-.7-.7 0-.6.1-1.1.4-1.6z"/>
+                <path fill="currentColor" d="M8 16c-.4 0-.8-.3-.9-.7-.1-.5.2-1.1.7-1.2l9-2.2c.5-.1 1.1.2 1.2.7.1.5-.2 1.1-.7 1.2l-9 2.2H8z"/>
+              </svg>
+            </div>
+
+            <div class="story-text">
+              <div class="story-title">HANDMADE DAILY</div>
+              <p class="story-copy">
+                We prep our rolls, pickles, and sauces fresh every day —
+                using classic Vietnamese flavors with a clean, simple touch.
+              </p>
+            </div>
+          </div>
+
+          <div class="summer-title">CUỐN - SUMMER ROLLS</div>
+
+          <div class="pill-cards pill-cards--tight" style="margin-top:60px;">
+            <article class="pill-card pill--green">
+              <div class="pill-img">
+                <img src="assets/roll1.png" alt="Gỏi cuốn">
+              </div>
+              <div class="pill-name">GỎI CUỐN</div>
+              <p class="pill-desc">
+                Fresh spring roll made with rice paper, filled with vermicelli noodles, shrimp or pork and fresh herbs.
+              </p>
+              <p class="pill-price">85kr</p>
+            </article>
+
+            <article class="pill-card pill--green">
+              <div class="pill-img">
+                <img src="assets/roll2.png" alt="Gỏi cuốn chay, bí">
+              </div>
+              <div class="pill-name">GỎI CUỐN CHAY, BÍ</div>
+              <p class="pill-desc">
+                Vegetarian spring rolls, made with rice paper and filled with fried tofu, glass noodles, carrots and fried shiitake mushrooms.
+              </p>
+              <p class="pill-price">85kr</p>
+            </article>
+
+            <article class="pill-card pill--green">
+              <div class="pill-img">
+                <img src="assets/roll3.png" alt="Gỏi cuốn chay, mì căn">
+              </div>
+              <div class="pill-name">GỎI CUỐN CHAY, MÌ CĂN</div>
+              <p class="pill-desc">
+                Vegetarian fresh spring rolls, made with rice paper and filled with a variety of fresh vegetables and plant-based proteins.
+              </p>
+              <p class="pill-price">85kr</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+           BÁNH MÌ SECTION
+      ========================== -->
+      <section class="banhmi" id="banh-mi">
+        <div class="banhmi-left">
+          <div class="brand-block" aria-label="Short brand story">
+  <div class="brand-icon" aria-hidden="true">
+    <!-- subtle icon (steam bowl) -->
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+      <path fill="currentColor" d="M6 8a6 6 0 0 1 12 0v2h1a1 1 0 0 1 0 2h-.2c-.6 4.5-3.8 8-7.8 8s-7.2-3.5-7.8-8H4a1 1 0 1 1 0-2h1V8zm2 2h8V8a4 4 0 0 0-8 0v2zm.9 2c.5 3.7 3 6 5.1 6s4.6-2.3 5.1-6H8.9z"/>
+      <path fill="currentColor" d="M9 4.5c0-.8.7-1.5 1.5-1.5.4 0 .8.2 1.1.5.3.3.5.7.5 1.1 0 .6-.3 1.1-.8 1.6-.3.3-.5.6-.5.8a1 1 0 1 1-2 0c0-.7.4-1.2.9-1.7.2-.2.3-.4.3-.7 0-.1-.1-.3-.2-.4-.1-.1-.2-.2-.4-.2-.3 0-.5.2-.5.5a1 1 0 1 1-2 0z"/>
+      <path fill="currentColor" d="M14 4.5c0-.8.7-1.5 1.5-1.5.4 0 .8.2 1.1.5.3.3.5.7.5 1.1 0 .6-.3 1.1-.8 1.6-.3.3-.5.6-.5.8a1 1 0 1 1-2 0c0-.7.4-1.2.9-1.7.2-.2.3-.4.3-.7 0-.1-.1-.3-.2-.4-.1-.1-.2-.2-.4-.2-.3 0-.5.2-.5.5a1 1 0 1 1-2 0z"/>
+    </svg>
+  </div>
+
+  <div class="brand-text">
+    <div class="brand-kicker">OUR STORY</div>
+    <div class="brand-title">SAIGON FLAVORS, SIMPLE & FRESH</div>
+    <p class="brand-copy">
+      Inspired by street-food classics, we keep it clean and comforting —
+      fresh herbs, bright sauces, and warm bowls made to feel like home.
+    </p>
   </div>
 </div>
 
 
-<!-- After Section 2 -->
-<div class="section-3">
-  <div class="main-dish-wrap">
-    <div class="main-dish">
-      <b class="main-name">BÁNH MÌ DELUXE</b>
-      <div class="main-dish-description">
-        Bánh mì is a Vietnamese sandwich made with a crispy French-style baguette, typically filled with savory ingredients like grilled meat, pâté, pickled vegetables, fresh herbs, and chili, blending Vietnamese and French culinary influences in one flavorful bite.
-      </div>
-      <b class="price">119kr</b>
-    </div>
-    <img class="main-dish-image-2-icon" alt="" src="assets/main-dish-image-2.png">
-  </div>
+          <div class="banhmi-title">BÁNH MÌ - VIETNAMESE BAGUETTE</div>
 
-  <div class="featured-dishes-3">
-    <b class="bnh-m-">BÁNH MÌ - VIETNAMESE BAGUETTE</b>
+          <div class="pill-cards banhmi-pills">
+            <article class="pill-card pill--orange">
+              <div class="pill-img">
+                <img src="assets/banh1.png" alt="Bánh mì chay">
+              </div>
+              <div class="pill-name">BÁNH MÌ CHAY</div>
+              <p class="pill-desc">
+                Vietnamese sandwich made with plant-based ingredients such as tofu, mushrooms, and vegetables.
+              </p>
+              <p class="pill-price">99kr</p>
+            </article>
 
-    <div class="featured-dish-1">
-      <div class="ellipse-parent">
-        <div class="group-child"></div>
-        <div class="group-item"></div>
-      </div>
-      <div class="dish-description">
-        <b class="dish-name">BÁNH MÌ CHAY</b>
-        <b class="section-3-price">99kr</b>
-        <div class="dish-body">Vietnamese sandwich made with plant-based ingredients such as tofu, mushrooms, vegetarian pâté and vegetables.</div>
-      </div>
-      <img class="bahn-mi-chay-icon" alt="" src="assets/bahn-mi-chay.png">
-      <img class="vegetrian-icon" alt="" src="assets/vegetarian-icon.png">
-    </div>
+            <article class="pill-card pill--orange">
+              <div class="pill-img">
+                <img src="assets/banh2.png" alt="Bánh mì thịt nướng">
+              </div>
+              <div class="pill-name">BÁNH MÌ THỊT NƯỚNG</div>
+              <p class="pill-desc">
+                Vietnamese sandwich made with grilled marinated pork topped with pickled carrots and daikon, cucumber, cilantro, chili, and pâté.
+              </p>
+              <p class="pill-price">99kr</p>
+            </article>
 
-    <div class="featured-dish-2">
-      <div class="ellipse-group">
-        <div class="group-inner"></div>
-        <div class="rectangle-div"></div>
-      </div>
-      <div class="section-3-dish-description">
-        <b class="section-3-dish-name">BÁNH MÌ THỊT NƯỚNG</b>
-        <b class="price1">99kr</b>
-        <div class="section-3-dish-body">Vietnamese sandwich made with grilled marinated pork topped with pickled carrots and daikon, cucumber slices, cilantro, chili, and pâté.</div>
-      </div>
-      <img class="bahn-mi-thit-img-icon" alt="" src="assets/bahn-mi-thit-img.png">
-    </div>
+            <article class="pill-card pill--orange">
+              <div class="pill-img">
+                <img src="assets/banh3.png" alt="Bánh mì gà">
+              </div>
+              <div class="pill-name">BÁNH MÌ GÀ</div>
+              <p class="pill-desc">
+                Vietnamese sandwich made with grilled chicken, pickled vegetables, cucumber, cilantro, chili, and pâté.
+              </p>
+              <p class="pill-price">85kr</p>
+            </article>
+          </div>
+        </div>
 
-    <div class="featured-dish-3">
-      <div class="ellipse-container">
-        <div class="ellipse-div"></div>
-        <div class="section-3-group-child"></div>
-      </div>
-      <div class="dish-description1">
-        <b class="dish-name1">BÁNH MÌ GÀ</b>
-        <b class="price2">85kr</b>
-        <div class="dish-body1">Vietnamese sandwich made with grilled chicken, pickled vegetables, cucumber, cilantro, chili, and pâté.</div>
-      </div>
-      <img class="bahn-mi-ga-icon" alt="" src="assets/bahn-mi-ga.png">
-    </div>
-  </div>
-
-  <img class="spices-img-icon" alt="" src="assets/spices-img.png">
+        <div class="banhmi-right">
+          <div class="banhmi-plate scroll-rotate">
+  <img src="assets/banhmain.png" alt="Bánh mì deluxe">
 </div>
 
+          <div class="banhmi-meta">
+            <h3>BÁNH MÌ DELUXE</h3>
+            <div class="banhmi-price">119kr</div>
 
-<div class="footer-section">
-  <img class="map-image-icon" alt="map" src="assets/map-image.png">
+            <p class="banhmi-desc">
+              Bánh mì is a Vietnamese sandwich made with a crispy French-style baguette, typically filled with savory ingredients like grilled meat,
+              pâté, pickled vegetables, fresh herbs, and chili—blending Vietnamese and French culinary influences in one flavorful bite.
+            </p>
+          </div>
+        </div>
+      </section>
 
-  <div class="footer-text">
-    <!-- Address -->
-    <div class="footer-1">
-      <b class="footer-header">Address</b>
-      <div class="footer-text1">
-        <p class="monday-sunday">123 Sample Street, Sample City,</p>
-        <p class="monday-sunday">Country, 12345</p>
-      </div>
-      <div class="footer-section-footer-text">
-        <p class="monday-sunday">Monday - Sunday, </p>
-        <p class="monday-sunday">09:00 - 21:00</p>
-      </div>
-    </div>
+      <!-- =========================
+           FOOTER
+      ========================== -->
+      <footer class="footer" id="contact">
+        <div class="wrap footer-grid">
+          <div class="footer-map" aria-label="Map">
+            <iframe
+              title="Saigon Table location map"
+              src="https://www.google.com/maps?q=Gothenburg%20Sweden&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
 
-    <!-- Contact -->
-    <div class="footer-2">
-      <b class="footer-section-footer-header">Contact</b>
-      <div class="footer-text2">example@email.com</div>
-      <div class="footer-text1">+1234 567 890</div>
-    </div>
+          <div class="footer-col">
+            <h4>Address</h4>
+            <p>
+              123 Sample Street, Sample City,<br>
+              Country, 12345
+            </p>
+            <p>
+              Monday – Sunday,<br>
+              09:00 - 21:00
+            </p>
+          </div>
 
-    <!-- Follow -->
-    <div class="footer-3">
-      <b class="footer-header1">Follow</b>
-      <div class="footer-icons">
-        <img class="fb-icon" alt="facebook" src="assets/fb-icon.png">
-        <img class="insta-icon" alt="instagram" src="assets/insta-icon.png">
-      </div>
-    </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <p>
+              <a href="tel:+1234567890">+1234 567 890</a><br>
+              <a href="mailto:example@email.com">example@email.com</a>
+            </p>
+          </div>
+
+          <div class="footer-col">
+            <h4>Follow</h4>
+            <div class="footer-social">
+              <a class="social" href="#" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                  <path fill="currentColor"
+                    d="M13.5 22v-8h2.7l.4-3H13.5V9.1c0-.9.2-1.5 1.5-1.5h1.6V5c-.3 0-1.4-.1-2.7-.1-2.7 0-4.5 1.6-4.5 4.6V11H7v3h2.9v8h3.6z"/>
+                </svg>
+              </a>
+
+              <a class="social" href="#" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                  <path fill="currentColor"
+                    d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9A3.5 3.5 0 0 0 20 16.5v-9A3.5 3.5 0 0 0 16.5 4h-9z"/>
+                  <path fill="currentColor"
+                    d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/>
+                  <path fill="currentColor" d="M17.7 6.3a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </main>
   </div>
-</div>
 
+  <script>
+  (function(){
+    const targets = document.querySelectorAll('.scroll-rotate');
+    if (!targets.length) return;
 
-  </div>
+    let lastY = window.scrollY;
+    let angle = 0;
+    let ticking = false;
 
+    // Rotation speed (degrees per pixel scrolled)
+    const SPEED = 0.25; // increase for faster spin (try 0.35), decrease for slower (0.15)
 
-<script>
-(() => {
-  // Select the three big dishes
-  const rotators = document.querySelectorAll(
-    '.main-dish-image-icon, ' +                   // PHỞ BÒ (hero)
-    '.section-2 .main-dish-image-1-icon, ' +      // NEM NƯỚNG (section 2)
-    '.section-3 .main-dish-image-2-icon'          // BÁNH MÌ DELUXE (section 3)
-  );
+    function update(){
+      const y = window.scrollY;
+      const delta = y - lastY;   // + when scrolling down, - when scrolling up
+      lastY = y;
 
-  // Helper class (optional, for GPU hint)
-  rotators.forEach(el => el.classList.add('big-rotator'));
+      angle += delta * SPEED;
 
-  // Use the real scrolling element (works across browsers)
-  const SCROLLER = document.scrollingElement || document.documentElement;
+      // Keep angle from growing forever (optional)
+      angle = angle % 360;
 
-  // Tune sensitivity (deg per pixel)
-  const DEG_PER_PX = 0.02;
+      targets.forEach(el => {
+        el.style.transform = `rotate(${angle}deg)`;
+      });
 
-  // Optional per-image base offsets
-  const OFFSETS = new WeakMap();
-  rotators.forEach(el => OFFSETS.set(el, 0));
-
-  let ticking = false;
-  let lastY = -1;
-
-  function update(force = false) {
-    const y = SCROLLER.scrollTop;
-    if (!force && y === lastY) { ticking = false; return; }
-    lastY = y;
-
-    const angle = y * DEG_PER_PX;
-    rotators.forEach(el => {
-      const base = OFFSETS.get(el) || 0;
-      el.style.transform = `rotate(${angle + base}deg)`;
-    });
-    ticking = false;
-  }
-
-  function onScrollishEvent() {
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(() => update());
+      ticking = false;
     }
-  }
 
-  // Fire on any way the user scrolls
-  ['scroll','wheel','mousewheel','DOMMouseScroll','touchmove','keydown']
-    .forEach(evt => window.addEventListener(evt, onScrollishEvent, { passive: true }));
-
-  window.addEventListener('load', () => update(true));
-  window.addEventListener('resize', () => update(true));
-})();
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    }, { passive: true });
+  })();
 </script>
 
 </body>
+
 </html>
