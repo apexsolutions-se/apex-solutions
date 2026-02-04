@@ -1,1031 +1,1228 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">	
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apex Solutions — Home</title>
-    
-    <link rel="stylesheet"  href="./index.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" />
-    <link rel="icon" type="image/png" href="assets/LOGO.png">
-    <link rel="shortcut icon" href="assets/LOGO.png" type="image/png">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Apex Solutions — Marketing & Web Design</title>
+  <meta name="description" content="Apex Solutions helps brands grow with high-conversion marketing and modern web design—built with taste." />
 
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#070A10;
+      --panel:rgba(255,255,255,.06);
+      --panel2:rgba(255,255,255,.09);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.70);
+      --muted2:rgba(255,255,255,.55);
+
+      /* Apex palette */
+      --cyan:#3FD3FC;
+      --cyan2:#00B7FF;
+      --gold:#9E834C;
+      --gold2:#695732;
+
+      --border:rgba(255,255,255,.12);
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1120px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background: var(--bg);
+      overflow-x:hidden;
+    }
+
+    body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background:
+    radial-gradient(1200px 700px at 15% 10%, rgba(63,211,252,.15), transparent 60%),
+    radial-gradient(900px 600px at 85% 25%, rgba(158,131,76,.12), transparent 65%),
+    radial-gradient(800px 500px at 50% 90%, rgba(63,211,252,.10), transparent 60%),
+    var(--bg);
+}
+
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 22px}
+    .grid{display:grid; gap:18px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:12px 16px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+      font-weight:600;
+      white-space:nowrap;
+    }
+    .btn:hover{transform: translateY(-1px); border-color: rgba(63,211,252,.55)}
+    .btn.primary{
+      border-color: rgba(63,211,252,.55);
+      background: linear-gradient(180deg, rgba(63,211,252,.18), rgba(255,255,255,.04));
+    }
+    .btn.ghost{
+      background:transparent;
+      box-shadow:none;
+    }
+    .tag{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:13px;
+    }
+    .tag .dot{
+      width:8px; height:8px; border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, #fff, var(--cyan));
+      box-shadow: 0 0 18px rgba(63,211,252,.55);
+    }
+
+    /* Top nav */
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(7,10,16,.75), rgba(7,10,16,.35));
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      font-weight:700;
+      letter-spacing:.2px;
+    }
+ .logo{
+  display:flex;
+  align-items:center;
+  height:40px;          /* controls navbar height */
+}
+
+.logo img{
+  height:100%;          /* logo fills the container height */
+  width:auto;
+  display:block;
+}
+.logo img{
+  filter: drop-shadow(0 0 8px rgba(63,211,252,.35));
+}
+
+
+    .brand span{
+      font-family:Orbitron, Inter, system-ui;
+      font-size:14px;
+      text-transform:uppercase;
+    }
+
+    nav ul{
+      list-style:none; padding:0; margin:0;
+      display:flex; gap:16px; align-items:center;
+    }
+    nav a{
+      color:var(--muted);
+      font-weight:600;
+      font-size:14px;
+      padding:8px 10px;
+      border-radius:999px;
+      transition: background .15s ease, color .15s ease;
+    }
+    nav a:hover{background:rgba(255,255,255,.06); color:var(--text)}
+    .nav-cta{display:flex; gap:10px; align-items:center}
+
+    .hamburger{
+      display:none;
+      width:42px; height:42px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+    }
+
+    /* Hero */
+    .hero{
+      padding:62px 0 22px;
+      position:relative;
+    }
+    .hero .grid{
+      grid-template-columns: 1.1fr .9fr;
+      align-items:stretch;
+    }
+    .h-title{
+      font-family:Orbitron, Inter, system-ui;
+      font-size: clamp(34px, 4.3vw, 54px);
+      line-height:1.05;
+      margin:14px 0 14px;
+      letter-spacing:.2px;
+    }
+    .glow{
+      background: linear-gradient(90deg, rgba(255,255,255,.95), rgba(63,211,252,.95), rgba(158,131,76,.95));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      text-shadow: 0 0 26px rgba(63,211,252,.18);
+    }
+    .lead{
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.6;
+      max-width: 54ch;
+      margin:0 0 18px;
+    }
+    .hero-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+
+    .card{
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .card:before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: radial-gradient(600px 240px at 20% 0%, rgba(63,211,252,.18), transparent 60%),
+                  radial-gradient(500px 220px at 80% 10%, rgba(158,131,76,.14), transparent 60%);
+      pointer-events:none;
+    }
+
+    .hero-card{
+      padding:18px;
+      display:flex; flex-direction:column; gap:14px;
+      min-height: 340px;
+    }
+    .mock{
+      flex:1;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(16px 16px at 14% 22%, rgba(63,211,252,.6), transparent 55%),
+        radial-gradient(16px 16px at 68% 26%, rgba(158,131,76,.45), transparent 60%),
+        linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      position:relative;
+      overflow:hidden;
+    }
+    .scanline{
+      position:absolute; left:-30%; top:-50%;
+      width:60%; height:200%;
+      background: linear-gradient(90deg, transparent, rgba(63,211,252,.20), transparent);
+      transform: rotate(20deg);
+      animation: scan 4.8s ease-in-out infinite;
+      opacity:.75;
+      filter: blur(.3px);
+    }
+    @keyframes scan{
+      0%{transform: translateX(-40%) rotate(20deg); opacity:.05}
+      35%{opacity:.85}
+      70%{opacity:.35}
+      100%{transform: translateX(170%) rotate(20deg); opacity:.05}
+    }
+    .mock-ui{
+      position:absolute; inset:14px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      overflow:hidden;
+    }
+    .mock-top{
+      height:42px;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 12px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      color:rgba(255,255,255,.78);
+      font-size:12px;
+    }
+    .pills{display:flex; gap:8px}
+    .pill{
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .mock-body{
+      padding:12px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+    .metric{
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      padding:12px;
+      position:relative;
+      overflow:hidden;
+    }
+    .metric b{font-family:Orbitron, Inter; letter-spacing:.2px}
+    .metric small{display:block; color:var(--muted2); margin-top:6px}
+    .spark{
+      position:absolute; right:10px; bottom:10px;
+      width:60px; height:26px;
+      border-radius:10px;
+      background:
+        linear-gradient(90deg, rgba(63,211,252,.55), rgba(158,131,76,.35), rgba(255,255,255,.10));
+      opacity:.55;
+      filter: blur(.2px);
+      mask: linear-gradient(#000, transparent);
+    }
+
+    .mini-row{
+      display:flex; gap:10px; flex-wrap:wrap;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .mini-row .chip{
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+    }
+
+    /* Sections */
+    section{padding:54px 0}
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:16px; margin-bottom:18px;
+    }
+    h2{
+      margin:0;
+      font-family:Orbitron, Inter;
+      font-size:22px;
+      letter-spacing:.3px;
+    }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.5;
+      max-width: 60ch;
+    }
+
+    .cards-3{grid-template-columns: repeat(3, 1fr)}
+    .cards-4{grid-template-columns: repeat(4, 1fr)}
+    .tile{
+      padding:18px;
+      border-radius: var(--radius2);
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      position:relative;
+      overflow:hidden;
+      min-height: 160px;
+    }
+    .tile:before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: radial-gradient(420px 180px at 15% 0%, rgba(63,211,252,.16), transparent 60%),
+                  radial-gradient(380px 180px at 85% 10%, rgba(158,131,76,.12), transparent 60%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .tile h3{
+      margin:0 0 8px;
+      font-size:16px;
+      letter-spacing:.2px;
+      position:relative;
+    }
+    .tile p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.6;
+      font-size:14px;
+      position:relative;
+    }
+    .icon{
+      width:38px; height:38px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      display:grid; place-items:center;
+      margin-bottom:12px;
+      position:relative;
+      overflow:hidden;
+    }
+    .icon:after{
+      content:"";
+      position:absolute; inset:-40%;
+      background: conic-gradient(from 90deg, transparent, rgba(63,211,252,.35), transparent);
+      animation: spin 10s linear infinite;
+      opacity:.55;
+    }
+    .icon svg{width:18px; height:18px; opacity:.9; position:relative}
+
+    .work-grid{grid-template-columns: repeat(2, 1fr)}
+    .work{
+      padding:16px;
+      border-radius: var(--radius2);
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+      position:relative;
+      overflow:hidden;
+    }
+    .work:before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: radial-gradient(520px 220px at 20% 0%, rgba(63,211,252,.14), transparent 60%),
+                  radial-gradient(520px 220px at 80% 10%, rgba(158,131,76,.10), transparent 60%);
+      pointer-events:none;
+    }
+    .thumb{
+      height:180px;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.12);
+      background:
+        linear-gradient(135deg, rgba(63,211,252,.18), rgba(255,255,255,.02)),
+        radial-gradient(24px 24px at 30% 25%, rgba(255,255,255,.8), transparent 60%),
+        radial-gradient(22px 22px at 70% 60%, rgba(158,131,76,.55), transparent 65%),
+        rgba(255,255,255,.03);
+      position:relative;
+      overflow:hidden;
+    }
+    .thumb .scanline{opacity:.55}
+    .work h3{margin:0; font-size:16px; position:relative}
+    .work .meta{
+      display:flex; gap:10px; flex-wrap:wrap;
+      color:var(--muted2);
+      font-size:13px;
+      position:relative;
+    }
+    .work .meta span{
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.12);
+    }
+    .work p{margin:0; color:var(--muted); line-height:1.6; position:relative}
+
+    .process{grid-template-columns: repeat(4, 1fr)}
+    .step{
+      padding:16px;
+      border-radius: var(--radius2);
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      position:relative;
+      overflow:hidden;
+      min-height: 150px;
+    }
+    .step b{
+      font-family:Orbitron, Inter;
+      color:rgba(255,255,255,.9);
+      letter-spacing:.3px;
+    }
+    .step small{display:block; color:var(--muted2); margin:8px 0 0}
+    .step p{margin:10px 0 0; color:var(--muted); line-height:1.6; font-size:14px}
+
+    .cta{
+      padding:22px;
+      border-radius: var(--radius2);
+      border:1px solid rgba(255,255,255,.14);
+      background: radial-gradient(800px 300px at 20% 0%, rgba(63,211,252,.18), transparent 60%),
+                  radial-gradient(700px 280px at 80% 0%, rgba(158,131,76,.14), transparent 62%),
+                  linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+    .cta h3{
+      margin:0;
+      font-family:Orbitron, Inter;
+      letter-spacing:.2px;
+      font-size:18px;
+    }
+    .cta p{margin:6px 0 0; color:var(--muted); line-height:1.6; font-size:14px}
+
+    footer{
+      padding:30px 0 40px;
+      border-top:1px solid rgba(255,255,255,.08);
+      color:var(--muted2);
+      font-size:13px;
+    }
+
+    /* Scroll reveal */
+    .reveal{opacity:0; transform: translateY(10px); transition: opacity .6s ease, transform .6s ease}
+    .reveal.show{opacity:1; transform:none}
+
+    /* Responsive */
+    @media (max-width: 960px){
+      .hero .grid{grid-template-columns:1fr}
+      .cards-4{grid-template-columns: repeat(2, 1fr)}
+      .process{grid-template-columns: repeat(2, 1fr)}
+    }
+    @media (max-width: 720px){
+      nav ul{display:none}
+      .hamburger{display:inline-flex; align-items:center; justify-content:center}
+      .cards-3{grid-template-columns:1fr}
+      .work-grid{grid-template-columns:1fr}
+      .cards-4{grid-template-columns:1fr}
+      .process{grid-template-columns:1fr}
+    }
+
+    /* Mobile menu */
+    .mobile{
+      display:none;
+      padding:10px 0 14px;
+    }
+    .mobile.open{display:block}
+    .mobile a{
+      display:block;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      margin-top:10px;
+      color:var(--muted);
+      font-weight:600;
+    }
+    .mobile a:hover{color:var(--text); border-color: rgba(63,211,252,.45)}
+
+
+.hero-visual{
+  position:relative;
+  height:360px;
+  overflow:visible;
+}
+
+
+/* floating orbs */
+.orb{
+  position:absolute;
+  width:260px;
+  height:260px;
+  border-radius:50%;
+  filter: blur(55px);
+  opacity:.55;
+  will-change: transform;
+}
+
+
+
+.orb.cyan{
+  background: rgba(63,211,252,.75);
+  top: 15%;
+  left: 8%;
+  animation: float-cyan 60s linear infinite alternate;
+}
+
+.orb.gold{
+  background: rgba(158,131,76,.65);
+  top: 38%;
+  right: 2%;
+  width: 300px;
+  height: 300px;
+  animation: float-gold 75s linear infinite alternate;
+}
+
+.orb.white{
+  background: rgba(255,255,255,.35);
+  bottom: 8%;
+  left: 35%;
+  width: 220px;
+  height: 220px;
+  animation: float-white 90s linear infinite alternate;
+}
+
+
+@keyframes float-cyan{
+  0%   { transform: translate3d(0, 0, 0); }
+  20%  { transform: translate3d(120px, -40px, 0); }
+  40%  { transform: translate3d(220px, 30px, 0); }
+  60%  { transform: translate3d(140px, 120px, 0); }
+  80%  { transform: translate3d(40px, 180px, 0); }
+  100% { transform: translate3d(-80px, 80px, 0); }
+}
+
+@keyframes float-gold{
+  0%   { transform: translate3d(0, 0, 0); }
+  25%  { transform: translate3d(-100px, 60px, 0); }
+  50%  { transform: translate3d(-160px, 180px, 0); }
+  75%  { transform: translate3d(-60px, 260px, 0); }
+  100% { transform: translate3d(80px, 140px, 0); }
+}
+
+
+@keyframes float-white{
+  0%   { transform: translate3d(0, 0, 0); }
+  30%  { transform: translate3d(80px, -120px, 0); }
+  55%  { transform: translate3d(-40px, -200px, 0); }
+  80%  { transform: translate3d(-120px, -60px, 0); }
+  100% { transform: translate3d(60px, 120px, 0); }
+}
+
+
+
+:root{
+  --orb-speed-fast: 20s;
+  --orb-speed-mid: 30s;
+  --orb-speed-slow: 40s;
+}
+
+.orb.cyan  { animation-duration: var(--orb-speed-fast); }
+.orb.gold  { animation-duration: var(--orb-speed-mid); }
+.orb.white { animation-duration: var(--orb-speed-slow); }
+
+@media (max-width: 760px){
+  .hero .grid{
+    grid-template-columns: 1fr;
+    position: relative;
+  }
+
+  /* Hero copy stays normal */
+  .hero .reveal:first-child{
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Orbs overlay — no space taken */
+  .hero-visual{
+    position: absolute;
+    inset: 0;
+    height: auto;
+    z-index: 1;
+    pointer-events: none;
+  }
+}
+
+@media (max-width: 760px){
+  .orb{
+    opacity: .35;
+    filter: blur(65px);
+  }
+}
+
+
+/* =========================
+   CONTACT – SPLIT CARDS
+   ========================= */
+
+.contact-split{
+  display:grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap:32px;
+  align-items:stretch;
+}
+
+/* BOTH PANELS */
+.contact-panel{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  padding:32px;
+  border-radius:28px;
+  background:
+    linear-gradient(140deg,
+      rgba(70,120,140,.35),
+      rgba(0,0,0,.65));
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.08),
+    0 40px 80px rgba(0,0,0,.45);
+}
+
+/* =========================
+   LEFT – FORM
+   ========================= */
+
+.contact-left h3{
+  margin:0;
+  font-family: Orbitron, Inter, system-ui;
+  font-size:18px;
+  letter-spacing:.2px;
+}
+
+.contact-left p{
+  margin:8px 0 14px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.6;
+}
+
+.contact-form{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.field-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.field span{
+  font-size:12px;
+  font-weight:600;
+  color:var(--muted2);
+}
+
+.field input,
+.field textarea{
+  width:100%;
+  padding:11px 12px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.18);
+  color:var(--text);
+  outline:none;
+}
+
+.field input::placeholder,
+.field textarea::placeholder{
+  color:rgba(255,255,255,.4);
+}
+
+.field input:focus,
+.field textarea:focus{
+  border-color: rgba(63,211,252,.55);
+  box-shadow: 0 0 0 3px rgba(63,211,252,.12);
+}
+
+textarea{
+  resize:vertical;
+  min-height:88px;
+}
+
+.form-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:2px;
+}
+
+/* =========================
+   RIGHT – INFO (COMPACT)
+   ========================= */
+
+.contact-right{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  padding:16px;
+  justify-content:space-between; /* THIS is the key */
+  
+}
+
+.contact-block{
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+  border-radius:16px;
+  padding:12px;
+}
+
+.contact-block b{
+  display:block;
+  font-family: Orbitron, Inter, system-ui;
+  font-size:14px;
+  letter-spacing:.2px;
+  margin-bottom:6px;
+}
+
+.contact-links{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.contact-links a{
+  font-size:14px;
+  font-weight:600;
+  color:rgba(255,255,255,.82);
+}
+
+.contact-links a:hover{
+  color:var(--text);
+  text-decoration:underline;
+}
+
+.contact-block p{
+  font-size:14px;
+  line-height:1.5;
+}
+
+.contact-right .btn{
+  padding:10px 14px;
+  font-size:14px;
+  border-radius:14px;
+}
+
+/* =========================
+   UTIL
+   ========================= */
+
+.muted{
+  color:var(--muted);
+  margin:0;
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width:760px){
+  .contact-split{
+    grid-template-columns:1fr;
+  }
+
+  .field-row{
+    grid-template-columns:1fr;
+  }
+}
+
+.contact-form button[type="submit"]{
+  color:#fff;
+}
+
+.contact-form button[type="submit"] *{
+  color:#fff;
+}
+
+.work-thumb{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;   /* shorter than 16:9 */
+  border-radius: 12px;     /* tighter corners */
+  overflow: hidden;
+  margin-bottom: 12px;     /* less spacing */
+  background: rgba(255,255,255,.03);
+}
+
+.work-thumb img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* subtle polish */
+.work-thumb::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,.08),
+    rgba(0,0,0,.45)
+  );
+  pointer-events: none;
+}
+
+
+
+
+  </style>
 </head>
+
 <body>
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="Apex Solutions">
+          <div class="logo">
+  <img src="assets/LOGO.png" alt="Apex Solutions logo">
+</div>
+          <span>APEX SOLUTIONS</span>
+        </a>
 
+<nav aria-label="Primär">
+  <ul>
+    <li><a href="#services">Tjänster</a></li>
+    <li><a href="#work">Utvalda projekt</a></li>
+    <li><a href="#contact">Kontakt</a></li>
+  </ul>
+</nav>
 
-  <div class="apex-responsive">
-    <div class="scroll-container">
-      <!-- HERO SECTION -->
-<section class="snap-section hero">
-  <div class="background-stack">
-    <img src="assets/metal-texture.png" class="metal-texture" alt="" />
-    <img src="assets/crypto-texture.png" class="crypto-texture" alt="" />
-  </div>
-
-  <div class="hero-content-container">
-    <div class="logo-constrains">
-      <img class="logo-icon" alt="Apex Solutions" src="assets/LOGO.png">
-    </div>
-
-    <div class="heading-constrains">
-      <b class="hero-heading" id="hero-heading">POWERFUL WEBSITES. REAL RESULTS.</b>
-    </div>
-
-    <div class="buttons-constrains">
-      <div class="contact-us-button">
-        <div class="contact-us-glow">
-          <span class="contact-us-text" id="text-contact-us">Contact Us</span>
-        </div>
-      </div>
-      <div class="learn-more-button">
-        <div class="learn-more">
-          <span class="learn-more-text" id="text-learn-more">Learn More</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="hero-container">
-    <!-- Desktop navbar (shown on desktop only via CSS) -->
-    <div class="navbar desktop-nav">
-      <b class="navbar-item" id="nav-home">HOME</b>
-      <div class="navbar-item1" id="nav-portfolio" onclick="location.href='portfolio.html'">PORTFOLIO</div>
-      <div class="navbar-item2" id="nav-contact" onclick="location.href='contact.html'">CONTACT</div>
-      <div class="navbar-child"></div>
-      <div class="language-switcher" tabindex="0" role="button" aria-label="Switch language">
-        <span class="lang-label" id="lang-label">EN</span>
-      </div>
-    </div>
-
-    <!-- Mobile: hamburger + overlay menu (shown on <=1080px via CSS) -->
-    <button
-      class="hamburger"
-      id="hamburger"
-      aria-label="Open menu"
-      aria-controls="mobileMenu"
-      aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-
-    <nav class="mobile-menu" id="mobileMenu" aria-hidden="true">
-      <ul class="mobile-menu-list">
-        <li><a href="#home" id="m-nav-home">Home</a></li>
-        <li><a href="portfolio.html" id="m-nav-portfolio">Portfolio</a></li>
-        <li><a href="contact.html" id="m-nav-contact">Contact</a></li>
-        <li>
-          <button class="mobile-lang-switch" id="mobile-lang-btn" type="button" aria-label="Switch language">
-            <span id="mobile-lang-label">EN</span>
-          </button>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</section>
-
-
-      <!-- LANDING PAGE SECTION -->
-      <section class="snap-section landing-page-section">
-        <div class="background-stack">
-          <img src="assets/metal-texture.png" class="metal-texture" alt="" />
-          <img src="assets/crypto-texture.png" class="crypto-texture" alt="" />
-        </div>
-        <div class="landing-page-section-container">
-          <div class="landing-page-text-container">
-            <b class="landing-page-heading-container">
-              <span>
-                <p class="landing-pages-that" id="text-landing-head-1">LANDING PAGES THAT TURN VISITORS INTO ACTION-TAKERS</p>
-              </span>
-            </b>
-            <div class="landing-page-description" id="text-landing-desc">
-              Every landing page we build is crafted with a clear objective: to guide users toward a specific action—whether it’s a purchase, a sign-up, or a conversation. Our team combines clean visuals with strategic copy and UX best practices to help you meet your campaign goals efficiently and with impact.
-            </div>
-          </div>
-          <img class="website-icon" alt="" src="assets/landingpage-icon 1.png">
-        </div>
-      </section>
-
-      <!-- WEBSITE SECTION -->
-      <section class="snap-section website-section">
-        <div class="background-stack">
-          <img src="assets/metal-texture.png" class="metal-texture" alt="" />
-          <img src="assets/crypto-texture.png" class="crypto-texture" id="cryptoTexture" alt="" />
-        </div>
-        <div class="landing-page-section-container">
-          <img class="website-icon" alt="" src="assets/website-icon.png">
-          <div class="landing-page-text-container">
-            <b class="website-heading" id="text-website-head">WEBSITES BUILT FOR IMPACT AND LONGEVITY</b>
-            <div class="landing-page-description">
-              <span>
-                <p class="website-desciption" id="text-website-desc">
-                  A strong online presence starts with a well-built website. At Apex Solutions, we create responsive, scalable, and user-centered websites designed to represent your brand, engage your audience, and support your long-term growth. Whether you're building a company from scratch or evolving an established brand, we tailor each site to fit your goals, industry, and style.
-                </p>
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ABOUT US SECTION -->
-      <section class="snap-section about-us-section">
-        <div class="background-stack">
-          <img src="assets/metal-texture.png" class="metal-texture" alt="" />
-          <img src="assets/crypto-texture.png" class="crypto-texture" alt="" />
-        </div>
-        <div class="landing-page-section-container">
-          <div class="about-us-text-container">
-            <b class="about-us-heading" id="text-aboutus-head">A CREATIVE TECH STUDIO FOR THE NEXT GENERATION OF BRANDS</b>
-            <div class="about-us-description-container">	
-              <span>
-                <p class="about-us-description" id="text-aboutus-desc-1">
-                  Apex Solutions is a future-forward digital agency specializing in smart, scalable design and technology solutions for businesses ready to grow. We partner with entrepreneurs, creators, and companies to build sleek, high-performing websites, landing pages, and digital systems that convert and endure.
-                </p>
-                <p class="about-us-description" id="text-aboutus-desc-2">
-                  We don’t just design—we architect experiences. Every visual, every button, every scroll is designed with purpose, blending modern aesthetics with data-driven functionality. Whether you're launching a new product, growing your personal brand, or giving your business a digital facelift, Apex delivers solutions built to last.
-                </p>
-              </span>
-            </div>
-            <div class="about-us-button">
-              <div class="learn-more2">
-                <div class="feature-text" id="text-get-in-touch">Get In Touch</div>
-              </div>
-            </div>
-          </div>
-          <img class="aboutus-icon-1" alt="" src="assets/aboutus-icon 1.png">
-        </div>
-      </section>
-
-      <!-- WHAT WE OFFER SECTION -->
-      <section class="snap-section what-we-offer-section">
-  <div class="background-stack">
-    <img src="assets/metal-texture.png" class="metal-texture" alt="" />
-    <img src="assets/crypto-texture.png" class="crypto-texture" alt="" />
-  </div>
-  <img class="what-we-offer-section-child" alt="" src="assets/vector-group.png">
-  <div class="services-container">
-    <div class="web-design">
-      <div class="service-image-container">
-        <div class="service-image-background"></div>
-        <img class="noise-texture" alt="" src="assets/Noise & Texture.png">
-      </div>
-      <b class="service-title" id="text-title-web">Web Design</b>
-      <div class="service-description-container">
-        <div class="service-description" id="text-service-web">
-          Custom-built websites and landing pages designed for clarity, performance, and conversion. Whether you’re running ads, building a personal brand, or launching a product, we create scalable digital experiences tailored to your goals.
-        </div>
-      </div>
-    </div>
-    <div class="web-design">
-      <div class="service-image-container">
-        <div class="service-image-background"></div>
-        <img class="noise-texture" alt="" src="assets/Noise & Texture.png">
-      </div>
-      <b class="service-title" id="text-title-copy">Copywriting</b>
-      <div class="service-description-container">
-        <div class="service-description" id="text-service-copy">
-          Words that work. We craft messaging that aligns with your brand voice, captures attention, and drives action—headlines, web content, product copy, and more.
-        </div>
-      </div>
-    </div>
-    <div class="web-design">
-      <div class="service-image-container">
-        <div class="service-image-background"></div>
-        <img class="noise-texture" alt="" src="assets/Noise & Texture.png">
-      </div>
-      <b class="service-title" id="text-title-seo">SEO</b>
-      <div class="service-description-container">
-        <div class="service-description" id="text-service-seo">
-          Built-in visibility from the start. Our websites are structured and optimized to meet current SEO standards, helping your brand get discovered and rank better across search engines.
-        </div>
-      </div>
-    </div>
-    <div class="web-design">
-      <div class="service-image-container">
-        <div class="service-image-background"></div>
-        <img class="noise-texture" alt="" src="assets/Noise & Texture.png">
-      </div>
-      <b class="service-title" id="text-title-support">Ongoing Support & Strategy</b>
-      <div class="service-description-container">
-        <div class="service-description" id="text-service-support">
-          Beyond launch, we help you stay sharp. From regular updates to strategic enhancements, our monthly plans ensure your site stays fresh, fast, and aligned with your evolving goals.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- CTA SECTION (cleaned; no form yet) -->
-<section class="snap-section cta-section">
-  <div class="background-stack" aria-hidden="true">
-    <img src="assets/metal-texture.png" class="metal-texture" alt="">
-    <img src="assets/crypto-texture.png" class="crypto-texture" alt="">
-  </div>
-
-  <div class="cta-container">
-    <div class="text-container">
-      <div class="heading-container">
-        <b class="heading" id="text-cta-head">Ready to Build Something Powerful?</b>
-        <div class="subheading">
-          <p class="cta-desciption" id="text-cta-desc">
-            Tell us about your vision — we'll handle the rest. Fill out the form and we’ll reach out within 24 hours.
-          </p>
-        </div>
-      </div>
-
-      <div class="features-container" role="list">
-        <div class="feature-item" role="listitem">
-          <div class="feature-icon" aria-hidden="true">
-            <div class="form-icon">
-              <div class="form-icon-child"></div>
-              <img class="noise-texture4" alt="" src="assets/Noise & Texture.png">
-            </div>
-            <img class="feature-icon-child" alt="" src="assets/Star 1.svg">
-          </div>
-          <div class="feature-text" id="text-cta-feature-1">Trusted by startups & growing brands</div>
-        </div>
-
-        <div class="feature-item" role="listitem">
-          <div class="feature-icon" aria-hidden="true">
-            <div class="form-icon">
-              <div class="form-icon-child"></div>
-              <img class="noise-texture4" alt="" src="assets/Noise & Texture.png">
-            </div>
-            <img class="vector-icon" alt="" src="assets/Vector.svg">
-          </div>
-          <div class="feature-text" id="text-cta-feature-2">Fast turnaround</div>
-        </div>
-
-        <div class="feature-item" role="listitem">
-          <div class="feature-icon" aria-hidden="true">
-            <div class="form-icon">
-              <div class="form-icon-child"></div>
-              <img class="noise-texture4" alt="" src="assets/Noise & Texture.png">
-            </div>
-            <img class="check-vector-icon" alt="" src="assets/check-vector.svg">
-          </div>
-          <div class="feature-text" id="text-cta-feature-3">100% custom solutions</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Placeholder for the new, fully responsive form -->
-    <div id="cta-form-slot"><div class="cta-form" id="ctaFormMount">
-  <div class="cta-form-card">
-    <div class="card-bg" aria-hidden="true"></div>
-    <img class="card-noise" src="assets/Noise-1.png" alt="" />
-
-<form id="ctaForm" novalidate>
-  <div class="field">
-    <label class="label" for="cta-name"><span id="text-label-name">NAME</span></label>
-    <input class="input" type="text" id="cta-name" name="name" placeholder="Your full name" required />
-  </div>
-
-  <div class="field">
-    <label class="label" for="cta-email"><span id="text-label-email">EMAIL</span></label>
-    <input class="input" type="email" id="cta-email" name="email" placeholder="you@example.com" required />
-  </div>
-
-  <div class="field">
-    <label class="label" for="cta-phone"><span id="text-label-phone">PHONE NUMBER</span></label>
-    <input class="input" type="tel" id="cta-phone" name="phone" placeholder="+46 ..." />
-  </div>
-
-  <div class="field">
-    <label class="label" for="cta-company"><span id="text-label-company">COMPANY NAME</span></label>
-    <input class="input" type="text" id="cta-company" name="company" placeholder="Company or project name" />
-  </div>
-
-  <div class="field">
-    <label class="label" for="cta-message"><span id="text-label-message">MESSAGE</span></label>
-    <textarea class="textarea" id="cta-message" name="message" placeholder="Tell us about your project, timeline, and goals..." required></textarea>
-  </div>
-
-  <button class="submit" type="submit" id="text-submit">SUBMIT</button>
-  <div class="helper" id="cta-helper"></div>
-</form>
-
-  </div>
+<div class="nav-cta">
+  <a class="btn ghost" href="#work">Visa projekt</a>
+  <a class="btn primary" href="#contact">Samarbeta</a>
+  <button class="hamburger" id="menuBtn" aria-label="Öppna meny" aria-expanded="false">☰</button>
 </div>
 </div>
-  </div>
-</section>
 
+<div class="mobile" id="mobileMenu" aria-label="Mobilmeny">
+  <a href="#services">Tjänster</a>
+  <a href="#work">Utvalda projekt</a>
+  <a href="#contact">Kontakt</a>
+</div>
+</div>
+</header>
 
-<!-- SLIDE-UP FOOTER (fixed overlay) -->
-<footer class="site-footer" id="siteFooter" aria-hidden="true">
-  <div class="footer-container">
-    <div class="footer-content">
-      <div class="footer-section">
-        <div class="footer-heading1" id="text-footer-company-head">Company Information</div>
-        <div class="footer-text">
-          <span class="footer-text-txt-container">
-            <p class="landing-pages-that2" id="text-footer-company-1">Apex Communication AB</p>
-            <p class="landing-pages-that2" id="text-footer-company-2">Org.No 559391-4020 </p>
-            <p class="landing-pages-that2" id="text-footer-company-3">EST. 2022</p>
-          </span>
+<main id="top">
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="grid">
+      <div class="reveal">
+
+        <h1 class="h-title">
+          Webbplatser och <span class="glow">marknadsföring</span> som arbetar <span class="glow">tillsammans.</span>.
+        </h1>
+
+        <p class="lead">
+          Apex Solutions är en digital byrå som hjälper 
+          företag att marknadsföra sig genom skalbara webbplatser och datadriven digital marknadsföring.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn primary" href="#contact">
+            <span>Starta ett projekt</span>
+            <span aria-hidden="true">→</span>
+          </a>
+          <a class="btn" href="#services">Utforska tjänster</a>
+          <a class="btn ghost" href="#work">Se utvalda projekt</a>
+        </div>
+
+        <div style="height:14px"></div>
+
+        <div class="mini-row">
+          <span class="chip">Modern UI</span>
+          <span class="chip">Fokus på konvertering</span>
+          <span class="chip">Snabb & responsiv</span>
+          <span class="chip">Byggd för tillväxt</span>
         </div>
       </div>
 
-      <div class="footer-section1">
-        <div class="footer-heading1" id="text-footer-contact-head">Contact</div>
-        <div class="footer-text1" id="text-footer-contact-city">Växjö, Sweden</div>
-        <div class="footer-text2" id="text-footer-contact-email">contact@apexcommunication.se</div>
+      <div class="hero-visual reveal" aria-hidden="true">
+        <div class="orb cyan"></div>
+        <div class="orb gold"></div>
+        <div class="orb white"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-title reveal">
+      <div>
+        <h2>Vad vi gör</h2>
+        <p class="sub">Vi kombinerar strategi, design och digital marknadsföring för att skapa mätbar tillväxt. </p>
+      </div>
+      <a class="btn" href="#contact">Fråga om paket →</a>
+    </div>
+
+    <div class="grid cards-3">
+      <div class="tile reveal">
+        <h3>Webbplatser som konverterar</h3>
+        <p>Moderna, responsiva webbplatser med tydlig struktur och stark visuell identitet — byggda för resultat. </p>
       </div>
 
-      <div class="footer-section">
-        <div class="footer-heading1" id="text-footer-link-head">Link</div>
-        <div class="footer-text3" id="text-footer-link">Apex Communication</div>
+      <div class="tile reveal">
+        <h3>Resultatdriven Annonseringystem</h3>
+        <p>Kampanjplanering, innehållsriktning och uppföljning som håller ditt varumärke konsekvent och växande.</p>
       </div>
+
+      <div class="tile reveal">
+        <h3>Organisk Tillväxt med Struktur</h3>
+        <p>Sökoptimering och analys som bygger stabil synlighet och långsiktig affärsnytta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="wrap">
+    <div class="section-title reveal">
+      <div>
+        <h2>Referenskoncept</h2>
+        <p class="sub">Exempel på hur vi formar digitala lösningar med fokus på affärsnytta.</p>
+      </div>
+    </div>
+
+    <div class="grid work-grid">
+
+            <article class="work reveal">
+
+                  <div class="work-thumb">
+    <img src="assets/googleads.png" alt="Projekt – Företagsnamn">
+  </div>
+
+        <a href="https://apexsolutions.se/googleads" class="service-link">
+          <h3>Online Ads</h3>
+        </a>
+        <div class="meta">
+          <span>Kampanj</span><span>Annonser</span><span>Analys</span>
+        </div>
+        <p>Erbjudandestruktur • Kreativ riktning • Rapportering</p>
+      </article>
+      <article class="work reveal">
+
+          <div class="work-thumb">
+    <img src="assets/northernroof.png" alt="Projekt – Företagsnamn">
+  </div>
+
+        <a href="https://apexsolutions.se/northernroof" class="service-link">
+          <h3>Northern Roof</h3>
+        </a>
+        <div class="meta">
+          <span>Webbdesign</span><span>Landningssida</span><span>Konvertering</span>
+        </div>
+        <p>Hero-riktning • Layoutsystem • CTA-struktur</p>
+      </article>
+
+      <article class="work reveal">
+
+          <div class="work-thumb">
+    <img src="assets/SaigonTableHero.png" alt="Projekt – Företagsnamn">
+  </div>
+
+        <a href="https://apexsolutions.se/saigontable" class="service-link">
+          <h3>Saigon Table</h3>
+        </a>
+        <div class="meta">
+          <span>Varumärke</span><span>Innehåll</span><span>Tillväxt</span>
+        </div>
+        <p>Flödesstrategi • Reels-koncept • Tonalitet</p>
+      </article>
+
+      <article class="work reveal">
+
+                  <div class="work-thumb">
+    <img src="assets/pipelineSolutionsHero.png" alt="Projekt – Företagsnamn">
+  </div>
+        <a href="https://apexsolutions.se/pipelinesolutions" class="service-link">
+          <h3>Pipeline Solutions</h3>
+        </a>
+        <div class="meta">
+          <span>Webbuppdatering</span><span>UX</span><span>Hastighet</span>
+        </div>
+        <p>Sidstruktur • Visuell polish • Mobil-först</p>
+      </article>
+
+
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="wrap">
+    <div class="section-title reveal">
+      <div>
+        <h2>Vilka Vi Jobbar Med</h2>
+        <p class="sub">Vi arbetar med att ta in kunder till tjänsteföretag genom webb, annonsering och sökoptimering. 
+          Vårt fokus ligger på förfrågningar, samtal och bokningar – inte e-handel.</p>
+      </div>
+    </div>
+
+    <div class="grid process">
+      <div class="step reveal">
+        <b>01 — Lokala Tjänsteföretag</b>
+        <small>Efterfrågan • Synlighet • Kundinflöde</small>
+        <p>Företag inom exempelvis flytt, sanering, VVS och fastighetsnära 
+          tjänster där digital synlighet ska leda till nya kunder.</p>
+      </div>
+
+      <div class="step reveal">
+        <b>02 — B2B - Tjänster Med Tydlig Affär</b>
+        <small>Relevans • Beslut • Resultat</small>
+        <p>Verksamheter som säljer tjänster, inte produkter, 
+          och där varje förfrågan har ett tydligt affärsvärde.</p>
+      </div>
+
+      <div class="step reveal">
+        <b>03 — Operativa Team Nära Kunden</b>
+        <small>Telefon • Formulär • Uppföljning</small>
+        <p>Team som bryr sig om hur saker fungerar — inte bara hur de ser ut.</p>
+      </div>
+
+      <div class="step reveal">
+        <b>04 — Företag Byggda För Lokal Tillväxt</b>
+        <small>Skalbarhet • Kontroll • Lönsamhet</small>
+        <p>Tjänstebolag som vill öka efterfrågan lokalt utan att tappa kontroll över kvalitet eller kostnad per kund.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-split reveal">
+
+      <div class="contact-panel contact-left">
+        <h3>Bli Uppringd</h3>
+        <p>Lämna ditt nummer så ringer vi upp och går igenom ditt behov.
+ Samtalet är kort och helt förutsättningslöst.</p>
+
+        <form class="contact-form">
+          <div class="field-row">
+            <label class="field">
+              <span>Namn</span>
+              <input type="text" placeholder="Ditt namn">
+            </label>
+
+            <label class="field">
+              <span>E-post</span>
+              <input type="email" placeholder="du@epost.se">
+            </label>
+          </div>
+
+          <div class="field-row">
+            <label class="field">
+              <span>Företag</span>
+              <input type="text" placeholder="Företagsnamn">
+            </label>
+
+            <label class="field">
+              <span>Telefon</span>
+              <input type="tel" placeholder="+46 70 123 45 67">
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Meddelande</span>
+            <textarea rows="4" placeholder="Berätta vad du behöver…"></textarea>
+          </label>
+
+          <div class="form-actions">
+            <button class="btn primary" type="submit">Skicka meddelande →</button>
+          </div>
+        </form>
+      </div>
+
+      <aside class="contact-panel contact-right">
+        <div class="contact-block">
+          <b>Kontakt</b>
+          <a href="mailto:hello@apexsolutions.com">contact@apexcommunication.se</a><br>
+          <a href="tel:+10000000000">+46 70 123 45 67</a>
+        </div>
+
+        <div class="contact-block">
+          <b>Tillgänglighet</b>
+          <p>Mån–Fre • 09:00–13:00 (GMT+7)</p>
+        </div>
+
+        <div class="contact-block">
+          <b>Socialt</b>
+          <a href="#">Instagram</a>
+          <a href="#">LinkedIn</a>
+        </div>
+
+        <div class="contact-block">
+          <b>Vill du boka ett möte?</b>
+          <a class="btn" href="#">Boka samtal</a>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>© <span id="year"></span> Apex Solutions. Alla rättigheter förbehållna.</div>
+    <div>
+      <a href="#top">Till toppen</a> •
+      <a href="#services">Tjänster</a> •
+      <a href="#contact">Kontakt</a> •
+      <a>Org Number: 559391-4020</a>
     </div>
   </div>
 </footer>
 
 
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
+    // Mobile menu
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('mobileMenu');
+    btn?.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.textContent = open ? '✕' : '☰';
+    });
+    menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.textContent = '☰';
+    }));
 
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('.background-stack').forEach(stack => {
-    const crypto = stack.querySelector('.crypto-texture');
-    if (!crypto) return;
-
-    const maskSize = 200;
-    let rafId = null;
-
-    stack.addEventListener('mousemove', function(e) {
-      if (rafId) cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(() => {
-        const rect = stack.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        crypto.style.maskPosition = `${x - maskSize/2}px ${y - maskSize/2}px`;
-        crypto.style.webkitMaskPosition = `${x - maskSize/2}px ${y - maskSize/2}px`;
-        crypto.style.opacity = 1;
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href');
+        if (!id || id === '#') return;
+        const el = document.querySelector(id);
+        if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({behavior:'smooth', block:'start'});
       });
     });
 
-    stack.addEventListener('mouseleave', function() {
-      crypto.style.maskPosition = `-9999px -9999px`;
-      crypto.style.webkitMaskPosition = `-9999px -9999px`;
-      crypto.style.opacity = 0;
-    });
-  });
-});
+    // Scroll reveal
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        if (en.isIntersecting) en.target.classList.add('show');
+      });
+    }, {threshold: 0.12});
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-</script>
+    // Count-up (hero metrics)
+    const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+    function animateCount(el){
+      const targetRaw = el.getAttribute('data-count');
+      if (!targetRaw) return;
+      const target = Number(targetRaw);
+      const prefix = el.getAttribute('data-prefix') || '';
+      const suffix = el.getAttribute('data-suffix') || '';
+      const decimals = (targetRaw.includes('.') ? targetRaw.split('.')[1].length : 0);
 
-<script>
-/* ---- Translations ---- */
-const translations = {
-  EN: {
-    'text-contact-us': "Contact Us",
-    'text-learn-more': "Learn More",
-    'nav-home': "HOME",
-    'nav-portfolio': "PORTFOLIO",
-    'nav-contact': "CONTACT",
-    'lang-label': "EN",
-    'hero-heading': "POWERFUL WEBSITES. REAL RESULTS.",
-    'text-landing-head-1': "LANDING PAGES THAT TURN VISITORS INTO ACTION-TAKERS ",
-    'text-landing-desc': "Every landing page we build is crafted with a clear objective: to guide users toward a specific action—whether it’s a purchase, a sign-up, or a conversation. Our team combines clean visuals with strategic copy and UX best practices to help you meet your campaign goals efficiently and with impact.",
-    'text-website-head': "WEBSITES BUILT FOR IMPACT AND LONGEVITY",
-    'text-website-desc': "A strong online presence starts with a well-built website. At Apex Solutions, we create responsive, scalable, and user-centered websites designed to represent your brand, engage your audience, and support your long-term growth. Whether you're building a company from scratch or evolving an established brand, we tailor each site to fit your goals, industry, and style.",
-    'text-aboutus-head': "A CREATIVE TECH STUDIO FOR THE NEXT GENERATION OF BRANDS",
-    'text-aboutus-desc-1': "Apex Solutions is a future-forward digital agency specializing in smart, scalable design and technology solutions for businesses ready to grow. We partner with entrepreneurs, creators, and companies to build sleek, high-performing websites, landing pages, and digital systems that convert and endure.",
-    'text-aboutus-desc-2': "We don’t just design—we architect experiences. Every visual, every button, every scroll is designed with purpose, blending modern aesthetics with data-driven functionality. Whether you're launching a new product, growing your personal brand, or giving your business a digital facelift, Apex delivers solutions built to last.",
-    'text-get-in-touch': "Get In Touch",
-    'text-service-web': "Custom-built websites and landing pages designed for clarity, performance, and conversion. Whether you’re running ads, building a personal brand, or launching a product, we create scalable digital experiences tailored to your goals.",
-    'text-title-web': "Web Design",
-    'text-service-copy': "Words that work. We craft messaging that aligns with your brand voice, captures attention, and drives action—headlines, web content, product copy, and more.",
-    'text-title-copy': "Copywriting",
-    'text-service-seo': "Built-in visibility from the start. Our websites are structured and optimized to meet current SEO standards, helping your brand get discovered and rank better across search engines.",
-    'text-service-support': "Beyond launch, we help you stay sharp. From regular updates to strategic enhancements, our monthly plans ensure your site stays fresh, fast, and aligned with your evolving goals.",
-    'text-title-support': "Ongoing Support & Strategy",
-    'text-footer-company-head': "Company Information",
-    'text-footer-company-1': "Apex Communication AB",
-    'text-footer-company-2': "Org.No 559391-4020 ",
-    'text-footer-company-3': "EST. 2022",
-    'text-footer-contact-head': "Contact",
-    'text-footer-contact-city': "Växjö, Sweden",
-    'text-footer-contact-email': "contact@apexcommunication.se",
-    'text-footer-link-head': "Link",
-    'text-footer-link': "Apex Communication",
-    'text-cta-head': "Ready to Build Something Powerful?",
-    'text-cta-desc': "Tell us about your vision — we'll handle the rest. Fill out the form and we’ll reach out within 24 hours.",
-    'text-cta-feature-1': "Trusted by startups & growing brands",
-    'text-cta-feature-2': "Fast turnaround",
-    'text-cta-feature-3': "100% custom solutions",
-    'text-label-name': "NAME",
-    'text-label-email': "EMAIL",
-    'text-label-phone': "PHONE NUMBER",
-    'text-label-company': "COMPANY NAME",
-    'text-label-message': "MESSAGE",
-    'text-submit': "SUBMIT",
-    /* mobile ids */
-    'mobile-lang-label': 'EN',
-    'm-nav-home': 'Home',
-    'm-nav-portfolio': 'Portfolio',
-    'm-nav-contact': 'Contact',
-    placeholders: {
-      name:    "Your full name",
-      email:   "you@example.com",
-      phone:   "+46 ...",
-      company: "Company or project name",
-      message: "Tell us about your project, timeline, and goals..."
-    }
-  },
-  SV: {
-    'text-contact-us': "Kontakta oss",
-    'text-learn-more': "Läs mer",
-    'nav-home': "HEM",
-    'nav-portfolio': "PORTFÖLJ",
-    'nav-contact': "KONTAKT",
-    'lang-label': "SV",
-    'hero-heading': "SNYGGA HEMSIDOR MED FOKUS PÅ KONVERTERING",
-    'text-landing-head-1': "LANDNINGSSIDOR SOM FÖRVANDLAR BESÖKARE TILL HANDLINGSTAGARE",
-    'text-landing-desc': "Varje landningssida vi bygger har ett tydligt syfte: att leda användaren mot en specifik handling – oavsett om det handlar om ett köp, en registrering eller att starta en konversation. Vårt team kombinerar stilren design med strategisk text och UX-bästa praxis för att du ska nå dina kampanjmål effektivt och med genomslag.",
-    'text-website-head': "HEMSIDOR BYGGDA FÖR EFFEKT OCH LÅNGSIKTIGHET",
-    'text-website-desc': "En stark närvaro online börjar med en genomtänkt hemsida. På Apex Solutions skapar vi responsiva, skalbara och användarvänliga webbplatser som representerar ditt varumärke, engagerar din målgrupp och stöttar din långsiktiga tillväxt. Oavsett om du bygger upp ett nytt företag från grunden eller utvecklar ett etablerat varumärke, anpassar vi varje sida efter dina mål, din bransch och din stil.",
-    'text-aboutus-head': "EN KREATIV TECHSTUDIO FÖR NÄSTA GENERATIONS VARUMÄRKEN",
-    'text-aboutus-desc-1': "Apex Solutions är en framtidsinriktad digital byrå som specialiserar sig på smarta, skalbara design- och tekniklösningar för företag som vill växa. Vi arbetar med entreprenörer, kreatörer och bolag för att skapa snygga, högpresterande hemsidor, landningssidor och digitala system som både konverterar och håller över tid.",
-    'text-aboutus-desc-2': "Vi nöjer oss inte med att bara designa – vi bygger upp hela upplevelser. Varje visuell detalj, varje knapp och varje scroll är noggrant utformad med syfte – en kombination av modern estetik och datadriven funktionalitet. Oavsett om du lanserar en ny produkt, bygger ditt personliga varumärke eller ger ditt företag ett digitalt lyft, levererar Apex lösningar som håller i längden.",
-    'text-get-in-touch': "Kontakta oss",
-    'text-service-web': "Skräddarsydda hemsidor och landningssidor för tydlighet, prestanda och konvertering. Oavsett om du annonserar, bygger varumärke eller lanserar en produkt skapar vi digitala upplevelser anpassade efter dina mål.",
-    'text-title-web': "Webbdesign",
-    'text-service-copy': "Ord som fungerar. Vi skriver texter som stämmer överens med ditt varumärkes röst, fångar uppmärksamhet och leder till handling – rubriker, webbtexter, produktbeskrivningar och mer.",
-    'text-title-copy': "Copywriting",
-    'text-service-seo': "Synlighet från start. Våra hemsidor är strukturerade och optimerade för att möta dagens SEO-standarder, så att ditt varumärke lättare upptäcks och rankar bättre i sökmotorer.",
-    'text-service-support': "Efter lansering hjälper vi dig att ligga steget före. Med regelbundna uppdateringar och strategiska förbättringar ser våra månadsplaner till att din sida är aktuell, snabb och i linje med dina föränderliga mål.",
-    'text-title-support': "Löpande Support & Strategi",
-    'text-footer-company-head': "Företagsinformation",
-    'text-footer-company-1': "Apex Communication AB",
-    'text-footer-company-2': "Org.Nr 559391-4020 ",
-    'text-footer-company-3': "GRUNDAT 2022",
-    'text-footer-contact-head': "Kontakt",
-    'text-footer-contact-city': "Växjö, Sverige",
-    'text-footer-contact-email': "contact@apexcommunication.se",
-    'text-footer-link-head': "Länk",
-    'text-footer-link': "Apex Communication",
-    'text-cta-head': "Redo att skapa något kraftfullt?",
-    'text-cta-desc': "Berätta om din vision – vi löser resten. Fyll i formuläret så kontaktar vi dig inom 24 timmar.",
-    'text-cta-feature-1': "Betrodd av startups & växande varumärken",
-    'text-cta-feature-2': "Snabba leveranser",
-    'text-cta-feature-3': "100% skräddarsydda lösningar",
-    'text-label-name': "NAMN",
-    'text-label-email': "E-POST",
-    'text-label-phone': "TELEFONNUMMER",
-    'text-label-company': "FÖRETAGSNAMN",
-    'text-label-message': "MEDDELANDE",
-    'text-submit': "SKICKA",
-    /* mobile ids */
-    'mobile-lang-label': 'SV',
-    'm-nav-home': 'Hem',
-    'm-nav-portfolio': 'Portfölj',
-    'm-nav-contact': 'Kontakt',
-    placeholders: {
-      name:    "Ditt fullständiga namn",
-      email:   "du@example.com",
-      phone:   "+46 ...",
-      company: "Företags- eller projektnamn",
-      message: "Berätta om projekt, tidslinje och mål..."
-    }
-  }
-};
+      const dur = 900;
+      const start = performance.now();
 
-/* Default to saved language (if any), else EN */
-let currentLang = (localStorage.getItem('selectedLanguage') === 'SV') ? 'SV' : 'EN';
-
-function applyHtmlLangAttr(lang) {
-  try { document.documentElement.setAttribute('lang', lang.toLowerCase()); } catch {}
-}
-
-/* Helper: try several selectors, set a property on the first match */
-function setIfExists(selectors, prop, value) {
-  for (const sel of selectors) {
-    const el = document.querySelector(sel);
-    if (el) { el[prop] = value; return true; }
-  }
-  return false;
-}
-
-function updateLanguage(lang) {
-  const map = translations[lang];
-  if (!map) return;
-
-  // 1) Update visible text by ID (skip the placeholders object)
-  for (const id in map) {
-    if (id === 'placeholders') continue;
-    const el = document.getElementById(id);
-    if (el) el.textContent = map[id];
-  }
-
-  // 2) Update placeholders for inputs/textarea
-  const ph = map.placeholders || {};
-
-  // Name
-  setIfExists(['#name',  '#cta-name',  'input[name="name"]'], 'placeholder', ph.name || '');
-  // Email
-  setIfExists(['#email', '#cta-email', 'input[name="email"]'], 'placeholder', ph.email || '');
-  // Phone
-  setIfExists(['#phone', '#cta-phone', 'input[name="phone"]', 'input[type="tel"]'], 'placeholder', ph.phone || '');
-  // Company
-  setIfExists(['#company', '#cta-company', 'input[name="company"]'], 'placeholder', ph.company || '');
-  // Message (textarea)
-  setIfExists(['#message', '#cta-message', 'textarea[name="message"]', 'textarea#message'], 'placeholder', ph.message || '');
-
-  // 3) Persist + html lang + keep badges synced
-  currentLang = lang;
-  localStorage.setItem('selectedLanguage', lang);
-  applyHtmlLangAttr(lang);
-
-  const desktopLabel = document.getElementById('lang-label');
-  const mobileLabel  = document.getElementById('mobile-lang-label');
-  if (desktopLabel) desktopLabel.textContent = map['lang-label'];
-  if (mobileLabel)  mobileLabel.textContent  = map['mobile-lang-label'];
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  const desktopLabel = document.getElementById('lang-label');
-  const desktopBtn   = desktopLabel ? desktopLabel.parentElement : null;
-  const mobileBtn    = document.getElementById('mobile-lang-btn');
-
-  // Apply saved language on load
-  updateLanguage(currentLang);
-
-  function toggleLanguage() {
-    const next = currentLang === 'EN' ? 'SV' : 'EN';
-    updateLanguage(next);
-  }
-
-  if (desktopBtn) desktopBtn.addEventListener('click', toggleLanguage);
-  if (mobileBtn)  mobileBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    toggleLanguage();
-  });
-});
-</script>
-
-
-
-
-<script>
-(function () {
-  const scroller = document.querySelector('.scroll-container');
-  const cta = document.querySelector('.cta-section');
-  const footer = document.getElementById('siteFooter');
-  if (!scroller || !cta || !footer) return;
-
-  // Use same breakpoint as CSS
-  const mqDesktop = window.matchMedia('(min-width: 1025px)');
-
-  let REVEAL_RANGE = 320; // will be overwritten by footer height
-  let ticking = false;
-  let enabled = false;
-
-  function recalc() {
-    // reveal distance = footer height (feels natural)
-    REVEAL_RANGE = Math.max(footer.offsetHeight || 0, 220);
-  }
-
-  function update() {
-    if (!enabled) return;
-
-    const scTop = scroller.scrollTop;
-    const scH   = scroller.clientHeight;
-
-    // Distance to the bottom of the CTA within the scroller
-    const ctaTop = cta.offsetTop;
-    const ctaH   = cta.offsetHeight;
-    const ctaBottomScrollTop = ctaTop + ctaH - scH;
-
-    // Start revealing before we hit the bottom by REVEAL_RANGE px
-    const revealStart = ctaBottomScrollTop - REVEAL_RANGE;
-
-    // progress 0..1
-    let t = (scTop - revealStart) / REVEAL_RANGE;
-    t = Math.max(0, Math.min(1, t));
-
-    // slide: 100% (hidden) -> 0% (shown)
-    const translateY = (1 - t) * 100;
-    footer.style.transform = `translateY(${translateY}%)`;
-
-    if (t > 0) {
-      footer.classList.add('footer-visible');
-      footer.setAttribute('aria-hidden', 'false');
-    } else {
-      footer.classList.remove('footer-visible');
-      footer.setAttribute('aria-hidden', 'true');
-    }
-
-    ticking = false;
-  }
-
-  function onScroll() {
-    if (!enabled) return;
-    if (!ticking) {
-      requestAnimationFrame(update);
-      ticking = true;
-    }
-  }
-
-  function enable() {
-    enabled = true;
-    recalc();
-    scroller.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', recalc);
-    onScroll();
-  }
-
-  function disable() {
-    enabled = false;
-    scroller.removeEventListener('scroll', onScroll);
-    window.removeEventListener('resize', recalc);
-    footer.style.transform = '';                  // reset
-    footer.classList.remove('footer-visible');
-    footer.setAttribute('aria-hidden', 'false');  // footer is normal on mobile
-  }
-
-  function handleMQ(e) { e.matches ? enable() : disable(); }
-
-  // MQL listener (covers Safari)
-  if (mqDesktop.addEventListener) mqDesktop.addEventListener('change', handleMQ);
-  else mqDesktop.addListener(handleMQ);
-
-  // init
-  handleMQ(mqDesktop);
-})();
-</script>
-
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const mqlDesktop = window.matchMedia('(min-width:1025px) and (pointer:fine) and (hover:hover)');
-  const scroller = document.querySelector('.scroll-container');
-  if (!scroller) return;
-
-  // collect sections once (children of .scroll-container)
-  const sections = Array.from(scroller.querySelectorAll('.snap-section'));
-  if (!sections.length) return;
-
-  let animating = false;
-  let settleTimer = null;
-
-  // helper: get current section index by nearest offsetTop
-  const getCurrentIndex = () => {
-    const y = scroller.scrollTop;
-    let idx = 0, best = Infinity;
-    for (let i = 0; i < sections.length; i++) {
-      const d = Math.abs(sections[i].offsetTop - y);
-      if (d < best) { best = d; idx = i; }
-    }
-    return idx;
-  };
-
-  // helper: smoothly go to section index, with snap temporarily disabled
-  const goToIndex = (targetIdx) => {
-    if (targetIdx < 0 || targetIdx >= sections.length) return;
-
-    animating = true;
-
-    // temporarily disable CSS snap so browser doesn't fight us
-    const prevSnap = scroller.style.scrollSnapType;
-    scroller.style.scrollSnapType = 'none';
-
-    const targetTop = sections[targetIdx].offsetTop;
-    scroller.scrollTo({ top: targetTop, behavior: 'smooth' });
-
-    // consider scroll "settled" when there's no scroll for 120ms
-    const onScroll = () => {
-      clearTimeout(settleTimer);
-      settleTimer = setTimeout(() => {
-        scroller.removeEventListener('scroll', onScroll, { passive: true });
-        // restore snap
-        scroller.style.scrollSnapType = prevSnap || 'y mandatory';
-        animating = false;
-      }, 120);
-    };
-    scroller.addEventListener('scroll', onScroll, { passive: true });
-
-    // safety timeout in case scroll event doesn't fire as expected
-    setTimeout(() => {
-      if (animating) {
-        scroller.removeEventListener('scroll', onScroll, { passive: true });
-        scroller.style.scrollSnapType = prevSnap || 'y mandatory';
-        animating = false;
+      function tick(now){
+        const t = Math.min(1, (now - start) / dur);
+        const val = target * easeOut(t);
+        const formatted = val.toFixed(decimals);
+        el.textContent = prefix + formatted + suffix;
+        if (t < 1) requestAnimationFrame(tick);
       }
-    }, 1200);
-  };
-
-  // Wheel booster (desktop only)
-  scroller.addEventListener('wheel', (e) => {
-    if (!mqlDesktop.matches) return;            // desktop only
-    if (e.ctrlKey) return;                      // ignore pinch-zoom
-    if (animating) { e.preventDefault(); return; }
-
-    // ignore tiny deltas (likely touchpad flicks) – let native scroll handle those
-    if (Math.abs(e.deltaY) < 30) return;
-
-    const currentIdx = getCurrentIndex();
-    const goingDown = e.deltaY > 0;
-
-    // decide target index
-    let targetIdx = currentIdx + (goingDown ? 1 : -1);
-    if (targetIdx < 0 || targetIdx >= sections.length) return;
-
-    // only prevent default if we will navigate a section
-    e.preventDefault();
-    goToIndex(targetIdx);
-  }, { passive: false });
-
-  // Optional hardening: avoid rubber-band/overscroll on the scroller
-  scroller.style.overscrollBehaviorY = 'contain';
-});
-</script>
-
-
-
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-const burger = document.getElementById('hamburger');
-const menu   = document.getElementById('mobileMenu');
-
-if (!burger || !menu) return;
-
-const openMenu = () => {
-  menu.classList.add('active');
-  burger.classList.add('active');
-  burger.setAttribute('aria-expanded', 'true');
-  menu.setAttribute('aria-hidden', 'false');
-  // lock scroll behind the sheet
-  document.body.style.overflow = 'hidden';
-};
-
-const closeMenu = () => {
-  menu.classList.remove('active');
-  burger.classList.remove('active');
-  burger.setAttribute('aria-expanded', 'false');
-  menu.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
-};
-
-// Toggle on burger click
-burger.addEventListener('click', (e) => {
-  e.stopPropagation();
-  menu.classList.contains('active') ? closeMenu() : openMenu();
-});
-
-// Close when clicking a link inside the menu
-menu.addEventListener('click', (e) => {
-  if (e.target.matches('a, button')) closeMenu();
-});
-
-// Click outside to close
-document.addEventListener('click', (e) => {
-  if (menu.classList.contains('active') && !menu.contains(e.target) && e.target !== burger) {
-    closeMenu();
-  }
-});
-
-// Esc to close
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && menu.classList.contains('active')) closeMenu();
-});
-
-// If resized to desktop, ensure menu is closed + ARIA reset
-const mq = window.matchMedia('(min-width: 1081px)');
-const handleChange = () => { if (mq.matches) closeMenu(); };
-if (mq.addEventListener) mq.addEventListener('change', handleChange);
-else mq.addListener(handleChange);
-});
-</script>
-
-
-<script>
-(function(){
-const overlay  = document.getElementById('rc-overlay');
-if (!overlay) return;
-
-const scissors = document.getElementById('rc-scissors');
-const canvas   = document.getElementById('rc-confetti');
-const ctx      = canvas.getContext('2d');
-
-// Lock page scroll while overlay is shown
-const prevOverflow = document.body.style.overflow;
-document.body.style.overflow = 'hidden';
-
-// Size canvas to screen
-const resize = () => {
-  const dpr = Math.max(1, window.devicePixelRatio || 1);
-  canvas.width  = Math.floor(canvas.clientWidth  * dpr);
-  canvas.height = Math.floor(canvas.clientHeight * dpr);
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-};
-resize(); window.addEventListener('resize', resize);
-
-// Simple confetti burst
-function confettiBurst() {
-  const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReduce) return;
-
-  const pieces = [];
-  const N = 140;
-  const colors = ['#3fd3fc','#00baff','#59e6fa','#ffffff','#b7d9fb'];
-  const cx = canvas.clientWidth / 2, cy = canvas.clientHeight / 2;
-
-  for (let i=0;i<N;i++){
-    pieces.push({
-      x: cx, y: cy,
-      vx: (Math.random()*2-1) * 6,
-      vy: (Math.random()*-1 - 0.5) * 10,
-      g: 0.32 + Math.random()*0.1,
-      size: 3 + Math.random()*5,
-      rot: Math.random()*Math.PI,
-      vr: (Math.random()*2-1) * 0.2,
-      color: colors[(Math.random()*colors.length)|0],
-      shape: Math.random()<0.5?'rect':'circle',
-      life: 120 + (Math.random()*40|0)
-    });
-  }
-
-  let anim;
-  function tick(){
-    ctx.clearRect(0,0,canvas.clientWidth,canvas.clientHeight);
-    pieces.forEach(p=>{
-      p.vy += p.g;
-      p.x += p.vx; p.y += p.vy;
-      p.rot += p.vr;
-      p.life--;
-      ctx.save();
-      ctx.translate(p.x, p.y);
-      ctx.rotate(p.rot);
-      ctx.fillStyle = p.color;
-      if (p.shape==='rect') ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size*0.7);
-      else { ctx.beginPath(); ctx.arc(0,0,p.size/2,0,Math.PI*2); ctx.fill(); }
-      ctx.restore();
-    });
-    // keep only alive & on-screen
-    for (let i=pieces.length-1;i>=0;i--){
-      const p=pieces[i];
-      if (p.life<=0 || p.y>canvas.clientHeight+40) pieces.splice(i,1);
+      requestAnimationFrame(tick);
     }
-    if (pieces.length) anim = requestAnimationFrame(tick);
-  }
-  anim = requestAnimationFrame(tick);
-  // auto stop safety
-  setTimeout(()=>cancelAnimationFrame(anim), 2500);
-}
 
-function cutRibbon(){
-  overlay.classList.add('rc-cut');
-  confettiBurst();
-  // Fade out overlay after animation
-  setTimeout(()=>{
-    overlay.classList.add('fade-out');
-    setTimeout(()=>{
-      overlay.setAttribute('hidden','');
-      document.body.style.overflow = prevOverflow; // restore scroll
-    }, 520);
-  }, 1100);
-}
-
-scissors?.addEventListener('click', cutRibbon);
-
-// Accessibility: Enter/Space activates
-scissors?.addEventListener('keydown', (e)=>{
-  if (e.key === 'Enter' || e.key === ' ') {
-    e.preventDefault(); cutRibbon();
-  }
-});
-
-// If user reloads and wants to skip, allow Esc to close
-document.addEventListener('keydown', (e)=>{
-  if (e.key === 'Escape' && !overlay.hasAttribute('hidden')) {
-    overlay.classList.add('fade-out');
-    setTimeout(()=>{
-      overlay.setAttribute('hidden','');
-      document.body.style.overflow = prevOverflow;
-    }, 300);
-  }
-});
-})();
-</script>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const scroller   = document.querySelector('.scroll-container');
-  const aboutSect  = document.querySelector('.about-us-section');
-  const btnContact = document.querySelector('.contact-us-button, .contact-us-glow');
-  const btnLearn   = document.querySelector('.learn-more-button, .learn-more');
-  const btnGetIn   = document.querySelector('.about-us-button .learn-more2');
-
-  // Contact Us → open contact page
-  if (btnContact) {
-    btnContact.addEventListener('click', () => {
-      window.location.href = 'contact.html';
-    });
-  }
-
-  // Learn More → smooth scroll to About Us
-  if (btnLearn && scroller && aboutSect) {
-    btnLearn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const top = aboutSect.offsetTop;
-      scroller.scrollTo({ top, behavior: 'smooth' });
-    });
-  }
-
-  // Get In Touch (About Us) → open contact page
-  if (btnGetIn) {
-    btnGetIn.addEventListener('click', () => {
-      window.location.href = 'contact.html';
-    });
-  }
-});
-</script>
-
-
-        <script>
-(function () {
-  // Use your verified FormSubmit email OR tokenized URL value here
-  const FORMSUBMIT_RECIPIENT = 'oscar@apexcommunication.se';
-  const endpoint = 'https://formsubmit.co/ajax/' + encodeURIComponent(FORMSUBMIT_RECIPIENT);
-
-  function t(enText, svText) {
-    return (window.currentLang === 'SV') ? svText : enText;
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const form      = document.getElementById('ctaForm');
-    if (!form || form.dataset.bound === '1') return;
-    form.dataset.bound = '1'; // avoid double-binding if scripts run twice
-
-    const nameEl    = document.getElementById('cta-name');
-    const emailEl   = document.getElementById('cta-email');
-    const msgEl     = document.getElementById('cta-message');
-    const helper    = document.getElementById('cta-helper');
-    const submitBtn = form.querySelector('button[type="submit"]');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if (helper) helper.textContent = '';
-
-      const nameVal  = (nameEl?.value  || '').trim();
-      const emailVal = (emailEl?.value || '').trim();
-      const msgVal   = (msgEl?.value   || '').trim();
-      const emailOk  = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal);
-
-      if (!nameVal || !emailOk || !msgVal) {
-        if (helper) helper.textContent = t(
-          'Please complete Name, a valid Email, and Message.',
-          'Fyll i Namn, giltig E-post och Meddelande.'
-        );
-        return;
-      }
-
-      // Button UX
-      const original = submitBtn?.textContent;
-      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = t('Sending…', 'Skickar…'); }
-
-      try {
-        const fd = new FormData(form);
-        fd.append('_subject',  'New message from Apex Solutions');
-        fd.append('_template', 'table');
-        fd.append('_captcha',  'false');
-
-        const res = await fetch(endpoint, {
-          method: 'POST',
-          body: fd,
-          headers: { 'Accept': 'application/json' }
-        });
-
-        if (!res.ok) {
-          const txt = await res.text().catch(()=>'');
-          throw new Error(`HTTP ${res.status} ${txt}`);
-        }
-
-        if (helper) helper.textContent = t(
-          'Thanks! We’ll get back to you shortly.',
-          'Tack! Vi hör av oss snart.'
-        );
-        form.reset();
-      } catch (err) {
-        console.error(err);
-        if (helper) helper.textContent = t(
-          'Something went wrong. Please try again.',
-          'Något gick fel. Försök igen.'
-        );
-      } finally {
-        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = original || 'SUBMIT'; }
-      }
-    });
-  });
-})();
-</script>
-
-
+    const metricObserver = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        if (!en.isIntersecting) return;
+        en.target.querySelectorAll('[data-count]').forEach(animateCount);
+        metricObserver.unobserve(en.target);
+      });
+    }, {threshold: 0.25});
+    const heroCard = document.querySelector('.hero-card');
+    if (heroCard) metricObserver.observe(heroCard);
+  </script>
 </body>
 </html>
