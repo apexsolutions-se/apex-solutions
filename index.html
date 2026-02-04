@@ -837,6 +837,18 @@ textarea{
 }
 
 
+.form-status{
+  font-size:13px;
+  color:#3FD3FC;
+  opacity:0;
+  transform: translateY(4px);
+  transition: opacity .3s ease, transform .3s ease;
+}
+
+.form-status.show{
+  opacity:1;
+  transform:none;
+}
 
 
   </style>
@@ -1241,5 +1253,44 @@ textarea{
     const heroCard = document.querySelector('.hero-card');
     if (heroCard) metricObserver.observe(heroCard);
   </script>
+
+
+<script>
+  const form = document.getElementById('contactForm');
+  const status = form?.querySelector('.form-status');
+  const button = form?.querySelector('button[type="submit"]');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    status.textContent = "Skickar…";
+    status.classList.add('show');
+    button.disabled = true;
+
+    const data = new FormData(form);
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (res.ok) {
+        status.textContent = "✔ Meddelandet har skickats";
+        form.reset();
+      } else {
+        status.textContent = "⚠️ Något gick fel. Försök igen.";
+        button.disabled = false;
+      }
+    } catch (err) {
+      status.textContent = "⚠️ Kunde inte skicka. Kontrollera anslutningen.";
+      button.disabled = false;
+    }
+  });
+</script>
+
 </body>
 </html>
