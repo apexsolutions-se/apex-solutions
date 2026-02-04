@@ -1076,47 +1076,63 @@ textarea{
         <p>Lämna ditt nummer så ringer vi upp och går igenom ditt behov.
  Samtalet är kort och helt förutsättningslöst.</p>
 
-        <form class="contact-form">
-          <div class="field-row">
-            <label class="field">
-              <span>Namn</span>
-              <input type="text" placeholder="Ditt namn">
-            </label>
+<form class="contact-form" id="contactForm"
+      action="https://formsubmit.co/contact@apexcommunication.se"
+      method="POST">
 
-            <label class="field">
-              <span>E-post</span>
-              <input type="email" placeholder="du@epost.se">
-            </label>
-          </div>
+  <!-- FormSubmit config -->
+  <input type="hidden" name="_subject" value="New Apex Solutions Lead">
+  <input type="hidden" name="_template" value="table">
+  <input type="hidden" name="_captcha" value="false">
 
-          <div class="field-row">
-            <label class="field">
-              <span>Företag</span>
-              <input type="text" placeholder="Företagsnamn">
-            </label>
+  <!-- Honeypot -->
+  <input type="text" name="_honey" style="display:none">
 
-            <label class="field">
-              <span>Telefon</span>
-              <input type="tel" placeholder="+46 70 123 45 67">
-            </label>
-          </div>
+  <div class="field-row">
+    <label class="field">
+      <span>Namn</span>
+      <input type="text" name="name" placeholder="Ditt namn" required>
+    </label>
 
-          <label class="field">
-            <span>Meddelande</span>
-            <textarea rows="4" placeholder="Berätta vad du behöver…"></textarea>
-          </label>
+    <label class="field">
+      <span>E-post</span>
+      <input type="email" name="email" placeholder="du@epost.se" required>
+    </label>
+  </div>
 
-          <div class="form-actions">
-            <button class="btn primary" type="submit">Skicka meddelande →</button>
-          </div>
-        </form>
+  <div class="field-row">
+    <label class="field">
+      <span>Företag</span>
+      <input type="text" name="company" placeholder="Företagsnamn">
+    </label>
+
+    <label class="field">
+      <span>Telefon</span>
+      <input type="tel" name="phone" placeholder="08-551 230 15" required>
+    </label>
+  </div>
+
+  <label class="field">
+    <span>Meddelande</span>
+    <textarea name="message" rows="4" placeholder="Berätta vad du behöver…" required></textarea>
+  </label>
+
+  <div class="form-actions">
+    <button class="btn primary" type="submit">
+      Skicka meddelande →
+    </button>
+    <span class="form-status" aria-live="polite"></span>
+  </div>
+</form>
+
+
       </div>
 
       <aside class="contact-panel contact-right">
         <div class="contact-block">
           <b>Kontakt</b>
-          <a href="mailto:hello@apexsolutions.com">contact@apexcommunication.se</a><br>
-          <a href="tel:+10000000000">+46 70 123 45 67</a>
+          <a href="mailto:hello@apexsolutions.se">contact@apexcommunication.se</a><br>
+          <a href="tel:+10000000000">08-551 230 15</a>
         </div>
 
         <div class="contact-block">
