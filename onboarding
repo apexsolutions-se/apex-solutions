@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Apex Solutions — Onboarding</title>
+  <meta name="description" content="Onboardingformulär för Apex Solutions." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/apex-logo.png" type="image/svg+xml">
+
+  <style>
+    :root{
+      --bg:#070A10;
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.70);
+      --muted2:rgba(255,255,255,.55);
+
+      --cyan:#3FD3FC;
+      --gold:#9E834C;
+
+      --border:rgba(255,255,255,.12);
+      --shadow:0 18px 60px rgba(0,0,0,.55);
+      --radius2:26px;
+      --max:1120px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      pointer-events:none;
+      background:
+        radial-gradient(1200px 700px at 15% 10%, rgba(63,211,252,.15), transparent 60%),
+        radial-gradient(900px 600px at 85% 25%, rgba(158,131,76,.12), transparent 65%),
+        radial-gradient(800px 500px at 50% 90%, rgba(63,211,252,.10), transparent 60%),
+        var(--bg);
+    }
+
+    a{color:inherit;text-decoration:none}
+
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:0 22px;
+    }
+
+    /* Header */
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(14px);
+      background:linear-gradient(180deg, rgba(7,10,16,.75), rgba(7,10,16,.35));
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:700;
+      letter-spacing:.2px;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      height:40px;
+    }
+
+    .logo img{
+      height:100%;
+      width:auto;
+      display:block;
+      filter:drop-shadow(0 0 8px rgba(63,211,252,.35));
+    }
+
+    .brand span{
+      font-family:Orbitron, Inter, system-ui;
+      font-size:14px;
+      text-transform:uppercase;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:12px 16px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      box-shadow:0 10px 30px rgba(0,0,0,.35);
+      transition:transform .15s ease, border-color .15s ease, background .15s ease;
+      font-weight:600;
+      white-space:nowrap;
+      color:#fff;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      border-color:rgba(63,211,252,.55);
+    }
+
+    .btn.primary{
+      border-color:rgba(63,211,252,.55);
+      background:linear-gradient(180deg, rgba(63,211,252,.18), rgba(255,255,255,.04));
+    }
+
+    /* Page */
+    main{
+      padding:56px 0 80px;
+    }
+
+    .hero-card{
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border-radius:var(--radius2);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+      padding:34px;
+      margin-bottom:22px;
+    }
+
+    .hero-card::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:
+        radial-gradient(600px 240px at 20% 0%, rgba(63,211,252,.16), transparent 60%),
+        radial-gradient(500px 220px at 80% 10%, rgba(158,131,76,.12), transparent 60%);
+      pointer-events:none;
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:1;
+      max-width:760px;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:14px;
+    }
+
+    .eyebrow-dot{
+      width:8px;
+      height:8px;
+      border-radius:999px;
+      background:radial-gradient(circle at 30% 30%, #fff, var(--cyan));
+      box-shadow:0 0 18px rgba(63,211,252,.55);
+    }
+
+    h1{
+      margin:0 0 14px;
+      font-family:Orbitron, Inter, system-ui;
+      font-size:clamp(30px, 5vw, 52px);
+      line-height:1.05;
+      letter-spacing:.2px;
+    }
+
+    .glow{
+      background:linear-gradient(90deg, rgba(255,255,255,.95), rgba(63,211,252,.95), rgba(158,131,76,.95));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      text-shadow:0 0 26px rgba(63,211,252,.18);
+    }
+
+    .lead{
+      margin:0;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.7;
+      max-width:62ch;
+    }
+
+    .form-shell{
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border-radius:var(--radius2);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+      padding:16px;
+    }
+
+    .form-shell::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:
+        radial-gradient(520px 220px at 20% 0%, rgba(63,211,252,.14), transparent 60%),
+        radial-gradient(520px 220px at 80% 10%, rgba(158,131,76,.10), transparent 60%);
+      pointer-events:none;
+    }
+
+    .form-inner{
+      position:relative;
+      z-index:1;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background:#fff;
+    }
+
+    .form-inner iframe{
+      width:100%;
+      height:1400px;
+      border:none;
+      display:block;
+      background:#fff;
+    }
+
+    footer{
+      padding:30px 0 40px;
+      border-top:1px solid rgba(255,255,255,.08);
+      color:var(--muted2);
+      font-size:13px;
+    }
+
+    @media (max-width: 760px){
+      .nav{
+        gap:12px;
+      }
+
+      .brand span{
+        font-size:12px;
+      }
+
+      .logo{
+        height:34px;
+      }
+
+      main{
+        padding:34px 0 56px;
+      }
+
+      .hero-card{
+        padding:24px 20px;
+      }
+
+      .lead{
+        font-size:15px;
+      }
+
+      .form-shell{
+        padding:10px;
+      }
+
+      .form-inner iframe{
+        height:1550px;
+      }
+
+      .btn{
+        padding:10px 14px;
+        font-size:14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="/" aria-label="Apex Solutions">
+          <div class="logo">
+            <img src="assets/apex-logo.png" alt="Apex Solutions logo">
+          </div>
+          <span>APEX SOLUTIONS</span>
+        </a>
+
+        <a class="btn primary" href="tel:+46855123015">Ring Oss</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="hero-card">
+        <div class="hero-content">
+
+          <h1>Välkommen till <span class="glow">onboarding</span></h1>
+
+          <p class="lead">
+            Fyll i formuläret så vi får rätt information för att kunna förbereda ert upplägg och komma vidare på ett smidigt sätt.
+          </p>
+        </div>
+      </section>
+
+      <section class="form-shell">
+        <div class="form-inner">
+          <iframe 
+            src="https://docs.google.com/forms/d/e/1FAIpQLSfObcG2RGRIrb1JV_2YlSSyw-vOYxMF3FCDQFO9AYbyKIBu9A/viewform?embedded=true"
+            style="width:100%; height:1400px; border:none; background:white;">
+          </iframe>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div>© <span id="year"></span> Apex Solutions. Alla rättigheter förbehållna.</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
