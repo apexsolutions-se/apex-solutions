@@ -850,6 +850,14 @@ textarea{
   transform:none;
 }
 
+.booking-link{
+  display: inline-flex;
+  width: auto;
+  align-self: flex-start;
+  color: #fff;
+  text-decoration: none;
+}
+
 
   </style>
 </head>
@@ -869,6 +877,7 @@ textarea{
 
   <a class="btn primary" href="tel:+46855123015">Ring Oss</a>
 
+</div>
 </div>
 </div>
 
@@ -1139,12 +1148,17 @@ textarea{
           <a href="https://www.facebook.com/share/1AwCu3mxVb/?mibextid=wwXIf">Facebook</a>
           <a href="#"></a>
         </div>
-
-        <div class="contact-block">
-          <b>Vill du boka ett möte?</b>
-          <a class="btn" href="mailto:info@apexsolutions.se">Boka samtal</a>
-
-
+<div class="contact-block">
+  <b>Vill du boka ett möte?</b>
+  <a
+    class="btn primary"
+    href="https://api.leadconnectorhq.com/widget/booking/ICF7tpXCm42qZPD20Ofy"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Boka samtal
+  </a>
+</div>
     
         </div>
       </aside>
@@ -1234,45 +1248,9 @@ textarea{
     }, {threshold: 0.25});
     const heroCard = document.querySelector('.hero-card');
     if (heroCard) metricObserver.observe(heroCard);
-  </script>
 
-
-<script>
-  const form = document.getElementById('contactForm');
-  const status = form?.querySelector('.form-status');
-  const button = form?.querySelector('button[type="submit"]');
-
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    status.textContent = "Skickar…";
-    status.classList.add('show');
-    button.disabled = true;
-
-    const data = new FormData(form);
-
-    try {
-      const res = await fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
-
-      if (res.ok) {
-        status.textContent = "✔ Meddelandet har skickats";
-        form.reset();
-      } else {
-        status.textContent = "⚠️ Något gick fel. Försök igen.";
-        button.disabled = false;
-      }
-    } catch (err) {
-      status.textContent = "⚠️ Kunde inte skicka. Kontrollera anslutningen.";
-      button.disabled = false;
-    }
-  });
 </script>
+
 
 </body>
 </html>
