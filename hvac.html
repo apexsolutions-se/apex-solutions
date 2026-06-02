@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Apex HVAC | Heating & Cooling Experts</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #ffffff;
+      color: #17202a;
+      line-height: 1.6;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: auto;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px 24px;
+      background: #c62828;
+      color: white;
+      font-weight: 800;
+      border-radius: 3px;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+
+    .btn-blue {
+      background: #0b4f8a;
+    }
+
+    header {
+      background: white;
+      border-bottom: 1px solid #d8dee6;
+    }
+
+    .topbar {
+      background: #0b2d4d;
+      color: white;
+      padding: 10px 0;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .topbar .container {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .nav {
+      height: 84px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 25px;
+      font-weight: 900;
+      color: #0b2d4d;
+    }
+
+    .logo img {
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+    }
+
+    .logo span {
+      color: #c62828;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #243447;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(11,45,77,.96) 0%, rgba(11,45,77,.88) 42%, rgba(11,45,77,.55) 68%, rgba(11,45,77,.18) 100%),
+        url("assets/hvac/hero.png");
+      background-size: cover;
+      background-position: center right;
+      color: white;
+      min-height: 720px;
+      display: flex;
+      align-items: center;
+      padding: 105px 0;
+    }
+
+    .hero-content {
+      max-width: 680px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      color: #ffcc4d;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      letter-spacing: .7px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 6vw, 68px);
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #e8eef5;
+      max-width: 600px;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .trust-strip {
+      background: #f4f7fa;
+      border-bottom: 1px solid #d8dee6;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .trust-item {
+      padding: 24px 18px;
+      font-weight: 800;
+      color: #0b2d4d;
+      border-right: 1px solid #d8dee6;
+    }
+
+    .trust-item::before {
+      content: "✓";
+      color: #c62828;
+      margin-right: 8px;
+    }
+
+    section {
+      padding: 85px 0;
+    }
+
+    .section-head {
+      margin-bottom: 42px;
+    }
+
+    .section-head span {
+      color: #c62828;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(34px, 5vw, 48px);
+      color: #0b2d4d;
+      line-height: 1.1;
+      margin-top: 8px;
+    }
+
+    .services {
+      background: white;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .service-card {
+      border: 1px solid #d8dee6;
+      background: white;
+    }
+
+    .service-card img {
+      height: 190px;
+      object-fit: cover;
+    }
+
+    .service-card div {
+      padding: 22px;
+    }
+
+    .service-card h3 {
+      color: #0b2d4d;
+      font-size: 21px;
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      color: #526170;
+      font-size: 15px;
+    }
+
+    .about {
+      background: #f4f7fa;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .about-image img {
+      height: 480px;
+      object-fit: cover;
+      border: 1px solid #d8dee6;
+    }
+
+    .about-text p {
+      color: #526170;
+      font-size: 18px;
+      margin-bottom: 26px;
+    }
+
+    .about-list {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .about-list div {
+      background: white;
+      border-left: 4px solid #c62828;
+      padding: 14px 16px;
+      font-weight: 800;
+      color: #243447;
+    }
+
+    .numbers {
+      background: #0b2d4d;
+      color: white;
+      padding: 55px 0;
+    }
+
+    .numbers-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      text-align: center;
+      gap: 20px;
+    }
+
+    .number h3 {
+      font-size: 42px;
+      color: #ffcc4d;
+    }
+
+    .number p {
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+
+    .why {
+      background: white;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .why-card {
+      border: 1px solid #d8dee6;
+      padding: 28px;
+      background: #ffffff;
+    }
+
+    .why-card h3 {
+      color: #0b2d4d;
+      font-size: 23px;
+      margin-bottom: 12px;
+    }
+
+    .why-card p {
+      color: #526170;
+    }
+
+    .emergency {
+      background: #c62828;
+      color: white;
+      padding: 55px 0;
+    }
+
+    .emergency-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .emergency h2 {
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .emergency .btn {
+      background: white;
+      color: #c62828;
+      min-width: 230px;
+    }
+
+    .contact {
+      background: #f4f7fa;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 50px;
+    }
+
+    .contact-info p {
+      color: #526170;
+      font-size: 18px;
+      margin-bottom: 22px;
+    }
+
+    .contact-box {
+      background: #0b2d4d;
+      color: white;
+      padding: 26px;
+      display: grid;
+      gap: 12px;
+    }
+
+    form {
+      background: white;
+      padding: 34px;
+      border: 1px solid #d8dee6;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 15px;
+      border: 1px solid #cbd5df;
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 135px;
+      resize: vertical;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      font: inherit;
+    }
+
+    footer {
+      background: #081f35;
+      color: #cbd5df;
+      padding: 35px 0;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 950px) {
+      nav {
+        display: none;
+      }
+
+      .hero {
+        min-height: 640px;
+        padding: 85px 0;
+        background-position: center right;
+      }
+
+      .trust-grid,
+      .services-grid,
+      .about-grid,
+      .numbers-grid,
+      .why-grid,
+      .contact-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .emergency-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .topbar .container {
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .nav .btn {
+        display: none;
+      }
+
+      .hero {
+        min-height: 620px;
+        padding: 70px 0;
+        background:
+          linear-gradient(90deg, rgba(11,45,77,.96) 0%, rgba(11,45,77,.9) 58%, rgba(11,45,77,.55) 100%),
+          url("assets/hvac/hero.png");
+        background-size: cover;
+        background-position: center right;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .trust-grid,
+      .services-grid,
+      .about-grid,
+      .numbers-grid,
+      .why-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-image img {
+        height: 330px;
+      }
+
+      section {
+        padding: 65px 0;
+      }
+
+      form {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="topbar">
+    <div class="container">
+      <div>24/7 Emergency HVAC Service Available</div>
+      <div>Call Now: (555) 123-4567</div>
+    </div>
+  </div>
+
+  <div class="container nav">
+    <a href="#" class="logo">
+      <img src="assets/hvac/logo.png" alt="Apex HVAC Logo">
+      <div>APEX <span>HVAC</span></div>
+    </a>
+
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#why">Why Choose Us</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <a href="#contact" class="btn">Schedule Service</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="eyebrow">Trusted Heating & Cooling Experts Since 1998</div>
+
+      <h1>Reliable HVAC service when your system needs real work.</h1>
+
+      <p>
+        Professional HVAC repair, replacement, installation, and maintenance for
+        homeowners and businesses. Experienced technicians. Clear pricing. Quality work.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#contact" class="btn">Request Service</a>
+        <a href="tel:+15551234567" class="btn btn-blue">Call Emergency Line</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trust-strip">
+  <div class="container trust-grid">
+    <div class="trust-item">Licensed & Insured</div>
+    <div class="trust-item">Same-Day Service</div>
+    <div class="trust-item">Certified Technicians</div>
+    <div class="trust-item">Locally Owned</div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-head">
+      <span>Our Services</span>
+      <h2>Heating and cooling services for homes and businesses.</h2>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="assets/hvac/ac-repair.png" alt="AC repair">
+        <div>
+          <h3>AC Repair</h3>
+          <p>Cooling problems, weak airflow, system breakdowns, and emergency AC service.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="assets/hvac/heating-repair.png" alt="Heating repair">
+        <div>
+          <h3>Heating Repair</h3>
+          <p>Furnace repair, heat pump service, seasonal heating checks, and safety inspections.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="assets/hvac/installation.png" alt="HVAC installation">
+        <div>
+          <h3>System Installation</h3>
+          <p>New HVAC systems, replacements, energy-efficient upgrades, and professional setup.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="assets/hvac/maintenance.png" alt="HVAC maintenance">
+        <div>
+          <h3>Maintenance Plans</h3>
+          <p>Routine inspections, tune-ups, filter checks, and preventive maintenance.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="container about-grid">
+    <div class="about-image">
+      <img src="assets/hvac/team-technicians.png" alt="HVAC technicians team">
+    </div>
+
+    <div class="about-text">
+      <div class="section-head">
+        <span>About Apex HVAC</span>
+        <h2>Experienced technicians. Honest service. Work done properly.</h2>
+      </div>
+
+      <p>
+        For over 25 years, Apex HVAC has helped local homeowners and businesses keep
+        their heating and cooling systems running. Our team focuses on dependable
+        service, practical recommendations, and quality workmanship.
+      </p>
+
+      <div class="about-list">
+        <div>Fully stocked service trucks</div>
+        <div>Background-checked technicians</div>
+        <div>Upfront estimates before work begins</div>
+        <div>Residential and commercial HVAC service</div>
+      </div>
+
+      <a href="#contact" class="btn">Get A Quote</a>
+    </div>
+  </div>
+</section>
+
+<section class="numbers">
+  <div class="container numbers-grid">
+    <div class="number">
+      <h3>25+</h3>
+      <p>Years Experience</p>
+    </div>
+
+    <div class="number">
+      <h3>15,000+</h3>
+      <p>Service Calls</p>
+    </div>
+
+    <div class="number">
+      <h3>24/7</h3>
+      <p>Emergency Service</p>
+    </div>
+
+    <div class="number">
+      <h3>4.9</h3>
+      <p>Customer Rating</p>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="container">
+    <div class="section-head">
+      <span>Why Choose Us</span>
+      <h2>Reliable service from a company that shows up prepared.</h2>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <h3>Fully Stocked Trucks</h3>
+        <p>Our technicians arrive prepared with the tools and common parts needed for most jobs.</p>
+      </div>
+
+      <div class="why-card">
+        <h3>Clear Pricing</h3>
+        <p>We explain the issue and give a clear estimate before starting the repair.</p>
+      </div>
+
+      <div class="why-card">
+        <h3>Quality Workmanship</h3>
+        <p>We repair, install, and maintain systems with attention to safety and long-term performance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="emergency">
+  <div class="container emergency-inner">
+    <div>
+      <h2>Need HVAC service today?</h2>
+      <p>Call now for emergency repair, installation, or maintenance service.</p>
+    </div>
+
+    <a href="tel:+15551234567" class="btn">Call (555) 123-4567</a>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container contact-grid">
+    <div class="contact-info">
+      <div class="section-head">
+        <span>Contact Us</span>
+        <h2>Schedule your HVAC service.</h2>
+      </div>
+
+      <p>
+        Tell us what is happening with your system and our team will contact you
+        to schedule repair, installation, or maintenance service.
+      </p>
+
+      <div class="contact-box">
+        <div><strong>Phone:</strong> (555) 123-4567</div>
+        <div><strong>Email:</strong> service@apexhvac.com</div>
+        <div><strong>Service Area:</strong> Your City & Nearby Areas</div>
+        <div><strong>Hours:</strong> 24/7 Emergency Service Available</div>
+      </div>
+    </div>
+
+    <form>
+      <input type="text" placeholder="Full Name" required>
+      <input type="tel" placeholder="Phone Number" required>
+      <input type="email" placeholder="Email Address" required>
+
+      <select required>
+        <option value="">Select Service Needed</option>
+        <option>AC Repair</option>
+        <option>Heating Repair</option>
+        <option>System Installation</option>
+        <option>Maintenance</option>
+        <option>Commercial HVAC</option>
+        <option>Emergency Service</option>
+      </select>
+
+      <textarea placeholder="Describe the issue"></textarea>
+
+      <button type="submit" class="btn">Submit Request</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    © 2026 Apex HVAC. Heating, cooling, repair, installation, and maintenance.
+  </div>
+</footer>
+
+</body>
+</html>
