@@ -321,6 +321,51 @@
       color: #526170;
     }
 
+    .reviews {
+  background: #f4f7fa;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 22px;
+}
+
+.review-card {
+  background: white;
+  border: 1px solid #d8dee6;
+  padding: 26px;
+}
+
+.stars {
+  color: #ffcc4d;
+  font-size: 20px;
+  margin-bottom: 14px;
+  letter-spacing: 2px;
+}
+
+.review-card p {
+  color: #526170;
+  margin-bottom: 18px;
+}
+
+.review-card h3 {
+  color: #0b2d4d;
+  font-size: 18px;
+}
+
+@media (max-width: 950px) {
+  .reviews-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
     .emergency {
       background: #c62828;
       color: white;
@@ -658,6 +703,48 @@
       <div class="why-card">
         <h3>Quality Workmanship</h3>
         <p>We repair, install, and maintain systems with attention to safety and long-term performance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="reviews" id="reviews">
+  <div class="container">
+    <div class="section-head">
+      <span>Customer Reviews</span>
+      <h2>Trusted by homeowners and businesses in the area.</h2>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>Fast, professional, and honest service. The technician explained everything clearly before starting the repair.</p>
+        <h3>Michael R.</h3>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>Our AC stopped working during a hot week, and they came out the same day. Excellent service from start to finish.</p>
+        <h3>Sarah T.</h3>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>Very reliable company. They installed our new HVAC system and made the whole process simple and stress-free.</p>
+        <h3>James L.</h3>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>The team was on time, respectful, and very knowledgeable. I would definitely call them again for maintenance.</p>
+        <h3>Emily K.</h3>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>Clear pricing and great workmanship. They fixed our heating issue quickly and everything has worked perfectly since.</p>
+        <h3>Daniel P.</h3>
       </div>
     </div>
   </div>
