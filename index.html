@@ -1,343 +1,1046 @@
-<!DOCTYPE html>
-<html lang="sv">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Apex Solutions</title>
-  <link rel="icon" type="image/png" href="assets/favicon.png">
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Apex Solutions — Marketing & Web Design</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/apex-logo.png" type="image/svg+xml">
+
+  <style>
+    :root{
+      --bg:#070A10;
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.70);
+      --muted2:rgba(255,255,255,.55);
+      --cyan:#3FD3FC;
+      --blue:#007BFF;
+      --gold:#9E834C;
+      --shadow:0 18px 60px rgba(0,0,0,.55);
+      --radius2:26px;
+      --max:1120px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+
+    body{
+      margin:0;
+      font-family:Inter,system-ui,sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      pointer-events:none;
+      background:
+        radial-gradient(1200px 700px at 15% 10%, rgba(63,211,252,.15), transparent 60%),
+        radial-gradient(900px 600px at 85% 25%, rgba(158,131,76,.12), transparent 65%),
+        radial-gradient(800px 500px at 50% 90%, rgba(63,211,252,.10), transparent 60%),
+        var(--bg);
+    }
+
+    a{color:inherit;text-decoration:none}
+
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:0 22px;
+    }
+
+    .grid{
+      display:grid;
+      gap:18px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:12px 16px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      box-shadow:0 10px 30px rgba(0,0,0,.35);
+      font-weight:600;
+      white-space:nowrap;
+      transition:.15s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      border-color:rgba(63,211,252,.55);
+    }
+
+    .btn.primary{
+      border-color:rgba(63,211,252,.55);
+      background:linear-gradient(180deg, rgba(63,211,252,.18), rgba(255,255,255,.04));
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(14px);
+      background:linear-gradient(180deg, rgba(7,10,16,.75), rgba(7,10,16,.35));
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 0;
+    }
+
+    .contact-nav{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      gap:14px;
+    }
+
+    .contact-line{
+      display:flex;
+      align-items:center;
+      gap:20px;
+      color:rgba(255,255,255,.92);
+      font-size:12px;
+      font-weight:400;
+    }
+
+    .contact-buttons{
+      display:flex;
+      gap:30px;
+      align-items:center;
+    }
+
+    .contact-buttons .btn{
+      min-width:120px;
+      font-size:12px;
+      padding:10px 18px;
+      border-radius:999px;
+      border-color:rgba(63,211,252,.45);
+      background:rgba(63,211,252,.06);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:700;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      height:40px;
+    }
+
+    .logo img{
+      height:100%;
+      width:auto;
+      display:block;
+      filter:drop-shadow(0 0 8px rgba(63,211,252,.35));
+    }
+
+    .brand span{
+      font-family:Orbitron,Inter,system-ui;
+      font-size:14px;
+      text-transform:uppercase;
+    }
+
+    .hero{
+      padding:62px 0 22px;
+      position:relative;
+    }
+
+    .hero .grid{
+      grid-template-columns:1.1fr .9fr;
+      align-items:stretch;
+    }
+
+    .h-title{
+      font-family:Orbitron,Inter,system-ui;
+      font-size:clamp(34px,4.3vw,54px);
+      line-height:1.05;
+      margin:14px 0;
+    }
+
+    .glow{
+      background:linear-gradient(90deg, rgba(255,255,255,.95), rgba(63,211,252,.95), rgba(158,131,76,.95));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .lead{
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.6;
+      max-width:54ch;
+      margin:0 0 18px;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+
+    .hero-visual{
+      position:relative;
+      height:360px;
+      overflow:visible;
+    }
+
+    .orb{
+      position:absolute;
+      width:260px;
+      height:260px;
+      border-radius:50%;
+      filter:blur(55px);
+      opacity:.55;
+    }
+
+    .orb.cyan{
+      background:rgba(63,211,252,.75);
+      top:15%;
+      left:8%;
+      animation:float-cyan 20s linear infinite alternate;
+    }
+
+    .orb.gold{
+      background:rgba(158,131,76,.65);
+      top:38%;
+      right:2%;
+      width:300px;
+      height:300px;
+      animation:float-gold 30s linear infinite alternate;
+    }
+
+    .orb.white{
+      background:rgba(255,255,255,.35);
+      bottom:8%;
+      left:35%;
+      width:220px;
+      height:220px;
+      animation:float-white 40s linear infinite alternate;
+    }
+
+    @keyframes float-cyan{
+      0%{transform:translate3d(0,0,0)}
+      100%{transform:translate3d(-80px,80px,0)}
+    }
+
+    @keyframes float-gold{
+      0%{transform:translate3d(0,0,0)}
+      100%{transform:translate3d(80px,140px,0)}
+    }
+
+    @keyframes float-white{
+      0%{transform:translate3d(0,0,0)}
+      100%{transform:translate3d(60px,120px,0)}
+    }
+
+    section{
+      padding:54px 0;
+    }
+
+    .section-title{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:24px;
+      margin-bottom:22px;
+      width:100%;
+    }
+
+    .section-title > div{
+      flex:1;
+      max-width:680px;
+      min-width:0;
+    }
+
+    h2{
+      margin:0;
+      font-family:Orbitron,Inter,system-ui;
+      font-size:22px;
+      letter-spacing:.3px;
+    }
+
+    .sub{
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.5;
+      max-width:620px;
+    }
+
+    .service-showcase{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:22px;
+      align-items:stretch;
+    }
+
+    .service-card{
+      min-height:400px;
+      padding:20px;
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(500px 260px at 20% 0%, rgba(63,211,252,.13), transparent 58%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      box-shadow:0 24px 70px rgba(0,0,0,.38);
+      display:grid;
+      grid-template-rows:30px 200px 1fr;
+      gap:15px;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .service-card.featured{
+      border-color:rgba(63,211,252,.42);
+      background:
+        radial-gradient(620px 300px at 50% 0%, rgba(63,211,252,.16), transparent 58%),
+        radial-gradient(420px 240px at 20% 15%, rgba(63,211,252,.10), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      box-shadow:
+        0 0 0 1px rgba(63,211,252,.14),
+        0 0 30px rgba(63,211,252,.10),
+        0 28px 80px rgba(0,0,0,.45);
+      transform:translateY(-18px);
+    }
+
+    .service-card h3{
+      margin:0;
+      font-family:Orbitron,Inter,system-ui;
+      font-size:16px;
+      line-height:1.25;
+    }
+
+    .service-media{
+      position:relative;
+      width:100%;
+      height:200px;
+      border-radius:16px;
+      overflow:hidden;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.10);
+    }
+
+    .service-media img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+      opacity:0;
+      transition:opacity .35s ease;
+    }
+
+    .service-media img.active{
+      opacity:1;
+    }
+
+    .service-arrow{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:38px;
+      height:38px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.24);
+      background:rgba(0,0,0,.35);
+      backdrop-filter:blur(8px);
+      color:#fff;
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      z-index:5;
+      font-size:24px;
+      line-height:1;
+    }
+
+    .service-arrow:hover{
+      border-color:rgba(63,211,252,.65);
+      background:rgba(0,123,255,.32);
+    }
+
+    .service-arrow.prev{left:12px}
+    .service-arrow.next{right:12px}
+
+    .service-desc{
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.65;
+      margin:0;
+    }
+
+    .featured .service-desc{
+      color:rgba(255,255,255,.80);
+    }
+
+    .funnel-section{
+      padding:60px 0;
+    }
+
+    .funnel-wrap{
+      max-width:900px;
+      margin:0 auto;
+    }
+
+    .funnel-image{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius:26px;
+      box-shadow:0 28px 80px rgba(0,0,0,.45);
+    }
+
+    .contact-split{
+      display:grid;
+      grid-template-columns:1.4fr 1fr;
+      gap:32px;
+      align-items:stretch;
+    }
+
+    .contact-panel{
+      display:flex;
+      flex-direction:column;
+      height:100%;
+      padding:32px;
+      border-radius:28px;
+      background:linear-gradient(140deg, rgba(70,120,140,.35), rgba(0,0,0,.65));
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.08), 0 40px 80px rgba(0,0,0,.45);
+    }
+
+    .contact-left h3{
+      margin:0;
+      font-family:Orbitron,Inter,system-ui;
+      font-size:18px;
+    }
+
+    .contact-left p{
+      margin:8px 0 14px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.6;
+    }
+
+    .contact-form{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .field-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+
+    .field span{
+      font-size:12px;
+      font-weight:600;
+      color:var(--muted2);
+    }
+
+    .field input,
+    .field textarea{
+      width:100%;
+      padding:11px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(0,0,0,.18);
+      color:var(--text);
+      outline:none;
+    }
+
+    .field input:focus,
+    .field textarea:focus{
+      border-color:rgba(63,211,252,.55);
+      box-shadow:0 0 0 3px rgba(63,211,252,.12);
+    }
+
+    textarea{
+      resize:vertical;
+      min-height:88px;
+    }
+
+    .form-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:2px;
+    }
+
+    .contact-right{
+      gap:10px;
+      padding:16px;
+      justify-content:space-between;
+    }
+
+    .contact-block{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      border-radius:16px;
+      padding:12px;
+    }
+
+    .contact-block b{
+      display:block;
+      font-family:Orbitron,Inter,system-ui;
+      font-size:14px;
+      margin-bottom:6px;
+    }
+
+    .contact-block p{
+      font-size:14px;
+      line-height:1.5;
+      margin:0;
+      color:var(--muted);
+    }
+
+    footer{
+      padding:30px 0 40px;
+      border-top:1px solid rgba(255,255,255,.08);
+      color:var(--muted2);
+      font-size:13px;
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(10px);
+      transition:opacity .6s ease, transform .6s ease;
+    }
+
+    .reveal.show{
+      opacity:1;
+      transform:none;
+    }
+
+
+
+
+    .funnel-section{
+  padding:70px 0 60px;
+}
+
+.journey-heading{
+  text-align:center;
+  margin-bottom:28px;
+}
+
+.journey-heading h2{
+  margin:0;
+  font-family:Orbitron,Inter,sans-serif;
+  font-size:clamp(36px,5vw,64px);
+  line-height:1.05;
+}
+
+.journey-heading .cyan{
+  color:#3FD3FC;
+}
+
+.journey-heading .gold{
+  color:#D4B15D;
+}
+
+.journey-heading p{
+  margin:14px 0 0;
+  color:var(--muted);
+  font-size:16px;
+}
+
+.funnel-wrap{
+  max-width:900px;
+  margin:0 auto;
+}
+
+.funnel-image{
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+.journey-packages{
+  max-width:980px;
+  margin:28px auto 0;
+}
+
+.journey-packages h4{
+  text-align:center;
+  margin:0 0 18px;
+  font-size:24px;
+  font-weight:700;
+}
+
+
+
+.package-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+
+.package-card{
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.03);
+  padding:18px;
+}
+
+.package-card b{
+  display:block;
+  font-family:Orbitron,Inter,system-ui;
+  font-size:16px;
+}
+
+.package-card small{
+  display:block;
+  color:#3FD3FC;
+  margin:4px 0 10px;
+  font-size:12px;
+}
+
+.package-card p{
+  margin:0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+}
+
+@media (max-width:760px){
+  .package-grid{
+    grid-template-columns:1fr;
+  }
+}
+    @media (max-width:1060px){
+      .service-showcase{
+        grid-template-columns:1fr;
+      }
+
+      .service-card,
+      .service-card.featured{
+        transform:none;
+        min-height:auto;
+      }
+
+      .service-media{
+        aspect-ratio:16 / 9;
+      }
+    }
+
+    @media (max-width:960px){
+      .hero .grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width:760px){
+      .contact-line{
+        display:none;
+      }
+
+      .contact-buttons{
+        gap:10px;
+      }
+
+      .contact-buttons .btn{
+        min-width:auto;
+        font-size:14px;
+        padding:10px 14px;
+      }
+
+      .section-title{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .contact-split,
+      .field-row{
+        grid-template-columns:1fr;
+      }
+
+      .hero .grid{
+        grid-template-columns:1fr;
+        position:relative;
+      }
+
+      .hero .reveal:first-child{
+        position:relative;
+        z-index:2;
+      }
+
+      .hero-visual{
+        position:absolute;
+        inset:0;
+        height:auto;
+        z-index:1;
+        pointer-events:none;
+      }
+
+      .orb{
+        opacity:.35;
+        filter:blur(65px);
+      }
+
+      .service-card{
+        padding:22px;
+      }
+
+      .service-card h3{
+        font-size:18px;
+      }
+
+      .service-desc{
+        font-size:15px;
+      }
+
+      .funnel-section{
+        padding:40px 0;
+      }
+
+      .funnel-image{
+        border-radius:18px;
+      }
+    }
+
+
+    /* Hide scrollbar */
+html{
+  scrollbar-width:none;
+}
+
+body{
+  -ms-overflow-style:none;
+}
+
+body::-webkit-scrollbar{
+  display:none;
+}
+  </style>
 </head>
 
 <body>
 
-  <main class="hero">
-
-    <header class="navbar">
-      <a href="#" class="logo-wrap">
-        <img src="assets/apexcom.png" alt="Apex Solutions" />
+<header>
+  <div class="wrap">
+    <div class="nav">
+      <a class="brand" href="#top" aria-label="Apex Solutions">
+        <div class="logo">
+          <img src="assets/apex-logo.png" alt="Apex Solutions logo">
+        </div>
+        <span>APEX SOLUTIONS</span>
       </a>
 
-      <nav class="nav-links">
-
-      </nav>
-
-   <a 
-  href="https://calendly.com/apexcommunication/30min" 
-  class="nav-cta"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <span class="live-dot"></span>
-  Boka Strategisamtal
-</a>
-
-    </header>
-
-    <section class="hero-content">
-
-      <div class="hero-inner">
-
-        <div class="hero-copy">
-
-<a href="https://apexsolutions.se" class="eyebrow">
-  APEX COMMUNICATION UTÖKAR MED APEX SOLUTIONS
-</a>
-
-          <h1>
-            VI SKAPAR <span>LEADS.</span><br>
-            VI STÄNGER <span>AFFÄRER.</span>
-          </h1>
-
-          <p>
-            Apex Solutions kombinerar det bästa från två världar.<br>
-            Vi bygger din online närvaro, genererar leads och<br>
-            stänger affärer via telefon.
-          </p>
-
-          <p>
-            Hela processen – eller traditionell telemarketing.
-          </p>
-
-<div class="hero-buttons">
-  <a 
-    href="https://calendly.com/apexcommunication/30min"
-    class="btn-primary"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Boka Gratis Strategisamtal
-  </a>
-
-            <a href="#services" class="btn-outline">
-              Våra Tjänster <span>›</span>
-            </a>
-          </div>
-
+      <div class="nav-cta contact-nav">
+        <div class="contact-line">
+          <a href="tel:+46855123015">08-551 230 15</a>
+          <a href="mailto:contact@apexsolutions.se">contact@apexsolutions.se</a>
         </div>
 
-        <div class="hero-headset">
-          <img src="assets/headset.png" alt="Headset" />
+        <div class="contact-buttons">
+          <a class="btn primary" href="tel:+46855123015">Ring Oss</a>
+          <a class="btn primary" href="mailto:contact@apexsolutions.se">Skriv till oss</a>
         </div>
-
       </div>
+    </div>
+  </div>
+</header>
 
-    </section>
+<main id="top">
 
-    <section class="feature-row">
+<section class="hero">
+  <div class="wrap">
+    <div class="grid">
+      <div class="reveal">
+        <h1 class="h-title">
+          Din partner inom <span class="glow">digital marknadsföring</span>
+        </h1>
 
-      <div class="feature-card">
-        <div class="feature-icon">
-          <img src="assets/Telefonpassning.png" alt="" />
-        </div>
+        <p class="lead">
+          Apex Solutions är en digital byrå som hjälper företag att marknadsföra sig genom skalbara webbplatser och datadriven digital marknadsföring.
+        </p>
 
-        <div>
-          <h3>Vi bearbetar era leads</h3>
-          <p>Snabbt, professionellt och resultatinriktat.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#contact">
+            <span>Boka en konsultation</span>
+            <span aria-hidden="true">→</span>
+          </a>
         </div>
       </div>
 
-      <div class="feature-card">
-        <div class="feature-icon">
-          <img src="assets/Motesbokning.png" alt="" />
-        </div>
-
-        <div>
-          <h3>Vi bokar kvalificerade möten</h3>
-          <p>Direkt med beslutsfattare.</p>
-        </div>
+      <div class="hero-visual reveal" aria-hidden="true">
+        <div class="orb cyan"></div>
+        <div class="orb gold"></div>
+        <div class="orb white"></div>
       </div>
+    </div>
+  </div>
+</section>
 
-      <div class="feature-card">
-        <div class="feature-icon">
-          <img src="assets/icon-handshake.png" alt="" />
+<section id="services">
+  <div class="wrap">
+    <div class="section-title reveal">
+      <div>
+        <h2>Vad vi gör</h2>
+        <p class="sub">Vi kombinerar strategi, design och digital marknadsföring för att skapa mätbar tillväxt.</p>
+      </div>
+      <a class="btn" href="#contact">Fråga om paket →</a>
+    </div>
+
+    <div class="service-showcase">
+
+      <article class="service-card reveal">
+        <h3>Webbplatser som konverterar</h3>
+
+        <div class="service-media" data-carousel>
+          <img class="active" src="assets/pipelineSolutionsHero.png" alt="Website project 1">
+          <img src="assets/northernroof.png" alt="Website project 2">
+          <img src="assets/sveaprodukter.png" alt="Website project 3">
+          <img src="assets/takbytepris.png" alt="Website project 4">
+
+          <button class="service-arrow prev" type="button" aria-label="Previous image">‹</button>
+          <button class="service-arrow next" type="button" aria-label="Next image">›</button>
         </div>
 
-        <div>
-          <h3>Vi driver er tillväxt</h3>
-          <p> Fler kunder. Ökad omsättning. Starkare tillväxt.</p>
+        <p class="service-desc">
+          Moderna, responsiva webbplatser med tydlig struktur och stark visuell identitet — byggda för resultat.
+        </p>
+      </article>
+
+      <article class="service-card featured reveal">
+        <h3>Resultatdriven Annonsering</h3>
+
+        <div class="service-media" data-carousel>
+          <img class="active" src="assets/metaads.png" alt="Advertising asset 1">
+          <img src="assets/googleads.png" alt="Advertising asset 2">
+
+          <button class="service-arrow prev" type="button" aria-label="Previous image">‹</button>
+          <button class="service-arrow next" type="button" aria-label="Next image">›</button>
         </div>
-      </div>
 
-    </section>
+        <p class="service-desc">
+          Målgruppsanpassad annonsering via Google Ads och Facebook Ads, kombinerat med löpande optimering för att generera konverteringsredo kunder i ert område.
+        </p>
+      </article>
 
-  </main>
+      <article class="service-card reveal">
+        <h3>Mötesbokning & Försäljning</h3>
 
-  <section class="services-section" id="services">
+        <div class="service-media">
+          <img class="active" src="assets/booking-1.png" alt="Booking and sales asset">
+        </div>
 
-    <div class="services-inner">
+        <p class="service-desc">
+          Vi bokar möten och driver försäljningen framåt så att ni får fler affärer.<br><br>
+          Genom vår telemarketingavdelning med över 10 års erfarenhet hjälper vi företag att nå rätt beslutsfattare och skapa fler affärsmöjligheter.
+          <br><br>
+          Läs mer på 
+          <a href="https://apexcommunication.se" target="_blank" rel="noopener noreferrer" style="color:#3FD3FC;">
+            <strong>Apex Communication</strong>
+          </a>
+        </p>
+      </article>
 
-      <div class="section-label">
-        VÅRA TJÄNSTER
-      </div>
+    </div>
+  </div>
+</section>
 
+<section class="funnel-section">
+  <div class="wrap">
+
+    <div class="journey-heading reveal">
       <h2>
-        ALLT NI BEHÖVER FÖR <span>TILLVÄXT.</span>
+        Från <span class="glow">besökare</span><br>
+        till <span class="glow">betalande kunder.</span>
       </h2>
-
-      <p class="services-subtitle">
-        Vi erbjuder hela processen eller traditionell telemarketing.<br>
-      </p>
-
-      <div class="services-grid">
-
-        <div class="service-card">
-          <div class="service-icon">
-            <img src="assets/icon-headset.png" alt="" />
-          </div>
-
-          <div>
-            <h3>Mötesbokning</h3>
-            <p>
-              Vi kontaktar era prospects och bokar kvalificerade möten åt era säljare.
-            </p>
-          </div>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">
-            <img src="assets/Forsaljning.png" alt="" />
-          </div>
-
-          <div>
-            <h3>Försäljning</h3>
-            <p>
-              Våra säljare stänger affärer via telefon och driver intäkter.
-            </p>
-          </div>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">
-            <img src="assets/Kundtjanst.png" alt="" />
-          </div>
-
-          <div>
-            <h3>Kundtjänst</h3>
-            <p>
-              Professionell support som stärker kundnöjdhet och lojalitet.
-            </p>
-          </div>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">
-            <img src="assets/Telefonpassning.png" alt="" />
-          </div>
-
-          <div>
-            <h3>Telefonpassning</h3>
-            <p>
-              Vi sköter era inkommande samtal så att ni aldrig missar en affär.
-            </p>
-          </div>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">
-            <img src="assets/Leadsgenerering.png" alt="" />
-          </div>
-
-          <div>
-            <h3>Leadsgenerering</h3>
-            <p>
-              Digital marknadsföring som skapar leads – redo för uppföljning.
-            </p>
-          </div>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">
-            <img src="assets/OnlineNarvaro.png" alt="" />
-          </div>
-
-          <div>
-            <h3>Online Närvaro</h3>
-            <p>
-              Vi bygger och optimerar er närvaro på webben och i sociala medier.
-            </p>
-          </div>
-        </div>
-
-      </div>
-
+      <p>Vi tar hand om hela resan — eller de delar du behöver hjälp med.</p>
     </div>
 
-  </section>
+    <div class="funnel-wrap reveal">
+      <img class="funnel-image" src="assets/funnel.png" alt="Från besökare till betalande kunder">
+    </div>
 
-  <section class="dashboard-section" id="case">
+    <div class="journey-packages reveal">
+      <h4>Välj <span class="glow">hur mycket</span> vi ska hjälpa er med</h4>
 
-    <div class="dashboard-inner">
-
-      <div class="dashboard-copy">
-
-        <p class="section-small">
-          FRÅN TELEMARKETING TILL
-        </p>
-
-        <h2>
-          EN HELHETSLÖSNING.
-        </h2>
-
-        <p>
-          Apex Communication byggde grunden – traditionell telemarketing som fungerar.
-        </p>
-
-        <p>
-          Apex Solutions är nästa steg. Där telemarketing och digital marknadsföring
-          arbetar tillsammans för maximal effekt.
-        </p>
-
-        <p>
-          Samma driv. Fler kanaler. Starkare resultat.
-        </p>
-
-      </div>
-
-      <div class="cta-panel">
-
-        <div>
-
-          <h3>
-            VÄX MED EN STARKARE PIPELINE
-          </h3>
-
-          <p>
-            Vi hjälper företag skapa fler affärsmöjligheter genom leadgenerering, mötesbokning och försäljningsdrivande outreach.
-
-          </p>
-
+      <div class="package-grid">
+        <div class="package-card">
+          <b>Start</b>
+          <small>Endast Trafik</small>
+          <p>Vi driver trafik via annonser — ni tar hand om resten.</p>
         </div>
-<a 
-  href="https://calendly.com/apexcommunication/30min" 
-  class="nav-cta"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <span class="live-dot"></span>
-  Boka Strategisamtal
-</a>
 
+        <div class="package-card">
+          <b>Growth</b>
+          <small>Trafik + Landningssida</small>
+          <p>Vi driver trafik och skapar en landningssida som konverterar.</p>
+        </div>
+
+        <div class="package-card">
+          <b>Scale</b>
+          <small>Trafik + Funnel + CRM</small>
+          <p>Vi hanterar hela flödet från trafik till leadshantering.</p>
+        </div>
+
+        <div class="package-card">
+          <b>Full Service</b>
+          <small>Hela processen</small>
+          <p>Vi tar hand om allt — från trafik till möten och nya kunder.</p>
+        </div>
       </div>
-
     </div>
 
-  </section>
+  </div>
+</section>
 
-  <footer class="footer">
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-split reveal">
 
-    <div class="footer-inner">
+      <div class="contact-panel contact-left">
+        <h3>Bli Uppringd</h3>
+        <p>Lämna ditt nummer så ringer vi upp och går igenom ditt behov. Samtalet är kort och helt förutsättningslöst.</p>
 
-      <div>
-        <img
-          src="assets/apexcom.png"
-          alt="Apex Solutions"
-          class="footer-logo"
-        />
+        <form class="contact-form" id="contactForm" action="https://formsubmit.co/contact@apexcommunication.se" method="POST">
+          <input type="hidden" name="_subject" value="New Apex Solutions Lead">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="text" name="_honey" style="display:none">
+
+          <div class="field-row">
+            <label class="field">
+              <span>Namn</span>
+              <input type="text" name="name" placeholder="Ditt namn" required>
+            </label>
+
+            <label class="field">
+              <span>E-post</span>
+              <input type="email" name="email" placeholder="du@epost.se" required>
+            </label>
+          </div>
+
+          <div class="field-row">
+            <label class="field">
+              <span>Företag</span>
+              <input type="text" name="company" placeholder="Företagsnamn">
+            </label>
+
+            <label class="field">
+              <span>Telefon</span>
+              <input type="tel" name="phone" placeholder="08-551 230 15" required>
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Meddelande</span>
+            <textarea name="message" rows="4" placeholder="Berätta vad du behöver…" required></textarea>
+          </label>
+
+          <div class="form-actions">
+            <button class="btn primary" type="submit">Skicka meddelande →</button>
+            <span class="form-status" aria-live="polite"></span>
+          </div>
+        </form>
       </div>
 
-      <div>
-        <h4>TJÄNSTER</h4>
+      <aside class="contact-panel contact-right">
+        <div class="contact-block">
+          <b>Kontakt</b>
+          <a href="mailto:info@apexsolutions.se">info@apexsolutions.se</a><br>
+          <a href="tel:+46855123015">08-551 230 15</a>
+        </div>
 
-        <a href="#">Mötesbokning</a>
-        <a href="#">Försäljning</a>
-        <a href="#">Kundtjänst</a>
-        <a href="#">Telefonpassning</a>
-        <a href="#">Leadsgenerering</a>
-        <a href="#">Online Närvaro</a>
-      </div>
+        <div class="contact-block">
+          <b>Tillgänglighet</b>
+          <p>Mån–Fre • 09:00–14:00</p>
+        </div>
 
-      <div>
-        <h4>KONTAKT</h4>
+        <div class="contact-block">
+          <b>Socialt</b>
+          <a href="https://www.facebook.com/share/1AwCu3mxVb/?mibextid=wwXIf">Facebook</a>
+        </div>
 
-        <a href="#">contact@apexcommunication.se</a>
-        <a href="#">08 551 230 15</a>
-
-      </div>
-
-      <div>
-
-        <h4>SOCIALT</h4>
-<div class="social-icons">
-  <a href="https://www.instagram.com/apexsolutions.se" target="_blank" rel="noopener noreferrer">
-    <img src="assets/insta-icon.png" alt="Instagram" />
-  </a>
-
-  <a href="https://www.facebook.com/share/19BaNJYCLq/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
-    <img src="assets/facebook-icon.png" alt="Facebook" />
-  </a>
-</div>
-        <p>
-          Vi skapar leads.<br>
-          Vi stänger affärer.
-        </p>
-
-      </div>
+        <div class="contact-block">
+          <b>Vill du boka ett möte?</b>
+          <a class="btn primary" href="https://api.leadconnectorhq.com/widget/booking/ICF7tpXCm42qZPD20Ofy" target="_blank" rel="noopener noreferrer">
+            Boka samtal
+          </a>
+        </div>
+      </aside>
 
     </div>
+  </div>
+</section>
 
-  </footer>
+</main>
 
-  <script src="app.js"></script>
+<footer>
+  <div class="wrap">
+    <div>© <span id="year"></span> Apex Solutions. Alla rättigheter förbehållna.</div>
+    <div>Org Number: 559391-4020</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      if (!id || id === '#') return;
+      const el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (en.isIntersecting) en.target.classList.add('show');
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  document.querySelectorAll('[data-carousel]').forEach(carousel => {
+    const images = Array.from(carousel.querySelectorAll('img'));
+    const prev = carousel.querySelector('.prev');
+    const next = carousel.querySelector('.next');
+    let index = 0;
+
+    function showImage(newIndex){
+      images[index].classList.remove('active');
+      index = (newIndex + images.length) % images.length;
+      images[index].classList.add('active');
+    }
+
+    prev.addEventListener('click', () => showImage(index - 1));
+    next.addEventListener('click', () => showImage(index + 1));
+  });
+</script>
 
 </body>
 </html>
