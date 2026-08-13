@@ -48,7 +48,10 @@
         var(--bg);
     }
 
-    a{color:inherit;text-decoration:none}
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
 
     .wrap{
       max-width:var(--max);
@@ -69,7 +72,11 @@
       padding:12px 16px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.18);
-      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      background:linear-gradient(
+        180deg,
+        rgba(255,255,255,.08),
+        rgba(255,255,255,.03)
+      );
       box-shadow:0 10px 30px rgba(0,0,0,.35);
       font-weight:600;
       white-space:nowrap;
@@ -83,19 +90,27 @@
 
     .btn.primary{
       border-color:rgba(63,211,252,.55);
-      background:linear-gradient(180deg, rgba(63,211,252,.18), rgba(255,255,255,.04));
+      background:linear-gradient(
+        180deg,
+        rgba(63,211,252,.18),
+        rgba(255,255,255,.04)
+      );
     }
 
     .form-actions .btn.primary{
-  color:white;
-}
+      color:white;
+    }
 
     header{
       position:sticky;
       top:0;
       z-index:50;
       backdrop-filter:blur(14px);
-      background:linear-gradient(180deg, rgba(7,10,16,.75), rgba(7,10,16,.35));
+      background:linear-gradient(
+        180deg,
+        rgba(7,10,16,.75),
+        rgba(7,10,16,.35)
+      );
       border-bottom:1px solid rgba(255,255,255,.08);
     }
 
@@ -181,7 +196,12 @@
     }
 
     .glow{
-      background:linear-gradient(90deg, rgba(255,255,255,.95), rgba(63,211,252,.95), rgba(158,131,76,.95));
+      background:linear-gradient(
+        90deg,
+        rgba(255,255,255,.95),
+        rgba(63,211,252,.95),
+        rgba(158,131,76,.95)
+      );
       -webkit-background-clip:text;
       background-clip:text;
       color:transparent;
@@ -266,7 +286,7 @@
       align-items:flex-start;
       justify-content:space-between;
       gap:24px;
-      margin-bottom:22px;
+      margin-bottom:42px;
       width:100%;
     }
 
@@ -291,114 +311,212 @@
       max-width:620px;
     }
 
-    .service-showcase{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:22px;
-      align-items:stretch;
+    /* ==========================================
+       SERVICES / VAD VI GÖR
+    ========================================== */
+
+    .services-list{
+      display:flex;
+      flex-direction:column;
+      gap:56px;
     }
 
-    .service-card{
-      min-height:400px;
-      padding:20px;
-      border-radius:28px;
-      border:1px solid rgba(255,255,255,.12);
-      background:
-        radial-gradient(500px 260px at 20% 0%, rgba(63,211,252,.13), transparent 58%),
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      box-shadow:0 24px 70px rgba(0,0,0,.38);
-      display:grid;
-      grid-template-rows:30px 200px 1fr;
-      gap:15px;
-      overflow:hidden;
-      position:relative;
-    }
-
-    .service-card.featured{
-      border-color:rgba(63,211,252,.42);
-      background:
-        radial-gradient(620px 300px at 50% 0%, rgba(63,211,252,.16), transparent 58%),
-        radial-gradient(420px 240px at 20% 15%, rgba(63,211,252,.10), transparent 55%),
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      box-shadow:
-        0 0 0 1px rgba(63,211,252,.14),
-        0 0 30px rgba(63,211,252,.10),
-        0 28px 80px rgba(0,0,0,.45);
-      transform:translateY(-18px);
-    }
-
-    .service-card h3{
-      margin:0;
-      font-family:Orbitron,Inter,system-ui;
-      font-size:16px;
-      line-height:1.25;
-    }
-
-    .service-media{
-      position:relative;
+    .service-group{
       width:100%;
-      height:200px;
-      border-radius:16px;
+    }
+
+    .service-group h3{
+      margin:0 0 24px;
+      font-family:Orbitron,Inter,system-ui;
+      font-size:clamp(20px,2vw,28px);
+      line-height:1.2;
+    }
+
+    .service-project-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:18px;
+      align-items:start;
+    }
+
+    .service-project{
+      min-width:0;
+    }
+
+    .service-project-link{
+      display:block;
+    }
+
+    .service-project-media{
+      width:100%;
+      aspect-ratio:16 / 10;
       overflow:hidden;
       background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 18px 50px rgba(0,0,0,.28);
+      transition:
+        transform .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease;
     }
 
-    .service-media img{
-      position:absolute;
-      inset:0;
+    .service-project-link:hover .service-project-media{
+      transform:translateY(-4px);
+      border-color:rgba(63,211,252,.5);
+      box-shadow:0 24px 60px rgba(0,0,0,.38);
+    }
+
+    .service-project-media img{
+      display:block;
       width:100%;
       height:100%;
       object-fit:cover;
       object-position:center top;
-      opacity:0;
-      transition:opacity .35s ease;
     }
 
-    .service-media img.active{
-      opacity:1;
+    .service-project-name{
+      margin:12px 0 0;
+      color:rgba(255,255,255,.9);
+      font-size:14px;
+      font-weight:600;
+      line-height:1.4;
     }
 
-    .service-arrow{
-      position:absolute;
-      top:50%;
-      transform:translateY(-50%);
-      width:38px;
-      height:38px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.24);
-      background:rgba(0,0,0,.35);
-      backdrop-filter:blur(8px);
-      color:#fff;
-      display:grid;
-      place-items:center;
-      cursor:pointer;
-      z-index:5;
-      font-size:24px;
-      line-height:1;
+    .service-project-link .service-project-name{
+      transition:color .2s ease;
     }
 
-    .service-arrow:hover{
-      border-color:rgba(63,211,252,.65);
-      background:rgba(0,123,255,.32);
+    .service-project-link:hover .service-project-name{
+      color:#3FD3FC;
     }
 
-    .service-arrow.prev{left:12px}
-    .service-arrow.next{right:12px}
-
-    .service-desc{
+    .service-group-copy{
+      max-width:820px;
+      margin:16px 0 0;
       color:var(--muted);
       font-size:14px;
       line-height:1.65;
-      margin:0;
     }
 
-    .featured .service-desc{
-      color:rgba(255,255,255,.80);
+    .service-project-grid.two{
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      max-width:900px;
     }
+
+    .service-project-grid.one{
+      grid-template-columns:minmax(0,1fr);
+      max-width:440px;
+    }
+
+    /* ==========================================
+       SECOND SERVICES ROW
+       Columns 1-2 = Advertising
+       Column 3   = Booking & Sales
+    ========================================== */
+
+    .service-row-two{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:0 18px;
+      align-items:start;
+      width:100%;
+    }
+
+    .service-row-two .row-two-heading{
+      margin:0 0 24px;
+      font-family:Orbitron,Inter,system-ui;
+      font-size:clamp(20px,2vw,28px);
+      line-height:1.2;
+    }
+
+    .ads-heading{
+      grid-column:1 / 3;
+      grid-row:1;
+    }
+
+    .booking-heading{
+      grid-column:3;
+      grid-row:1;
+    }
+
+    .meta-project{
+      grid-column:1;
+      grid-row:2;
+    }
+
+    .google-project{
+      grid-column:2;
+      grid-row:2;
+    }
+
+    .booking-project{
+      grid-column:3;
+      grid-row:2;
+    }
+
+    .ads-copy{
+      grid-column:1 / 3;
+      grid-row:3;
+    }
+
+    .booking-copy{
+      grid-column:3;
+      grid-row:3;
+      margin:16px 0 0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.65;
+    }
+
+    .booking-copy p{
+      margin:0 0 18px;
+    }
+
+    .booking-copy p:last-child{
+      margin-bottom:0;
+    }
+
+    .booking-link{
+      color:#3FD3FC;
+      font-weight:600;
+    }
+
+    .booking-link:hover{
+      text-decoration:underline;
+    }
+
+    /* ==========================================
+       CUSTOMER JOURNEY
+    ========================================== */
 
     .funnel-section{
-      padding:60px 0;
+      padding:70px 0 60px;
+    }
+
+    .journey-heading{
+      text-align:center;
+      margin-bottom:28px;
+    }
+
+    .journey-heading h2{
+      margin:0;
+      font-family:Orbitron,Inter,sans-serif;
+      font-size:clamp(36px,5vw,64px);
+      line-height:1.05;
+    }
+
+    .journey-heading .cyan{
+      color:#3FD3FC;
+    }
+
+    .journey-heading .gold{
+      color:#D4B15D;
+    }
+
+    .journey-heading p{
+      margin:14px 0 0;
+      color:var(--muted);
+      font-size:16px;
     }
 
     .funnel-wrap{
@@ -414,6 +532,55 @@
       box-shadow:0 28px 80px rgba(0,0,0,.45);
     }
 
+    .journey-packages{
+      max-width:980px;
+      margin:28px auto 0;
+    }
+
+    .journey-packages h4{
+      text-align:center;
+      margin:0 0 18px;
+      font-size:24px;
+      font-weight:700;
+    }
+
+    .package-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+    }
+
+    .package-card{
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03);
+      padding:18px;
+    }
+
+    .package-card b{
+      display:block;
+      font-family:Orbitron,Inter,system-ui;
+      font-size:16px;
+    }
+
+    .package-card small{
+      display:block;
+      color:#3FD3FC;
+      margin:4px 0 10px;
+      font-size:12px;
+    }
+
+    .package-card p{
+      margin:0;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.5;
+    }
+
+    /* ==========================================
+       CONTACT
+    ========================================== */
+
     .contact-split{
       display:grid;
       grid-template-columns:1.4fr 1fr;
@@ -427,8 +594,14 @@
       height:100%;
       padding:32px;
       border-radius:28px;
-      background:linear-gradient(140deg, rgba(70,120,140,.35), rgba(0,0,0,.65));
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.08), 0 40px 80px rgba(0,0,0,.45);
+      background:linear-gradient(
+        140deg,
+        rgba(70,120,140,.35),
+        rgba(0,0,0,.65)
+      );
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.08),
+        0 40px 80px rgba(0,0,0,.45);
     }
 
     .contact-left h3{
@@ -531,10 +704,16 @@
       font-size:13px;
     }
 
+    /* ==========================================
+       REVEAL ANIMATION
+    ========================================== */
+
     .reveal{
       opacity:0;
       transform:translateY(10px);
-      transition:opacity .6s ease, transform .6s ease;
+      transition:
+        opacity .6s ease,
+        transform .6s ease;
     }
 
     .reveal.show{
@@ -542,125 +721,34 @@
       transform:none;
     }
 
+    /* ==========================================
+       RESPONSIVE
+    ========================================== */
 
-
-
-    .funnel-section{
-  padding:70px 0 60px;
-}
-
-.journey-heading{
-  text-align:center;
-  margin-bottom:28px;
-}
-
-.journey-heading h2{
-  margin:0;
-  font-family:Orbitron,Inter,sans-serif;
-  font-size:clamp(36px,5vw,64px);
-  line-height:1.05;
-}
-
-.journey-heading .cyan{
-  color:#3FD3FC;
-}
-
-.journey-heading .gold{
-  color:#D4B15D;
-}
-
-.journey-heading p{
-  margin:14px 0 0;
-  color:var(--muted);
-  font-size:16px;
-}
-
-.funnel-wrap{
-  max-width:900px;
-  margin:0 auto;
-}
-
-.funnel-image{
-  width:100%;
-  height:auto;
-  display:block;
-}
-
-.journey-packages{
-  max-width:980px;
-  margin:28px auto 0;
-}
-
-.journey-packages h4{
-  text-align:center;
-  margin:0 0 18px;
-  font-size:24px;
-  font-weight:700;
-}
-
-
-
-.package-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:14px;
-}
-
-.package-card{
-  border-radius:18px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.03);
-  padding:18px;
-}
-
-.package-card b{
-  display:block;
-  font-family:Orbitron,Inter,system-ui;
-  font-size:16px;
-}
-
-.package-card small{
-  display:block;
-  color:#3FD3FC;
-  margin:4px 0 10px;
-  font-size:12px;
-}
-
-.package-card p{
-  margin:0;
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.5;
-}
-
-@media (max-width:760px){
-  .package-grid{
-    grid-template-columns:1fr;
-  }
-}
     @media (max-width:1060px){
-      .service-showcase{
-        grid-template-columns:1fr;
+
+      .service-project-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
       }
 
-      .service-card,
-      .service-card.featured{
-        transform:none;
-        min-height:auto;
-      }
-
-      .service-media{
-        aspect-ratio:16 / 9;
+      .service-project-grid.two{
+        grid-template-columns:repeat(2,minmax(0,1fr));
       }
     }
 
     @media (max-width:960px){
+
       .hero .grid{
         grid-template-columns:1fr;
       }
     }
 
     @media (max-width:760px){
+
+      .package-grid{
+        grid-template-columns:1fr;
+      }
+
       .contact-line{
         display:none;
       }
@@ -708,16 +796,73 @@
         filter:blur(65px);
       }
 
-      .service-card{
-        padding:22px;
+      .service-project-grid,
+      .service-project-grid.two,
+      .service-project-grid.one{
+        grid-template-columns:1fr;
+        max-width:none;
       }
 
-      .service-card h3{
-        font-size:18px;
+      .services-list{
+        gap:44px;
       }
 
-      .service-desc{
-        font-size:15px;
+      .service-group h3{
+        margin-bottom:18px;
+      }
+
+      .service-project-name{
+        margin-top:9px;
+      }
+
+      .service-row-two{
+        grid-template-columns:1fr;
+        gap:0;
+      }
+
+      .ads-heading,
+      .booking-heading,
+      .meta-project,
+      .google-project,
+      .booking-project,
+      .ads-copy,
+      .booking-copy{
+        grid-column:1;
+        grid-row:auto;
+      }
+
+      .ads-heading{
+        order:1;
+      }
+
+      .meta-project{
+        order:2;
+        margin-bottom:18px;
+      }
+
+      .google-project{
+        order:3;
+      }
+
+      .ads-copy{
+        order:4;
+        margin-bottom:44px;
+      }
+
+      .booking-heading{
+        order:5;
+      }
+
+      .booking-project{
+        order:6;
+      }
+
+      .booking-copy{
+        order:7;
+      }
+
+      .service-row-two .booking-heading{
+        margin-top:0;
       }
 
       .funnel-section{
@@ -729,19 +874,19 @@
       }
     }
 
-
     /* Hide scrollbar */
-html{
-  scrollbar-width:none;
-}
 
-body{
-  -ms-overflow-style:none;
-}
+    html{
+      scrollbar-width:none;
+    }
 
-body::-webkit-scrollbar{
-  display:none;
-}
+    body{
+      -ms-overflow-style:none;
+    }
+
+    body::-webkit-scrollbar{
+      display:none;
+    }
   </style>
 </head>
 
@@ -750,300 +895,860 @@ body::-webkit-scrollbar{
 <header>
   <div class="wrap">
     <div class="nav">
-      <a class="brand" href="#top" aria-label="Apex Solutions">
+
+      <a
+        class="brand"
+        href="#top"
+        aria-label="Apex Solutions"
+      >
         <div class="logo">
-          <img src="assets/apex-logo.png" alt="Apex Solutions logo">
+          <img
+            src="assets/apex-logo.png"
+            alt="Apex Solutions logo"
+          >
         </div>
+
         <span>APEX SOLUTIONS</span>
       </a>
 
       <div class="nav-cta contact-nav">
+
         <div class="contact-line">
-          <a href="tel:+46855123015">08-551 230 15</a>
-          <a href="mailto:contact@apexsolutions.se">contact@apexsolutions.se</a>
+          <a href="tel:+46855123015">
+            08-551 230 15
+          </a>
+
+          <a href="mailto:contact@apexsolutions.se">
+            contact@apexsolutions.se
+          </a>
         </div>
 
         <div class="contact-buttons">
-          <a class="btn primary" href="tel:+46855123015">Ring Oss</a>
-          <a class="btn primary" href="mailto:contact@apexsolutions.se">Skriv till oss</a>
+
+          <a
+            class="btn primary"
+            href="tel:+46855123015"
+          >
+            Ring Oss
+          </a>
+
+          <a
+            class="btn primary"
+            href="mailto:contact@apexsolutions.se"
+          >
+            Skriv till oss
+          </a>
+
         </div>
       </div>
     </div>
   </div>
 </header>
 
+
 <main id="top">
 
-<section class="hero">
-  <div class="wrap">
-    <div class="grid">
-      <div class="reveal">
-        <h1 class="h-title">
-          Din partner inom <span class="glow">digital marknadsföring</span>
-        </h1>
+  <!-- ========================================
+       HERO
+  ========================================= -->
 
-        <p class="lead">
-          Apex Solutions är en digital byrå som hjälper företag att marknadsföra sig genom skalbara webbplatser och datadriven digital marknadsföring.
-        </p>
+  <section class="hero">
 
-        <div class="hero-actions">
-          <a class="btn primary" href="#contact">
-            <span>Boka en konsultation</span>
-            <span aria-hidden="true">→</span>
-          </a>
-        </div>
-      </div>
+    <div class="wrap">
 
-      <div class="hero-visual reveal" aria-hidden="true">
-        <div class="orb cyan"></div>
-        <div class="orb gold"></div>
-        <div class="orb white"></div>
-      </div>
-    </div>
-  </div>
-</section>
+      <div class="grid">
 
-<section id="services">
-  <div class="wrap">
-    <div class="section-title reveal">
-      <div>
-        <h2>Vad vi gör</h2>
-        <p class="sub">Vi kombinerar strategi, design och digital marknadsföring för att skapa mätbar tillväxt.</p>
-      </div>
-      <a class="btn" href="#contact">Fråga om paket →</a>
-    </div>
+        <div class="reveal">
 
-    <div class="service-showcase">
+          <h1 class="h-title">
+            Din partner inom
+            <span class="glow">
+              digital marknadsföring
+            </span>
+          </h1>
 
-      <article class="service-card reveal">
-        <h3>Webbplatser som konverterar</h3>
+          <p class="lead">
+            Apex Solutions är en digital byrå som hjälper
+            företag att marknadsföra sig genom skalbara
+            webbplatser och datadriven digital marknadsföring.
+          </p>
 
-        <div class="service-media" data-carousel>
-          <img class="active" src="assets/pipelineSolutionsHero.png" alt="Website project 1">
-          <img src="assets/northernroof.png" alt="Website project 2">
-          <img src="assets/takbytepris.png" alt="Website project 4">
+          <div class="hero-actions">
 
-          <button class="service-arrow prev" type="button" aria-label="Previous image">‹</button>
-          <button class="service-arrow next" type="button" aria-label="Next image">›</button>
+            <a
+              class="btn primary"
+              href="#contact"
+            >
+              <span>Boka en konsultation</span>
+              <span aria-hidden="true">→</span>
+            </a>
+
+          </div>
         </div>
 
-        <p class="service-desc">
-          Moderna, responsiva webbplatser med tydlig struktur och stark visuell identitet — byggda för resultat.
-        </p>
-      </article>
 
-      <article class="service-card featured reveal">
-        <h3>Resultatdriven Annonsering</h3>
-
-        <div class="service-media" data-carousel>
-          <img class="active" src="assets/metaads.png" alt="Advertising asset 1">
-          <img src="assets/googleads.png" alt="Advertising asset 2">
-
-          <button class="service-arrow prev" type="button" aria-label="Previous image">‹</button>
-          <button class="service-arrow next" type="button" aria-label="Next image">›</button>
+        <div
+          class="hero-visual reveal"
+          aria-hidden="true"
+        >
+          <div class="orb cyan"></div>
+          <div class="orb gold"></div>
+          <div class="orb white"></div>
         </div>
 
-        <p class="service-desc">
-          Målgruppsanpassad annonsering via Google Ads och Facebook Ads, kombinerat med löpande optimering för att generera konverteringsredo kunder i ert område.
-        </p>
-      </article>
-
-      <article class="service-card reveal">
-        <h3>Mötesbokning & Försäljning</h3>
-
-        <div class="service-media">
-          <img class="active" src="assets/booking-1.png" alt="Booking and sales asset">
-        </div>
-
-        <p class="service-desc">
-          Vi bokar möten och driver försäljningen framåt så att ni får fler affärer.<br><br>
-          Genom vår telemarketingavdelning med över 10 års erfarenhet hjälper vi företag att nå rätt beslutsfattare och skapa fler affärsmöjligheter.
-          <br><br>
-          Läs mer på 
-          <a href="https://apexcommunication.se" target="_blank" rel="noopener noreferrer" style="color:#3FD3FC;">
-            <strong>Apex Communication</strong>
-          </a>
-        </p>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<section class="funnel-section">
-  <div class="wrap">
-
-    <div class="journey-heading reveal">
-      <h2>
-        Från <span class="glow">besökare</span><br>
-        till <span class="glow">betalande kunder.</span>
-      </h2>
-      <p>Vi tar hand om hela resan — eller de delar du behöver hjälp med.</p>
-    </div>
-
-    <div class="funnel-wrap reveal">
-      <img class="funnel-image" src="assets/funnel.png" alt="Från besökare till betalande kunder">
-    </div>
-
-    <div class="journey-packages reveal">
-      <h4>Välj <span class="glow">hur mycket</span> vi ska hjälpa er med</h4>
-
-      <div class="package-grid">
-        <div class="package-card">
-          <b>Start</b>
-          <small>Endast Trafik</small>
-          <p>Vi driver trafik via annonser — ni tar hand om resten.</p>
-        </div>
-
-        <div class="package-card">
-          <b>Growth</b>
-          <small>Trafik + Landningssida</small>
-          <p>Vi driver trafik och skapar en landningssida som konverterar.</p>
-        </div>
-
-        <div class="package-card">
-          <b>Scale</b>
-          <small>Trafik + Funnel + CRM</small>
-          <p>Vi hanterar hela flödet från trafik till leadshantering.</p>
-        </div>
-
-        <div class="package-card">
-          <b>Full Service</b>
-          <small>Hela processen</small>
-          <p>Vi tar hand om allt — från trafik till möten och nya kunder.</p>
-        </div>
       </div>
     </div>
 
-  </div>
-</section>
+  </section>
 
-<section id="contact">
-  <div class="wrap">
-    <div class="contact-split reveal">
 
-      <div class="contact-panel contact-left">
-        <h3>Bli Uppringd</h3>
-        <p>Lämna ditt nummer så ringer vi upp och går igenom ditt behov. Samtalet är kort och helt förutsättningslöst.</p>
+  <!-- ========================================
+       VAD VI GÖR
+  ========================================= -->
 
-        <form class="contact-form" id="contactForm" action="https://formsubmit.co/contact@apexcommunication.se" method="POST">
-          <input type="hidden" name="_subject" value="New Apex Solutions Lead">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="text" name="_honey" style="display:none">
+  <section id="services">
 
-          <div class="field-row">
-            <label class="field">
-              <span>Namn</span>
-              <input type="text" name="name" placeholder="Ditt namn" required>
-            </label>
+    <div class="wrap">
 
-            <label class="field">
-              <span>E-post</span>
-              <input type="email" name="email" placeholder="du@epost.se" required>
-            </label>
+      <div class="section-title reveal">
+
+        <div>
+
+          <h2>Vad vi gör</h2>
+
+          <p class="sub">
+            Vi kombinerar strategi, design och digital
+            marknadsföring för att skapa mätbar tillväxt.
+          </p>
+
+        </div>
+
+        <a
+          class="btn"
+          href="#contact"
+        >
+          Fråga om paket →
+        </a>
+
+      </div>
+
+
+      <div class="services-list">
+
+        <!-- WEBBPLATSER -->
+
+        <div class="service-group reveal">
+
+          <h3>
+            Webbplatser som konverterar
+          </h3>
+
+          <div class="service-project-grid">
+
+
+            <!-- PIPELINE SOLUTIONS -->
+
+            <div class="service-project">
+
+              <a
+                class="service-project-link"
+                href="https://pipelinesolutions.se"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+
+                <div class="service-project-media">
+
+                  <img
+                    src="assets/pipelineSolutionsHero.png"
+                    alt="Pipeline Solutions website"
+                  >
+
+                </div>
+
+                <p class="service-project-name">
+                  Pipeline Solutions
+                </p>
+
+              </a>
+
+            </div>
+
+
+            <!-- NORTHERN ROOF -->
+
+            <div class="service-project">
+
+              <a
+                class="service-project-link"
+                href="https://northernroof.se"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+
+                <div class="service-project-media">
+
+                  <img
+                    src="assets/northernroof.png"
+                    alt="Northern Roof website"
+                  >
+
+                </div>
+
+                <p class="service-project-name">
+                  Northern Roof
+                </p>
+
+              </a>
+
+            </div>
+
+
+            <!-- TAKBYTEPRIS -->
+
+            <div class="service-project">
+
+              <a
+                class="service-project-link"
+                href="https://takbytepris.se"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+
+                <div class="service-project-media">
+
+                  <img
+                    src="assets/takbytepris.png"
+                    alt="TakbytePris website"
+                  >
+
+                </div>
+
+                <p class="service-project-name">
+                  TakbytePris.se
+                </p>
+
+              </a>
+
+            </div>
+
           </div>
 
-          <div class="field-row">
-            <label class="field">
-              <span>Företag</span>
-              <input type="text" name="company" placeholder="Företagsnamn">
-            </label>
 
-            <label class="field">
-              <span>Telefon</span>
-              <input type="tel" name="phone" placeholder="08-551 230 15" required>
-            </label>
+          <p class="service-group-copy">
+
+            Moderna, responsiva webbplatser med tydlig
+            struktur och stark visuell identitet —
+            byggda för resultat.
+
+          </p>
+
+        </div>
+
+
+        <!-- ROW 2: ANNONSERING + MÖTESBOKNING -->
+
+        <div class="service-row-two reveal">
+
+          <!-- HEADINGS -->
+
+          <h3 class="row-two-heading ads-heading">
+            Resultatdriven Annonsering
+          </h3>
+
+          <h3 class="row-two-heading booking-heading">
+            Mötesbokning &amp; Försäljning
+          </h3>
+
+
+          <!-- COLUMN 1: META ADS -->
+
+          <div class="service-project meta-project">
+
+            <div class="service-project-media">
+              <img
+                src="assets/metaads.png"
+                alt="Meta Ads"
+              >
+            </div>
+
+            <p class="service-project-name">
+              Meta Ads
+            </p>
+
           </div>
 
-          <label class="field">
-            <span>Meddelande</span>
-            <textarea name="message" rows="4" placeholder="Berätta vad du behöver…" required></textarea>
-          </label>
 
-          <div class="form-actions">
-            <button class="btn primary" type="submit">Skicka meddelande →</button>
-            <span class="form-status" aria-live="polite"></span>
+          <!-- COLUMN 2: GOOGLE ADS -->
+
+          <div class="service-project google-project">
+
+            <div class="service-project-media">
+              <img
+                src="assets/googleads.png"
+                alt="Google Ads"
+              >
+            </div>
+
+            <p class="service-project-name">
+              Google Ads
+            </p>
+
           </div>
-        </form>
+
+
+          <!-- COLUMN 3: MÖTESBOKNING -->
+
+          <div class="service-project booking-project">
+
+            <div class="service-project-media">
+              <img
+                src="assets/booking-1.png"
+                alt="Mötesbokning och försäljning"
+              >
+            </div>
+
+            <p class="service-project-name">
+              Mötesbokning &amp; Försäljning
+            </p>
+
+          </div>
+
+
+          <!-- DESCRIPTION UNDER COLUMNS 1 + 2 -->
+
+          <p class="service-group-copy ads-copy">
+            Målgruppsanpassad annonsering via Google Ads
+            och Facebook Ads, kombinerat med löpande
+            optimering för att generera konverteringsredo
+            kunder i ert område.
+          </p>
+
+
+          <!-- DESCRIPTION UNDER COLUMN 3 -->
+
+          <div class="booking-copy">
+
+            <p>
+              Vi bokar möten och driver försäljningen
+              framåt så att ni får fler affärer.
+            </p>
+
+            <p>
+              Genom vår telemarketingavdelning med över
+              10 års erfarenhet hjälper vi företag att nå
+              rätt beslutsfattare och skapa fler
+              affärsmöjligheter.
+            </p>
+
+            <p>
+              Läs mer på
+              <a
+                href="https://apexcommunication.se"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="booking-link"
+              >
+                Apex Communication
+              </a>
+            </p>
+
+          </div>
+
+        </div>
       </div>
 
-      <aside class="contact-panel contact-right">
-        <div class="contact-block">
-          <b>Kontakt</b>
-          <a href="mailto:info@apexsolutions.se">info@apexsolutions.se</a><br>
-          <a href="tel:+46855123015">08-551 230 15</a>
+    </div>
+
+  </section>
+
+
+  <!-- ========================================
+       CUSTOMER JOURNEY
+  ========================================= -->
+
+  <section class="funnel-section">
+
+    <div class="wrap">
+
+      <div class="journey-heading reveal">
+
+        <h2>
+
+          Från
+          <span class="glow">
+            besökare
+          </span>
+
+          <br>
+
+          till
+          <span class="glow">
+            betalande kunder.
+          </span>
+
+        </h2>
+
+        <p>
+          Vi tar hand om hela resan — eller de delar
+          du behöver hjälp med.
+        </p>
+
+      </div>
+
+
+      <div class="funnel-wrap reveal">
+
+        <img
+          class="funnel-image"
+          src="assets/funnel.png"
+          alt="Från besökare till betalande kunder"
+        >
+
+      </div>
+
+
+      <div class="journey-packages reveal">
+
+        <h4>
+
+          Välj
+
+          <span class="glow">
+            hur mycket
+          </span>
+
+          vi ska hjälpa er med
+
+        </h4>
+
+
+        <div class="package-grid">
+
+
+          <div class="package-card">
+
+            <b>
+              Start
+            </b>
+
+            <small>
+              Endast Trafik
+            </small>
+
+            <p>
+              Vi driver trafik via annonser —
+              ni tar hand om resten.
+            </p>
+
+          </div>
+
+
+          <div class="package-card">
+
+            <b>
+              Growth
+            </b>
+
+            <small>
+              Trafik + Landningssida
+            </small>
+
+            <p>
+              Vi driver trafik och skapar en
+              landningssida som konverterar.
+            </p>
+
+          </div>
+
+
+          <div class="package-card">
+
+            <b>
+              Scale
+            </b>
+
+            <small>
+              Trafik + Funnel + CRM
+            </small>
+
+            <p>
+              Vi hanterar hela flödet från trafik
+              till leadshantering.
+            </p>
+
+          </div>
+
+
+          <div class="package-card">
+
+            <b>
+              Full Service
+            </b>
+
+            <small>
+              Hela processen
+            </small>
+
+            <p>
+              Vi tar hand om allt — från trafik till
+              möten och nya kunder.
+            </p>
+
+          </div>
+
         </div>
 
-        <div class="contact-block">
-          <b>Tillgänglighet</b>
-          <p>Mån–Fre • 09:00–14:00</p>
-        </div>
-
-        <div class="contact-block">
-          <b>Socialt</b>
-          <a href="https://www.facebook.com/share/1AwCu3mxVb/?mibextid=wwXIf">Facebook</a>
-        </div>
-
-        <div class="contact-block">
-          <b>Vill du boka ett möte?</b>
-          <a class="btn primary" href="https://api.leadconnectorhq.com/widget/booking/ICF7tpXCm42qZPD20Ofy" target="_blank" rel="noopener noreferrer">
-            Boka samtal
-          </a>
-        </div>
-      </aside>
+      </div>
 
     </div>
-  </div>
-</section>
+
+  </section>
+
+
+  <!-- ========================================
+       CONTACT
+  ========================================= -->
+
+  <section id="contact">
+
+    <div class="wrap">
+
+      <div class="contact-split reveal">
+
+
+        <!-- LEFT SIDE -->
+
+        <div class="contact-panel contact-left">
+
+          <h3>
+            Bli Uppringd
+          </h3>
+
+          <p>
+            Lämna ditt nummer så ringer vi upp och
+            går igenom ditt behov. Samtalet är kort
+            och helt förutsättningslöst.
+          </p>
+
+
+          <form
+            class="contact-form"
+            id="contactForm"
+            action="https://formsubmit.co/contact@apexcommunication.se"
+            method="POST"
+          >
+
+            <input
+              type="hidden"
+              name="_subject"
+              value="New Apex Solutions Lead"
+            >
+
+            <input
+              type="hidden"
+              name="_template"
+              value="table"
+            >
+
+            <input
+              type="hidden"
+              name="_captcha"
+              value="false"
+            >
+
+            <input
+              type="text"
+              name="_honey"
+              style="display:none"
+            >
+
+
+            <div class="field-row">
+
+
+              <label class="field">
+
+                <span>
+                  Namn
+                </span>
+
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Ditt namn"
+                  required
+                >
+
+              </label>
+
+
+              <label class="field">
+
+                <span>
+                  E-post
+                </span>
+
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="du@epost.se"
+                  required
+                >
+
+              </label>
+
+
+            </div>
+
+
+            <div class="field-row">
+
+
+              <label class="field">
+
+                <span>
+                  Företag
+                </span>
+
+                <input
+                  type="text"
+                  name="company"
+                  placeholder="Företagsnamn"
+                >
+
+              </label>
+
+
+              <label class="field">
+
+                <span>
+                  Telefon
+                </span>
+
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="08-551 230 15"
+                  required
+                >
+
+              </label>
+
+
+            </div>
+
+
+            <label class="field">
+
+              <span>
+                Meddelande
+              </span>
+
+              <textarea
+                name="message"
+                rows="4"
+                placeholder="Berätta vad du behöver…"
+                required
+              ></textarea>
+
+            </label>
+
+
+            <div class="form-actions">
+
+              <button
+                class="btn primary"
+                type="submit"
+              >
+                Skicka meddelande →
+              </button>
+
+              <span
+                class="form-status"
+                aria-live="polite"
+              ></span>
+
+            </div>
+
+          </form>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+
+        <aside class="contact-panel contact-right">
+
+
+          <div class="contact-block">
+
+            <b>
+              Kontakt
+            </b>
+
+            <a href="mailto:info@apexsolutions.se">
+              info@apexsolutions.se
+            </a>
+
+            <br>
+
+            <a href="tel:+46855123015">
+              08-551 230 15
+            </a>
+
+          </div>
+
+
+          <div class="contact-block">
+
+            <b>
+              Tillgänglighet
+            </b>
+
+            <p>
+              Mån–Fre • 09:00–14:00
+            </p>
+
+          </div>
+
+
+          <div class="contact-block">
+
+            <b>
+              Socialt
+            </b>
+
+            <a
+              href="https://www.facebook.com/share/1AwCu3mxVb/?mibextid=wwXIf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Facebook
+            </a>
+
+          </div>
+
+
+          <div class="contact-block">
+
+            <b>
+              Vill du boka ett möte?
+            </b>
+
+            <a
+              class="btn primary"
+              href="https://api.leadconnectorhq.com/widget/booking/ICF7tpXCm42qZPD20Ofy"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Boka samtal
+            </a>
+
+          </div>
+
+
+        </aside>
+
+      </div>
+
+    </div>
+
+  </section>
 
 </main>
 
+
+<!-- ========================================
+     FOOTER
+========================================= -->
+
 <footer>
+
   <div class="wrap">
-    <div>© <span id="year"></span> Apex Solutions. Apex Solutions är marknadsföringsdivisionen inom Apex Communication AB. Alla rättigheter förbehållna.
-</div>
-    <div>Org Number: 559391-4020</div>
+
+    <div>
+
+      ©
+      <span id="year"></span>
+
+      Apex Solutions.
+      Apex Solutions är marknadsföringsdivisionen
+      inom Apex Communication AB.
+      Alla rättigheter förbehållna.
+
+    </div>
+
+    <div>
+      Org Number: 559391-4020
+    </div>
+
   </div>
+
 </footer>
 
+
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* Dynamic year */
+
+  document.getElementById('year').textContent =
+    new Date().getFullYear();
+
+
+  /* Smooth scrolling */
 
   document.querySelectorAll('a[href^="#"]').forEach(a => {
+
     a.addEventListener('click', e => {
+
       const id = a.getAttribute('href');
+
       if (!id || id === '#') return;
+
       const el = document.querySelector(id);
+
       if (!el) return;
+
       e.preventDefault();
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      el.scrollIntoView({
+        behavior:'smooth',
+        block:'start'
+      });
+
     });
+
   });
 
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(en => {
-      if (en.isIntersecting) en.target.classList.add('show');
-    });
-  }, { threshold: 0.12 });
 
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  /* Reveal animation */
 
-  document.querySelectorAll('[data-carousel]').forEach(carousel => {
-    const images = Array.from(carousel.querySelectorAll('img'));
-    const prev = carousel.querySelector('.prev');
-    const next = carousel.querySelector('.next');
-    let index = 0;
+  const io = new IntersectionObserver(
 
-    function showImage(newIndex){
-      images[index].classList.remove('active');
-      index = (newIndex + images.length) % images.length;
-      images[index].classList.add('active');
+    entries => {
+
+      entries.forEach(en => {
+
+        if (en.isIntersecting){
+          en.target.classList.add('show');
+        }
+
+      });
+
+    },
+
+    {
+      threshold:0.12
     }
 
-    prev.addEventListener('click', () => showImage(index - 1));
-    next.addEventListener('click', () => showImage(index + 1));
-  });
+  );
+
+
+  document
+    .querySelectorAll('.reveal')
+    .forEach(el => io.observe(el));
+
 </script>
 
 </body>
