@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TakbytePris.se</title>
+
+  <style>
+    :root{
+      --red:#ef3b33;
+      --text:#2f2f2f;
+      --muted:#666;
+      --yellow:#f3c93f;
+      --white:#ffffff;
+      --blue:#123f7a;
+      --section-blue:#24476f;
+      --hero-h:720px;
+      --wrap:min(1280px, calc(100% - 48px));
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    html,body{
+      width:100%;
+      overflow-x:hidden;
+      scrollbar-width:none;
+      -ms-overflow-style:none;
+    }
+
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:#f3f3f3;
+    }
+
+    body::-webkit-scrollbar{
+      display:none;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    img{
+      display:block;
+      max-width:100%;
+    }
+
+    button,
+    input{
+      font:inherit;
+    }
+
+    .container{
+      width:var(--wrap);
+      margin:0 auto;
+    }
+
+    /* HEADER */
+    .site-header{
+      position:relative;
+      z-index:100;
+      background:#fff;
+      border-bottom:1px solid rgba(0,0,0,.05);
+    }
+
+    .site-header .container{
+      min-height:88px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+      position:relative;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:5px;
+      flex-shrink:0;
+      position:relative;
+      z-index:101;
+    }
+
+    .brand-logo{
+      width:38px;
+      height:38px;
+      object-fit:contain;
+    }
+
+    .brand-name{
+      font-size:26px;
+      line-height:1;
+      font-weight:800;
+      color:#2e2e2e;
+      letter-spacing:-0.02em;
+    }
+
+    .brand-name .red{
+      color:var(--red);
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:42px;
+      margin-left:auto;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:42px;
+    }
+
+    .nav-links a{
+      font-size:18px;
+      font-weight:600;
+      color:#4b4b4b;
+    }
+
+    .cta-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--red);
+      color:#fff;
+      font-weight:800;
+      font-size:18px;
+      padding:16px 26px;
+      border-radius:14px;
+      box-shadow:0 10px 18px rgba(239,59,51,.22);
+      white-space:nowrap;
+    }
+
+    .burger-btn{
+      display:none;
+      width:66px;
+      height:52px;
+      border:none;
+      background:transparent;
+      cursor:pointer;
+      padding:0;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      z-index:101;
+    }
+
+    .burger-lines{
+      width:42px;
+      height:30px;
+      position:relative;
+      display:block;
+    }
+
+    .burger-lines span{
+      position:absolute;
+      left:0;
+      width:100%;
+      height:4px;
+      border-radius:999px;
+      background:#666;
+      transition:transform .28s ease, opacity .2s ease, top .28s ease;
+    }
+
+    .burger-lines span:nth-child(1){ top:0; }
+    .burger-lines span:nth-child(2){ top:13px; }
+    .burger-lines span:nth-child(3){ top:26px; }
+
+    .burger-btn.active .burger-lines span:nth-child(1){
+      top:13px;
+      transform:rotate(45deg);
+    }
+
+    .burger-btn.active .burger-lines span:nth-child(2){
+      opacity:0;
+    }
+
+    .burger-btn.active .burger-lines span:nth-child(3){
+      top:13px;
+      transform:rotate(-45deg);
+    }
+
+    /* HERO */
+    .hero{
+      position:relative;
+      min-height:var(--hero-h);
+      padding:68px 0 70px;
+      overflow:visible;
+      background:
+        linear-gradient(90deg, rgba(31,31,31,.30) 0%, rgba(31,31,31,.14) 28%, rgba(31,31,31,0) 52%),
+        url("assets/heroimage.png") center center / cover no-repeat;
+      z-index:1;
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      width:var(--wrap);
+      margin:0 auto;
+      display:flex;
+      align-items:flex-start;
+    }
+
+    .hero-copy{
+      max-width:620px;
+      color:#fff;
+      padding-top:8px;
+    }
+
+    .hero-copy h1{
+      font-size:clamp(56px, 6vw, 82px);
+      line-height:.95;
+      letter-spacing:-0.03em;
+      font-weight:900;
+      margin-bottom:28px;
+    }
+
+    .hero-copy h1 .yellow{
+      color:var(--yellow);
+    }
+
+    .hero-copy p{
+      max-width:720px;
+      font-size:clamp(24px, 2.2vw, 34px);
+      line-height:1.28;
+      font-weight:700;
+      text-shadow:0 3px 10px rgba(0,0,0,.12);
+    }
+
+    /* FORM CARD */
+    .quote-card{
+      margin-top:42px;
+      width:min(640px, 100%);
+      background:#fff;
+      color:var(--text);
+      border-radius:18px;
+      padding:28px 28px 26px;
+      box-shadow:0 18px 34px rgba(0,0,0,.18);
+    }
+
+    .quote-card h2{
+      color:var(--red);
+      font-size:clamp(24px, 2vw, 32px);
+      line-height:1.15;
+      font-weight:900;
+      margin-bottom:18px;
+      letter-spacing:-0.03em;
+    }
+
+    .input-wrap{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-height:74px;
+      border:2px solid #dfdfdf;
+      border-radius:12px;
+      padding:0 18px;
+      background:#fff;
+      margin-bottom:18px;
+    }
+
+    .input-icon{
+      width:24px;
+      height:24px;
+      object-fit:contain;
+      flex:0 0 24px;
+    }
+
+    .input-wrap input{
+      width:100%;
+      border:none;
+      outline:none;
+      font-size:22px;
+      color:#444;
+      background:transparent;
+    }
+
+    .input-wrap input::placeholder{
+      color:#9a9a9a;
+    }
+
+    .submit-btn{
+      width:100%;
+      border:none;
+      cursor:pointer;
+      min-height:74px;
+      border-radius:12px;
+      background:var(--red);
+      color:#fff;
+      font-size:clamp(22px, 1.9vw, 34px);
+      font-weight:900;
+      letter-spacing:-0.03em;
+      box-shadow:inset 0 -3px 0 rgba(0,0,0,.08);
+    }
+
+    /* FEATURES SECTION */
+    .features-section{
+      background:#fff;
+      padding:34px 0 36px;
+    }
+
+    .features-card{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      background:#fff;
+      border-radius:0;
+      overflow:hidden;
+    }
+
+    .feature-item{
+      min-height:250px;
+      padding:18px 28px 10px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-start;
+      text-align:center;
+      background:#fff;
+    }
+
+    .feature-item + .feature-item{
+      border-left:1px solid rgba(0,0,0,.08);
+    }
+
+    .feature-icon{
+      width:88px;
+      height:88px;
+      object-fit:contain;
+      margin-bottom:22px;
+      flex:0 0 auto;
+    }
+
+    .feature-item h3{
+      font-size:clamp(24px, 2vw, 34px);
+      line-height:1.08;
+      letter-spacing:-0.03em;
+      font-weight:800;
+      color:#1f3558;
+      margin-bottom:12px;
+      max-width:360px;
+    }
+
+    .feature-item p{
+      font-size:clamp(16px, 1.1vw, 20px);
+      line-height:1.35;
+      color:#555;
+      font-weight:400;
+      max-width:360px;
+    }
+
+    /* COVERAGE SECTION */
+    .coverage-section{
+      position:relative;
+      overflow:hidden;
+      background:
+        linear-gradient(90deg, rgba(248,249,252,.97) 0%, rgba(248,249,252,.9) 38%, rgba(244,248,252,.72) 58%, rgba(240,246,252,.38) 78%, rgba(236,244,251,.15) 100%),
+        url("assets/city-map-bg.png") center center / cover no-repeat;
+      min-height:860px;
+      display:flex;
+      align-items:center;
+    }
+
+    .coverage-section::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.12) 100%);
+      pointer-events:none;
+    }
+
+    .coverage-inner{
+      position:relative;
+      z-index:2;
+      width:var(--wrap);
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:minmax(0, 1.05fr) minmax(320px, 520px);
+      align-items:center;
+      gap:24px;
+      padding:88px 0 80px;
+    }
+
+    .coverage-copy{
+      max-width:600px;
+      padding-left:8px;
+    }
+
+    .coverage-copy h2{
+      font-size:clamp(32px, 3.2vw, 48px);
+      line-height:1.1;
+      letter-spacing:-0.02em;
+      font-weight:800;
+      color:var(--section-blue);
+      margin-bottom:18px;
+    }
+
+    .coverage-copy p{
+      max-width:640px;
+      font-size:clamp(16px, 1.4vw, 20px);
+      line-height:1.6;
+      color:#4a617a;
+      font-weight:400;
+    }
+
+    .coverage-map{
+      position:relative;
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+      min-height:620px;
+    }
+
+    .coverage-map img{
+      width:min(100%, 430px);
+      margin-left:auto;
+      transform:translateY(56px);
+      filter:drop-shadow(0 20px 34px rgba(17,63,122,.12));
+    }
+
+    /* TABLET */
+    @media (max-width:1100px){
+      :root{
+        --hero-h:650px;
+      }
+
+      .nav{
+        gap:26px;
+      }
+
+      .nav-links{
+        gap:26px;
+      }
+
+      .nav-links a{
+        font-size:16px;
+      }
+
+      .cta-btn{
+        font-size:16px;
+        padding:14px 20px;
+      }
+
+      .feature-item{
+        min-height:220px;
+        padding:16px 20px 8px;
+      }
+
+      .feature-icon{
+        width:78px;
+        height:78px;
+        margin-bottom:18px;
+      }
+
+      .coverage-inner{
+        grid-template-columns:1fr 400px;
+        gap:12px;
+        padding:74px 0 70px;
+      }
+
+      .coverage-map{
+        min-height:520px;
+      }
+    }
+
+    /* MOBILE */
+    @media (max-width:860px){
+      .site-header .container{
+        min-height:110px;
+        padding:0;
+      }
+
+      .brand{
+        gap:6px;
+      }
+
+      .brand-logo{
+        width:34px;
+        height:34px;
+      }
+
+      .brand-name{
+        font-size:24px;
+      }
+
+      .nav{
+        margin-left:0;
+        gap:14px;
+      }
+
+      .nav-links{
+        position:absolute;
+        top:100%;
+        left:0;
+        right:0;
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:0;
+        background:#fff;
+        border-top:1px solid rgba(0,0,0,.06);
+        box-shadow:0 18px 28px rgba(0,0,0,.08);
+        padding:10px 0;
+        opacity:0;
+        visibility:hidden;
+        transform:translateY(-10px);
+        transition:opacity .25s ease, transform .25s ease, visibility .25s ease;
+        z-index:99;
+      }
+
+      .nav-links.open{
+        opacity:1;
+        visibility:visible;
+        transform:translateY(0);
+      }
+
+      .nav-links a{
+        width:100%;
+        padding:16px 24px;
+        font-size:18px;
+      }
+
+      .nav-links a:hover{
+        background:#fafafa;
+      }
+
+      .nav .cta-btn{
+        padding:14px 28px;
+        min-width:178px;
+        font-size:18px;
+        border-radius:18px;
+        box-shadow:0 12px 22px rgba(239,59,51,.16);
+      }
+
+      .burger-btn{
+        display:inline-flex;
+      }
+
+      .hero{
+        min-height:auto;
+        padding:44px 0 40px;
+        background-position:center right;
+      }
+
+      .hero-copy{
+        max-width:100%;
+      }
+
+      .quote-card{
+        width:100%;
+      }
+
+      .features-section{
+        padding:22px 0 24px;
+      }
+
+      .features-card{
+        grid-template-columns:1fr;
+      }
+
+      .feature-item{
+        min-height:auto;
+        padding:24px 22px;
+      }
+
+      .feature-item + .feature-item{
+        border-left:none;
+        border-top:1px solid rgba(0,0,0,.08);
+      }
+
+      .feature-icon{
+        width:68px;
+        height:68px;
+        margin-bottom:16px;
+      }
+
+      .feature-item h3{
+        font-size:28px;
+        margin-bottom:10px;
+      }
+
+      .feature-item p{
+        font-size:17px;
+      }
+
+      .coverage-section{
+        min-height:auto;
+        background:
+          linear-gradient(180deg, rgba(248,249,252,.96) 0%, rgba(244,248,252,.9) 100%),
+          url("assets/city-map-bg.png") center center / cover no-repeat;
+      }
+
+      .coverage-inner{
+        grid-template-columns:1fr;
+        gap:34px;
+        padding:52px 0 56px;
+      }
+
+      .coverage-copy{
+        max-width:100%;
+        padding-left:0;
+      }
+
+      .coverage-copy h2{
+        margin-bottom:20px;
+      }
+
+      .coverage-map{
+        min-height:auto;
+        justify-content:center;
+      }
+
+      .coverage-map img{
+        margin:0 auto;
+        width:min(100%, 340px);
+        transform:translateY(20px);
+      }
+    }
+
+    @media (max-width:560px){
+      :root{
+        --wrap:min(100%, calc(100% - 24px));
+      }
+
+      .site-header .container{
+        min-height:108px;
+      }
+
+      .brand-name{
+        font-size:22px;
+      }
+
+      .brand-logo{
+        width:32px;
+        height:32px;
+      }
+
+      .nav{
+        gap:10px;
+      }
+
+      .nav .cta-btn{
+        min-width:150px;
+        padding:13px 22px;
+        font-size:16px;
+        border-radius:18px;
+      }
+
+      .burger-btn{
+        width:56px;
+        height:50px;
+      }
+
+      .burger-lines{
+        width:36px;
+        height:26px;
+      }
+
+      .burger-lines span{
+        height:4px;
+      }
+
+      .burger-lines span:nth-child(1){ top:0; }
+      .burger-lines span:nth-child(2){ top:11px; }
+      .burger-lines span:nth-child(3){ top:22px; }
+
+      .burger-btn.active .burger-lines span:nth-child(1),
+      .burger-btn.active .burger-lines span:nth-child(3){
+        top:11px;
+      }
+
+      .hero-copy h1{
+        font-size:52px;
+      }
+
+      .hero-copy p{
+        font-size:22px;
+      }
+
+      .quote-card{
+        padding:22px 18px 18px;
+      }
+
+      .quote-card h2{
+        font-size:24px;
+      }
+
+      .input-wrap{
+        min-height:60px;
+      }
+
+      .input-wrap input{
+        font-size:18px;
+      }
+
+      .submit-btn{
+        min-height:62px;
+        font-size:24px;
+      }
+
+      .features-section{
+        padding:18px 0 18px;
+      }
+
+      .feature-item{
+        padding:22px 16px;
+      }
+
+      .feature-item h3{
+        font-size:24px;
+      }
+
+      .feature-item p{
+        font-size:16px;
+      }
+
+      .coverage-inner{
+        padding:40px 0 40px;
+        gap:26px;
+      }
+
+      .coverage-copy h2{
+        font-size:clamp(34px, 10vw, 52px);
+      }
+
+      .coverage-copy p{
+        font-size:18px;
+      }
+
+      .coverage-map img{
+        width:min(100%, 280px);
+        transform:translateY(8px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="#" class="brand">
+        <img src="assets/logo.svg" alt="TakbytePris logo" class="brand-logo">
+        <div class="brand-name">Takbyte<span class="red">Pris</span>.se</div>
+      </a>
+
+      <nav class="nav">
+        <div class="nav-links" id="mobileMenu">
+          <a href="#">Hem</a>
+          <a href="#">Så funkar det</a>
+          <a href="#">Vanliga frågor</a>
+        </div>
+
+        <a href="#" class="cta-btn">Få Offert</a>
+
+        <button class="burger-btn" id="burgerBtn" aria-label="Öppna meny" aria-expanded="false" aria-controls="mobileMenu" type="button">
+          <span class="burger-lines">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <h1>Hitta <span class="yellow">takfirma</span><br>nära dig!</h1>
+        <p>Jämför upp till 4 offerter från kvalitetssäkrade takfirmor i ditt område.</p>
+
+        <form class="quote-card" action="results.html" method="GET">
+          <h2>Få gratis offert från takläggare</h2>
+
+          <div class="input-wrap">
+            <img src="assets/location-icon.svg" alt="" class="input-icon">
+            <input
+              type="text"
+              name="postcode"
+              placeholder="Ange ditt postnummer"
+              inputmode="numeric"
+              autocomplete="postal-code"
+              required
+            >
+          </div>
+
+          <button type="submit" class="submit-btn">Hämta Offert</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="features-section">
+    <div class="container">
+      <div class="features-card">
+        <div class="feature-item">
+          <img src="assets/icon1.svg" alt="" class="feature-icon">
+          <h3>Beskriv ditt takprojekt</h3>
+          <p>Berätta vad du önskar hjälp med och jämför offerter.</p>
+        </div>
+
+        <div class="feature-item">
+          <img src="assets/icon2.svg" alt="" class="feature-icon">
+          <h3>Jämför kvalitetssäkrade takfirmor</h3>
+          <p>Alla takfirmor är noggrant kontrollerade.</p>
+        </div>
+
+        <div class="feature-item">
+          <img src="assets/icon3.svg" alt="" class="feature-icon">
+          <h3>Hitta bästa priset</h3>
+          <p>Välj bästa takofferten och spara pengar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="coverage-section">
+    <div class="coverage-inner">
+      <div class="coverage-copy">
+        <h2>Få kontakt med<br>takläggare i hela Sverige</h2>
+        <p>
+          Vårt nätverk av takföretag täcker hela landet och du kan enkelt få kontakt
+          med takfirmor nära dig.
+        </p>
+      </div>
+
+      <div class="coverage-map">
+        <img src="assets/sweden-map.png" alt="Karta över Sverige med markeringar">
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const burgerBtn = document.getElementById('burgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    burgerBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      burgerBtn.classList.toggle('active', isOpen);
+      burgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        burgerBtn.classList.remove('active');
+        burgerBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 860) {
+        mobileMenu.classList.remove('open');
+        burgerBtn.classList.remove('active');
+        burgerBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  </script>
+
+</body>
+</html>
